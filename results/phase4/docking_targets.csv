@@ -1,0 +1,7 @@
+stem,tier,track,center_x,center_y,center_z,box_size,volume_A3,drug_score
+PPARG_1FM9_LBD_prep,Tier1,standard,12.487,-3.853,46.33,24,1324.524,0.996
+IRF8_AF2_DBD_prep,Tier1,standard,-29.595,-2.566,20.373,20,499.668,0.659
+MAF_4EOT_bZIP_prep,Tier1,standard,-43.648,14.275,-20.945,18,231.55,0.432
+RUNX1_1LJM_Runt_prep,Tier2,standard,-7.658,38.668,12.552,20,486.608,0.092
+BHLHE41_AF2_bHLH_prep,Tier2,standard,-48.99,13.505,34.681,20,401.954,0.003
+IKZF1_8RQC_CRBN,PROTAC,molecular_glue,0.566,-2.235,4.76,20,,

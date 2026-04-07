@@ -1,0 +1,5 @@
+target,track,drug_name,chembl_id,vina,cnn,composite,dG_GBSA,mw,alogp,cns_mpo,rationale
+IRF8 (AF2-DBD),Tier1,TAFAMIDIS,CHEMBL2103837,-6.71,0.741,0.713,-9.5,308.12,4.5,4.0,IRF8 DBD engagement → stabilize homeostatic TF activity; anti-neuroinflammatory
+PPARG (1FM9-LBD),Tier1,DIFLUNISAL,CHEMBL898,-8.77,0.955,0.924,-2.8,250.2,3.04,4.0,PPARG LBD partial agonism → LDAM lipid homeostasis; NSAIDs have PPARG partial-agonist activity (Lehmann 1997)
+BHLHE41 (AF2-bHLH),Tier2,DIBUCAINE,CHEMBL1086,-6.0,0.805,0.723,-21.89,343.47,3.49,3.5,BHLHE41 bHLH inhibition → de-repress DAM→LateAD-DAM transition; local anesthetic class
+IKZF1 (8RQC-CRBN glue),PROTAC-track,None identified,—,,,,,,,,No approved drug passes glutarimide pharmacophore + selectivity filter; requires IMiD-analogue library or de novo PROTAC design (DeLinker)

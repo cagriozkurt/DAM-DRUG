@@ -1,0 +1,10 @@
+/arf/scratch/mozkurt/DAM-DRUG/results/phase4/mmpbsa_tier2/IKZF1_8RQC/CHEMBL4297528
+/arf/scratch/mozkurt/DAM-DRUG/results/phase4/mmpbsa_tier2/IKZF1_8RQC/CHEMBL3137320
+/arf/scratch/mozkurt/DAM-DRUG/results/phase4/mmpbsa_tier2/IKZF1_8RQC/CHEMBL118
+/arf/scratch/mozkurt/DAM-DRUG/results/phase4/mmpbsa_tier2/IKZF1_8RQC/CHEMBL1096
+/arf/scratch/mozkurt/DAM-DRUG/results/phase4/mmpbsa_tier2/IKZF1_8RQC/CHEMBL1229211
+/arf/scratch/mozkurt/DAM-DRUG/results/phase4/mmpbsa_tier2/IKZF1_8RQC/CHEMBL973
+/arf/scratch/mozkurt/DAM-DRUG/results/phase4/mmpbsa_tier2/IRF8_AF2_DBD/CHEMBL3261331
+/arf/scratch/mozkurt/DAM-DRUG/results/phase4/mmpbsa_tier2/IRF8_AF2_DBD/CHEMBL3039520
+/arf/scratch/mozkurt/DAM-DRUG/results/phase4/mmpbsa_tier2/IRF8_AF2_DBD/CHEMBL550348
+/arf/scratch/mozkurt/DAM-DRUG/results/phase4/mmpbsa_tier2/IRF8_AF2_DBD/CHEMBL3188267

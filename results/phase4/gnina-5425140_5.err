@@ -1,0 +1,25 @@
+2026-03-24 20:16:58,631 INFO Target:    IKZF1_8RQC_CRBN
+2026-03-24 20:16:58,631 INFO Receptor:  IKZF1_8RQC_CRBN_prep.pdbqt
+2026-03-24 20:16:58,632 INFO Rescoring: 30 compounds (top 30 minus 0 blacklisted)
+2026-03-24 20:16:58,632 INFO CPUs:      20
+2026-03-24 20:16:58,634 INFO Box:       center=(0.566, -2.235, 4.760)  size=20Å
+2026-03-24 20:17:59,264 INFO   Progress: 10/30 — ok=10 fail=0
+2026-03-24 20:18:09,212 INFO   Progress: 20/30 — ok=20 fail=0
+2026-03-24 20:19:02,619 INFO   Progress: 30/30 — ok=30 fail=0
+2026-03-24 20:19:02,627 INFO 
+=== Gnina complete: IKZF1_8RQC_CRBN ===
+2026-03-24 20:19:02,627 INFO   Rescored: 30  Failed: 0
+2026-03-24 20:19:02,630 INFO   Scores saved: gnina_scores_IKZF1_8RQC_CRBN.csv  (30 entries)
+2026-03-24 20:19:02,630 INFO 
+  Top 10 by CNN score:
+2026-03-24 20:19:02,630 INFO     CHEMBL278819          CNN=0.9879  Vina= -6.11  CNNaff=5.48
+2026-03-24 20:19:02,630 INFO     CHEMBL1214124         CNN=0.9451  Vina= -6.14  CNNaff=7.25
+2026-03-24 20:19:02,631 INFO     CHEMBL220492          CNN=0.9220  Vina= -5.93  CNNaff=4.65
+2026-03-24 20:19:02,631 INFO     CHEMBL1201            CNN=0.9192  Vina= -5.87  CNNaff=6.74
+2026-03-24 20:19:02,631 INFO     CHEMBL898             CNN=0.8282  Vina= -6.27  CNNaff=5.16
+2026-03-24 20:19:02,631 INFO     CHEMBL294199          CNN=0.7930  Vina= -5.95  CNNaff=4.93
+2026-03-24 20:19:02,631 INFO     CHEMBL285674          CNN=0.7925  Vina= -5.77  CNNaff=6.66
+2026-03-24 20:19:02,631 INFO     CHEMBL396778          CNN=0.7835  Vina= -6.07  CNNaff=4.95
+2026-03-24 20:19:02,631 INFO     CHEMBL1201168         CNN=0.7814  Vina= -5.88  CNNaff=4.09
+2026-03-24 20:19:02,631 INFO     CHEMBL1522            CNN=0.7780  Vina= -6.42  CNNaff=5.53
+2026-03-24 20:19:02,631 INFO Next step: 15_run_gnina.slurm → 16_consensus_filter.py

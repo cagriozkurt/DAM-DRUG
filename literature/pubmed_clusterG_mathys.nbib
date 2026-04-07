@@ -1,0 +1,1628 @@
+
+
+PMID- 37774678
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20231024
+LR  - 20241012
+IS  - 1097-4172 (Electronic)
+IS  - 0092-8674 (Print)
+IS  - 0092-8674 (Linking)
+VI  - 186
+IP  - 20
+DP  - 2023 Sep 28
+TI  - Human microglial state dynamics in Alzheimer's disease progression.
+PG  - 4386-4403.e29
+LID - S0092-8674(23)00971-6 [pii]
+LID - 10.1016/j.cell.2023.08.037 [doi]
+AB  - Altered microglial states affect neuroinflammation, neurodegeneration, and 
+      disease but remain poorly understood. Here, we report 194,000 single-nucleus 
+      microglial transcriptomes and epigenomes across 443 human subjects and diverse 
+      Alzheimer's disease (AD) pathological phenotypes. We annotate 12 microglial 
+      transcriptional states, including AD-dysregulated homeostatic, inflammatory, and 
+      lipid-processing states. We identify 1,542 AD-differentially-expressed genes, 
+      including both microglia-state-specific and disease-stage-specific alterations. 
+      By integrating epigenomic, transcriptomic, and motif information, we infer 
+      upstream regulators of microglial cell states, gene-regulatory networks, 
+      enhancer-gene links, and transcription-factor-driven microglial state 
+      transitions. We demonstrate that ectopic expression of our predicted 
+      homeostatic-state activators induces homeostatic features in human iPSC-derived 
+      microglia-like cells, while inhibiting activators of inflammation can block 
+      inflammatory progression. Lastly, we pinpoint the expression of AD-risk genes in 
+      microglial states and differential expression of AD-risk genes and their 
+      regulators during AD progression. Overall, we provide insights underlying 
+      microglial states, including state-specific and AD-stage-specific microglial 
+      alterations at unprecedented resolution.
+CI  - Copyright © 2023 The Authors. Published by Elsevier Inc. All rights reserved.
+FAU - Sun, Na
+AU  - Sun N
+AD  - MIT Computer Science and Artificial Intelligence Laboratory, Cambridge, MA, USA; 
+      Broad Institute of MIT and Harvard, Cambridge, MA, USA.
+FAU - Victor, Matheus B
+AU  - Victor MB
+AD  - Picower Institute for Learning and Memory, Massachusetts Institute of Technology, 
+      Cambridge, MA, USA; Department of Brain and Cognitive Sciences, Massachusetts 
+      Institute of Technology, Cambridge, MA, USA.
+FAU - Park, Yongjin P
+AU  - Park YP
+AD  - MIT Computer Science and Artificial Intelligence Laboratory, Cambridge, MA, USA; 
+      Broad Institute of MIT and Harvard, Cambridge, MA, USA; Department of Pathology 
+      and Laboratory Medicine, Department of Statistics, University of British 
+      Columbia, Vancouver, BC, Canada; Department of Molecular Oncology, BC Cancer, 
+      Vancouver, BC, Canada.
+FAU - Xiong, Xushen
+AU  - Xiong X
+AD  - MIT Computer Science and Artificial Intelligence Laboratory, Cambridge, MA, USA; 
+      Broad Institute of MIT and Harvard, Cambridge, MA, USA.
+FAU - Scannail, Aine Ni
+AU  - Scannail AN
+AD  - Picower Institute for Learning and Memory, Massachusetts Institute of Technology, 
+      Cambridge, MA, USA; Department of Brain and Cognitive Sciences, Massachusetts 
+      Institute of Technology, Cambridge, MA, USA.
+FAU - Leary, Noelle
+AU  - Leary N
+AD  - Picower Institute for Learning and Memory, Massachusetts Institute of Technology, 
+      Cambridge, MA, USA; Department of Brain and Cognitive Sciences, Massachusetts 
+      Institute of Technology, Cambridge, MA, USA.
+FAU - Prosper, Shaniah
+AU  - Prosper S
+AD  - Picower Institute for Learning and Memory, Massachusetts Institute of Technology, 
+      Cambridge, MA, USA; Department of Brain and Cognitive Sciences, Massachusetts 
+      Institute of Technology, Cambridge, MA, USA.
+FAU - Viswanathan, Soujanya
+AU  - Viswanathan S
+AD  - Picower Institute for Learning and Memory, Massachusetts Institute of Technology, 
+      Cambridge, MA, USA; Department of Brain and Cognitive Sciences, Massachusetts 
+      Institute of Technology, Cambridge, MA, USA.
+FAU - Luna, Xochitl
+AU  - Luna X
+AD  - Picower Institute for Learning and Memory, Massachusetts Institute of Technology, 
+      Cambridge, MA, USA; Department of Brain and Cognitive Sciences, Massachusetts 
+      Institute of Technology, Cambridge, MA, USA.
+FAU - Boix, Carles A
+AU  - Boix CA
+AD  - MIT Computer Science and Artificial Intelligence Laboratory, Cambridge, MA, USA; 
+      Broad Institute of MIT and Harvard, Cambridge, MA, USA.
+FAU - James, Benjamin T
+AU  - James BT
+AD  - MIT Computer Science and Artificial Intelligence Laboratory, Cambridge, MA, USA; 
+      Broad Institute of MIT and Harvard, Cambridge, MA, USA.
+FAU - Tanigawa, Yosuke
+AU  - Tanigawa Y
+AD  - MIT Computer Science and Artificial Intelligence Laboratory, Cambridge, MA, USA; 
+      Broad Institute of MIT and Harvard, Cambridge, MA, USA.
+FAU - Galani, Kyriaki
+AU  - Galani K
+AD  - MIT Computer Science and Artificial Intelligence Laboratory, Cambridge, MA, USA; 
+      Broad Institute of MIT and Harvard, Cambridge, MA, USA.
+FAU - Mathys, Hansruedi
+AU  - Mathys H
+AD  - Picower Institute for Learning and Memory, Massachusetts Institute of Technology, 
+      Cambridge, MA, USA; Department of Brain and Cognitive Sciences, Massachusetts 
+      Institute of Technology, Cambridge, MA, USA; Department of Neurobiology, 
+      University of Pittsburgh School of Medicine, Pittsburgh, PA 15261, USA.
+FAU - Jiang, Xueqiao
+AU  - Jiang X
+AD  - Picower Institute for Learning and Memory, Massachusetts Institute of Technology, 
+      Cambridge, MA, USA; Department of Brain and Cognitive Sciences, Massachusetts 
+      Institute of Technology, Cambridge, MA, USA.
+FAU - Ng, Ayesha P
+AU  - Ng AP
+AD  - Picower Institute for Learning and Memory, Massachusetts Institute of Technology, 
+      Cambridge, MA, USA; Department of Brain and Cognitive Sciences, Massachusetts 
+      Institute of Technology, Cambridge, MA, USA.
+FAU - Bennett, David A
+AU  - Bennett DA
+AD  - Rush Alzheimer's Disease Center, Rush University Medical Center, Chicago, IL, 
+      USA.
+FAU - Tsai, Li-Huei
+AU  - Tsai LH
+AD  - Broad Institute of MIT and Harvard, Cambridge, MA, USA; Picower Institute for 
+      Learning and Memory, Massachusetts Institute of Technology, Cambridge, MA, USA; 
+      Department of Brain and Cognitive Sciences, Massachusetts Institute of 
+      Technology, Cambridge, MA, USA. Electronic address: lhtsai@mit.edu.
+FAU - Kellis, Manolis
+AU  - Kellis M
+AD  - MIT Computer Science and Artificial Intelligence Laboratory, Cambridge, MA, USA; 
+      Broad Institute of MIT and Harvard, Cambridge, MA, USA. Electronic address: 
+      manoli@mit.edu.
+LA  - eng
+GR  - HHMI/Howard Hughes Medical Institute/United States
+GR  - R01 AG074003/AG/NIA NIH HHS/United States
+GR  - RF1 AG062377/AG/NIA NIH HHS/United States
+GR  - P30 AG010161/AG/NIA NIH HHS/United States
+GR  - RF1 AG057473/AG/NIA NIH HHS/United States
+GR  - RF1 AG054321/AG/NIA NIH HHS/United States
+GR  - R01 AG062335/AG/NIA NIH HHS/United States
+GR  - U01 MH119509/MH/NIMH NIH HHS/United States
+GR  - R01 AG015819/AG/NIA NIH HHS/United States
+GR  - P30 AG072975/AG/NIA NIH HHS/United States
+GR  - U01 AG077227/AG/NIA NIH HHS/United States
+GR  - U01 DA053631/DA/NIDA NIH HHS/United States
+GR  - RF1 AG054012/AG/NIA NIH HHS/United States
+GR  - U01 AG046152/AG/NIA NIH HHS/United States
+GR  - R01 AG058002/AG/NIA NIH HHS/United States
+GR  - R01 HG008155/HG/NHGRI NIH HHS/United States
+GR  - U01 AG061356/AG/NIA NIH HHS/United States
+GR  - UG3 NS115064/NS/NINDS NIH HHS/United States
+GR  - R01 AG017917/AG/NIA NIH HHS/United States
+GR  - UH3 NS115064/NS/NINDS NIH HHS/United States
+GR  - R01 NS127187/NS/NINDS NIH HHS/United States
+GR  - RF1 NS129032/NS/NINDS NIH HHS/United States
+GR  - U01 NS110453/NS/NINDS NIH HHS/United States
+GR  - R56 AG067151/AG/NIA NIH HHS/United States
+GR  - R01 AG067151/AG/NIA NIH HHS/United States
+GR  - R01 MH109978/MH/NIMH NIH HHS/United States
+PT  - Journal Article
+PT  - Research Support, N.I.H., Extramural
+PT  - Research Support, Non-U.S. Gov't
+PL  - United States
+TA  - Cell
+JT  - Cell
+JID - 0413066
+RN  - 0 (Transcription Factors)
+SB  - IM
+CIN - Cell. 2023 Sep 28;186(20):4257-4259. doi: 10.1016/j.cell.2023.09.001. PMID: 
+      37774675
+MH  - Humans
+MH  - *Alzheimer Disease/genetics/pathology
+MH  - Gene Expression Regulation
+MH  - Inflammation/pathology
+MH  - *Microglia/metabolism
+MH  - Transcription Factors/metabolism
+MH  - Transcriptome
+MH  - Epigenome
+PMC - PMC10644954
+MID - NIHMS1933479
+OTO - NOTNLM
+OT  - Alzheimer's
+OT  - cell states
+OT  - disease-stage response
+OT  - iPSCs
+OT  - inflammation
+OT  - microglia
+OT  - single-cell
+OT  - transcription factors
+COIS- Declaration of interests L.-H.T. is a member of the Scientific Advisory Board of 
+      Cognito Therapeutics, 4M Therapeutics, Cell Signaling Technology, and Souvien 
+      Therapeutics, which has no association to this study.
+EDAT- 2023/09/30 09:42
+MHDA- 2023/10/23 01:18
+PMCR- 2024/09/28
+CRDT- 2023/09/29 18:16
+PHST- 2022/09/22 00:00 [received]
+PHST- 2023/03/21 00:00 [revised]
+PHST- 2023/08/29 00:00 [accepted]
+PHST- 2023/10/23 01:18 [medline]
+PHST- 2023/09/30 09:42 [pubmed]
+PHST- 2023/09/29 18:16 [entrez]
+PHST- 2024/09/28 00:00 [pmc-release]
+AID - S0092-8674(23)00971-6 [pii]
+AID - 10.1016/j.cell.2023.08.037 [doi]
+PST - ppublish
+SO  - Cell. 2023 Sep 28;186(20):4386-4403.e29. doi: 10.1016/j.cell.2023.08.037.
+
+PMID- 39985481
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20250509
+LR  - 20260210
+IS  - 1552-5279 (Electronic)
+IS  - 1552-5260 (Print)
+IS  - 1552-5260 (Linking)
+VI  - 21
+IP  - 2
+DP  - 2025 Feb
+TI  - Human herpesvirus-associated transposable element activation in human aging 
+      brains with Alzheimer's disease.
+PG  - e14595
+LID - 10.1002/alz.14595 [doi]
+LID - e14595
+AB  - INTRODUCTION: Human herpesvirus (HHV) has been linked to Alzheimer's disease 
+      (AD), but the underlying mechanisms remain unknown. METHODS: We leveraged 
+      functional genomics data from Religious Orders Study or the Rush Memory and Aging 
+      Project (ROS/MAP) and Mount Sinai Brain Bank (MSBB) brain biobanks and 
+      single-cell RNA-sequencing data from HHV-infected forebrain organoids to 
+      investigate HHV-infection-associated transposable element (TE) dysregulation 
+      underlying AD etiologies. RESULTS: We identified widespread TE dysregulation in 
+      HHV-positive human AD brains, including an astrocyte-specific upregulation of 
+      LINE1 subfamily TEs in HHV-positive human AD brains. We further pinpointed 
+      astrocyte-specific LINE1 upregulation that could potentially regulate target gene 
+      NEAT1 expression via long-range enhancer-promoter chromatin interactions. This 
+      LINE1 dysregulation can be partially reversed by the usage of anti-HHV drugs 
+      (valacyclovir and acyclovir) in a virus-infected human brain organoid model. 
+      Finally, we demonstrated that valacyclovir rescued tau-associated neuropathology 
+      and alleviated LINE1 activation in an experimental tau aggregation model. 
+      DISCUSSION: Our analysis provides associations linking molecular, clinical, and 
+      neuropathological AD features with HHV infection, which warrants future clinical 
+      validation. HIGHLIGHTS: Via analysis of bulk RNA-seq data in two large-scale 
+      human brain biobanks, ROS/MAP (n = 109 pathologically confirmed AD and n = 44 
+      cognitively healthy controls) and MSBB (n = 284 AD and n = 150 cognitively 
+      healthy controls), we identified widespread TE activation in HHV-positive human 
+      AD brains and significantly positive associations of HHV RNA abundance with APOE4 
+      genotype, Braak staging score, and CERAD score. We identified cell type-specific 
+      LINE1 upregulation in both microglia and astrocytes of human AD brains via 
+      long-range enhancer-promoter chromatin interactions on lncRNA nuclear enriched 
+      abundant transcript 1 (NEAT1). We determined that usage of valacyclovir and 
+      acyclovir was significantly associated with reduced incidence of AD in a large 
+      real-world patient database. Using the HEK293 tau P301S model and U2OS mt-Keima 
+      cell model, we determined that valacyclovir treatment rescued tau-associated 
+      neuropathology and alleviated activation of LINE1 with increased cellular 
+      autophagy-level mechanistically supported clinical benefits of valacyclovir in 
+      real-world patient data.
+CI  - © 2025 The Author(s). Alzheimer's & Dementia published by Wiley Periodicals LLC 
+      on behalf of Alzheimer's Association.
+FAU - Feng, Yayan
+AU  - Feng Y
+AD  - Cleveland Clinic Genome Center, Lerner Research Institute, Cleveland Clinic, 
+      Cleveland, Ohio, USA.
+AD  - Genomic Medicine Institute, Lerner Research Institute, Cleveland Clinic, 
+      Cleveland, Ohio, USA.
+FAU - Cao, Shu-Qin
+AU  - Cao SQ
+AD  - Department of Clinical Molecular Biology, University of Oslo and Akershus 
+      University Hospital, Lørenskog, Norway.
+FAU - Shi, Yi
+AU  - Shi Y
+AD  - Department of Biostatistics and Health Data Science, Indiana University, 
+      Indianapolis, Indiana, USA.
+FAU - Sun, Anna
+AU  - Sun A
+AD  - Department of Biostatistics and Health Data Science, Indiana University, 
+      Indianapolis, Indiana, USA.
+FAU - Flanagan, Margaret E
+AU  - Flanagan ME
+AD  - Department of Pathology, Glenn Biggs Institute for Alzheimer's and 
+      Neurodegenerative Diseases, University of Texas Health San Antonio, San Antonio, 
+      Texas, USA.
+FAU - Leverenz, James B
+AU  - Leverenz JB
+AD  - Department of Molecular Medicine, Cleveland Clinic Lerner College of Medicine, 
+      Case Western Reserve University, Cleveland, Ohio, USA.
+AD  - Lou Ruvo Center for Brain Health, Neurological Institute, Cleveland Clinic, 
+      Cleveland, Ohio, USA.
+FAU - Pieper, Andrew A
+AU  - Pieper AA
+AD  - Harrington Discovery Institute, University Hospitals Cleveland Medical Center, 
+      Cleveland, Ohio, USA.
+AD  - Department of Psychiatry, Case Western Reserve University, Cleveland, Ohio, USA.
+AD  - Geriatric Psychiatry, GRECC, Louis Stokes Cleveland VA Medical Center, Cleveland, 
+      Ohio, USA.
+AD  - Institute for Transformative Molecular Medicine, School of Medicine, Case Western 
+      Reserve University, Cleveland, Ohio, USA.
+AD  - Department of Neuroscience, Case Western Reserve University, School of Medicine, 
+      Cleveland, Ohio, USA.
+FAU - Jung, Jae U
+AU  - Jung JU
+AD  - Department of Cancer Biology, Lerner Research Institute, Cleveland Clinic, 
+      Cleveland, Ohio, USA.
+AD  - Program of Infectious Biology, Lerner Research Institute, Cleveland Clinic, 
+      Cleveland, Ohio, USA.
+FAU - Cummings, Jeffrey
+AU  - Cummings J
+AD  - Chambers-Grundy Center for Transformative Neuroscience, Department of Brain 
+      Health, Kirk Kerkorian School of Medicine, University of Nevada Las Vegas, Las 
+      Vegas, Nevada, USA.
+FAU - Fang, Evandro Fei
+AU  - Fang EF
+AD  - Department of Clinical Molecular Biology, University of Oslo and Akershus 
+      University Hospital, Lørenskog, Norway.
+FAU - Zhang, Pengyue
+AU  - Zhang P
+AD  - Department of Biostatistics and Health Data Science, Indiana University, 
+      Indianapolis, Indiana, USA.
+FAU - Cheng, Feixiong
+AU  - Cheng F
+AD  - Cleveland Clinic Genome Center, Lerner Research Institute, Cleveland Clinic, 
+      Cleveland, Ohio, USA.
+AD  - Genomic Medicine Institute, Lerner Research Institute, Cleveland Clinic, 
+      Cleveland, Ohio, USA.
+AD  - Department of Molecular Medicine, Cleveland Clinic Lerner College of Medicine, 
+      Case Western Reserve University, Cleveland, Ohio, USA.
+AD  - Case Comprehensive Cancer Center, Case Western Reserve University School of 
+      Medicine, Cleveland, Ohio, USA.
+LA  - eng
+GR  - R25 AG083721/AG/NIA NIH HHS/United States
+GR  - R01 AG017917/AG/NIA NIH HHS/United States
+GR  - RF1 NS133812/NS/NINDS NIH HHS/United States
+GR  - R56AG074001/AG/NIA NIH HHS/United States
+GR  - 3R01AG066707-02S1/AG/NIA NIH HHS/United States
+GR  - U01 AG073323/AG/NIA NIH HHS/United States
+GR  - U01 AG046139/AG/NIA NIH HHS/United States
+GR  - R35AG071476/AG/NIA NIH HHS/United States
+GR  - P01 AG003949/AG/NIA NIH HHS/United States
+GR  - P50 AG025711/AG/NIA NIH HHS/United States
+GR  - R01 AG018023/AG/NIA NIH HHS/United States
+GR  - 269901/Akershus University Hospital/
+GR  - NINDS RO1NS139383/GM/NIGMS NIH HHS/United States
+GR  - 3R01AG066707-01S1/AG/NIA NIH HHS/United States
+GR  - K08 AG065463/AG/NIA NIH HHS/United States
+GR  - R21 AG083003/AG/NIA NIH HHS/United States
+GR  - P30 AG062428/AG/NIA NIH HHS/United States
+GR  - R01AG076448/AG/NIA NIH HHS/United States
+GR  - U01 AG046152/AG/NIA NIH HHS/United States
+GR  - 262960/Akershus University Hospital/
+GR  - NIA R25AG083721-01/GM/NIGMS NIH HHS/United States
+GR  - 262175 334361/Research Council of Norway/
+GR  - 282952/Cure Alzheimer's Fund/
+GR  - R01 AG082118/AG/NIA NIH HHS/United States
+GR  - R21AG083003/AG/NIA NIH HHS/United States
+GR  - U01AG073323/AG/NIA NIH HHS/United States
+GR  - R56 AG074001/AG/NIA NIH HHS/United States
+GR  - P50 AG016574/AG/NIA NIH HHS/United States
+GR  - R35 AG071476/AG/NIA NIH HHS/United States
+GR  - 207819/Rosa sløyfe/Norwegian Cancer Society & Norwegian Breast Cancer Society/
+GR  - RF1 AG082211/AG/NIA NIH HHS/United States
+GR  - RF1AG082211/AG/NIA NIH HHS/United States
+GR  - 282942/Molecule AG/VITADAO/
+GR  - U01 AG061356/AG/NIA NIH HHS/United States
+GR  - U01 AG032984/AG/NIA NIH HHS/United States
+GR  - R01AG082118/AG/NIA NIH HHS/United States
+GR  - R01 AG030146/AG/NIA NIH HHS/United States
+GR  - U01 AG046170/AG/NIA NIH HHS/United States
+GR  - RF1NS133812/NS/NINDS NIH HHS/United States
+GR  - R01 AG084250/AG/NIA NIH HHS/United States
+GR  - P30AG072959/AG/NIA NIH HHS/United States
+GR  - R01 AG066707/AG/NIA NIH HHS/United States
+GR  - P30 AG010161/AG/NIA NIH HHS/United States
+GR  - R01 AG032990/AG/NIA NIH HHS/United States
+GR  - R01 NS139383/NS/NINDS NIH HHS/United States
+GR  - R01 NS080820/NS/NINDS NIH HHS/United States
+GR  - R01 AG076448/AG/NIA NIH HHS/United States
+GR  - P20GM109025/GM/NIGMS NIH HHS/United States
+GR  - 119986/NordForsk Foundation/
+GR  - TO01000215/Czech Republic-Norway KAPPA programme/
+GR  - P20 GM109025/GM/NIGMS NIH HHS/United States
+GR  - R01AG066707/AG/NIA NIH HHS/United States
+GR  - 261973/Akershus University Hospital/
+GR  - R01AG084250/AG/NIA NIH HHS/United States
+GR  - P30 AG072959/AG/NIA NIH HHS/United States
+GR  - P01 AG017216/AG/NIA NIH HHS/United States
+GR  - NIA R35AG71476/GM/NIGMS NIH HHS/United States
+GR  - 281931/Civitan Norges Forskningsfond for Alzheimers sykdom/
+GR  - U01 AG006786/AG/NIA NIH HHS/United States
+GR  - R01 AG036836/AG/NIA NIH HHS/United States
+GR  - R01 AG015819/AG/NIA NIH HHS/United States
+PT  - Journal Article
+PL  - United States
+TA  - Alzheimers Dement
+JT  - Alzheimer's & dementia : the journal of the Alzheimer's Association
+JID - 101231978
+RN  - 0 (DNA Transposable Elements)
+SB  - IM
+MH  - Humans
+MH  - *Alzheimer Disease/genetics/virology/pathology
+MH  - *Brain/virology/metabolism/pathology
+MH  - *Aging/genetics
+MH  - *DNA Transposable Elements/genetics
+MH  - Male
+MH  - Long Interspersed Nucleotide Elements/genetics
+MH  - Female
+MH  - Aged
+MH  - *Herpesviridae Infections/genetics
+MH  - Astrocytes/metabolism
+PMC - PMC11846481
+OTO - NOTNLM
+OT  - Alzheimer's disease (AD)
+OT  - human herpesvirus (HHV)
+OT  - long interspersed nuclear element 2 (LINE1)
+OT  - neuroinflammation
+OT  - transposable element (TE)
+OT  - valacyclovir
+COIS- J.C. (Dr. Cummings) has provided consultation to Acadia, Acumen, ALZpath, 
+      Annovis, Aprinoia, Artery, Biogen, Biohaven, BioXcel, Bristol‐Myers Squib, Eisai, 
+      Fosun, GAP Foundation, Green Valley, Janssen, Karuna, Kinoxis, Lighthouse, Lilly, 
+      Lundbeck, LSP/eqt, Mangrove Therapeutics, Merck, MoCA Cognition, New Amsterdam, 
+      Novo Nordisk, onocC4, Optoceutics, Otsuka, Oxford Brain Diagnostics, Praxis, 
+      Prothena, ReMYND, Roche, Scottish Brain Sciences, Signant Health, Simcere, 
+      sinaptica, T‐Neuro, TrueBinding, and Vaxxinity pharmaceutical, assessment, and 
+      investment companies. J.B.L. (Dr. Leverenz) has received consulting fees from 
+      Vaxxinity and grant support from GE Healthcare and serves on a data safety 
+      monitoring board for Eisai. E.F.F. (Dr. Fang) has a material transfer agreement 
+      (MTA) with LMITO Therapeutics Inc. (South Korea), a CRADA arrangement with 
+      ChromaDex (USA), and a commercialization agreement with Molecule AG/VITADAO and 
+      is a consultant to Aladdin Healthcare Technologies (UK and Germany), the 
+      Vancouver Dementia Prevention Centre (Canada), and Intellectual Labs (Norway). 
+      S.Q.C. has a commercialization agreement with Molecule AG/VITADAO. The other 
+      authors have declared no competing interests.
+EDAT- 2025/02/22 20:10
+MHDA- 2025/02/22 20:11
+PMCR- 2025/02/22
+CRDT- 2025/02/22 10:02
+PHST- 2025/01/12 00:00 [revised]
+PHST- 2024/07/24 00:00 [received]
+PHST- 2025/01/13 00:00 [accepted]
+PHST- 2025/02/22 20:11 [medline]
+PHST- 2025/02/22 20:10 [pubmed]
+PHST- 2025/02/22 10:02 [entrez]
+PHST- 2025/02/22 00:00 [pmc-release]
+AID - ALZ14595 [pii]
+AID - 10.1002/alz.14595 [doi]
+PST - ppublish
+SO  - Alzheimers Dement. 2025 Feb;21(2):e14595. doi: 10.1002/alz.14595.
+
+PMID- 37340466
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20230622
+LR  - 20250112
+IS  - 1750-1326 (Electronic)
+IS  - 1750-1326 (Linking)
+VI  - 18
+IP  - 1
+DP  - 2023 Jun 20
+TI  - Sex specific molecular networks and key drivers of Alzheimer's disease.
+PG  - 39
+LID - 10.1186/s13024-023-00624-5 [doi]
+LID - 39
+AB  - BACKGROUND: Alzheimer's disease (AD) is a progressive and age-associated 
+      neurodegenerative disorder that affects women disproportionally. However, the 
+      underlying mechanisms are poorly characterized. Moreover, while the interplay 
+      between sex and ApoE genotype in AD has been investigated, multi-omics studies to 
+      understand this interaction are limited. Therefore, we applied systems biology 
+      approaches to investigate sex-specific molecular networks of AD. METHODS: We 
+      integrated large-scale human postmortem brain transcriptomic data of AD from two 
+      cohorts (MSBB and ROSMAP) via multiscale network analysis and identified key 
+      drivers with sexually dimorphic expression patterns and/or different responses to 
+      APOE genotypes between sexes. The expression patterns and functional relevance of 
+      the top sex-specific network driver of AD were further investigated using 
+      postmortem human brain samples and gene perturbation experiments in AD mouse 
+      models. RESULTS: Gene expression changes in AD versus control were identified for 
+      each sex. Gene co-expression networks were constructed for each sex to identify 
+      AD-associated co-expressed gene modules shared by males and females or specific 
+      to each sex. Key network regulators were further identified as potential drivers 
+      of sex differences in AD development. LRP10 was identified as a top driver of the 
+      sex differences in AD pathogenesis and manifestation. Changes of LRP10 expression 
+      at the mRNA and protein levels were further validated in human AD brain samples. 
+      Gene perturbation experiments in EFAD mouse models demonstrated that LRP10 
+      differentially affected cognitive function and AD pathology in sex- and APOE 
+      genotype-specific manners. A comprehensive mapping of brain cells in LRP10 
+      over-expressed (OE) female E4FAD mice suggested neurons and microglia as the most 
+      affected cell populations. The female-specific targets of LRP10 identified from 
+      the single cell RNA-sequencing (scRNA-seq) data of the LRP10 OE E4FAD mouse 
+      brains were significantly enriched in the LRP10-centered subnetworks in female AD 
+      subjects, validating LRP10 as a key network regulator of AD in females. Eight 
+      LRP10 binding partners were identified by the yeast two-hybrid system screening, 
+      and LRP10 over-expression reduced the association of LRP10 with one binding 
+      partner CD34. CONCLUSIONS: These findings provide insights into key mechanisms 
+      mediating sex differences in AD pathogenesis and will facilitate the development 
+      of sex- and APOE genotype-specific therapies for AD.
+CI  - © 2023. The Author(s).
+FAU - Guo, Lei
+AU  - Guo L
+AD  - Department of Genetics and Genomic Sciences, Icahn School of Medicine at Mount 
+      Sinai, New York, NY, 10029, USA.
+AD  - Mount Sinai Center for Transformative Disease Modeling, Icahn School of Medicine 
+      at Mount Sinai, New York, NY, 10029, USA.
+FAU - Cao, Jiqing
+AU  - Cao J
+AD  - Department of Neurology, Icahn School of Medicine at Mount Sinai, New York, NY, 
+      10029, USA.
+AD  - James J Peters VA Medical Center, Research & Development, Bronx, NY, 10468, USA.
+FAU - Hou, Jianwei
+AU  - Hou J
+AD  - Department of Neurology, Icahn School of Medicine at Mount Sinai, New York, NY, 
+      10029, USA.
+AD  - James J Peters VA Medical Center, Research & Development, Bronx, NY, 10468, USA.
+FAU - Li, Yonghe
+AU  - Li Y
+AD  - Department of Neuroscience, Mayo Clinic, Jacksonville, FL, 32224, USA.
+FAU - Huang, Min
+AU  - Huang M
+AD  - Department of Neurology, Icahn School of Medicine at Mount Sinai, New York, NY, 
+      10029, USA.
+AD  - James J Peters VA Medical Center, Research & Development, Bronx, NY, 10468, USA.
+FAU - Zhu, Li
+AU  - Zhu L
+AD  - Department of Neurology, Icahn School of Medicine at Mount Sinai, New York, NY, 
+      10029, USA.
+AD  - James J Peters VA Medical Center, Research & Development, Bronx, NY, 10468, USA.
+FAU - Zhang, Larry
+AU  - Zhang L
+AD  - Department of Neurology, Icahn School of Medicine at Mount Sinai, New York, NY, 
+      10029, USA.
+AD  - James J Peters VA Medical Center, Research & Development, Bronx, NY, 10468, USA.
+FAU - Lee, Yeji
+AU  - Lee Y
+AD  - James J Peters VA Medical Center, Research & Development, Bronx, NY, 10468, USA.
+AD  - Department of Neuroscience, Yale University, New Haven, CT, 06510, USA.
+FAU - Duarte, Mariana Lemos
+AU  - Duarte ML
+AD  - Department of Neurology, Icahn School of Medicine at Mount Sinai, New York, NY, 
+      10029, USA.
+AD  - James J Peters VA Medical Center, Research & Development, Bronx, NY, 10468, USA.
+FAU - Zhou, Xianxiao
+AU  - Zhou X
+AD  - Department of Genetics and Genomic Sciences, Icahn School of Medicine at Mount 
+      Sinai, New York, NY, 10029, USA.
+AD  - Mount Sinai Center for Transformative Disease Modeling, Icahn School of Medicine 
+      at Mount Sinai, New York, NY, 10029, USA.
+FAU - Wang, Minghui
+AU  - Wang M
+AD  - Department of Genetics and Genomic Sciences, Icahn School of Medicine at Mount 
+      Sinai, New York, NY, 10029, USA.
+AD  - Mount Sinai Center for Transformative Disease Modeling, Icahn School of Medicine 
+      at Mount Sinai, New York, NY, 10029, USA.
+FAU - Liu, Chia-Chen
+AU  - Liu CC
+AD  - Department of Neuroscience, Mayo Clinic, Jacksonville, FL, 32224, USA.
+FAU - Martens, Yuka
+AU  - Martens Y
+AD  - Department of Neuroscience, Mayo Clinic, Jacksonville, FL, 32224, USA.
+FAU - Chao, Michael
+AU  - Chao M
+AD  - Department of Genetics and Genomic Sciences, Icahn School of Medicine at Mount 
+      Sinai, New York, NY, 10029, USA.
+AD  - Ronald M. Loeb Center for Alzheimer's Disease, Icahn School of Medicine at Mount 
+      Sinai, New York, NY, 10029, USA.
+FAU - Goate, Alison
+AU  - Goate A
+AD  - Department of Genetics and Genomic Sciences, Icahn School of Medicine at Mount 
+      Sinai, New York, NY, 10029, USA.
+AD  - Ronald M. Loeb Center for Alzheimer's Disease, Icahn School of Medicine at Mount 
+      Sinai, New York, NY, 10029, USA.
+FAU - Bu, Guojun
+AU  - Bu G
+AD  - Department of Neuroscience, Mayo Clinic, Jacksonville, FL, 32224, USA.
+FAU - Haroutunian, Vahram
+AU  - Haroutunian V
+AD  - James J Peters VA Medical Center, Research & Development, Bronx, NY, 10468, USA.
+AD  - Alzheimer Disease Research Center Icahn School of Medicine at Mount Sinai, New 
+      York, NY, 10029, USA.
+AD  - Department of Psychiatry, Icahn School of Medicine at Mount Sinai, New York, NY, 
+      10029, USA.
+AD  - James J Peters VA Medical Center, MIRECC, Bronx, NY, 10468, USA.
+FAU - Cai, Dongming
+AU  - Cai D
+AD  - Department of Neurology, Icahn School of Medicine at Mount Sinai, New York, NY, 
+      10029, USA. dongming.cai@mssm.edu.
+AD  - James J Peters VA Medical Center, Research & Development, Bronx, NY, 10468, USA. 
+      dongming.cai@mssm.edu.
+AD  - Ronald M. Loeb Center for Alzheimer's Disease, Icahn School of Medicine at Mount 
+      Sinai, New York, NY, 10029, USA. dongming.cai@mssm.edu.
+AD  - Alzheimer Disease Research Center Icahn School of Medicine at Mount Sinai, New 
+      York, NY, 10029, USA. dongming.cai@mssm.edu.
+FAU - Zhang, Bin
+AU  - Zhang B
+AUID- ORCID: 0000-0002-9549-5653
+AD  - Department of Genetics and Genomic Sciences, Icahn School of Medicine at Mount 
+      Sinai, New York, NY, 10029, USA. bin.zhang@mssm.edu.
+AD  - Mount Sinai Center for Transformative Disease Modeling, Icahn School of Medicine 
+      at Mount Sinai, New York, NY, 10029, USA. bin.zhang@mssm.edu.
+AD  - Department of Pharmacological Sciences, Icahn School of Medicine at Mount Sinai, 
+      New York, NY, 10029, USA. bin.zhang@mssm.edu.
+LA  - eng
+GR  - R01 AG072562/AG/NIA NIH HHS/United States
+GR  - I01 BX003380/BX/BLRD VA/United States
+GR  - R56 AG058655/AG/NIA NIH HHS/United States
+GR  - I01 BX005934/BX/BLRD VA/United States
+GR  - R01 AG068030/AG/NIA NIH HHS/United States
+GR  - RF1 AG074010/AG/NIA NIH HHS/United States
+GR  - RF1 AG048923/AG/NIA NIH HHS/United States
+GR  - RF1 AG057440/AG/NIA NIH HHS/United States
+GR  - R01 AG057907/AG/NIA NIH HHS/United States
+GR  - U01 AG046170/AG/NIA NIH HHS/United States
+GR  - U01 AG052411/AG/NIA NIH HHS/United States
+GR  - RF1 AG054014/AG/NIA NIH HHS/United States
+GR  - R01 AG048923/AG/NIA NIH HHS/United States
+PT  - Journal Article
+PT  - Research Support, N.I.H., Extramural
+DEP - 20230620
+PL  - England
+TA  - Mol Neurodegener
+JT  - Molecular neurodegeneration
+JID - 101266600
+RN  - 0 (Apolipoproteins E)
+RN  - 0 (LRP10 protein, human)
+RN  - 0 (LDL-Receptor Related Proteins)
+SB  - IM
+MH  - Female
+MH  - Humans
+MH  - Mice
+MH  - Male
+MH  - Animals
+MH  - *Alzheimer Disease/metabolism
+MH  - Brain/metabolism
+MH  - Transcriptome
+MH  - Gene Regulatory Networks
+MH  - Apolipoproteins E/metabolism
+MH  - LDL-Receptor Related Proteins/genetics/metabolism
+PMC - PMC10280841
+OTO - NOTNLM
+OT  - APOE genotype
+OT  - Alzheimer’s disease
+OT  - Gene co-expression network
+OT  - Key driver genes
+OT  - LDL receptor related protein 10 (LRP10)
+OT  - Sex difference
+COIS- All authors declared no conflict of interest.
+EDAT- 2023/06/21 01:07
+MHDA- 2023/06/22 06:42
+PMCR- 2023/06/20
+CRDT- 2023/06/20 23:43
+PHST- 2022/06/20 00:00 [received]
+PHST- 2023/05/08 00:00 [accepted]
+PHST- 2023/06/22 06:42 [medline]
+PHST- 2023/06/21 01:07 [pubmed]
+PHST- 2023/06/20 23:43 [entrez]
+PHST- 2023/06/20 00:00 [pmc-release]
+AID - 10.1186/s13024-023-00624-5 [pii]
+AID - 624 [pii]
+AID - 10.1186/s13024-023-00624-5 [doi]
+PST - epublish
+SO  - Mol Neurodegener. 2023 Jun 20;18(1):39. doi: 10.1186/s13024-023-00624-5.
+
+PMID- 40451396
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20250908
+LR  - 20260314
+IS  - 1090-2139 (Electronic)
+IS  - 0889-1591 (Print)
+IS  - 0889-1591 (Linking)
+VI  - 129
+DP  - 2025 Oct
+TI  - HDAC inhibitors engage MITF and the disease-associated microglia signature to 
+      enhance amyloid β uptake.
+PG  - 279-293
+LID - S0889-1591(25)00204-1 [pii]
+LID - 10.1016/j.bbi.2025.05.027 [doi]
+AB  - Disease-associated microglia (DAM), initially described in mouse models of 
+      neurodegenerative diseases, have been classified into two related states; 
+      starting from a TREM2-independent DAM1 state to a TREM2dependent state termed 
+      DAM2, with each state being characterized by the expression of specific marker 
+      genes (Keren-Shaul, 2017). Recently, single-cell (sc)RNA-Seq studies have 
+      reported the existence of DAM in humans (Pettas, 2022; Jauregui, 2023; Friedman, 
+      2018; Mathys, 2019; Tuddenham, 2024); however, whether DAM play beneficial or 
+      detrimental roles in the context of neurodegeneration is still under debate 
+      (Butovsky and Weiner, 2018; Wang and Colonna, 2019). Here, we present a 
+      pharmacological approach to mimic human DAM in vitro: we validated in silico 
+      predictions that two different histone deacetylase (HDAC) inhibitors, Entinostat 
+      and Vorinostat, recapitulate aspects of the DAM signature in two human 
+      microglia-like model systems. HDAC inhibition increases RNA expression of MITF, a 
+      transcription factor previously described as a regulator of the DAM signature 
+      (Dolan, 2023). This engagement of MITF appears to be associated with one part of 
+      the DAM signature, refining our understanding of the DAM signature as a 
+      combination of at least two transcriptional programs that appear to be correlated 
+      in vivo. Further, we functionally characterized our DAM-like model system, 
+      showing that the upregulation of this transcriptional program by HDAC inhibitors 
+      leads to an upregulation of amyloid β and pHrodo Dextran uptake - while E.coli 
+      uptake is reduced - and a specific reduction of MCP1 secretion in response to 
+      IFN-γ and TNF-α. Enhanced amyloid β uptake was confirmed in iPSC-derived 
+      microglia. Overall, our strategy for compound-driven microglial polarization 
+      offers potential for exploring the function of human DAM and for an 
+      immunomodulatory strategy around HDAC inhibition.
+CI  - Copyright © 2025 Elsevier Inc. All rights reserved.
+FAU - Haage, Verena
+AU  - Haage V
+AD  - Center for Translational & Computational Neuroimmunology, Department of Neurology 
+      and the Taub Institute for Research on Alzheimer's Disease and the Aging Brain, 
+      Columbia University Irving Medical Center, USA; Experimental and Clinical 
+      Research Center, Max Delbrueck Center for Molecular Medicine and 
+      Charité-Universitätsmedizin Berlin, Berlin, Germany.
+FAU - Tuddenham, John F
+AU  - Tuddenham JF
+AD  - Center for Translational & Computational Neuroimmunology, Department of Neurology 
+      and the Taub Institute for Research on Alzheimer's Disease and the Aging Brain, 
+      Columbia University Irving Medical Center, USA; Department of Systems Biology, 
+      Columbia University Irving Medical Center, New York, NY, USA.
+FAU - Bautista, Alex
+AU  - Bautista A
+AD  - Center for Translational & Computational Neuroimmunology, Department of Neurology 
+      and the Taub Institute for Research on Alzheimer's Disease and the Aging Brain, 
+      Columbia University Irving Medical Center, USA.
+FAU - Garcia G, Frankie
+AU  - Garcia G F
+AD  - Center for Translational & Computational Neuroimmunology, Department of Neurology 
+      and the Taub Institute for Research on Alzheimer's Disease and the Aging Brain, 
+      Columbia University Irving Medical Center, USA.
+FAU - White, Charles C
+AU  - White CC
+AD  - Center for Translational & Computational Neuroimmunology, Department of Neurology 
+      and the Taub Institute for Research on Alzheimer's Disease and the Aging Brain, 
+      Columbia University Irving Medical Center, USA.
+FAU - Patel, Ronak
+AU  - Patel R
+AD  - Department of Pathology and Cell Biology and the Taub Institute for Research on 
+      Alzheimer's Disease and the Aging Brain, Columbia University Irving Medical 
+      Center, USA; Dept of Neurology, Carol and Gene Ludwig Center for Research on 
+      Neurodegeneration, and Taub at Columbia, USA.
+FAU - Comandante-Lou, Natacha
+AU  - Comandante-Lou N
+AD  - Center for Translational & Computational Neuroimmunology, Department of Neurology 
+      and the Taub Institute for Research on Alzheimer's Disease and the Aging Brain, 
+      Columbia University Irving Medical Center, USA.
+FAU - Marshe, Victoria
+AU  - Marshe V
+AD  - Center for Translational & Computational Neuroimmunology, Department of Neurology 
+      and the Taub Institute for Research on Alzheimer's Disease and the Aging Brain, 
+      Columbia University Irving Medical Center, USA.
+FAU - Griffin, Jennifer
+AU  - Griffin J
+AD  - Department of Neurology, University Health Network and Temerty Faculty of 
+      Medicine, Tanz, University Of Toronto, Toronto, Ontario, Canada.
+FAU - Zhou, Ye
+AU  - Zhou Y
+AD  - Department of Neurology, University Health Network and Temerty Faculty of 
+      Medicine, Tanz, University Of Toronto, Toronto, Ontario, Canada.
+FAU - Ghaffari, Deniz
+AU  - Ghaffari D
+AD  - Department of Neurology, University Health Network and Temerty Faculty of 
+      Medicine, Tanz, University Of Toronto, Toronto, Ontario, Canada.
+FAU - Acheson, Beatrice
+AU  - Acheson B
+AD  - Department of Neurology, University Health Network and Temerty Faculty of 
+      Medicine, Tanz, University Of Toronto, Toronto, Ontario, Canada.
+FAU - Taga, Mariko
+AU  - Taga M
+AD  - Center for Translational & Computational Neuroimmunology, Department of Neurology 
+      and the Taub Institute for Research on Alzheimer's Disease and the Aging Brain, 
+      Columbia University Irving Medical Center, USA.
+FAU - St George-Hyslop, Peter H
+AU  - St George-Hyslop PH
+AD  - Dept of Neurology, Carol and Gene Ludwig Center for Research on 
+      Neurodegeneration, and Taub at Columbia, USA; Department of Neurology, University 
+      Health Network and Temerty Faculty of Medicine, Tanz, University Of Toronto, 
+      Toronto, Ontario, Canada.
+FAU - Soni, Rajesh Kumar
+AU  - Soni RK
+AD  - Proteomics and Macromolecular Crystallography Shared Resource, Herbert Irving 
+      Comprehensive Cancer Center, New York, NY, USA.
+FAU - Sims, Peter A
+AU  - Sims PA
+AD  - Department of Systems Biology, Columbia University Irving Medical Center, New 
+      York, NY, USA.
+FAU - Menon, Vilas
+AU  - Menon V
+AD  - Center for Translational & Computational Neuroimmunology, Department of Neurology 
+      and the Taub Institute for Research on Alzheimer's Disease and the Aging Brain, 
+      Columbia University Irving Medical Center, USA.
+FAU - Sproul, Andrew A
+AU  - Sproul AA
+AD  - Department of Pathology and Cell Biology and the Taub Institute for Research on 
+      Alzheimer's Disease and the Aging Brain, Columbia University Irving Medical 
+      Center, USA.
+FAU - De Jager, Philip L
+AU  - De Jager PL
+AD  - Center for Translational & Computational Neuroimmunology, Department of Neurology 
+      and the Taub Institute for Research on Alzheimer's Disease and the Aging Brain, 
+      Columbia University Irving Medical Center, USA. Electronic address: 
+      pld2115@cumc.columbia.edu.
+LA  - eng
+GR  - U01 AG046152/AG/NIA NIH HHS/United States
+GR  - R25 MH129256/MH/NIMH NIH HHS/United States
+GR  - RF1 AG070438/AG/NIA NIH HHS/United States
+GR  - U01 AG061356/AG/NIA NIH HHS/United States
+GR  - T32 GM007367/GM/NIGMS NIH HHS/United States
+GR  - U01 AG072572/AG/NIA NIH HHS/United States
+GR  - P30 CA013696/CA/NCI NIH HHS/United States
+GR  - RF1 AG057473/AG/NIA NIH HHS/United States
+GR  - R01 AG048015/AG/NIA NIH HHS/United States
+GR  - R01 AG070438/AG/NIA NIH HHS/United States
+GR  - F30 CA261090/CA/NCI NIH HHS/United States
+PT  - Journal Article
+DEP - 20250530
+PL  - Netherlands
+TA  - Brain Behav Immun
+JT  - Brain, behavior, and immunity
+JID - 8800478
+RN  - 0 (Histone Deacetylase Inhibitors)
+RN  - 0 (Amyloid beta-Peptides)
+RN  - 0 (Benzamides)
+RN  - 0 (Microphthalmia-Associated Transcription Factor)
+RN  - 58IFB293JI (Vorinostat)
+RN  - 0 (Pyridines)
+RN  - 1ZNY4FKK9H (entinostat)
+SB  - IM
+MH  - *Microglia/metabolism/drug effects
+MH  - Humans
+MH  - *Histone Deacetylase Inhibitors/pharmacology
+MH  - *Amyloid beta-Peptides/metabolism
+MH  - Benzamides/pharmacology
+MH  - *Microphthalmia-Associated Transcription Factor/metabolism
+MH  - Vorinostat/pharmacology
+MH  - Pyridines/pharmacology
+MH  - Animals
+MH  - Neurodegenerative Diseases/metabolism
+MH  - Mice
+PMC - PMC12286591
+MID - NIHMS2090364
+OTO - NOTNLM
+OT  - Disease-associated microglia (DAM)
+OT  - Functional analysis
+OT  - Human microglia
+OT  - In vitro model systems
+OT  - Pharmacological modelling
+COIS- Declaration of competing interest The authors declare that they have no known 
+      competing financial interests or personal relationships that could have appeared 
+      to influence the work reported in this paper.
+EDAT- 2025/06/02 03:18
+MHDA- 2025/09/09 03:39
+PMCR- 2026/05/30
+CRDT- 2025/06/01 21:15
+PHST- 2025/01/15 00:00 [received]
+PHST- 2025/05/14 00:00 [revised]
+PHST- 2025/05/27 00:00 [accepted]
+PHST- 2026/05/30 00:00 [pmc-release]
+PHST- 2025/09/09 03:39 [medline]
+PHST- 2025/06/02 03:18 [pubmed]
+PHST- 2025/06/01 21:15 [entrez]
+AID - S0889-1591(25)00204-1 [pii]
+AID - 10.1016/j.bbi.2025.05.027 [doi]
+PST - ppublish
+SO  - Brain Behav Immun. 2025 Oct;129:279-293. doi: 10.1016/j.bbi.2025.05.027. Epub 
+      2025 May 30.
+
+PMID- 38187779
+OWN - NLM
+STAT- PubMed-not-MEDLINE
+LR  - 20241019
+IS  - 2692-8205 (Electronic)
+IS  - 2692-8205 (Linking)
+DP  - 2023 Dec 20
+TI  - Human disease-specific cell signatures in non-lesional tissue in Multiple 
+      Sclerosis detected by single-cell and spatial transcriptomics.
+LID - 2023.12.20.572491 [pii]
+LID - 10.1101/2023.12.20.572491 [doi]
+AB  - Recent investigations of cell type changes in Multiple Sclerosis (MS) using 
+      single-cell profiling methods have focused on active lesional and peri-lesional 
+      brain tissue, and have implicated a number of peripheral and central nervous 
+      system cell types. However, an important question is the extent to which 
+      so-called "normal-appearing" non-lesional tissue in individuals with MS 
+      accumulate changes over the lifespan. Here, we compared post-mortem non-lesional 
+      brain tissue from donors with a pathological or clinical diagnosis of MS from the 
+      Religious Orders Study or Rush Memory and Aging Project (ROSMAP) cohorts to age- 
+      and sex-matched brains from persons without MS (controls). We profiled three 
+      brain regions using single-nucleus RNA-seq: dorsolateral prefrontal cortex 
+      (DLPFC), normal appearing white matter (NAWM) and the pulvinar in thalamus 
+      (PULV), from 15 control individuals, 8 individuals with MS, and 5 individuals 
+      with other detrimental pathologies accompanied by demyelination, resulting in a 
+      total of 78 samples. We identified region- and cell type-specific differences in 
+      non-lesional samples from individuals diagnosed with MS and/or exhibiting 
+      secondary demyelination with other neurological conditions, as compared to 
+      control donors. These differences included lower proportions of oligodendrocytes 
+      with expression of myelination related genes MOBP, MBP, PLP1, as well as higher 
+      proportions of CRYAB+ oligodendrocytes in all three brain regions. Among 
+      microglial signatures, we identified subgroups that were higher in both 
+      demyelination (TMEM163+/ERC2+), as well as those that were specifically higher in 
+      MS donors (HIF1A+/SPP1+) and specifically in donors with secondary demyelination 
+      (SOCS6+/MYO1E+), in both white and grey matter. To validate our findings, we 
+      generated Visium spatial transcriptomics data on matched tissue from 13 donors, 
+      and recapitulated our observations of gene expression differences in 
+      oligodendrocytes and microglia. Finally, we show that some of the differences 
+      observed between control and MS donors in NAWM mirror those previously reported 
+      between control WM and active lesions in MS donors. Overall, our investigation 
+      sheds additional light on cell type- and disease-specific differences present 
+      even in non-lesional white and grey matter tissue, highlighting widespread 
+      cellular signatures that may be associated with downstream pathological changes.
+FAU - Lam, Matti
+AU  - Lam M
+AUID- ORCID: 0000-0002-1853-4209
+AD  - Center for Translational and Computational Neuroimmunology, Department of 
+      Neurology, Columbia University Irving Medical Center.
+FAU - Lee, Dylan
+AU  - Lee D
+AD  - Center for Translational and Computational Neuroimmunology, Department of 
+      Neurology, Columbia University Irving Medical Center.
+FAU - Kosater, Ivy
+AU  - Kosater I
+AD  - Center for Translational and Computational Neuroimmunology, Department of 
+      Neurology, Columbia University Irving Medical Center.
+FAU - Khairallah, Anthony
+AU  - Khairallah A
+AD  - Center for Translational and Computational Neuroimmunology, Department of 
+      Neurology, Columbia University Irving Medical Center.
+FAU - Taga, Mariko
+AU  - Taga M
+AD  - Center for Translational and Computational Neuroimmunology, Department of 
+      Neurology, Columbia University Irving Medical Center.
+FAU - Zhang, Ya
+AU  - Zhang Y
+AD  - Center for Translational and Computational Neuroimmunology, Department of 
+      Neurology, Columbia University Irving Medical Center.
+FAU - Fujita, Masashi
+AU  - Fujita M
+AD  - Center for Translational and Computational Neuroimmunology, Department of 
+      Neurology, Columbia University Irving Medical Center.
+FAU - Nag, Sukriti
+AU  - Nag S
+AD  - Rush Alzheimer's Disease Center, Rush University Medical Center, Chicago, IL.
+FAU - Bennett, David A
+AU  - Bennett DA
+AD  - Rush Alzheimer's Disease Center, Rush University Medical Center, Chicago, IL.
+FAU - De Jager, Philip
+AU  - De Jager P
+AD  - Center for Translational and Computational Neuroimmunology, Department of 
+      Neurology, Columbia University Irving Medical Center.
+FAU - Menon, Vilas
+AU  - Menon V
+AD  - Center for Translational and Computational Neuroimmunology, Department of 
+      Neurology, Columbia University Irving Medical Center.
+LA  - eng
+GR  - P30 AG072975/AG/NIA NIH HHS/United States
+GR  - R01 AG066831/AG/NIA NIH HHS/United States
+GR  - R01 AG017917/AG/NIA NIH HHS/United States
+GR  - P30 AG010161/AG/NIA NIH HHS/United States
+GR  - P30 CA013696/CA/NCI NIH HHS/United States
+GR  - R21 AG075754/AG/NIA NIH HHS/United States
+GR  - UL1 TR001873/TR/NCATS NIH HHS/United States
+GR  - R01 AG015819/AG/NIA NIH HHS/United States
+PT  - Journal Article
+PT  - Preprint
+DEP - 20231220
+PL  - United States
+TA  - bioRxiv
+JT  - bioRxiv : the preprint server for biology
+JID - 101680187
+PMC - PMC10769298
+EDAT- 2024/01/08 06:42
+MHDA- 2024/01/08 06:43
+PMCR- 2024/01/05
+CRDT- 2024/01/08 04:55
+PHST- 2024/01/08 06:42 [pubmed]
+PHST- 2024/01/08 06:43 [medline]
+PHST- 2024/01/08 04:55 [entrez]
+PHST- 2024/01/05 00:00 [pmc-release]
+AID - 2023.12.20.572491 [pii]
+AID - 10.1101/2023.12.20.572491 [doi]
+PST - epublish
+SO  - bioRxiv [Preprint]. 2023 Dec 20:2023.12.20.572491. doi: 
+      10.1101/2023.12.20.572491.
+
+PMID- 37727065
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20240126
+LR  - 20260127
+IS  - 1552-5279 (Electronic)
+IS  - 1552-5260 (Print)
+IS  - 1552-5260 (Linking)
+VI  - 20
+IP  - 1
+DP  - 2024 Jan
+TI  - Associations of cortical SPP1 and ITGAX with cognition and common 
+      neuropathologies in older adults.
+PG  - 525-537
+LID - 10.1002/alz.13474 [doi]
+AB  - INTRODUCTION: The secreted phosphoprotein 1 (SPP1) gene expressed by CD11c(+) 
+      cells is known to be associated with microglia activation and neuroinflammatory 
+      diseases. As most studies rely on mouse models, we investigated these genes and 
+      proteins in the cortical brain tissue of older adults and their role in 
+      Alzheimer's disease (AD) and related disorders. METHODS: We leveraged protein 
+      measurements, single-nuclei, and RNASeq data from the Religious Orders Study and 
+      Rush Memory and Aging Project (ROSMAP) of over 1200 samples for association 
+      analysis. RESULTS: Expression of SPP1 and its encoded protein osteopontin were 
+      associated with faster cognitive decline and greater odds of common 
+      neuropathologies. At single-cell resolution,  integrin subunit alpha X (ITGAX) 
+      was highly expressed in microglia, where specific subpopulations were associated 
+      with AD and cerebral amyloid angiopathy. DISCUSSION: The study provides evidence 
+      of SPP1 and ITGAX association with cognitive decline and common neuropathologies 
+      identifying a microglial subset associated with disease.
+CI  - © 2023 The Authors. Alzheimer's & Dementia published by Wiley Periodicals LLC on 
+      behalf of Alzheimer's Association.
+FAU - Lopes, Katia de Paiva
+AU  - Lopes KP
+AD  - Rush Alzheimer's Disease Center, Rush University Medical Center, Chicago, 
+      Illinois, USA.
+AD  - Department of Neurological Sciences, Rush University Medical Center, Chicago, 
+      Illinois, USA.
+FAU - Yu, Lei
+AU  - Yu L
+AD  - Rush Alzheimer's Disease Center, Rush University Medical Center, Chicago, 
+      Illinois, USA.
+AD  - Department of Neurological Sciences, Rush University Medical Center, Chicago, 
+      Illinois, USA.
+FAU - Shen, Xianli
+AU  - Shen X
+AD  - Department of Cancer Immunology and Virology, Dana-Farber Cancer Institute, 
+      Boston, Massachusetts, USA.
+AD  - Department of Immunology, Harvard Medical School, Boston, Massachusetts, USA.
+FAU - Qiu, Yiguo
+AU  - Qiu Y
+AD  - Department of Cancer Immunology and Virology, Dana-Farber Cancer Institute, 
+      Boston, Massachusetts, USA.
+AD  - Department of Immunology, Harvard Medical School, Boston, Massachusetts, USA.
+AD  - Chongqing International Institute for Immunology, Chongqing, China.
+FAU - Tasaki, Shinya
+AU  - Tasaki S
+AD  - Rush Alzheimer's Disease Center, Rush University Medical Center, Chicago, 
+      Illinois, USA.
+AD  - Department of Neurological Sciences, Rush University Medical Center, Chicago, 
+      Illinois, USA.
+FAU - Iatrou, Artemis
+AU  - Iatrou A
+AD  - Rush Alzheimer's Disease Center, Rush University Medical Center, Chicago, 
+      Illinois, USA.
+AD  - Department of Neurological Sciences, Rush University Medical Center, Chicago, 
+      Illinois, USA.
+AD  - Department of Psychiatry, McLean Hospital, Harvard Medical School, Belmont, 
+      Massachusetts, USA.
+FAU - Beeri, Michal Schnaider
+AU  - Beeri MS
+AD  - Joseph Sagol Neuroscience Center, Sheba Medical Center, Ramat Gan, Israel.
+AD  - Department of Psychiatry, Icahn School of Medicine at Mount Sinai, New York, New 
+      York, USA.
+AD  - The Herbert and Jackeline Krieger Klein Alzheimer's Research Center, Rutgers 
+      Biomedical and Health Sciences, Rutgers University, New Jersey, USA.
+FAU - Seyfried, Nicholas T
+AU  - Seyfried NT
+AD  - Goizueta Alzheimer's Disease Research Center, Department of Neurology and 
+      Department of Biochemistry, Emory University School of Medicine, Atlanta, 
+      Georgia, USA.
+FAU - Menon, Vilas
+AU  - Menon V
+AD  - Center for Translational and Computational Neuroimmunology, Department of 
+      Neurology & Taub Institute for Research on Alzheimer's disease and the Aging 
+      Brain, Columbia University Irving Medical Center, New York, New York, USA.
+FAU - Wang, Yanling
+AU  - Wang Y
+AD  - Rush Alzheimer's Disease Center, Rush University Medical Center, Chicago, 
+      Illinois, USA.
+AD  - Department of Neurological Sciences, Rush University Medical Center, Chicago, 
+      Illinois, USA.
+FAU - Schneider, Julie A
+AU  - Schneider JA
+AD  - Rush Alzheimer's Disease Center, Rush University Medical Center, Chicago, 
+      Illinois, USA.
+AD  - Department of Neurological Sciences, Rush University Medical Center, Chicago, 
+      Illinois, USA.
+AD  - Department of Pathology, Rush University Medical Center, Chicago, Illinois, USA.
+FAU - Cantor, Harvey
+AU  - Cantor H
+AD  - Department of Cancer Immunology and Virology, Dana-Farber Cancer Institute, 
+      Boston, Massachusetts, USA.
+AD  - Department of Immunology, Harvard Medical School, Boston, Massachusetts, USA.
+FAU - Bennett, David A
+AU  - Bennett DA
+AD  - Rush Alzheimer's Disease Center, Rush University Medical Center, Chicago, 
+      Illinois, USA.
+AD  - Department of Neurological Sciences, Rush University Medical Center, Chicago, 
+      Illinois, USA.
+LA  - eng
+GR  - P30 AG072975/AG/NIA NIH HHS/United States
+GR  - U01AG46152/AG/NIA NIH HHS/United States
+GR  - P30AG10161/AG/NIA NIH HHS/United States
+GR  - U01 AG061356/AG/NIA NIH HHS/United States
+GR  - P30AG72975/AG/NIA NIH HHS/United States
+GR  - R01AG15819/AG/NIA NIH HHS/United States
+GR  - R01 AG017917/AG/NIA NIH HHS/United States
+GR  - P30 AG010161/AG/NIA NIH HHS/United States
+GR  - R01AG17917/AG/NIA NIH HHS/United States
+GR  - R01 AG015819/AG/NIA NIH HHS/United States
+GR  - R01 AI048125/AI/NIAID NIH HHS/United States
+GR  - U01 AG046152/AG/NIA NIH HHS/United States
+PT  - Journal Article
+PT  - Research Support, N.I.H., Extramural
+DEP - 20230919
+PL  - United States
+TA  - Alzheimers Dement
+JT  - Alzheimer's & dementia : the journal of the Alzheimer's Association
+JID - 101231978
+RN  - 106441-73-0 (Osteopontin)
+RN  - 0 (Spp1 protein, mouse)
+RN  - 0 (Itgax protein, mouse)
+RN  - 0 (CD11 Antigens)
+SB  - IM
+MH  - Animals
+MH  - Mice
+MH  - *Alzheimer Disease/pathology
+MH  - *Cerebral Amyloid Angiopathy/pathology
+MH  - Cognition/physiology
+MH  - *Cognitive Dysfunction/genetics/pathology
+MH  - Osteopontin/genetics/metabolism
+MH  - CD11 Antigens
+PMC - PMC10841499
+MID - NIHMS1936644
+OTO - NOTNLM
+OT  - CD11c
+OT  - ITGAX
+OT  - OPN
+OT  - RNASeq
+OT  - SPP1
+OT  - cognition
+OT  - microglia
+OT  - neuropathologies
+OT  - osteopontin
+OT  - snRNASeq
+COIS- N.T.S. is a co‐founder of a company called Emtherapro. The other authors declare 
+      no conflicts of interest.
+EDAT- 2023/09/20 06:42
+MHDA- 2024/01/18 06:42
+PMCR- 2023/09/19
+CRDT- 2023/09/20 03:09
+PHST- 2023/06/15 00:00 [revised]
+PHST- 2023/03/20 00:00 [received]
+PHST- 2023/08/21 00:00 [accepted]
+PHST- 2024/01/18 06:42 [medline]
+PHST- 2023/09/20 06:42 [pubmed]
+PHST- 2023/09/20 03:09 [entrez]
+PHST- 2023/09/19 00:00 [pmc-release]
+AID - ALZ13474 [pii]
+AID - 10.1002/alz.13474 [doi]
+PST - ppublish
+SO  - Alzheimers Dement. 2024 Jan;20(1):525-537. doi: 10.1002/alz.13474. Epub 2023 Sep 
+      19.
+
+PMID- 39440247
+OWN - NLM
+STAT- PubMed-not-MEDLINE
+LR  - 20241024
+IS  - 1664-2295 (Print)
+IS  - 1664-2295 (Electronic)
+IS  - 1664-2295 (Linking)
+VI  - 15
+DP  - 2024
+TI  - Bibliometric and visual analysis of single-cell multiomics in neurodegenerative 
+      disease arrest studies.
+PG  - 1450663
+LID - 10.3389/fneur.2024.1450663 [doi]
+LID - 1450663
+AB  - BACKGROUND: Neurodegenerative diseases are progressive disorders that severely 
+      diminish the quality of life of patients. However, research on neurodegenerative 
+      diseases needs to be refined and deepened. Single-cell polyomics is a technique 
+      for obtaining transcriptomic, proteomic, and other information from a single 
+      cell. In recent years, the heat of single-cell multiomics as an emerging research 
+      tool for brain science has gradually increased. Therefore, the aim of this study 
+      was to analyze the current status and trends of studies related to the 
+      application of single-cell multiomics in neurodegenerative diseases through 
+      bibliometrics. RESULT: A total of 596 publications were included in the 
+      bibliometric analysis. Between 2015 and 2022, the number of publications 
+      increased annually, with the total number of citations increasing significantly, 
+      exhibiting the fastest rate of growth between 2019 and 2022. The country/region 
+      collaboration map shows that the United States has the most publications and 
+      cumulative citations, and that China and the United States have the most 
+      collaborations. The institutions that produced the greatest number of articles 
+      were Harvard Medical School, Skupin, Alexander, and Wiendl. Among the authors, 
+      Heinz had the highest output. Mathys, H accumulated the most citations and was 
+      the authoritative author in the field. The journal Nature Communications has 
+      published the most literature in this field. A keyword analysis reveals that 
+      neurodegenerative diseases and lesions (e.g., Alzheimer's disease, amyloid beta) 
+      are the core and foundation of the field. Conversely, single-cell multiomics 
+      related research (e.g., single-cell RNA sequencing, bioinformatics) and brain 
+      nerve cells (e.g., microglia, astrocytes, neural stem cells) are the hot 
+      frontiers of this specialty. Among the references, the article "Single-cell 
+      transcriptomic analysis of Alzheimer's disease" is the most frequently cited 
+      (1,146 citations), and the article "Cell types in the mouse cortex and 
+      hippocampus revealed by single-cell RNA-seq" was the most cited article in the 
+      field. CONCLUSION: The objective of this study is to employ bibliometric methods 
+      to visualize studies related to single-cell multiomics in neurodegenerative 
+      diseases. This will enable us to summarize the current state of research and to 
+      reveal key trends and emerging hotspots in the field.
+CI  - Copyright © 2024 Wang, Wang, Li, Liu, Wan and Liang.
+FAU - Wang, Jieyan
+AU  - Wang J
+AD  - Department of Urology, People's Hospital of Longhua, Shenzhen, China.
+FAU - Wang, Shuqing
+AU  - Wang S
+AD  - First Clinical Medical School, Southern Medical University, Guangzhou, China.
+FAU - Li, Qingyu
+AU  - Li Q
+AD  - First Clinical Medical School, Southern Medical University, Guangzhou, China.
+FAU - Liu, Fei
+AU  - Liu F
+AD  - First Clinical Medical School, Southern Medical University, Guangzhou, China.
+FAU - Wan, Yantong
+AU  - Wan Y
+AD  - Guangdong Provincial Key Laboratory of Proteomics, Department of Pathophysiology, 
+      School of Basic Medical Sciences, Southern Medical University, Guangzhou, China.
+FAU - Liang, Hui
+AU  - Liang H
+AD  - Department of Urology, People's Hospital of Longhua, Shenzhen, China.
+LA  - eng
+PT  - Journal Article
+PT  - Systematic Review
+DEP - 20241008
+PL  - Switzerland
+TA  - Front Neurol
+JT  - Frontiers in neurology
+JID - 101546899
+PMC - PMC11493674
+OTO - NOTNLM
+OT  - cell heterogeneity
+OT  - microglia
+OT  - neurodegenerative disease
+OT  - neuroscience
+OT  - single-cell RNA sequencing
+COIS- The authors declare that the research was conducted in the absence of any 
+      commercial or financial relationships that could be construed as a potential 
+      conflict of interest.
+EDAT- 2024/10/23 10:18
+MHDA- 2024/10/23 10:19
+PMCR- 2024/10/08
+CRDT- 2024/10/23 04:27
+PHST- 2024/06/17 00:00 [received]
+PHST- 2024/09/26 00:00 [accepted]
+PHST- 2024/10/23 10:19 [medline]
+PHST- 2024/10/23 10:18 [pubmed]
+PHST- 2024/10/23 04:27 [entrez]
+PHST- 2024/10/08 00:00 [pmc-release]
+AID - 10.3389/fneur.2024.1450663 [doi]
+PST - epublish
+SO  - Front Neurol. 2024 Oct 8;15:1450663. doi: 10.3389/fneur.2024.1450663. eCollection 
+      2024.
+
+PMID- 38699303
+OWN - NLM
+STAT- PubMed-not-MEDLINE
+LR  - 20241023
+DP  - 2024 Apr 22
+TI  - Comparative gene regulatory networks modulating APOE expression in microglia and 
+      astrocytes.
+LID - 2024.04.19.24306098 [pii]
+LID - 10.1101/2024.04.19.24306098 [doi]
+AB  - BACKGROUND: Single-cell technologies have unveiled various transcriptional states 
+      in different brain cell types. Transcription factors (TFs) regulate the 
+      expression of related gene sets, thereby controlling these diverse expression 
+      states. Apolipoprotein E (APOE), a pivotal risk-modifying gene in Alzheimer's 
+      disease (AD), is expressed in specific glial transcriptional states associated 
+      with AD. However, it is still unknown whether the upstream regulatory programs 
+      that modulate its expression are shared across brain cell types or specific to 
+      microglia and astrocytes. METHODS: We used pySCENIC to construct state-specific 
+      gene regulatory networks (GRNs) for resting and activated cell states within 
+      microglia and astrocytes based on single-nucleus RNA sequencing data from AD 
+      patients' cortices from the Knight ADRC-DIAN cohort. We then identified 
+      replicating TF using data from the ROSMAP cohort. We identified sets of genes 
+      co-regulated with APOE by clustering the GRN target genes and identifying genes 
+      differentially expressed after the virtual knockout of TFs regulating APOE. We 
+      performed enrichment analyses on these gene sets and evaluated their overlap with 
+      genes found in AD GWAS loci. RESULTS: We identified an average of 96 replicating 
+      regulators for each microglial and astrocyte cell state. Our analysis identified 
+      the CEBP, JUN, FOS, and FOXO TF families as key regulators of microglial APOE 
+      expression. The steroid/thyroid hormone receptor families, including the THR TF 
+      family, consistently regulated APOE across astrocyte states, while CEBP and JUN 
+      TF families were also involved in resting astrocytes. AD GWAS-associated genes 
+      (PGRN, FCGR3A, CTSH, ABCA1, MARCKS, CTSB, SQSTM1, TSC22D4, FCER1G, and HLA genes) 
+      are co-regulated with APOE. We also uncovered that APOE-regulating TFs were 
+      linked to circadian rhythm (BHLHE40, DBP, XBP1, CREM, SREBF1, FOXO3, and NR2F1). 
+      CONCLUSIONS: Our findings reveal a novel perspective on the transcriptional 
+      regulation of APOE in the human brain. We found a comprehensive and 
+      cell-type-specific regulatory landscape for APOE, revealing distinct and shared 
+      regulatory mechanisms across microglia and astrocytes, underscoring the 
+      complexity of APOE regulation. APOE-co-regulated genes might also affect AD risk. 
+      Furthermore, our study uncovers a potential link between circadian rhythm 
+      disruption and APOE regulation, shedding new light on the pathogenesis of AD.
+FAU - Brase, Logan
+AU  - Brase L
+AUID- ORCID: 0000-0002-7175-3208
+AD  - Department of Psychiatry, Washington University, Saint Louis, St. Louis, 
+      Missouri, United States of America.
+AD  - The Charles F. and Joanne Knight Alzheimer Disease Research Center, Washington 
+      University, St. Louis, Missouri, United States of America.
+FAU - Yu, Yanbo
+AU  - Yu Y
+AUID- ORCID: 0000-0002-6687-9850
+AD  - Department of Psychiatry, Washington University, Saint Louis, St. Louis, 
+      Missouri, United States of America.
+AD  - The Charles F. and Joanne Knight Alzheimer Disease Research Center, Washington 
+      University, St. Louis, Missouri, United States of America.
+FAU - McDade, Eric
+AU  - McDade E
+AUID- ORCID: 0000-0002-6764-3866
+AD  - Department of Neurology, Washington University School of Medicine in St. Louis, 
+      St. Louis, MO, USA.
+CN  - Dominantly Inherited Alzheimer Network (DIAN)
+FAU - Harari, Oscar
+AU  - Harari O
+AUID- ORCID: 0000-0002-2635-6975
+AD  - Department of Psychiatry, Washington University, Saint Louis, St. Louis, 
+      Missouri, United States of America.
+AD  - The Charles F. and Joanne Knight Alzheimer Disease Research Center, Washington 
+      University, St. Louis, Missouri, United States of America.
+AD  - Department of Neurology, Division of Neurogenetics, The Ohio State University, 
+      Columbus, OH, United States of America.
+FAU - Benitez, Bruno A
+AU  - Benitez BA
+AUID- ORCID: 0000-0002-2699-3878
+AD  - Department of Neurology and Neuroscience, Harvard Medical School and Beth Israel 
+      Deaconess Medical Center, Boston, Massachusetts, United States of America.
+LA  - eng
+GR  - R56 AG067764/AG/NIA NIH HHS/United States
+GR  - U01 AG046152/AG/NIA NIH HHS/United States
+GR  - R01 AG057777/AG/NIA NIH HHS/United States
+GR  - R01 AG030146/AG/NIA NIH HHS/United States
+GR  - R01 AG017917/AG/NIA NIH HHS/United States
+GR  - U01 AG072464/AG/NIA NIH HHS/United States
+GR  - T32 AG058518/AG/NIA NIH HHS/United States
+GR  - R01 AG074012/AG/NIA NIH HHS/United States
+GR  - RC2 AG036547/AG/NIA NIH HHS/United States
+GR  - RF1 AG057473/AG/NIA NIH HHS/United States
+GR  - R01 NS118146/NS/NINDS NIH HHS/United States
+GR  - U01 AG046161/AG/NIA NIH HHS/United States
+GR  - R01 AG048015/AG/NIA NIH HHS/United States
+GR  - U01 AG061356/AG/NIA NIH HHS/United States
+GR  - U01 AG032984/AG/NIA NIH HHS/United States
+GR  - R01 AG036042/AG/NIA NIH HHS/United States
+GR  - P30 AG010161/AG/NIA NIH HHS/United States
+GR  - R21 NS127211/NS/NINDS NIH HHS/United States
+GR  - U19 AG032438/AG/NIA NIH HHS/United States
+GR  - R01 AG036836/AG/NIA NIH HHS/United States
+GR  - R01 AG015819/AG/NIA NIH HHS/United States
+PT  - Journal Article
+PT  - Preprint
+DEP - 20240422
+PL  - United States
+TA  - medRxiv
+JT  - medRxiv : the preprint server for health sciences
+JID - 101767986
+PMC - PMC11065001
+OTO - NOTNLM
+OT  - APOE
+OT  - Alzheimer Disease
+OT  - astrocyte
+OT  - gene regulatory networks
+OT  - microglia
+OT  - single-nucleus RNA-seq
+COIS- Competing Interests E.M. receives Grant Funding from NIA; Institutional funding 
+      from Eli Lilly, Hoffmann-La Roche, Eisai. He is a DSMB member (paid directly) for 
+      Alector; Eli Lilly; a Scientific Advisory Board Member (paid directly) for 
+      Alzamend, Fondation Alzheimer. He acts as a Consultant/Advisor for Sage 
+      Therapeutics, Eli Lilly, Sanofi, AstraZeneca, Hoffmann La-Roche. The other 
+      authors have no conflicts of interest to disclose.
+EDAT- 2024/05/03 06:43
+MHDA- 2024/05/03 06:44
+PMCR- 2024/05/02
+CRDT- 2024/05/03 03:52
+PHST- 2024/05/03 06:43 [pubmed]
+PHST- 2024/05/03 06:44 [medline]
+PHST- 2024/05/03 03:52 [entrez]
+PHST- 2024/05/02 00:00 [pmc-release]
+AID - 2024.04.19.24306098 [pii]
+AID - 10.1101/2024.04.19.24306098 [doi]
+PST - epublish
+SO  - medRxiv [Preprint]. 2024 Apr 22:2024.04.19.24306098. doi: 
+      10.1101/2024.04.19.24306098.
+
+PMID- 40790613
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20251008
+LR  - 20251011
+IS  - 1474-9726 (Electronic)
+IS  - 1474-9718 (Print)
+IS  - 1474-9718 (Linking)
+VI  - 24
+IP  - 10
+DP  - 2025 Oct
+TI  - Microglial States Are Susceptible to Senescence and Cholesterol Dysregulation in 
+      Alzheimer's Disease.
+PG  - e70189
+LID - 10.1111/acel.70189 [doi]
+LID - e70189
+AB  - Cellular senescence is a major contributor to aging-related degenerative 
+      diseases, including Alzheimer's disease (AD), but much less is known about the 
+      key cell types and pathways driving senescence mechanisms in the brain. We 
+      hypothesized that dysregulated cholesterol metabolism is central to cellular 
+      senescence in AD. We analyzed single-cell RNA-seq data from the ROSMAP and SEA-AD 
+      cohorts to uncover cell type-specific senescence pathologies. In ROSMAP snRNA-seq 
+      data (982,384 nuclei from postmortem prefrontal cortex), microglia emerged as 
+      central contributors to AD-associated senescence phenotypes among non-neuronal 
+      cells. Homeostatic, inflammatory, phagocytic, lipid-processing, and 
+      neuronal-surveillance microglial states were associated with AD-related 
+      senescence in both ROSMAP (152,459 microglia nuclei from six brain regions) and 
+      SEA-AD (82,486 microglia nuclei) via integrative analysis. We assessed top 
+      senescence-associated bioprocesses and demonstrated that senescent microglia 
+      exhibit altered cholesterol-related processes and dysregulated cholesterol 
+      metabolism. We identified three gene co-expression modules representing 
+      cholesterol-related senescence signatures in postmortem brains. To validate these 
+      findings, we applied these signatures to snRNA-seq data from iPSC-derived 
+      microglia（iMGs) exposed to myelin, Aβ, apoptotic neurons, and synaptosomes. 
+      Treatment with AD-related substrates altered cholesterol-associated senescence 
+      signatures in iMGs. This study provides the first human evidence that 
+      dysregulated cholesterol metabolism in microglia drives cellular senescence in 
+      AD. Targeting cholesterol pathways in senescent microglia is an attractive 
+      strategy to attenuate AD progression.
+CI  - © 2025 The Author(s). Aging Cell published by Anatomical Society and John Wiley & 
+      Sons Ltd.
+FAU - Li, Boyang
+AU  - Li B
+AD  - Department of Neurology, Keck School of Medicine, University of Southern 
+      California, Los Angeles, California, USA.
+FAU - Wang, Shaowei
+AU  - Wang S
+AD  - Department of Neurology, Keck School of Medicine, University of Southern 
+      California, Los Angeles, California, USA.
+FAU - Kerman, Bilal
+AU  - Kerman B
+AUID- ORCID: 0000-0003-1106-3288
+AD  - Department of Neurology, Keck School of Medicine, University of Southern 
+      California, Los Angeles, California, USA.
+FAU - Hugo, Cristelle
+AU  - Hugo C
+AD  - Department of Neurology, Keck School of Medicine, University of Southern 
+      California, Los Angeles, California, USA.
+FAU - Shwab, E Keats
+AU  - Shwab EK
+AD  - Division of Translational Brain Sciences, Department of Neurology, Duke 
+      University Medical Center, Durham, North Carolina, USA.
+AD  - Center for Genomic and Computational Biology, Duke University Medical Center, 
+      Durham, North Carolina, USA.
+FAU - Shu, Chang
+AU  - Shu C
+AD  - Center for Genetic Epidemiology, Department of Population and Public Health 
+      Sciences, Keck School of Medicine, University of Southern California, Los 
+      Angeles, California, USA.
+FAU - Chiba-Falek, Ornit
+AU  - Chiba-Falek O
+AD  - Division of Translational Brain Sciences, Department of Neurology, Duke 
+      University Medical Center, Durham, North Carolina, USA.
+AD  - Center for Genomic and Computational Biology, Duke University Medical Center, 
+      Durham, North Carolina, USA.
+FAU - Arvanitakis, Zoe
+AU  - Arvanitakis Z
+AD  - Rush Alzheimer's Disease Center, Rush University Medical Center, Chicago, 
+      Illinois, USA.
+FAU - N Yassine, Hussein
+AU  - N Yassine H
+AUID- ORCID: 0000-0002-2483-649X
+AD  - Department of Neurology, Keck School of Medicine, University of Southern 
+      California, Los Angeles, California, USA.
+AD  - Center for Personalized Brain Health, University of Southern California, Los 
+      Angeles, California, USA.
+LA  - eng
+GR  - P30 AG072975/AG/NIA NIH HHS/United States
+GR  - Vranos Foundation/
+GR  - P30AG72975/AG/NIA NIH HHS/United States
+GR  - R01 AG074003/AG/NIA NIH HHS/United States
+GR  - T32 GM087237/GM/NIGMS NIH HHS/United States
+GR  - RF1 AG076124/AG/NIA NIH HHS/United States
+GR  - R01AG055770/AG/NIA NIH HHS/United States
+GR  - R21AG056518/AG/NIA NIH HHS/United States
+GR  - R01 AG062335/AG/NIA NIH HHS/United States
+GR  - R01AG057522/AG/NIA NIH HHS/United States
+GR  - U01 MH119509/MH/NIMH NIH HHS/United States
+GR  - RF1 AG054012/AG/NIA NIH HHS/United States
+GR  - U01 AG046152/AG/NIA NIH HHS/United States
+GR  - R01 HG008155/HG/NHGRI NIH HHS/United States
+GR  - R01 AG058002/AG/NIA NIH HHS/United States
+GR  - Tiny Foundation/
+GR  - RF1 AG077695/AG/NIA NIH HHS/United States
+GR  - Ms. Lynne Nauss/
+GR  - U01 AG061356/AG/NIA NIH HHS/United States
+GR  - UG3 NS115064/NS/NINDS NIH HHS/United States
+GR  - R01AG15819/AG/NIA NIH HHS/United States
+GR  - R01AG054434/AG/NIA NIH HHS/United States
+GR  - R01 AG017917/AG/NIA NIH HHS/United States
+GR  - UH3 NS115064/NS/NINDS NIH HHS/United States
+GR  - R01 AG067063/AG/NIA NIH HHS/United States
+GR  - RF1 AG062377/AG/NIA NIH HHS/United States
+GR  - P30 AG010161/AG/NIA NIH HHS/United States
+GR  - P30 AG066530/AG/NIA NIH HHS/United States
+GR  - R01 AG054434/AG/NIA NIH HHS/United States
+GR  - AARFD-24-1313939/ALZ/Alzheimer's Association/United States
+GR  - R01 NS127187/NS/NINDS NIH HHS/United States
+GR  - R01 AG055770/AG/NIA NIH HHS/United States
+GR  - RF1AG076124/AG/NIA NIH HHS/United States
+GR  - P30AG066530/AG/NIA NIH HHS/United States
+GR  - RF1 AG054321/AG/NIA NIH HHS/United States
+GR  - GC-201711-2014197/Alzheimer's Drug Discovery Foundation/
+GR  - U01 NS110453/NS/NINDS NIH HHS/United States
+GR  - R01 AG057522/AG/NIA NIH HHS/United States
+GR  - RF1AG077695/AG/NIA NIH HHS/United States
+GR  - R01AG067063/AG/NIA NIH HHS/United States
+GR  - R21 AG056518/AG/NIA NIH HHS/United States
+GR  - R01 AG015819/AG/NIA NIH HHS/United States
+PT  - Journal Article
+DEP - 20250811
+PL  - England
+TA  - Aging Cell
+JT  - Aging cell
+JID - 101130839
+RN  - 97C5T2UQ7J (Cholesterol)
+SB  - IM
+UOF - bioRxiv. 2024 Nov 18:2024.11.18.624141. doi: 10.1101/2024.11.18.624141. PMID: 
+      39605544
+MH  - *Alzheimer Disease/metabolism/pathology/genetics
+MH  - *Microglia/metabolism/pathology
+MH  - Humans
+MH  - *Cholesterol/metabolism
+MH  - *Cellular Senescence
+PMC - PMC12507412
+OTO - NOTNLM
+OT  - Alzheimer's
+OT  - cellular senescence
+OT  - cholesterol
+OT  - microglia
+COIS- The authors declare no conflicts of interest.
+EDAT- 2025/08/12 06:27
+MHDA- 2025/10/09 06:13
+PMCR- 2025/08/11
+CRDT- 2025/08/12 00:58
+PHST- 2025/07/11 00:00 [revised]
+PHST- 2025/04/25 00:00 [received]
+PHST- 2025/07/25 00:00 [accepted]
+PHST- 2025/10/09 06:13 [medline]
+PHST- 2025/08/12 06:27 [pubmed]
+PHST- 2025/08/12 00:58 [entrez]
+PHST- 2025/08/11 00:00 [pmc-release]
+AID - ACEL70189 [pii]
+AID - 10.1111/acel.70189 [doi]
+PST - ppublish
+SO  - Aging Cell. 2025 Oct;24(10):e70189. doi: 10.1111/acel.70189. Epub 2025 Aug 11.
+
+PMID- 39605544
+OWN - NLM
+STAT- PubMed-not-MEDLINE
+DCOM- 20250911
+LR  - 20251008
+IS  - 2692-8205 (Electronic)
+IS  - 2692-8205 (Linking)
+DP  - 2024 Nov 18
+TI  - Microglia States are Susceptible to Senescence and Cholesterol Dysregulation in 
+      Alzheimer's Disease.
+LID - 2024.11.18.624141 [pii]
+LID - 10.1101/2024.11.18.624141 [doi]
+AB  - Cellular senescence is a major contributor to aging-related degenerative 
+      diseases, including Alzheimer's disease (AD) but much less is known on the key 
+      cell types and pathways driving mechanisms of senescence in the brain. We 
+      hypothesized that dysregulated cholesterol metabolism is central to cellular 
+      senescence in AD. We analyzed whole transcriptomic data and utilized single-cell 
+      RNA seq integration techniques to unveil the convoluted cell-type-specific and 
+      sub-cell-type-state-specific senescence pathologies in AD using both ROSMAP and 
+      Sea-AD datasets. We identified that microglia are central components to AD 
+      associated senescence phenotypes in ROSMAP snRNA-seq data (982,384 nuclei from 
+      postmortem prefrontal cortex of 239 AD and 188 non-AD) among non-neuron cell 
+      types. We identified that homeostatic, inflammatory, phagocytic, lipid processing 
+      and neuronal surveillance microglia states were associated with AD associated 
+      senescence in ROSMAP (152,459 microglia nuclei from six regions of brain tissue 
+      of 138 early AD, 79 late AD and 226 control subject) and in Sea-AD (82,486 
+      microglia nuclei of 42 dementia, 42 no dementia and 5 reference subjects) via 
+      integrative analysis, which preserves the meaningful biological information of 
+      microglia cell states across the datasets. We assessed top senescence associated 
+      bioprocesses including mitochondrial, apoptosis, oxidative stress, ER stress, 
+      endosomes, and lysosomes systems. Specifically, we found that senescent microglia 
+      have altered cholesterol related bioprocesses and dysregulated cholesterol. We 
+      discovered three gene co-expression modules, which represent the specific 
+      cholesterol related senescence transcriptomic signatures in postmortem brains. To 
+      validate these findings, the activation of specific cholesterol associated 
+      senescence transcriptomic signatures was assessed using integrative analysis of 
+      snRNA-seq data from iMGs (microglia induced from iPSCs) exposed to myelin, Abeta, 
+      and synaptosomes (56,454 microglia across two replicates of untreated and four 
+      treated groups). In vivo cholesterol associated senescence transcriptomic 
+      signatures were preserved and altered after treatment with AD pathological 
+      substrates in iMGs. This study provides the first evidence that dysregulation of 
+      cholesterol metabolism in microglia is a major driver of senescence pathologies 
+      in AD. Targeting cholesterol pathways in senescent microglia is an attractive 
+      strategy to slow down AD progression.
+FAU - Li, Boyang
+AU  - Li B
+FAU - Wang, Shaowei
+AU  - Wang S
+FAU - Kerman, Bilal
+AU  - Kerman B
+FAU - Hugo, Cristelle
+AU  - Hugo C
+FAU - Shwab, E Keats
+AU  - Shwab EK
+FAU - Shu, Chang
+AU  - Shu C
+AUID- ORCID: 0000-0002-3730-5102
+FAU - Chiba-Falek, Ornit
+AU  - Chiba-Falek O
+FAU - Arvanitakis, Zoe
+AU  - Arvanitakis Z
+FAU - Yassine, Hussein
+AU  - Yassine H
+LA  - eng
+PT  - Journal Article
+PT  - Preprint
+DEP - 20241118
+PL  - United States
+TA  - bioRxiv
+JT  - bioRxiv : the preprint server for biology
+JID - 101680187
+UIN - Aging Cell. 2025 Oct;24(10):e70189. doi: 10.1111/acel.70189. PMID: 40790613
+PMC - PMC11601396
+EDAT- 2024/11/28 06:37
+MHDA- 2024/11/28 06:38
+PMCR- 2024/11/27
+CRDT- 2024/11/28 04:49
+PHST- 2024/11/28 06:37 [pubmed]
+PHST- 2024/11/28 06:38 [medline]
+PHST- 2024/11/28 04:49 [entrez]
+PHST- 2024/11/27 00:00 [pmc-release]
+AID - 2024.11.18.624141 [pii]
+AID - 10.1101/2024.11.18.624141 [doi]
+PST - epublish
+SO  - bioRxiv [Preprint]. 2024 Nov 18:2024.11.18.624141. doi: 
+      10.1101/2024.11.18.624141.
+

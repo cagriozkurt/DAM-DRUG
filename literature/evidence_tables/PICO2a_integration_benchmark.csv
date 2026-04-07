@@ -1,0 +1,3 @@
+study_id,tool,n_cells_log10,kBET_mean,kBET_sd,n_batches,tissue,runtime_hrs,peak_RAM_GB,GPU_required,winner,recommended_use_case,bias_score,evidence_tier
+Luecken_2022_NatMethods,scVI,6.0,0.80,NR,"4-23","Pancreas,Lung,Immune,Brain","1-10","20-100",Y,Y,"scVI performed particularly well when the batch contained complex batch effects and sufficient numbers of cells were present to fit these effects.",NR,1
+Luecken_2022_NatMethods,Harmony,6.0,0.60,NR,"4-23","Pancreas,Lung,Immune,Brain","<1","<20",N,N,"For (smaller) tasks with distinct biological signal, Harmony may be used.",NR,1

@@ -1,0 +1,11 @@
+TF,pySCENIC_regulon,AUC_LateAD_DAM,pseudotime_rho,pseudotime_padj,scRNA_contrast,scRNA_log2FC,scRNA_padj,bulk_log2FC,bulk_padj,ATAC_enrichment_x,CellOracle_KO_LateAD_DAM,fpocket_drug_score,fpocket_structure,fpocket_rank,strategy
+PPARG,N,,,,LAM,1.15,2.26e-13,-0.021,0.8946,4.5,,0.996,PPARG_1FM9_LBD,1.0,Agonist (LBD); LDAM lipid regulator
+IKZF1,Y,0.1526,0.309,0.0,DAM,0.75,6.94e-51,0.638,0.0038,3.9,0.047,0.001,IKZF1_AF2_ZF14,8.0,PROTAC/degrader (ZF2 degron); no small-mol pocket
+IRF8,N,,,,DAM,1.7,8.5e-94,0.615,0.0107,,0.026,0.659,IRF8_AF2_DBD,2.0,Small-molecule (DBD pocket); DAM master regulator
+BHLHE41,N,,,,DAM,2.55,6.85e-195,0.268,0.013,,,0.003,BHLHE41_AF2_bHLH,7.0,Small-molecule (bHLH); repressor of DAM transition
+SPI1,N,,,,IRM,0.12,0.0411,0.489,0.0145,,0.013,0.381,SPI1_8EE9_ETS,4.0,Small-molecule (ETS domain); causal DAM driver (Ayata 2025)
+RUNX1,N,,,,DAM,0.43,1.85e-11,0.399,0.0934,,,0.092,RUNX1_1LJM_Runt,5.0,Small-molecule (Runt domain); DAM co-activator
+RUNX2,N,,,,—,,,,,,,,,,Activator strategy (Runt); low druggability — deprioritize
+MAF,N,,,,—,,,0.22,0.0944,,,0.432,MAF_4EOT_bZIP,3.0,Small-molecule (bZIP); MafA homolog pocket
+ACSL1,N,,,,—,,,,,,,0.0,ACSL1_AF2_full,9.0,Metabolic inhibitor (AMP-binding); LDAM fatty-acid enzyme (Haney 2024)
+PIK3CA,N,,,,—,,,,,,,0.012,PIK3CA_4OVU_KD,6.0,Kinase inhibitor (ATP site); PI3K-α LDAM lipid metabolism (Haney 2024)

@@ -1,0 +1,4 @@
+/arf/scratch/mozkurt/DAM-DRUG/results/phase4/mmpbsa/IRF8_AF2_DBD_prep/CHEMBL2103837
+/arf/scratch/mozkurt/DAM-DRUG/results/phase4/mmpbsa/IRF8_AF2_DBD_prep/CHEMBL490
+/arf/scratch/mozkurt/DAM-DRUG/results/phase4/mmpbsa/IRF8_AF2_DBD_prep/CHEMBL42
+/arf/scratch/mozkurt/DAM-DRUG/results/phase4/mmpbsa/PPARG_1FM9_LBD_prep/CHEMBL898

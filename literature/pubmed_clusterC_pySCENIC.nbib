@@ -1,0 +1,3280 @@
+PMID- 37437310
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20230814
+LR  - 20230823
+IS  - 2352-3964 (Electronic)
+IS  - 2352-3964 (Linking)
+VI  - 94
+DP  - 2023 Aug
+TI  - B cell depletion therapy does not resolve chronic active multiple sclerosis 
+      lesions.
+PG  - 104701
+LID - S2352-3964(23)00266-9 [pii]
+LID - 10.1016/j.ebiom.2023.104701 [doi]
+LID - 104701
+AB  - BACKGROUND: Chronic active lesions (CAL) in multiple sclerosis (MS) have been 
+      observed even in patients taking high-efficacy disease-modifying therapy, 
+      including B-cell depletion. Given that CAL are a major determinant of clinical 
+      progression, including progression independent of relapse activity (PIRA), 
+      understanding the predicted activity and real-world effects of targeting specific 
+      lymphocyte populations is critical for designing next-generation treatments to 
+      mitigate chronic inflammation in MS. METHODS: We analyzed published lymphocyte 
+      single-cell transcriptomes from MS lesions and bioinformatically predicted the 
+      effects of depleting lymphocyte subpopulations (including CD20 B-cells) from CAL 
+      via gene-regulatory-network machine-learning analysis. Motivated by the results, 
+      we performed in vivo MRI assessment of PRL changes in 72 adults with MS, 46 
+      treated with anti-CD20 antibodies and 26 untreated, over ∼2 years. FINDINGS: 
+      Although only 4.3% of lymphocytes in CAL were CD20 B-cells, their depletion is 
+      predicted to affect microglial genes involved in iron/heme metabolism, hypoxia, 
+      and antigen presentation. In vivo, tracking 202 PRL (150 treated) and 175 non-PRL 
+      (124 treated), none of the treated paramagnetic rims disappeared at follow-up, 
+      nor was there a treatment effect on PRL for lesion volume, magnetic 
+      susceptibility, or T1 time. PIRA occurred in 20% of treated patients, more 
+      frequently in those with ≥4 PRL (p = 0.027). INTERPRETATION: Despite predicted 
+      effects on microglia-mediated inflammatory networks in CAL and iron metabolism, 
+      anti-CD20 therapies do not fully resolve PRL after 2-year MRI follow up. Limited 
+      tissue turnover of B-cells, inefficient passage of anti-CD20 antibodies across 
+      the blood-brain-barrier, and a paucity of B-cells in CAL could explain our 
+      findings. FUNDING: Intramural Research Program of NINDS, NIH; NINDS grants 
+      R01NS082347 and R01NS082347; Dr. Miriam and Sheldon G. Adelson Medical Research 
+      Foundation; Cariplo Foundation (grant #1677), FRRB Early Career Award (grant 
+      #1750327); Fund for Scientific Research (FNRS).
+CI  - Copyright © 2023 The Author(s). Published by Elsevier B.V. All rights reserved.
+FAU - Maggi, Pietro
+AU  - Maggi P
+AD  - Cliniques Universitaires Saint-Luc, Université Catholique de Louvain, Brussels, 
+      Belgium; Neuroinflammation Imaging Lab (NIL), Université Catholique de Louvain, 
+      Brussels, Belgium; Centre Hospitalier Universitaire Vaudois, Université de 
+      Lausanne, Lausanne, Switzerland. Electronic address: pietro.maggi@uclouvain.be.
+FAU - Bulcke, Colin Vanden
+AU  - Bulcke CV
+AD  - Neuroinflammation Imaging Lab (NIL), Université Catholique de Louvain, Brussels, 
+      Belgium.
+FAU - Pedrini, Edoardo
+AU  - Pedrini E
+AD  - Institute of Experimental Neurology, Division of Neuroscience, Vita-Salute San 
+      Raffaele University and IRCCS San Raffaele Hospital, Milan, Italy.
+FAU - Bugli, Céline
+AU  - Bugli C
+AD  - Plateforme Technologique de Support en Méthodologie et Calcul Statistique, 
+      Université Catholique de Louvain, Brussels, Belgium.
+FAU - Sellimi, Amina
+AU  - Sellimi A
+AD  - Cliniques Universitaires Saint-Luc, Université Catholique de Louvain, Brussels, 
+      Belgium.
+FAU - Wynen, Maxence
+AU  - Wynen M
+AD  - Neuroinflammation Imaging Lab (NIL), Université Catholique de Louvain, Brussels, 
+      Belgium.
+FAU - Stölting, Anna
+AU  - Stölting A
+AD  - Neuroinflammation Imaging Lab (NIL), Université Catholique de Louvain, Brussels, 
+      Belgium.
+FAU - Mullins, William A
+AU  - Mullins WA
+AD  - Translational Neuroradiology Section, National Institute of Neurological 
+      Disorders and Stroke (NINDS), National Institutes of Health (NIH), Bethesda, MD, 
+      USA.
+FAU - Kalaitzidis, Grigorios
+AU  - Kalaitzidis G
+AD  - Department of Neurology, Johns Hopkins University School of Medicine, Baltimore, 
+      MD, USA.
+FAU - Lolli, Valentina
+AU  - Lolli V
+AD  - Hôpital Erasme, Université Libre de Bruxelles, Bruxelles, Belgium.
+FAU - Perrotta, Gaetano
+AU  - Perrotta G
+AD  - Hôpital Erasme, Université Libre de Bruxelles, Bruxelles, Belgium.
+FAU - El Sankari, Souraya
+AU  - El Sankari S
+AD  - Cliniques Universitaires Saint-Luc, Université Catholique de Louvain, Brussels, 
+      Belgium.
+FAU - Duprez, Thierry
+AU  - Duprez T
+AD  - Cliniques Universitaires Saint-Luc, Université Catholique de Louvain, Brussels, 
+      Belgium.
+FAU - Li, Xu
+AU  - Li X
+AD  - Department of Neurology, Johns Hopkins University School of Medicine, Baltimore, 
+      MD, USA.
+FAU - Calabresi, Peter A
+AU  - Calabresi PA
+AD  - Department of Neurology, Johns Hopkins University School of Medicine, Baltimore, 
+      MD, USA.
+FAU - van Pesch, Vincent
+AU  - van Pesch V
+AD  - Cliniques Universitaires Saint-Luc, Université Catholique de Louvain, Brussels, 
+      Belgium.
+FAU - Reich, Daniel S
+AU  - Reich DS
+AD  - Translational Neuroradiology Section, National Institute of Neurological 
+      Disorders and Stroke (NINDS), National Institutes of Health (NIH), Bethesda, MD, 
+      USA.
+FAU - Absinta, Martina
+AU  - Absinta M
+AD  - Institute of Experimental Neurology, Division of Neuroscience, Vita-Salute San 
+      Raffaele University and IRCCS San Raffaele Hospital, Milan, Italy; Department of 
+      Neurology, Johns Hopkins University School of Medicine, Baltimore, MD, USA. 
+      Electronic address: absinta.martina@hsr.it.
+LA  - eng
+PT  - Journal Article
+DEP - 20230710
+PL  - Netherlands
+TA  - EBioMedicine
+JT  - EBioMedicine
+JID - 101647039
+RN  - E1UOL152H7 (Iron)
+SB  - IM
+MH  - Adult
+MH  - Humans
+MH  - *Multiple Sclerosis/metabolism
+MH  - B-Lymphocytes
+MH  - Blood-Brain Barrier/metabolism
+MH  - Magnetic Resonance Imaging
+MH  - Iron
+PMC - PMC10436266
+OTO - NOTNLM
+OT  - Anti-CD20 treatment
+OT  - Machine learning
+OT  - Paramagnetic rims
+OT  - Single cell RNA sequencing
+OT  - Susceptibility-based MRI
+COIS- Declaration of interests PM received consultancy honoraria from Sanofi and Biogen 
+      and, research funding from Biogen. VVP received support for attending meetings 
+      and/or travel, support for participating in Advisory Board and consulting fees 
+      (the latters payed to the institution Cliniques Universitaires Saint-Luc) from 
+      Roche, Biogen, Sanofi, Merck Healthcare KGaA (Darmstadt, Germany), Bristol Meyer 
+      Squibb, Janssen, Almirall, Alexion and Novartis Pharma. PAC Is PI on grants to 
+      JHU from Genentech and previously Principia; he has received consulting honoraria 
+      for serving on SABs for Nervgen, Idorsia, Biogen, Vaccitech, and Lilly. DSR has 
+      received research funding from Abata Therapeutics, Sanofi-Genzyme, and Vertex 
+      Pharmaceuticals. MA received consultancy honoraria from Abata Therapeutics, 
+      Biogen, Sanofi-Genzyme and GSK.
+EDAT- 2023/07/12 19:07
+MHDA- 2023/08/14 06:42
+PMCR- 2023/07/10
+CRDT- 2023/07/12 18:00
+PHST- 2023/01/23 00:00 [received]
+PHST- 2023/06/23 00:00 [revised]
+PHST- 2023/06/23 00:00 [accepted]
+PHST- 2023/08/14 06:42 [medline]
+PHST- 2023/07/12 19:07 [pubmed]
+PHST- 2023/07/12 18:00 [entrez]
+PHST- 2023/07/10 00:00 [pmc-release]
+AID - S2352-3964(23)00266-9 [pii]
+AID - 104701 [pii]
+AID - 10.1016/j.ebiom.2023.104701 [doi]
+PST - ppublish
+SO  - EBioMedicine. 2023 Aug;94:104701. doi: 10.1016/j.ebiom.2023.104701. Epub 2023 Jul 
+      10.
+
+PMID- 40037709
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20250511
+LR  - 20250511
+IS  - 1362-4962 (Electronic)
+IS  - 0305-1048 (Print)
+IS  - 0305-1048 (Linking)
+VI  - 53
+IP  - 5
+DP  - 2025 Feb 27
+TI  - Deep learning-based cell-specific gene regulatory networks inferred from 
+      single-cell multiome data.
+LID - 10.1093/nar/gkaf138 [doi]
+LID - gkaf138
+AB  - Gene regulatory networks (GRNs) provide a global representation of how 
+      genetic/genomic information is transferred in living systems and are a key 
+      component in understanding genome regulation. Single-cell multiome data provide 
+      unprecedented opportunities to reconstruct GRNs at fine-grained resolution. 
+      However, the inference of GRNs is hindered by insufficient single omic profiles 
+      due to the characteristic high loss rate of single-cell sequencing data. In this 
+      study, we developed scMultiomeGRN, a deep learning framework to infer 
+      transcription factor (TF) regulatory networks via unique integration of 
+      single-cell genomic (single-cell RNA sequencing) and epigenomic (single-cell ATAC 
+      sequencing) data. We create scMultiomeGRN to elucidate these networks by 
+      conceptualizing TF network graph structures. Specifically, we build 
+      modality-specific neighbor aggregators and cross-modal attention modules to learn 
+      latent representations of TFs from single-cell multi-omics. We demonstrate that 
+      scMultiomeGRN outperforms state-of-the-art models on multiple benchmark datasets 
+      involved in diseases and health. Via scMultiomeGRN, we identified Alzheimer's 
+      disease-relevant regulatory network of SPI1 and RUNX1 for microglia. In summary, 
+      scMultiomeGRN offers a deep learning framework to identify cell type-specific 
+      gene regulatory network from single-cell multiome data.
+CI  - © The Author(s) 2025. Published by Oxford University Press on behalf of Nucleic 
+      Acids Research.
+FAU - Xu, Junlin
+AU  - Xu J
+AUID- ORCID: 0000-0003-1057-1504
+AD  - School of Computer Science and Technology, Wuhan University of Science and 
+      Technology, Wuhan, Hubei 430065, China.
+FAU - Lu, Changcheng
+AU  - Lu C
+AUID- ORCID: 0000-0001-9263-8463
+AD  - College of Computer Science and Electronic Engineering, Hunan University, 
+      Changsha, Hunan 410082, China.
+FAU - Jin, Shuting
+AU  - Jin S
+AD  - School of Computer Science and Technology, Wuhan University of Science and 
+      Technology, Wuhan, Hubei 430065, China.
+FAU - Meng, Yajie
+AU  - Meng Y
+AUID- ORCID: 0000-0002-2384-1158
+AD  - School of Computer Science and Artificial Intelligence, Wuhan Textile University, 
+      Wuhan, Hubei 430200, China.
+FAU - Fu, Xiangzheng
+AU  - Fu X
+AD  - School of Chinese Medicine, Hong Kong Baptist University, Hong Kong SAR 999077, 
+      China.
+FAU - Zeng, Xiangxiang
+AU  - Zeng X
+AD  - College of Computer Science and Electronic Engineering, Hunan University, 
+      Changsha, Hunan 410082, China.
+FAU - Nussinov, Ruth
+AU  - Nussinov R
+AD  - Computational Structural Biology Section, Basic Science Program, Frederick 
+      National Laboratory for Cancer Research, National Cancer Institute at Frederick, 
+      Frederick, MD 21702, United States.
+AD  - Department of Human Molecular Genetics and Biochemistry, Sackler School of 
+      Medicine, Tel Aviv University, Tel Aviv 69978, Israel.
+FAU - Cheng, Feixiong
+AU  - Cheng F
+AUID- ORCID: 0000-0002-1736-2847
+AD  - Cleveland Clinic Genome Center, Lerner Research Institute, Cleveland Clinic, 
+      Cleveland, OH 44195, United States.
+AD  - Genomic Medicine Institute, Lerner Research Institute, Cleveland Clinic, 
+      Cleveland, OH 44195, United States.
+AD  - Department of Molecular Medicine, Cleveland Clinic Lerner College of Medicine, 
+      Case Western Reserve University, Cleveland, OH 44195, United States.
+AD  - Case Comprehensive Cancer Center, Case Western Reserve University School of 
+      Medicine, Cleveland, OH 44106, United States.
+LA  - eng
+GR  - CA/NCI NIH HHS/United States
+GR  - HHSN261201500003I/NH/NIH HHS/United States
+GR  - HH/HHS/United States
+GR  - Intramural Research Program/
+PT  - Journal Article
+PL  - England
+TA  - Nucleic Acids Res
+JT  - Nucleic acids research
+JID - 0411011
+RN  - 0 (Transcription Factors)
+RN  - 0 (Core Binding Factor Alpha 2 Subunit)
+SB  - IM
+MH  - *Deep Learning
+MH  - *Gene Regulatory Networks
+MH  - *Single-Cell Analysis/methods
+MH  - Humans
+MH  - Transcription Factors/genetics/metabolism
+MH  - Animals
+MH  - Mice
+MH  - Core Binding Factor Alpha 2 Subunit/genetics
+MH  - Genomics/methods
+MH  - Alzheimer Disease/genetics
+PMC - PMC11879466
+COIS- None declared.
+EDAT- 2025/03/05 00:21
+MHDA- 2025/03/05 00:22
+PMCR- 2025/03/04
+CRDT- 2025/03/04 20:53
+PHST- 2025/02/13 00:00 [accepted]
+PHST- 2025/01/03 00:00 [revised]
+PHST- 2024/10/10 00:00 [received]
+PHST- 2025/03/05 00:22 [medline]
+PHST- 2025/03/05 00:21 [pubmed]
+PHST- 2025/03/04 20:53 [entrez]
+PHST- 2025/03/04 00:00 [pmc-release]
+AID - 8051546 [pii]
+AID - gkaf138 [pii]
+AID - 10.1093/nar/gkaf138 [doi]
+PST - ppublish
+SO  - Nucleic Acids Res. 2025 Feb 27;53(5):gkaf138. doi: 10.1093/nar/gkaf138.
+
+PMID- 38699303
+OWN - NLM
+STAT- PubMed-not-MEDLINE
+LR  - 20241023
+DP  - 2024 Apr 22
+TI  - Comparative gene regulatory networks modulating APOE expression in microglia and 
+      astrocytes.
+LID - 2024.04.19.24306098 [pii]
+LID - 10.1101/2024.04.19.24306098 [doi]
+AB  - BACKGROUND: Single-cell technologies have unveiled various transcriptional states 
+      in different brain cell types. Transcription factors (TFs) regulate the 
+      expression of related gene sets, thereby controlling these diverse expression 
+      states. Apolipoprotein E (APOE), a pivotal risk-modifying gene in Alzheimer's 
+      disease (AD), is expressed in specific glial transcriptional states associated 
+      with AD. However, it is still unknown whether the upstream regulatory programs 
+      that modulate its expression are shared across brain cell types or specific to 
+      microglia and astrocytes. METHODS: We used pySCENIC to construct state-specific 
+      gene regulatory networks (GRNs) for resting and activated cell states within 
+      microglia and astrocytes based on single-nucleus RNA sequencing data from AD 
+      patients' cortices from the Knight ADRC-DIAN cohort. We then identified 
+      replicating TF using data from the ROSMAP cohort. We identified sets of genes 
+      co-regulated with APOE by clustering the GRN target genes and identifying genes 
+      differentially expressed after the virtual knockout of TFs regulating APOE. We 
+      performed enrichment analyses on these gene sets and evaluated their overlap with 
+      genes found in AD GWAS loci. RESULTS: We identified an average of 96 replicating 
+      regulators for each microglial and astrocyte cell state. Our analysis identified 
+      the CEBP, JUN, FOS, and FOXO TF families as key regulators of microglial APOE 
+      expression. The steroid/thyroid hormone receptor families, including the THR TF 
+      family, consistently regulated APOE across astrocyte states, while CEBP and JUN 
+      TF families were also involved in resting astrocytes. AD GWAS-associated genes 
+      (PGRN, FCGR3A, CTSH, ABCA1, MARCKS, CTSB, SQSTM1, TSC22D4, FCER1G, and HLA genes) 
+      are co-regulated with APOE. We also uncovered that APOE-regulating TFs were 
+      linked to circadian rhythm (BHLHE40, DBP, XBP1, CREM, SREBF1, FOXO3, and NR2F1). 
+      CONCLUSIONS: Our findings reveal a novel perspective on the transcriptional 
+      regulation of APOE in the human brain. We found a comprehensive and 
+      cell-type-specific regulatory landscape for APOE, revealing distinct and shared 
+      regulatory mechanisms across microglia and astrocytes, underscoring the 
+      complexity of APOE regulation. APOE-co-regulated genes might also affect AD risk. 
+      Furthermore, our study uncovers a potential link between circadian rhythm 
+      disruption and APOE regulation, shedding new light on the pathogenesis of AD.
+FAU - Brase, Logan
+AU  - Brase L
+AUID- ORCID: 0000-0002-7175-3208
+AD  - Department of Psychiatry, Washington University, Saint Louis, St. Louis, 
+      Missouri, United States of America.
+AD  - The Charles F. and Joanne Knight Alzheimer Disease Research Center, Washington 
+      University, St. Louis, Missouri, United States of America.
+FAU - Yu, Yanbo
+AU  - Yu Y
+AUID- ORCID: 0000-0002-6687-9850
+AD  - Department of Psychiatry, Washington University, Saint Louis, St. Louis, 
+      Missouri, United States of America.
+AD  - The Charles F. and Joanne Knight Alzheimer Disease Research Center, Washington 
+      University, St. Louis, Missouri, United States of America.
+FAU - McDade, Eric
+AU  - McDade E
+AUID- ORCID: 0000-0002-6764-3866
+AD  - Department of Neurology, Washington University School of Medicine in St. Louis, 
+      St. Louis, MO, USA.
+CN  - Dominantly Inherited Alzheimer Network (DIAN)
+FAU - Harari, Oscar
+AU  - Harari O
+AUID- ORCID: 0000-0002-2635-6975
+AD  - Department of Psychiatry, Washington University, Saint Louis, St. Louis, 
+      Missouri, United States of America.
+AD  - The Charles F. and Joanne Knight Alzheimer Disease Research Center, Washington 
+      University, St. Louis, Missouri, United States of America.
+AD  - Department of Neurology, Division of Neurogenetics, The Ohio State University, 
+      Columbus, OH, United States of America.
+FAU - Benitez, Bruno A
+AU  - Benitez BA
+AUID- ORCID: 0000-0002-2699-3878
+AD  - Department of Neurology and Neuroscience, Harvard Medical School and Beth Israel 
+      Deaconess Medical Center, Boston, Massachusetts, United States of America.
+LA  - eng
+GR  - R56 AG067764/AG/NIA NIH HHS/United States
+GR  - U01 AG046152/AG/NIA NIH HHS/United States
+GR  - R01 AG057777/AG/NIA NIH HHS/United States
+GR  - R01 AG030146/AG/NIA NIH HHS/United States
+GR  - R01 AG017917/AG/NIA NIH HHS/United States
+GR  - U01 AG072464/AG/NIA NIH HHS/United States
+GR  - T32 AG058518/AG/NIA NIH HHS/United States
+GR  - R01 AG074012/AG/NIA NIH HHS/United States
+GR  - RC2 AG036547/AG/NIA NIH HHS/United States
+GR  - RF1 AG057473/AG/NIA NIH HHS/United States
+GR  - R01 NS118146/NS/NINDS NIH HHS/United States
+GR  - U01 AG046161/AG/NIA NIH HHS/United States
+GR  - R01 AG048015/AG/NIA NIH HHS/United States
+GR  - U01 AG061356/AG/NIA NIH HHS/United States
+GR  - U01 AG032984/AG/NIA NIH HHS/United States
+GR  - R01 AG036042/AG/NIA NIH HHS/United States
+GR  - P30 AG010161/AG/NIA NIH HHS/United States
+GR  - R21 NS127211/NS/NINDS NIH HHS/United States
+GR  - U19 AG032438/AG/NIA NIH HHS/United States
+GR  - R01 AG036836/AG/NIA NIH HHS/United States
+GR  - R01 AG015819/AG/NIA NIH HHS/United States
+PT  - Journal Article
+PT  - Preprint
+DEP - 20240422
+PL  - United States
+TA  - medRxiv
+JT  - medRxiv : the preprint server for health sciences
+JID - 101767986
+PMC - PMC11065001
+OTO - NOTNLM
+OT  - APOE
+OT  - Alzheimer Disease
+OT  - astrocyte
+OT  - gene regulatory networks
+OT  - microglia
+OT  - single-nucleus RNA-seq
+COIS- Competing Interests E.M. receives Grant Funding from NIA; Institutional funding 
+      from Eli Lilly, Hoffmann-La Roche, Eisai. He is a DSMB member (paid directly) for 
+      Alector; Eli Lilly; a Scientific Advisory Board Member (paid directly) for 
+      Alzamend, Fondation Alzheimer. He acts as a Consultant/Advisor for Sage 
+      Therapeutics, Eli Lilly, Sanofi, AstraZeneca, Hoffmann La-Roche. The other 
+      authors have no conflicts of interest to disclose.
+EDAT- 2024/05/03 06:43
+MHDA- 2024/05/03 06:44
+PMCR- 2024/05/02
+CRDT- 2024/05/03 03:52
+PHST- 2024/05/03 06:43 [pubmed]
+PHST- 2024/05/03 06:44 [medline]
+PHST- 2024/05/03 03:52 [entrez]
+PHST- 2024/05/02 00:00 [pmc-release]
+AID - 2024.04.19.24306098 [pii]
+AID - 10.1101/2024.04.19.24306098 [doi]
+PST - epublish
+SO  - medRxiv [Preprint]. 2024 Apr 22:2024.04.19.24306098. doi: 
+      10.1101/2024.04.19.24306098.
+
+PMID- 40803604
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20250915
+LR  - 20250915
+IS  - 1872-6240 (Electronic)
+IS  - 0006-8993 (Linking)
+VI  - 1865
+DP  - 2025 Oct 15
+TI  - Single-cell transcriptome analysis reveals dysregulation of microglial iron 
+      homeostasis in temporal lobe epilepsy.
+PG  - 149885
+LID - S0006-8993(25)00448-2 [pii]
+LID - 10.1016/j.brainres.2025.149885 [doi]
+AB  - Temporal lobe epilepsy (TLE) is the most common and drug-resistant type of 
+      epilepsy with an unknown mechanism. Abnormal accumulation of iron and lipid 
+      peroxides in the brain of TLE patients has been demonstrated. In this study, we 
+      investigated the role of microglia in iron metabolism and neuroinflammation by 
+      systematically analyzing single-cell/single-nucleus RNA sequencing data from TLE 
+      patients. Our results showed that cells associated with TLE phenotype were 
+      significantly increased in the ferroptosis gene set score and positive expression 
+      of ACSL4 and 4-HNE was observed by immunohistochemistry in brain tissues of TLE 
+      patients. Compared to the control group, microglia in the TLE group exhibited 
+      heightened metabolic activity in iron accumulation, ferritin synthesis, and 
+      oxidative damage, manifesting an inflammation-related phenotype and secreting 
+      multiple inflammatory factors. Furthermore, we discovered a unique microglial 
+      phenotype characterized by iron accumulation and neuroinflammation, resembling 
+      microglia associated with Alzheimer's disease. The abundance of these microglial 
+      cells showed significant differences between TLE patients with high and low 
+      seizure frequencies and correlated positively with seizure frequency. Gene 
+      regulatory network analysis further revealed an enrichment of inflammation and 
+      oxidative stress-related transcription factors in these cells. Additionally, we 
+      identified a TLE-related gene co-expression module whose transcriptional 
+      characterization highly correlate with these distinct microglia. Multiplex 
+      immunohistochemistry validated the expression of these cellular marker genes in 
+      brain tissues of TLE patients. In summary, these findings underscore the critical 
+      role of microglial dysregulation in iron metabolism and neuroinflammation in the 
+      pathogenesis of TLE. By identifying a specific microglial phenotype, our research 
+      suggests a potential target for developing new therapeutic strategies for TLE.
+CI  - Copyright © 2025 Elsevier B.V. All rights reserved.
+FAU - He, Zihua
+AU  - He Z
+AD  - Department of Neurology, West China Hospital, Sichuan University, Chengdu, China.
+FAU - Liu, Shengyi
+AU  - Liu S
+AD  - Department of Neurology, West China Hospital, Sichuan University, Chengdu, China.
+FAU - Shi, Wenyan
+AU  - Shi W
+AD  - Department of Neurology, West China Hospital, Sichuan University, Chengdu, China.
+FAU - Yang, Yi
+AU  - Yang Y
+AD  - Department of Neurology, West China Hospital, Sichuan University, Chengdu, China.
+FAU - Wang, Jierui
+AU  - Wang J
+AD  - Department of Neurology, West China Hospital, Sichuan University, Chengdu, China.
+FAU - Wang, Jiaqi
+AU  - Wang J
+AD  - Department of Neurology, West China Hospital, Sichuan University, Chengdu, China.
+FAU - Yin, Jianqiong
+AU  - Yin J
+AD  - Department of Neurology, West China Hospital, Sichuan University, Chengdu, China.
+FAU - Shen, Sisi
+AU  - Shen S
+AD  - Department of Neurology, West China Hospital, Sichuan University, Chengdu, China.
+FAU - Zhou, Dong
+AU  - Zhou D
+AD  - Department of Neurology, West China Hospital, Sichuan University, Chengdu, China. 
+      Electronic address: zhoudong66@yahoo.de.
+FAU - Li, Jinmei
+AU  - Li J
+AD  - Department of Neurology, West China Hospital, Sichuan University, Chengdu, China. 
+      Electronic address: lijinmei@wchscu.cn.
+LA  - eng
+PT  - Journal Article
+DEP - 20250811
+PL  - Netherlands
+TA  - Brain Res
+JT  - Brain research
+JID - 0045503
+RN  - E1UOL152H7 (Iron)
+SB  - IM
+MH  - Humans
+MH  - *Epilepsy, Temporal Lobe/metabolism/genetics
+MH  - *Microglia/metabolism
+MH  - *Iron/metabolism
+MH  - Male
+MH  - Female
+MH  - Homeostasis/physiology
+MH  - Adult
+MH  - Single-Cell Analysis/methods
+MH  - Middle Aged
+MH  - Gene Expression Profiling/methods
+MH  - Transcriptome
+MH  - Brain/metabolism
+MH  - Ferroptosis
+MH  - Single-Cell Gene Expression Analysis
+OTO - NOTNLM
+OT  - Iron
+OT  - Microglia
+OT  - Neuroinflammation
+OT  - Single-cell transcriptomics
+OT  - Temporal lobe epilepsy
+COIS- Declaration of competing interest The authors declare that they have no known 
+      competing financial interests or personal relationships that could have appeared 
+      to influence the work reported in this paper.
+EDAT- 2025/08/14 00:28
+MHDA- 2025/09/16 00:32
+CRDT- 2025/08/13 19:42
+PHST- 2025/05/26 00:00 [received]
+PHST- 2025/08/07 00:00 [revised]
+PHST- 2025/08/10 00:00 [accepted]
+PHST- 2025/09/16 00:32 [medline]
+PHST- 2025/08/14 00:28 [pubmed]
+PHST- 2025/08/13 19:42 [entrez]
+AID - S0006-8993(25)00448-2 [pii]
+AID - 10.1016/j.brainres.2025.149885 [doi]
+PST - ppublish
+SO  - Brain Res. 2025 Oct 15;1865:149885. doi: 10.1016/j.brainres.2025.149885. Epub 
+      2025 Aug 11.
+
+PMID- 39143438
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20241002
+LR  - 20241005
+IS  - 1573-7373 (Electronic)
+IS  - 0167-594X (Print)
+IS  - 0167-594X (Linking)
+VI  - 170
+IP  - 1
+DP  - 2024 Oct
+TI  - Exploring the prognostic value of BRMS1 + microglia based on single-cell anoikis 
+      regulator patterns in the immunologic microenvironment of GBM.
+PG  - 101-117
+LID - 10.1007/s11060-024-04781-5 [doi]
+AB  - BACKGROUND: Anoikis is a specialized form of programmed cell death induced by the 
+      loss of cell adhesion to the extracellular matrix (ECM). Acquisition of anoikis 
+      resistance is a significant marker for cancer cell invasion, metastasis, therapy 
+      resistance, and recurrence. Although current research has identified multiple 
+      factors that regulate anoikis resistance, the pathological mechanisms of 
+      anoikis-mediated tumor microenvironment (TME) in glioblastoma (GBM) remain 
+      largely unexplored. METHODS: Utilizing single-cell RNA sequencing (scRNA-seq) 
+      data and employing non-negative matrix factorization (NMF), we identified and 
+      characterized TME cell clusters with distinct anoikis-associated gene signatures. 
+      Prognostic and therapeutic response analyses were conducted using TCGA and CGGA 
+      datasets to assess the clinical significance of different TME cell clusters. The 
+      spatial relationship between BRMS1 + microglia and tumor cells was inferred from 
+      spatial transcriptome RNA sequencing (stRNA-seq) data. To simulate the tumor 
+      immune microenvironment, co-culture experiments were performed with microglia 
+      (HMC3) and GBM cells (U118/U251), and microglia were transfected with a BRMS1 
+      overexpression lentivirus. Western blot or ELISA were used to detect BRMS1, M2 
+      macrophage-specific markers, PI3K/AKT signaling proteins, and apoptosis-related 
+      proteins. The proliferation and apoptosis capabilities of tumor cells were 
+      evaluated using CCK-8, colony formation, and apoptosis assays, while the invasive 
+      and migratory abilities of tumor cells were assessed using Transwell assays. 
+      RESULTS: NMF-based analysis successfully identified CD8 + T cell and microglia 
+      cell clusters with distinct gene signature characteristics. Trajectory analysis, 
+      cell communication, and gene regulatory network analyses collectively indicated 
+      that anoikis-mediated TME cell clusters can influence tumor cell development 
+      through various mechanisms. Notably, BRMS1 + AP-Mic exhibited an M2 macrophage 
+      phenotype and had significant cell communication with malignant cells. Moreover, 
+      high expression of BRMS1 + AP-Mic in TCGA and CGGA datasets was associated with 
+      poorer survival outcomes, indicating its detrimental impact on immunotherapy. 
+      Upregulation of BRMS1 in microglia may lead to M2 macrophage polarization, 
+      activate the PI3K/AKT signaling pathway through SPP1/CD44-mediated cell 
+      interactions, inhibit tumor cell apoptosis, and promote tumor proliferation and 
+      invasion. CONCLUSION: This pioneering study used NMF-based analysis to reveal the 
+      important predictive value of anoikis-regulated TME in GBM for prognosis and 
+      immunotherapeutic response. BRMS1 + microglial cells provide a new perspective 
+      for a deeper understanding of the immunosuppressive microenvironment of GBM and 
+      could serve as a potential therapeutic target in the future.
+CI  - © 2024. The Author(s).
+FAU - Zhao, Songyun
+AU  - Zhao S
+AD  - Department of Neurosurgery, The Affiliated Wuxi People's Hospital of Nanjing 
+      Medical University, Wuxi, China.
+AD  - Wuxi Medical Center of Nanjing Medical University, Wuxi, China.
+FAU - Ni, Kaixiang
+AU  - Ni K
+AD  - Department of Neurosurgery, The Affiliated Wuxi People's Hospital of Nanjing 
+      Medical University, Wuxi, China.
+AD  - Wuxi Medical Center of Nanjing Medical University, Wuxi, China.
+FAU - Xie, Jiaheng
+AU  - Xie J
+AD  - Department of Plastic Surgery, Xiangya Hospital, Central South University, 
+      Changsha, China.
+FAU - Cheng, Chao
+AU  - Cheng C
+AD  - Department of Neurosurgery, The Affiliated Wuxi People's Hospital of Nanjing 
+      Medical University, Wuxi, China.
+AD  - Wuxi Medical Center of Nanjing Medical University, Wuxi, China.
+FAU - Zhao, Ning
+AU  - Zhao N
+AD  - Wuxi Medical Center of Nanjing Medical University, Wuxi, China.
+FAU - Liu, Jinhui
+AU  - Liu J
+AD  - Department of Gynecology, The First Affiliated Hospital of Nanjing Medical 
+      University, Nanjing, China.
+FAU - Ji, Wei
+AU  - Ji W
+AD  - Department of Neurosurgery, The Affiliated Wuxi People's Hospital of Nanjing 
+      Medical University, Wuxi, China.
+AD  - Wuxi Medical Center of Nanjing Medical University, Wuxi, China.
+FAU - Wang, Qi
+AU  - Wang Q
+AD  - Department of Gastroenterology, Affiliated Hospital of Jiangsu University, 
+      Zhenjiang, China.
+FAU - Zhang, Pengpeng
+AU  - Zhang P
+AD  - Department of Lung Cancer Surgery, Tianjin Lung Cancer Center, National Clinical 
+      Research Center for Cancer, Key Laboratory of Cancer Prevention and Therapy, 
+      Tianjin's Clinical Research Center for Cancer, Tianjin Medical University Cancer 
+      Institute and Hospital, Tianjin, China. zpp19940120@tmu.edu.cn.
+FAU - Liu, Yuankun
+AU  - Liu Y
+AD  - Department of Neurosurgery, The Affiliated Wuxi People's Hospital of Nanjing 
+      Medical University, Wuxi, China. wxrmyylyk@stu.njmu.edu.cn.
+AD  - Wuxi Medical Center of Nanjing Medical University, Wuxi, China. 
+      wxrmyylyk@stu.njmu.edu.cn.
+LA  - eng
+GR  - 2020THRC-DJ-SNW/Wuxi Taihu Lake Talent Plan, Supports for Leading Talents in 
+      Medical and Health Profession/
+GR  - HB2023012/Wuxi Health Care Commission Young and Middle-aged Top Talent Grant 
+      Program/
+PT  - Journal Article
+DEP - 20240815
+PL  - United States
+TA  - J Neurooncol
+JT  - Journal of neuro-oncology
+JID - 8309335
+RN  - 0 (Repressor Proteins)
+RN  - 0 (Biomarkers, Tumor)
+SB  - IM
+MH  - Humans
+MH  - *Tumor Microenvironment/immunology
+MH  - *Glioblastoma/immunology/metabolism/genetics/pathology
+MH  - *Microglia/metabolism/immunology/pathology
+MH  - *Anoikis
+MH  - Prognosis
+MH  - *Brain Neoplasms/immunology/genetics/metabolism/pathology
+MH  - Repressor Proteins/genetics/metabolism
+MH  - Single-Cell Analysis
+MH  - Biomarkers, Tumor/metabolism/genetics
+MH  - Cell Proliferation
+MH  - Gene Expression Regulation, Neoplastic
+PMC - PMC11447114
+OTO - NOTNLM
+OT  - Anoikis
+OT  - GBM
+OT  - M2 macrophage polarization
+OT  - NMF
+OT  - Tumor microenvironment
+OT  - scRNA-seq
+OT  - stRNA-seq
+COIS- The authors declare no conflicts of interest.
+EDAT- 2024/08/15 00:41
+MHDA- 2024/10/02 12:42
+PMCR- 2024/08/15
+CRDT- 2024/08/14 23:32
+PHST- 2024/04/15 00:00 [received]
+PHST- 2024/07/12 00:00 [accepted]
+PHST- 2024/10/02 12:42 [medline]
+PHST- 2024/08/15 00:41 [pubmed]
+PHST- 2024/08/14 23:32 [entrez]
+PHST- 2024/08/15 00:00 [pmc-release]
+AID - 10.1007/s11060-024-04781-5 [pii]
+AID - 4781 [pii]
+AID - 10.1007/s11060-024-04781-5 [doi]
+PST - ppublish
+SO  - J Neurooncol. 2024 Oct;170(1):101-117. doi: 10.1007/s11060-024-04781-5. Epub 2024 
+      Aug 15.
+
+PMID- 40971318
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20251113
+LR  - 20251113
+IS  - 1875-8908 (Electronic)
+IS  - 1387-2877 (Linking)
+VI  - 108
+IP  - 2
+DP  - 2025 Nov
+TI  - HIF-1α-induced microglia-mediated neuroinflammation is involved in Alzheimer's 
+      disease: Evidence from single-cell transcriptomic analysis.
+PG  - 643-660
+LID - 10.1177/13872877251378007 [doi]
+AB  - BackgroundMicroglia are central mediators of neuroinflammation in Alzheimer's 
+      disease (AD), contributing significantly to disease pathogenesis. Understanding 
+      microglial heterogeneity and their regulatory mechanisms is critical for 
+      identifying potential therapeutic targets.ObjectiveThis study aimed to 
+      investigate the diversity of microglial subpopulations in AD and uncover key 
+      transcriptional regulators driving their pathogenic activity.MethodsWe integrated 
+      bulk RNA sequencing data from AD patients and 5×FAD mouse models with single-cell 
+      RNA sequencing (scRNA-seq) to profile microglial heterogeneity. Differential gene 
+      expression, pathway enrichment, pseudotime trajectory, and SCENIC analyses were 
+      used to identify functionally distinct subsets and regulatory networks. 
+      Experimental validation was conducted through in vivo assays in 5×FAD mice and in 
+      vitro inhibition studies targeting HIF-1α.ResultsA unique microglial 
+      subpopulation, termed microglia_2, was identified with an inflammatory-angiogenic 
+      transcriptional signature that was enriched during AD progression. This subset 
+      showed significant activation of inflammatory pathways. Pseudotime and SCENIC 
+      analyses revealed HIF-1α as a master regulator of microglia_2. In 5×FAD mice, 
+      cognitive decline was accompanied by increased expression of HIF-1α and Apoe, as 
+      well as microglial activation in the prefrontal cortex. In vitro inhibition of 
+      HIF-1α significantly reduced microglial inflammation.ConclusionsOur study 
+      demonstrates that a specific microglial subpopulation characterized by elevated 
+      HIF-1α expression may contribute to AD-associated neuroinflammation. By 
+      integrating transcriptomic analyses and experimental validation, we provide cell 
+      type-specific insights into disease mechanisms, offering potential insights for 
+      future mechanistic studies and therapeutic exploration.
+FAU - Dong, Manyu
+AU  - Dong M
+AUID- ORCID: 0009-0001-2334-0089
+AD  - Department of Rehabilitation Medicine, The First Affiliated Hospital with Nanjing 
+      Medical University, Nanjing, China.
+AD  - School of Rehabilitation Medicine, Nanjing Medical University, Nanjing, Jiangsu 
+      Province, China.
+FAU - Qian, Yilun
+AU  - Qian Y
+AD  - Department of Rehabilitation Medicine, The First Affiliated Hospital with Nanjing 
+      Medical University, Nanjing, China.
+AD  - School of Rehabilitation Medicine, Nanjing Medical University, Nanjing, Jiangsu 
+      Province, China.
+FAU - Geng, Yao
+AU  - Geng Y
+AD  - Department of Rehabilitation Medicine, The First Affiliated Hospital with Nanjing 
+      Medical University, Nanjing, China.
+AD  - School of Rehabilitation Medicine, Nanjing Medical University, Nanjing, Jiangsu 
+      Province, China.
+FAU - Wang, Ruiyu
+AU  - Wang R
+AD  - School of Rehabilitation Medicine, Nanjing Medical University, Nanjing, Jiangsu 
+      Province, China.
+FAU - Wang, Yu
+AU  - Wang Y
+AD  - Department of Rehabilitation Medicine, The First Affiliated Hospital with Nanjing 
+      Medical University, Nanjing, China.
+AD  - School of Rehabilitation Medicine, Nanjing Medical University, Nanjing, Jiangsu 
+      Province, China.
+FAU - Cai, Jili
+AU  - Cai J
+AD  - Department of Rehabilitation Medicine, The First Affiliated Hospital with Nanjing 
+      Medical University, Nanjing, China.
+AD  - School of Rehabilitation Medicine, Nanjing Medical University, Nanjing, Jiangsu 
+      Province, China.
+FAU - Wang, Xihui
+AU  - Wang X
+AD  - Department of Rehabilitation Medicine, The First Affiliated Hospital with Nanjing 
+      Medical University, Nanjing, China.
+AD  - School of Rehabilitation Medicine, Nanjing Medical University, Nanjing, Jiangsu 
+      Province, China.
+FAU - Huang, Ying
+AU  - Huang Y
+AD  - Department of Rehabilitation, Hengyang Medical School, The First Affiliated 
+      Hospital, University of South China, Hengyang, Hunan Province, China.
+FAU - Liu, Yan
+AU  - Liu Y
+AD  - Department of Rehabilitation, Hengyang Medical School, The First Affiliated 
+      Hospital, University of South China, Hengyang, Hunan Province, China.
+FAU - Liu, Wentao
+AU  - Liu W
+AD  - Jiangsu Key Laboratory of Neurodegeneration, Department of Pharmacology, Nanjing 
+      Medical University, Nanjing, Jiangsu Province, China.
+FAU - Wu, Qi
+AU  - Wu Q
+AD  - Department of Rehabilitation, Hengyang Medical School, The First Affiliated 
+      Hospital, University of South China, Hengyang, Hunan Province, China.
+FAU - Shen, Ying
+AU  - Shen Y
+AUID- ORCID: 0000-0001-8308-9562
+AD  - Department of Rehabilitation Medicine, The First Affiliated Hospital with Nanjing 
+      Medical University, Nanjing, China.
+AD  - School of Rehabilitation Medicine, Nanjing Medical University, Nanjing, Jiangsu 
+      Province, China.
+LA  - eng
+PT  - Journal Article
+DEP - 20250919
+PL  - United States
+TA  - J Alzheimers Dis
+JT  - Journal of Alzheimer's disease : JAD
+JID - 9814863
+RN  - 0 (Hypoxia-Inducible Factor 1, alpha Subunit)
+RN  - 0 (HIF1A protein, human)
+RN  - 0 (Hif1a protein, mouse)
+SB  - IM
+MH  - *Microglia/metabolism
+MH  - *Alzheimer Disease/genetics/metabolism/pathology
+MH  - *Hypoxia-Inducible Factor 1, alpha Subunit/metabolism/genetics
+MH  - Animals
+MH  - Mice
+MH  - Single-Cell Analysis
+MH  - Humans
+MH  - Transcriptome
+MH  - *Neuroinflammatory Diseases/metabolism/genetics/pathology
+MH  - Mice, Transgenic
+MH  - Gene Expression Profiling
+MH  - Disease Models, Animal
+MH  - Male
+MH  - Female
+OTO - NOTNLM
+OT  - Alzheimer's disease
+OT  - HIF-1α
+OT  - bioinformatics analysis
+OT  - microglia
+OT  - neuroinflammation
+COIS- Declaration of conflicting interestsThe authors declared no potential conflicts 
+      of interest with respect to the research, authorship, and/or publication of this 
+      article. Data availability statementPublicly available datasets were analyzed in 
+      this study. The datasets GSE1140286, GSE173955, GSE140510, and GSE140399 for this 
+      study can be found in the GEO database (https://www.ncbi.nlm.nih.gov/geo/).
+EDAT- 2025/09/19 18:31
+MHDA- 2025/11/13 06:30
+CRDT- 2025/09/19 13:05
+PHST- 2025/11/13 06:30 [medline]
+PHST- 2025/09/19 18:31 [pubmed]
+PHST- 2025/09/19 13:05 [entrez]
+AID - 10.1177/13872877251378007 [doi]
+PST - ppublish
+SO  - J Alzheimers Dis. 2025 Nov;108(2):643-660. doi: 10.1177/13872877251378007. Epub 
+      2025 Sep 19.
+
+PMID- 40618091
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20250706
+LR  - 20250708
+IS  - 2051-5960 (Electronic)
+IS  - 2051-5960 (Linking)
+VI  - 13
+IP  - 1
+DP  - 2025 Jul 5
+TI  - Early transcriptional responses reveal cell type-specific vulnerability and 
+      neuroprotective mechanisms in the neonatal ischemic hippocampus.
+PG  - 147
+LID - 10.1186/s40478-025-02062-4 [doi]
+LID - 147
+AB  - Neonatal hypoxic-ischemic (H-I) brain injury, a leading cause of 
+      neurodevelopmental disabilities, severely affects the metabolically active and 
+      neurogenic hippocampus. To investigate its acute effects and identify drug 
+      targets for early therapeutic windows, we applied single-nucleus RNA sequencing 
+      on postnatal day 8 (P8) mouse hippocampi under sham, hypoxic, and 
+      hypoxic-ischemic conditions. We constructed a comprehensive hippocampal cell 
+      atlas and developed a machine-learning classifier for precise cell type 
+      identification. Our analysis reveals early vulnerabilities in mature neurons and 
+      notable resilience in immature DG, GABAergic, and Cajal-Retzius cells following 
+      H-I. Gene regulatory network analysis identified key transcription factors 
+      associated with neuronal vulnerability, along with upregulated ribosome 
+      biogenesis and dysregulated calcium homeostasis pathways. We observed rapid 
+      activation of astrocytes and microglia, with Runx1 identified as a potential key 
+      transcription factor associated with early microglia immune responses. 
+      Endothelial cells displayed complex transcriptional changes and predicted 
+      intercellular signaling patterns that may influence vascular repair and recovery. 
+      Our study advances the understanding of immediate cellular and transcriptional 
+      responses to neonatal H-I injury, providing new insights into hippocampal cell 
+      heterogeneity and pathophysiology. The integrated hippocampal atlas, post-H-I 
+      atlas, and machine learning classifier are available at https://hippo-seq.org .
+CI  - © 2025. The Author(s).
+FAU - Ianevski, Aleksandr
+AU  - Ianevski A
+AD  - Department of Clinical and Molecular Medicine (IKOM), Norwegian University of 
+      Science and Technology (NTNU), 7491, Trondheim, Norway. 
+      aleksandr.ianevski@ntnu.no.
+FAU - Cámara-Quílez, María
+AU  - Cámara-Quílez M
+AD  - Department of Clinical and Molecular Medicine (IKOM), Norwegian University of 
+      Science and Technology (NTNU), 7491, Trondheim, Norway.
+FAU - Wang, Wei
+AU  - Wang W
+AD  - Department of Clinical and Molecular Medicine (IKOM), Norwegian University of 
+      Science and Technology (NTNU), 7491, Trondheim, Norway.
+FAU - Suganthan, Rajikala
+AU  - Suganthan R
+AD  - Department of Microbiology, Oslo University Hospital, University of Oslo, 0424, 
+      Oslo, Norway.
+AD  - Centre for Embryology and Healthy Development, University of Oslo, 0373, Oslo, 
+      Norway.
+FAU - Hildrestrand, Gunn
+AU  - Hildrestrand G
+AD  - Department of Microbiology, Oslo University Hospital, University of Oslo, 0424, 
+      Oslo, Norway.
+AD  - Centre for Embryology and Healthy Development, University of Oslo, 0373, Oslo, 
+      Norway.
+FAU - Grini, Jonas Viken
+AU  - Grini JV
+AD  - Department of Clinical and Molecular Medicine (IKOM), Norwegian University of 
+      Science and Technology (NTNU), 7491, Trondheim, Norway.
+FAU - Døskeland, Dagny Sanden
+AU  - Døskeland DS
+AD  - Department of Clinical and Molecular Medicine (IKOM), Norwegian University of 
+      Science and Technology (NTNU), 7491, Trondheim, Norway.
+FAU - Ye, Jing
+AU  - Ye J
+AD  - Department of Clinical and Molecular Medicine (IKOM), Norwegian University of 
+      Science and Technology (NTNU), 7491, Trondheim, Norway. jing.ye@ntnu.no.
+FAU - Bjørås, Magnar
+AU  - Bjørås M
+AD  - Department of Clinical and Molecular Medicine (IKOM), Norwegian University of 
+      Science and Technology (NTNU), 7491, Trondheim, Norway. magnar.bjoras@ntnu.no.
+AD  - Department of Microbiology, Oslo University Hospital, University of Oslo, 0424, 
+      Oslo, Norway. magnar.bjoras@ntnu.no.
+AD  - Centre for Embryology and Healthy Development, University of Oslo, 0373, Oslo, 
+      Norway. magnar.bjoras@ntnu.no.
+LA  - eng
+GR  - 326101/Norges Forskningsråd/
+PT  - Journal Article
+DEP - 20250705
+PL  - England
+TA  - Acta Neuropathol Commun
+JT  - Acta neuropathologica communications
+JID - 101610673
+SB  - IM
+MH  - Animals
+MH  - *Hippocampus/metabolism/pathology
+MH  - Mice
+MH  - Animals, Newborn
+MH  - *Hypoxia-Ischemia, Brain/metabolism/pathology/genetics
+MH  - *Neurons/metabolism/pathology
+MH  - Microglia/metabolism
+MH  - Mice, Inbred C57BL
+MH  - *Neuroprotection/physiology
+MH  - Gene Regulatory Networks
+MH  - Male
+MH  - Astrocytes/metabolism
+PMC - PMC12228329
+OTO - NOTNLM
+OT  - Gene regulatory network
+OT  - Hippocampal cell atlas
+OT  - Machine learning
+OT  - Neonatal hypoxia ischemia
+OT  - Neural vulnerability
+OT  - Single-cell RNA sequencing
+COIS- Declarations. Ethics approval and consent to participate: Not applicable. Consent 
+      for publication: Not applicable. Competing interests: The authors declare no 
+      competing interests.
+EDAT- 2025/07/06 06:18
+MHDA- 2025/07/06 07:48
+PMCR- 2025/07/05
+CRDT- 2025/07/05 23:40
+PHST- 2025/02/19 00:00 [received]
+PHST- 2025/06/10 00:00 [accepted]
+PHST- 2025/07/06 07:48 [medline]
+PHST- 2025/07/06 06:18 [pubmed]
+PHST- 2025/07/05 23:40 [entrez]
+PHST- 2025/07/05 00:00 [pmc-release]
+AID - 10.1186/s40478-025-02062-4 [pii]
+AID - 2062 [pii]
+AID - 10.1186/s40478-025-02062-4 [doi]
+PST - epublish
+SO  - Acta Neuropathol Commun. 2025 Jul 5;13(1):147. doi: 10.1186/s40478-025-02062-4.
+
+PMID- 35849618
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20220801
+LR  - 20250728
+IS  - 1553-7358 (Electronic)
+IS  - 1553-734X (Print)
+IS  - 1553-734X (Linking)
+VI  - 18
+IP  - 7
+DP  - 2022 Jul
+TI  - Single-cell network biology characterizes cell type gene regulation for drug 
+      repurposing and phenotype prediction in Alzheimer's disease.
+PG  - e1010287
+LID - 10.1371/journal.pcbi.1010287 [doi]
+LID - e1010287
+AB  - Dysregulation of gene expression in Alzheimer's disease (AD) remains elusive, 
+      especially at the cell type level. Gene regulatory network, a key molecular 
+      mechanism linking transcription factors (TFs) and regulatory elements to govern 
+      gene expression, can change across cell types in the human brain and thus serve 
+      as a model for studying gene dysregulation in AD. However, AD-induced regulatory 
+      changes across brain cell types remains uncharted. To address this, we integrated 
+      single-cell multi-omics datasets to predict the gene regulatory networks of four 
+      major cell types, excitatory and inhibitory neurons, microglia and 
+      oligodendrocytes, in control and AD brains. Importantly, we analyzed and compared 
+      the structural and topological features of networks across cell types and 
+      examined changes in AD. Our analysis shows that hub TFs are largely common across 
+      cell types and AD-related changes are relatively more prominent in some cell 
+      types (e.g., microglia). The regulatory logics of enriched network motifs (e.g., 
+      feed-forward loops) further uncover cell type-specific TF-TF cooperativities in 
+      gene regulation. The cell type networks are also highly modular and several 
+      network modules with cell-type-specific expression changes in AD pathology are 
+      enriched with AD-risk genes. The further disease-module-drug association analysis 
+      suggests cell-type candidate drugs and their potential target genes. Finally, our 
+      network-based machine learning analysis systematically prioritized cell type risk 
+      genes likely involved in AD. Our strategy is validated using an independent 
+      dataset which showed that top ranked genes can predict clinical phenotypes (e.g., 
+      cognitive impairment) of AD with reasonable accuracy. Overall, this single-cell 
+      network biology analysis provides a comprehensive map linking genes, regulatory 
+      networks, cell types and drug targets and reveals cell-type gene dysregulation in 
+      AD.
+FAU - Gupta, Chirag
+AU  - Gupta C
+AUID- ORCID: 0000-0002-6121-7065
+AD  - Waisman Center, University of Wisconsin-Madison, Madison, Wisconsin, United 
+      States of America.
+AD  - Department of Biostatistics and Medical Informatics, University of 
+      Wisconsin-Madison, Madison, Wisconsin, United States of America.
+FAU - Xu, Jielin
+AU  - Xu J
+AD  - Genomic Medicine Institute, Lerner Research Institute, Cleveland Clinic, 
+      Cleveland, Ohio, United States of America.
+FAU - Jin, Ting
+AU  - Jin T
+AUID- ORCID: 0000-0001-5073-0667
+AD  - Waisman Center, University of Wisconsin-Madison, Madison, Wisconsin, United 
+      States of America.
+AD  - Department of Biostatistics and Medical Informatics, University of 
+      Wisconsin-Madison, Madison, Wisconsin, United States of America.
+FAU - Khullar, Saniya
+AU  - Khullar S
+AD  - Waisman Center, University of Wisconsin-Madison, Madison, Wisconsin, United 
+      States of America.
+AD  - Department of Biostatistics and Medical Informatics, University of 
+      Wisconsin-Madison, Madison, Wisconsin, United States of America.
+FAU - Liu, Xiaoyu
+AU  - Liu X
+AD  - Department of Statistics, University of Wisconsin-Madison, Madison, Wisconsin, 
+      United States of America.
+FAU - Alatkar, Sayali
+AU  - Alatkar S
+AUID- ORCID: 0000-0001-5984-461X
+AD  - Waisman Center, University of Wisconsin-Madison, Madison, Wisconsin, United 
+      States of America.
+AD  - Department of Computer Sciences, University of Wisconsin-Madison, Madison, 
+      Wisconsin, United States of America.
+FAU - Cheng, Feixiong
+AU  - Cheng F
+AD  - Genomic Medicine Institute, Lerner Research Institute, Cleveland Clinic, 
+      Cleveland, Ohio, United States of America.
+AD  - Department of Molecular Medicine, Cleveland Clinic Lerner College of Medicine, 
+      Case Western Reserve University, Cleveland, Ohio, United States of America.
+AD  - Case Comprehensive Cancer Center, Case Western Reserve University School of 
+      Medicine, Cleveland, Ohio, United States of America.
+FAU - Wang, Daifeng
+AU  - Wang D
+AUID- ORCID: 0000-0001-9190-3704
+AD  - Waisman Center, University of Wisconsin-Madison, Madison, Wisconsin, United 
+      States of America.
+AD  - Department of Biostatistics and Medical Informatics, University of 
+      Wisconsin-Madison, Madison, Wisconsin, United States of America.
+AD  - Department of Computer Sciences, University of Wisconsin-Madison, Madison, 
+      Wisconsin, United States of America.
+LA  - eng
+GR  - R21 NS127432/NS/NINDS NIH HHS/United States
+GR  - R56 AG074001/AG/NIA NIH HHS/United States
+GR  - T15 LM007359/LM/NLM NIH HHS/United States
+GR  - U01 AG073323/AG/NIA NIH HHS/United States
+GR  - R01 AG066707/AG/NIA NIH HHS/United States
+GR  - P50 HD105353/HD/NICHD NIH HHS/United States
+GR  - R03 NS123969/NS/NINDS NIH HHS/United States
+GR  - R21 CA237955/CA/NCI NIH HHS/United States
+GR  - U01 MH116492/MH/NIMH NIH HHS/United States
+GR  - R01 AG067025/AG/NIA NIH HHS/United States
+GR  - R01 AG076448/AG/NIA NIH HHS/United States
+PT  - Journal Article
+PT  - Research Support, N.I.H., Extramural
+PT  - Research Support, Non-U.S. Gov't
+PT  - Research Support, U.S. Gov't, Non-P.H.S.
+DEP - 20220718
+PL  - United States
+TA  - PLoS Comput Biol
+JT  - PLoS computational biology
+JID - 101238922
+SB  - IM
+MH  - *Alzheimer Disease/metabolism
+MH  - Biology
+MH  - Drug Repositioning
+MH  - Gene Expression Profiling
+MH  - Gene Regulatory Networks/genetics
+MH  - Humans
+MH  - Phenotype
+PMC - PMC9333448
+COIS- The authors have declared that no competing interests exist.
+EDAT- 2022/07/19 06:00
+MHDA- 2022/08/02 06:00
+PMCR- 2022/07/18
+CRDT- 2022/07/18 13:42
+PHST- 2022/01/24 00:00 [received]
+PHST- 2022/06/07 00:00 [accepted]
+PHST- 2022/07/28 00:00 [revised]
+PHST- 2022/07/19 06:00 [pubmed]
+PHST- 2022/08/02 06:00 [medline]
+PHST- 2022/07/18 13:42 [entrez]
+PHST- 2022/07/18 00:00 [pmc-release]
+AID - PCOMPBIOL-D-22-00116 [pii]
+AID - 10.1371/journal.pcbi.1010287 [doi]
+PST - epublish
+SO  - PLoS Comput Biol. 2022 Jul 18;18(7):e1010287. doi: 10.1371/journal.pcbi.1010287. 
+      eCollection 2022 Jul.
+
+PMID- 34337051
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20210922
+LR  - 20220425
+IS  - 2314-6141 (Electronic)
+IS  - 2314-6133 (Print)
+VI  - 2021
+DP  - 2021
+TI  - Single-Cell Transcriptomics-Based Study of Transcriptional Regulatory Features in 
+      the Mouse Brain Vasculature.
+PG  - 7643209
+LID - 10.1155/2021/7643209 [doi]
+LID - 7643209
+AB  - BACKGROUND: The critical role of vascular health on brain function has received 
+      much attention in recent years. At the single-cell level, studies on the 
+      developmental processes of cerebral vascular growth are still relatively few. 
+      Techniques for constructing gene regulatory networks (GRNs) based on single-cell 
+      transcriptome expression data have made significant progress in recent years. 
+      Herein, we constructed a single-cell transcriptional regulatory network of mouse 
+      cerebrovascular cells. METHODS: The single-cell RNA-seq dataset of mouse brain 
+      vessels was downloaded from GEO (GSE98816). This cell clustering was annotated 
+      separately using singleR and CellMarker. We then used a modified version of the 
+      SCENIC method to construct GRNs. Next, we used a mouse version of SEEK to assess 
+      whether genes in the regulon were coexpressed. Finally, regulatory module 
+      analysis was performed to complete the cell type relationship quantification. 
+      RESULTS: Single-cell RNA-seq data were used to analyze the heterogeneity of mouse 
+      cerebrovascular cells, whereby four cell types including endothelial cells, 
+      fibroblasts, microglia, and oligodendrocytes were defined. These subpopulations 
+      of cells and marker genes together characterize the molecular profile of mouse 
+      cerebrovascular cells. Through these signatures, key transcriptional regulators 
+      that maintain cell identity were identified. Our findings identified genes like 
+      Lmo2, which play an important role in endothelial cells. The same cell type, for 
+      instance, fibroblasts, was found to have different regulatory networks, which may 
+      influence the functional characteristics of local tissues. CONCLUSIONS: In this 
+      study, a transcriptional regulatory network based on single-cell analysis was 
+      constructed. Additionally, the study identified and profiled mouse 
+      cerebrovascular cells using single-cell transcriptome data as well as defined TFs 
+      that affect the regulatory network of the mouse brain vasculature.
+CI  - Copyright © 2021 Wei-Wei Lin et al.
+FAU - Lin, Wei-Wei
+AU  - Lin WW
+AUID- ORCID: 0000-0001-8304-9659
+AD  - Department of Neurosurgery, Second Affiliated Hospital of Zhejiang University 
+      School of Medicine, Zhejiang University, 88 Jiefang Road, Hangzhou, 310009 
+      Zhejiang, China.
+FAU - Xu, Lin-Tao
+AU  - Xu LT
+AD  - Department of Neurosurgery, Second Affiliated Hospital of Zhejiang University 
+      School of Medicine, Zhejiang University, 88 Jiefang Road, Hangzhou, 310009 
+      Zhejiang, China.
+FAU - Chen, Yi-Sheng
+AU  - Chen YS
+AD  - Department of Orthopedics, Shanghai General Hospital, Shanghai Jiao Tong 
+      University School of Medicine, Shanghai Jiao Tong University, 100 Haining Road, 
+      Shanghai 200080, China.
+FAU - Go, Ken
+AU  - Go K
+AD  - Clinical Training Centre, St. Marianna Hospital, Japan.
+FAU - Sun, Chenyu
+AU  - Sun C
+AD  - Internal Medicine, AMITA Health Saint Joseph Hospital Chicago, 2900 N. Lake Shore 
+      Drive, Chicago, 60657 Illinois, USA.
+FAU - Zhu, Yong-Jian
+AU  - Zhu YJ
+AUID- ORCID: 0000-0002-5924-1998
+AD  - Department of Neurosurgery, Second Affiliated Hospital of Zhejiang University 
+      School of Medicine, Zhejiang University, 88 Jiefang Road, Hangzhou, 310009 
+      Zhejiang, China.
+LA  - eng
+PT  - Journal Article
+DEP - 20210723
+PL  - United States
+TA  - Biomed Res Int
+JT  - BioMed research international
+JID - 101600173
+RN  - 0 (Biomarkers)
+SB  - IM
+MH  - Animals
+MH  - Biomarkers/metabolism
+MH  - Brain/*blood supply/cytology/*metabolism
+MH  - Endothelial Cells/metabolism
+MH  - Fibroblasts/metabolism
+MH  - *Gene Expression Regulation
+MH  - Gene Regulatory Networks
+MH  - Mice
+MH  - Sequence Analysis, RNA
+MH  - *Single-Cell Analysis
+MH  - Transcriptome/*genetics
+PMC - PMC8324343
+COIS- The authors declare that they have no conflicts of interest.
+EDAT- 2021/08/03 06:00
+MHDA- 2021/09/23 06:00
+PMCR- 2021/07/23
+CRDT- 2021/08/02 06:09
+PHST- 2021/05/18 00:00 [received]
+PHST- 2021/06/18 00:00 [revised]
+PHST- 2021/07/06 00:00 [accepted]
+PHST- 2021/08/02 06:09 [entrez]
+PHST- 2021/08/03 06:00 [pubmed]
+PHST- 2021/09/23 06:00 [medline]
+PHST- 2021/07/23 00:00 [pmc-release]
+AID - 10.1155/2021/7643209 [doi]
+PST - epublish
+SO  - Biomed Res Int. 2021 Jul 23;2021:7643209. doi: 10.1155/2021/7643209. eCollection 
+      2021.
+
+PMID- 37254100
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20230601
+LR  - 20230602
+IS  - 1742-2094 (Electronic)
+IS  - 1742-2094 (Linking)
+VI  - 20
+IP  - 1
+DP  - 2023 May 30
+TI  - Analysis of the microglia transcriptome across the human lifespan using single 
+      cell RNA sequencing.
+PG  - 132
+LID - 10.1186/s12974-023-02809-7 [doi]
+LID - 132
+AB  - BACKGROUND: Microglia are tissue resident macrophages with a wide range of 
+      critically important functions in central nervous system development and 
+      homeostasis. METHOD: In this study, we aimed to characterize the transcriptional 
+      landscape of ex vivo human microglia across different developmental ages using 
+      cells derived from pre-natal, pediatric, adolescent, and adult brain samples. We 
+      further confirmed our transcriptional observations using ELISA and RNAscope. 
+      RESULTS: We showed that pre-natal microglia have a distinct transcriptional and 
+      regulatory signature relative to their post-natal counterparts that includes an 
+      upregulation of phagocytic pathways. We confirmed upregulation of CD36, a 
+      positive regulator of phagocytosis, in pre-natal samples compared to adult 
+      samples in situ. Moreover, we showed adult microglia have more pro-inflammatory 
+      signature compared to microglia from other developmental ages. We indicated that 
+      adult microglia are more immune responsive by secreting increased levels of 
+      pro-inflammatory cytokines in response to LPS treatment compared to the pre-natal 
+      microglia. We further validated in situ up-regulation of IL18 and CXCR4 in human 
+      adult brain section compared to the pre-natal brain section. Finally, trajectory 
+      analysis indicated that the transcriptional signatures adopted by microglia 
+      throughout development are in response to a changing brain microenvironment and 
+      do not reflect predetermined developmental states. CONCLUSION: In all, this study 
+      provides unique insight into the development of human microglia and a useful 
+      reference for understanding microglial contribution to developmental and 
+      age-related human disease.
+CI  - © 2023. The Author(s).
+FAU - Yaqubi, Moein
+AU  - Yaqubi M
+AD  - Neuroimmunology Unit, Department of Neurology and Neurosurgery, Montreal 
+      Neurological Institute and Hospital, McGill University, Montreal, QC, Canada.
+FAU - Groh, Adam M R
+AU  - Groh AMR
+AD  - Neuroimmunology Unit, Department of Neurology and Neurosurgery, Montreal 
+      Neurological Institute and Hospital, McGill University, Montreal, QC, Canada.
+FAU - Dorion, Marie-France
+AU  - Dorion MF
+AD  - Neuroimmunology Unit, Department of Neurology and Neurosurgery, Montreal 
+      Neurological Institute and Hospital, McGill University, Montreal, QC, Canada.
+FAU - Afanasiev, Elia
+AU  - Afanasiev E
+AD  - Neuroimmunology Unit, Department of Neurology and Neurosurgery, Montreal 
+      Neurological Institute and Hospital, McGill University, Montreal, QC, Canada.
+FAU - Luo, Julia Xiao Xuan
+AU  - Luo JXX
+AD  - Department of Microbiology and Immunology, Montreal Neurological Institute and 
+      Hospital, McGill University, Montreal, QC, Canada.
+FAU - Hashemi, Hadi
+AU  - Hashemi H
+AD  - Department of Electrical and Electronic Engineering, Shiraz University of 
+      Technology, Shiraz, Fars, Iran.
+FAU - Sinha, Sarthak
+AU  - Sinha S
+AD  - Department of Comparative Biology and Experimental Medicine, University of 
+      Calgary, Calgary, AB, Canada.
+FAU - Kieran, Nicholas W
+AU  - Kieran NW
+AD  - Neuroimmunology Unit, Department of Neurology and Neurosurgery, Montreal 
+      Neurological Institute and Hospital, McGill University, Montreal, QC, Canada.
+FAU - Blain, Manon
+AU  - Blain M
+AD  - Neuroimmunology Unit, Department of Neurology and Neurosurgery, Montreal 
+      Neurological Institute and Hospital, McGill University, Montreal, QC, Canada.
+FAU - Cui, Qiao-Ling
+AU  - Cui QL
+AD  - Neuroimmunology Unit, Department of Neurology and Neurosurgery, Montreal 
+      Neurological Institute and Hospital, McGill University, Montreal, QC, Canada.
+FAU - Biernaskie, Jeff
+AU  - Biernaskie J
+AD  - Department of Comparative Biology and Experimental Medicine, University of 
+      Calgary, Calgary, AB, Canada.
+FAU - Srour, Myriam
+AU  - Srour M
+AD  - Neuroimmunology Unit, Department of Neurology and Neurosurgery, Montreal 
+      Neurological Institute and Hospital, McGill University, Montreal, QC, Canada.
+AD  - Department of Pediatric Neurosurgery, Montreal Children's Hospital, Montreal, QC, 
+      Canada.
+FAU - Dudley, Roy
+AU  - Dudley R
+AD  - Neuroimmunology Unit, Department of Neurology and Neurosurgery, Montreal 
+      Neurological Institute and Hospital, McGill University, Montreal, QC, Canada.
+AD  - Department of Pediatric Neurosurgery, Montreal Children's Hospital, Montreal, QC, 
+      Canada.
+FAU - Hall, Jeffery A
+AU  - Hall JA
+AD  - Neuroimmunology Unit, Department of Neurology and Neurosurgery, Montreal 
+      Neurological Institute and Hospital, McGill University, Montreal, QC, Canada.
+FAU - Sonnen, Joshua A
+AU  - Sonnen JA
+AD  - Departments of Pathology, Neurology and Neurosurgery, McGill University, 
+      Montreal, QC, Canada.
+FAU - Arbour, Nathalie
+AU  - Arbour N
+AD  - Neuroimmunology Research Laboratory, Centre de Recherche du Centre Hospitalier de 
+      L, Université de Montréal (CRCHUM), Montreal, QC, Canada.
+AD  - Department of Neurosciences, Université de Montréal, Montreal, QC, Canada.
+FAU - Prat, Alexandre
+AU  - Prat A
+AD  - Department of Neurosciences, Université de Montréal, Montreal, QC, Canada.
+FAU - Stratton, Jo Anne
+AU  - Stratton JA
+AD  - Neuroimmunology Unit, Department of Neurology and Neurosurgery, Montreal 
+      Neurological Institute and Hospital, McGill University, Montreal, QC, Canada.
+FAU - Antel, Jack
+AU  - Antel J
+AD  - Neuroimmunology Unit, Department of Neurology and Neurosurgery, Montreal 
+      Neurological Institute and Hospital, McGill University, Montreal, QC, Canada.
+FAU - Healy, Luke M
+AU  - Healy LM
+AD  - Neuroimmunology Unit, Department of Neurology and Neurosurgery, Montreal 
+      Neurological Institute and Hospital, McGill University, Montreal, QC, Canada. 
+      luke.healy@mcgill.ca.
+LA  - eng
+PT  - Journal Article
+DEP - 20230530
+PL  - England
+TA  - J Neuroinflammation
+JT  - Journal of neuroinflammation
+JID - 101222974
+SB  - IM
+MH  - Humans
+MH  - Child
+MH  - Adolescent
+MH  - *Transcriptome
+MH  - *Microglia/metabolism
+MH  - Longevity
+MH  - Phagocytosis
+MH  - Sequence Analysis, RNA
+PMC - PMC10230780
+OTO - NOTNLM
+OT  - Ex vivo human microglia
+OT  - Gene regulatory network
+OT  - Transcriptional heterogeneity
+OT  - scRNA-seq
+COIS- The authors have no competing interests to declare funding.
+EDAT- 2023/05/31 01:09
+MHDA- 2023/06/01 06:42
+PMCR- 2023/05/30
+CRDT- 2023/05/30 23:37
+PHST- 2022/05/29 00:00 [received]
+PHST- 2023/05/17 00:00 [accepted]
+PHST- 2023/06/01 06:42 [medline]
+PHST- 2023/05/31 01:09 [pubmed]
+PHST- 2023/05/30 23:37 [entrez]
+PHST- 2023/05/30 00:00 [pmc-release]
+AID - 10.1186/s12974-023-02809-7 [pii]
+AID - 2809 [pii]
+AID - 10.1186/s12974-023-02809-7 [doi]
+PST - epublish
+SO  - J Neuroinflammation. 2023 May 30;20(1):132. doi: 10.1186/s12974-023-02809-7.
+
+PMID- 36824752
+OWN - NLM
+STAT- PubMed-not-MEDLINE
+LR  - 20240318
+IS  - 2692-8205 (Electronic)
+IS  - 2692-8205 (Linking)
+DP  - 2023 Feb 13
+TI  - BHLHE40/41 regulate macrophage/microglia responses associated with Alzheimer's 
+      disease and other disorders of lipid-rich tissues.
+LID - 2023.02.13.528372 [pii]
+LID - 10.1101/2023.02.13.528372 [doi]
+AB  - BACKGROUND: Genetic and experimental evidence strongly implicates myeloid cells 
+      in the etiology of AD and suggests that AD-associated alleles and genes may 
+      modulate disease risk by altering the transcriptional and cellular responses of 
+      macrophages (like microglia) to damage of lipid-rich tissues (like the brain). 
+      Specifically, recent single-cell/nucleus RNA sequencing (sc/nRNA-seq) studies 
+      identified a transcriptionally distinct state of subsets of macrophages in aging 
+      or degenerating brains (usually referred to as disease-associated microglia or 
+      DAM) and in other diseased lipid-rich tissues (e.g., obese adipose tissue, fatty 
+      liver, and atherosclerotic plaques). We collectively refer to these 
+      subpopulations as lipid-associated macrophages or LAMs. Importantly, this 
+      particular activation state is characterized by increased expression of genes 
+      involved in the phagocytic clearance of lipid-rich cellular debris 
+      (efferocytosis), including several AD risk genes. METHODS: We used sc/nRNA-seq 
+      data from human and mouse microglia from healthy and diseased brains and 
+      macrophages from other lipid-rich tissues to reconstruct gene regulatory networks 
+      and identify transcriptional regulators whose regulons are enriched for LAM 
+      response genes (LAM TFs) across species. We then used gene knock-down/knock-out 
+      strategies to validate some of these LAM TFs in human THP-1 macrophages and 
+      iPSC-derived microglia in vitro, as well as mouse microglia in vivo. RESULTS: We 
+      nominate 11 strong candidate LAM TFs shared across human and mouse networks 
+      (BHLHE41, HIF1A, ID2, JUNB, MAF, MAFB, MEF2A, MEF2C, NACA, POU2F2 and SPI1). We 
+      also demonstrate a strong enrichment of AD risk alleles in the cistrome of 
+      BHLHE41 (and its close homolog BHLHE40), thus implicating its regulon in the 
+      modulation of disease susceptibility. Loss or reduction of BHLHE40/41 expression 
+      in human THP-1 macrophages and iPSC-derived microglia, as well as loss of 
+      Bhlhe40/41 in mouse microglia led to increased expression of LAM response genes, 
+      specifically those involved in cholesterol clearance and lysosomal processing, 
+      with a concomitant increase in cholesterol efflux and storage, as well as 
+      lysosomal mass and degradative capacity. CONCLUSIONS: Taken together, this study 
+      nominates transcriptional regulators of the LAM response, experimentally 
+      validates BHLHE40/41 in human and mouse macrophages/microglia, and provides novel 
+      targets for therapeutic modulation of macrophage/microglia function in AD and 
+      other disorders of lipid-rich tissues.
+FAU - Podlesny-Drabiniok, Anna
+AU  - Podlesny-Drabiniok A
+AD  - Department of Genetics and Genomic Sciences, New York, NY, USA; Icahn School of 
+      Medicine at Mount Sinai, New York, NY, USA.
+FAU - Novikova, Gloriia
+AU  - Novikova G
+AD  - Department of Genetics and Genomic Sciences, New York, NY, USA; Icahn School of 
+      Medicine at Mount Sinai, New York, NY, USA.
+AD  - OMNI Bioinformatics Department and Neuroscience Department, Genentech, Inc., 
+      South San Francisco, CA, USA.
+FAU - Liu, Yiyuan
+AU  - Liu Y
+AD  - Department of Genetics and Genomic Sciences, New York, NY, USA; Icahn School of 
+      Medicine at Mount Sinai, New York, NY, USA.
+FAU - Dunst, Josefine
+AU  - Dunst J
+AD  - Department of Medicine, Division of Immunology and Allergy, Karolinska 
+      Institutet, Karolinska University Hospital, Stockholm, Sweden.
+AD  - Center for Molecular Medicine, Karolinska Institutet, Stockholm, Sweden.
+FAU - Temizer, Rose
+AU  - Temizer R
+AD  - Department of Genetics and Genomic Sciences, New York, NY, USA; Icahn School of 
+      Medicine at Mount Sinai, New York, NY, USA.
+FAU - Giannarelli, Chiara
+AU  - Giannarelli C
+AD  - Department of Medicine (C.G.), Cardiology, NYU Grossman School of Medicine.
+AD  - Department of Pathology (C.G.), Cardiology, NYU Grossman School of Medicine.
+FAU - Marro, Samuele
+AU  - Marro S
+AD  - Nash Family Department of Neuroscience, Friedman Brain Institute, Icahn School of 
+      Medicine at Mount Sinai, New York, NY 10029, USA.
+AD  - Black Family Stem Cell Institute, Icahn School of Medicine at Mount Sinai, New 
+      York, NY 10029, USA.
+FAU - Kreslavsky, Taras
+AU  - Kreslavsky T
+AD  - Department of Medicine, Division of Immunology and Allergy, Karolinska 
+      Institutet, Karolinska University Hospital, Stockholm, Sweden.
+AD  - Center for Molecular Medicine, Karolinska Institutet, Stockholm, Sweden.
+FAU - Marcora, Edoardo
+AU  - Marcora E
+AD  - Department of Genetics and Genomic Sciences, New York, NY, USA; Icahn School of 
+      Medicine at Mount Sinai, New York, NY, USA.
+AD  - Nash Family Department of Neuroscience, Friedman Brain Institute, Icahn School of 
+      Medicine at Mount Sinai, New York, NY 10029, USA.
+FAU - Goate, Alison Mary
+AU  - Goate AM
+AD  - Department of Genetics and Genomic Sciences, New York, NY, USA; Icahn School of 
+      Medicine at Mount Sinai, New York, NY, USA.
+AD  - Nash Family Department of Neuroscience, Friedman Brain Institute, Icahn School of 
+      Medicine at Mount Sinai, New York, NY 10029, USA.
+AD  - Black Family Stem Cell Institute, Icahn School of Medicine at Mount Sinai, New 
+      York, NY 10029, USA.
+LA  - eng
+GR  - R01 HL153712/HL/NHLBI NIH HHS/United States
+GR  - RF1 AG054011/AG/NIA NIH HHS/United States
+GR  - U01 AG058635/AG/NIA NIH HHS/United States
+GR  - U01 AG066757/AG/NIA NIH HHS/United States
+PT  - Journal Article
+PT  - Preprint
+DEP - 20230213
+PL  - United States
+TA  - bioRxiv
+JT  - bioRxiv : the preprint server for biology
+JID - 101680187
+UIN - Nat Commun. 2024 Mar 6;15(1):2058. doi: 10.1038/s41467-024-46315-7. PMID: 
+      38448474
+PMC - PMC9948946
+COIS- Competing interests A.M.G.: Scientific Advisory Board (SAB) Genentech; SAB Muna 
+      Therapeutics; S.M.: consultant Dorian Therapeutics, Turn Biotechnologies. C.G. is 
+      listed as an inventor on Tech 160808G PCT/US2022/017777 filed by the Icahn School 
+      of Medicine at Mount Sinai, which has no competing interest with this work. G.N. 
+      is an employee of Genentech, a member of the Roche group, and owns company stock. 
+      The remaining authors declare that they have no competing interests.
+EDAT- 2023/02/25 06:00
+MHDA- 2023/02/25 06:01
+PMCR- 2023/02/23
+CRDT- 2023/02/24 02:56
+PHST- 2023/02/25 06:00 [pubmed]
+PHST- 2023/02/25 06:01 [medline]
+PHST- 2023/02/24 02:56 [entrez]
+PHST- 2023/02/23 00:00 [pmc-release]
+AID - 2023.02.13.528372 [pii]
+AID - 10.1101/2023.02.13.528372 [doi]
+PST - epublish
+SO  - bioRxiv [Preprint]. 2023 Feb 13:2023.02.13.528372. doi: 
+      10.1101/2023.02.13.528372.
+
+PMID- 36138932
+OWN - NLM
+STAT- PubMed-not-MEDLINE
+LR  - 20220928
+IS  - 2076-3425 (Print)
+IS  - 2076-3425 (Electronic)
+IS  - 2076-3425 (Linking)
+VI  - 12
+IP  - 9
+DP  - 2022 Sep 5
+TI  - Biomarker Genes Discovery of Alzheimer's Disease by Multi-Omics-Based Gene 
+      Regulatory Network Construction of Microglia.
+LID - 10.3390/brainsci12091196 [doi]
+LID - 1196
+AB  - Microglia, the major immune cells in the brain, mediate neuroinflammation, 
+      increased oxidative stress, and impaired neurotransmission in Alzheimer's disease 
+      (AD), in which most AD risk genes are highly expressed. In microglia, due to the 
+      limitations of current single-omics data analysis, risk genes, the regulatory 
+      mechanisms, the mechanisms of action of immune responses and the exploration of 
+      drug targets for AD immunotherapy are still unclear. Therefore, we proposed a 
+      method to integrate multi-omics data based on the construction of gene regulatory 
+      networks (GRN), by combining weighted gene co-expression network analysis (WGCNA) 
+      with single-cell regulatory network inference and clustering (SCENIC). This 
+      enables snRNA-seq data and bulkRNA-seq data to obtain data on the deeper 
+      intermolecular regulatory relationships, related genes, and the molecular 
+      mechanisms of immune-cell action. In our approach, not only were central 
+      transcription factors (TF) STAT3, CEBPB, SPI1, and regulatory mechanisms 
+      identified more accurately than with single-omics but also immunotherapy 
+      targeting central TFs to drugs was found to be significantly different between 
+      patients. Thus, in addition to providing new insights into the potential 
+      regulatory mechanisms and pathogenic genes of AD microglia, this approach can 
+      assist clinicians in making the most rational treatment plans for patients with 
+      different risks; it also has significant implications for identifying AD 
+      immunotherapy targets and targeting microglia-associated immune drugs.
+FAU - Gao, Wenliang
+AU  - Gao W
+AD  - College of Information Engineering, Shanghai Maritime University, 1550 Haigang 
+      Ave., Shanghai 201306, China.
+FAU - Kong, Wei
+AU  - Kong W
+AD  - College of Information Engineering, Shanghai Maritime University, 1550 Haigang 
+      Ave., Shanghai 201306, China.
+FAU - Wang, Shuaiqun
+AU  - Wang S
+AD  - College of Information Engineering, Shanghai Maritime University, 1550 Haigang 
+      Ave., Shanghai 201306, China.
+FAU - Wen, Gen
+AU  - Wen G
+AD  - Department of Orthopedic Surgery, Shanghai Jiao Tong University Affiliated Sixth 
+      People's Hospital, Shanghai 200233, China.
+FAU - Yu, Yaling
+AU  - Yu Y
+AD  - Department of Orthopedic Surgery, Shanghai Jiao Tong University Affiliated Sixth 
+      People's Hospital, Shanghai 200233, China.
+AD  - Institute of Microsurgery on Extremities, Shanghai Jiao Tong University 
+      Affiliated Sixth People's Hospital, Shanghai 200233, China.
+LA  - eng
+GR  - No. 61271446, 31170952 and 82002291. No. 18ZR1417200. No. 
+      2020YFC2004900)/National Natural Science Foundation of China/
+PT  - Journal Article
+DEP - 20220905
+PL  - Switzerland
+TA  - Brain Sci
+JT  - Brain sciences
+JID - 101598646
+PMC - PMC9496783
+OTO - NOTNLM
+OT  - SCENIC
+OT  - gene regulatory network
+OT  - immunotherapy
+OT  - microglia
+OT  - multi-omics
+OT  - prognosis
+COIS- The authors declare no conflict of interest.
+EDAT- 2022/09/24 06:00
+MHDA- 2022/09/24 06:01
+PMCR- 2022/09/05
+CRDT- 2022/09/23 01:03
+PHST- 2022/07/16 00:00 [received]
+PHST- 2022/08/15 00:00 [revised]
+PHST- 2022/09/02 00:00 [accepted]
+PHST- 2022/09/23 01:03 [entrez]
+PHST- 2022/09/24 06:00 [pubmed]
+PHST- 2022/09/24 06:01 [medline]
+PHST- 2022/09/05 00:00 [pmc-release]
+AID - brainsci12091196 [pii]
+AID - brainsci-12-01196 [pii]
+AID - 10.3390/brainsci12091196 [doi]
+PST - epublish
+SO  - Brain Sci. 2022 Sep 5;12(9):1196. doi: 10.3390/brainsci12091196.
+
+PMID- 34281603
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20210727
+LR  - 20260223
+IS  - 1756-994X (Electronic)
+IS  - 1756-994X (Linking)
+VI  - 13
+IP  - 1
+DP  - 2021 Jul 19
+TI  - Single-nucleus transcriptome analysis of human brain immune response in patients 
+      with severe COVID-19.
+PG  - 118
+LID - 10.1186/s13073-021-00933-8 [doi]
+LID - 118
+AB  - BACKGROUND: Coronavirus disease 2019 (COVID-19), caused by severe acute 
+      respiratory syndrome coronavirus 2 (SARS-CoV-2) infection, has been associated 
+      with neurological and neuropsychiatric illness in many individuals. We sought to 
+      further our understanding of the relationship between brain tropism, 
+      neuro-inflammation, and host immune response in acute COVID-19 cases. METHODS: 
+      Three brain regions (dorsolateral prefrontal cortex, medulla oblongata, and 
+      choroid plexus) from 5 patients with severe COVID-19 and 4 controls were 
+      examined. The presence of the virus was assessed by western blot against viral 
+      spike protein, as well as viral transcriptome analysis covering > 99% of 
+      SARS-CoV-2 genome and all potential serotypes. Droplet-based single-nucleus RNA 
+      sequencing (snRNA-seq) was performed in the same samples to examine the impact of 
+      COVID-19 on transcription in individual cells of the brain. RESULTS: 
+      Quantification of viral spike S1 protein and viral transcripts did not detect 
+      SARS-CoV-2 in the postmortem brain tissue. However, analysis of 68,557 
+      single-nucleus transcriptomes from three distinct regions of the brain identified 
+      an increased proportion of stromal cells, monocytes, and macrophages in the 
+      choroid plexus of COVID-19 patients. Furthermore, differential gene expression, 
+      pseudo-temporal trajectory, and gene regulatory network analyses revealed 
+      transcriptional changes in the cortical microglia associated with a range of 
+      biological processes, including cellular activation, mobility, and phagocytosis. 
+      CONCLUSIONS: Despite the absence of detectable SARS-CoV-2 in the brain at the 
+      time of death, the findings suggest significant and persistent neuroinflammation 
+      in patients with acute COVID-19.
+CI  - © 2021. The Author(s).
+FAU - Fullard, John F
+AU  - Fullard JF
+AD  - Pamela Sklar Division of Psychiatric Genomics, Icahn School of Medicine at Mount 
+      Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Friedman Brain Institute, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+AD  - Icahn Institute for Data Science and Genomic Technology, Icahn School of Medicine 
+      at Mount Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Department of Genetics and Genomic Sciences, Icahn School of Medicine at Mount 
+      Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Department of Psychiatry, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+FAU - Lee, Hao-Chih
+AU  - Lee HC
+AD  - Pamela Sklar Division of Psychiatric Genomics, Icahn School of Medicine at Mount 
+      Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Friedman Brain Institute, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+AD  - Icahn Institute for Data Science and Genomic Technology, Icahn School of Medicine 
+      at Mount Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Department of Genetics and Genomic Sciences, Icahn School of Medicine at Mount 
+      Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Department of Psychiatry, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+FAU - Voloudakis, Georgios
+AU  - Voloudakis G
+AD  - Pamela Sklar Division of Psychiatric Genomics, Icahn School of Medicine at Mount 
+      Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Friedman Brain Institute, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+AD  - Department of Psychiatry, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+FAU - Suo, Shengbao
+AU  - Suo S
+AD  - Dana-Farber Cancer Institute, Harvard Medical School, Boston, MA, USA.
+FAU - Javidfar, Behnam
+AU  - Javidfar B
+AD  - Friedman Brain Institute, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+AD  - Department of Psychiatry, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+FAU - Shao, Zhiping
+AU  - Shao Z
+AD  - Pamela Sklar Division of Psychiatric Genomics, Icahn School of Medicine at Mount 
+      Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Friedman Brain Institute, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+AD  - Icahn Institute for Data Science and Genomic Technology, Icahn School of Medicine 
+      at Mount Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Department of Genetics and Genomic Sciences, Icahn School of Medicine at Mount 
+      Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Department of Psychiatry, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+FAU - Peter, Cyril
+AU  - Peter C
+AD  - Friedman Brain Institute, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+AD  - Department of Psychiatry, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+FAU - Zhang, Wen
+AU  - Zhang W
+AD  - Pamela Sklar Division of Psychiatric Genomics, Icahn School of Medicine at Mount 
+      Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Friedman Brain Institute, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+AD  - Icahn Institute for Data Science and Genomic Technology, Icahn School of Medicine 
+      at Mount Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Department of Genetics and Genomic Sciences, Icahn School of Medicine at Mount 
+      Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Department of Psychiatry, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+FAU - Jiang, Shan
+AU  - Jiang S
+AD  - Pamela Sklar Division of Psychiatric Genomics, Icahn School of Medicine at Mount 
+      Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Friedman Brain Institute, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+AD  - Icahn Institute for Data Science and Genomic Technology, Icahn School of Medicine 
+      at Mount Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Department of Genetics and Genomic Sciences, Icahn School of Medicine at Mount 
+      Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Department of Psychiatry, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+FAU - Corvelo, André
+AU  - Corvelo A
+AD  - New York Genome Center, New York, NY, USA.
+FAU - Wargnier, Heather
+AU  - Wargnier H
+AD  - Department of Pathology, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+AD  - Department of Neuroscience, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+AD  - Neuropathology Brain Bank & Research Core, Icahn School of Medicine at Mount 
+      Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+FAU - Woodoff-Leith, Emma
+AU  - Woodoff-Leith E
+AD  - Department of Pathology, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+AD  - Department of Neuroscience, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+AD  - Neuropathology Brain Bank & Research Core, Icahn School of Medicine at Mount 
+      Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+FAU - Purohit, Dushyant P
+AU  - Purohit DP
+AD  - Department of Psychiatry, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+AD  - Department of Pathology, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+FAU - Ahuja, Sadhna
+AU  - Ahuja S
+AD  - Department of Pathology, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+FAU - Tsankova, Nadejda M
+AU  - Tsankova NM
+AD  - Department of Pathology, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+AD  - Department of Neuroscience, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+FAU - Jette, Nathalie
+AU  - Jette N
+AD  - Department of Neurology, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+AD  - Department of Population Health Science and Policy, Icahn School of Medicine at 
+      Mount Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+FAU - Hoffman, Gabriel E
+AU  - Hoffman GE
+AD  - Pamela Sklar Division of Psychiatric Genomics, Icahn School of Medicine at Mount 
+      Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Friedman Brain Institute, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+AD  - Icahn Institute for Data Science and Genomic Technology, Icahn School of Medicine 
+      at Mount Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Department of Genetics and Genomic Sciences, Icahn School of Medicine at Mount 
+      Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Department of Psychiatry, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+FAU - Akbarian, Schahram
+AU  - Akbarian S
+AD  - Friedman Brain Institute, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+AD  - Department of Psychiatry, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+FAU - Fowkes, Mary
+AU  - Fowkes M
+AD  - Department of Pathology, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+FAU - Crary, John F
+AU  - Crary JF
+AD  - Department of Pathology, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+AD  - Department of Neuroscience, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA.
+AD  - Neuropathology Brain Bank & Research Core, Icahn School of Medicine at Mount 
+      Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+FAU - Yuan, Guo-Cheng
+AU  - Yuan GC
+AD  - Department of Genetics and Genomic Sciences, Icahn School of Medicine at Mount 
+      Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+AD  - Charles Bronfman Institute for Personalized Medicine, Icahn School of Medicine at 
+      Mount Sinai, 1470 Madison Avenue, New York, NY, 10029, USA.
+FAU - Roussos, Panos
+AU  - Roussos P
+AUID- ORCID: 0000-0002-4640-6239
+AD  - Pamela Sklar Division of Psychiatric Genomics, Icahn School of Medicine at Mount 
+      Sinai, 1470 Madison Avenue, New York, NY, 10029, USA. 
+      panagiotis.roussos@mssm.edu.
+AD  - Friedman Brain Institute, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA. panagiotis.roussos@mssm.edu.
+AD  - Icahn Institute for Data Science and Genomic Technology, Icahn School of Medicine 
+      at Mount Sinai, 1470 Madison Avenue, New York, NY, 10029, USA. 
+      panagiotis.roussos@mssm.edu.
+AD  - Department of Genetics and Genomic Sciences, Icahn School of Medicine at Mount 
+      Sinai, 1470 Madison Avenue, New York, NY, 10029, USA. 
+      panagiotis.roussos@mssm.edu.
+AD  - Department of Psychiatry, Icahn School of Medicine at Mount Sinai, 1470 Madison 
+      Avenue, New York, NY, 10029, USA. panagiotis.roussos@mssm.edu.
+AD  - Mental Illness Research Education and Clinical Center (VISN 2 South), James J. 
+      Peters VA Medical Center, Bronx, 10468, NY, USA. panagiotis.roussos@mssm.edu.
+LA  - eng
+GR  - R01-AG065582/AG/NIA NIH HHS/United States
+GR  - 0285VV12/Mount Sinai COVID-19 seed fund/
+GR  - S10 OD026880/OD/NIH HHS/United States
+GR  - R01-AG067025/AG/NIA NIH HHS/United States
+GR  - R01 AG067025/AG/NIA NIH HHS/United States
+GR  - RF1 DA048810/DA/NIDA NIH HHS/United States
+GR  - R01 AG065582/AG/NIA NIH HHS/United States
+GR  - R01 NS106229/NS/NINDS NIH HHS/United States
+PT  - Journal Article
+PT  - Research Support, N.I.H., Extramural
+PT  - Research Support, Non-U.S. Gov't
+DEP - 20210719
+PL  - England
+TA  - Genome Med
+JT  - Genome medicine
+JID - 101475844
+SB  - IM
+MH  - Brain/*metabolism
+MH  - COVID-19/*immunology
+MH  - Choroid Plexus/metabolism
+MH  - Gene Expression
+MH  - Gene Expression Profiling/*methods
+MH  - Gene Regulatory Networks
+MH  - Humans
+MH  - Immunity/*genetics/*immunology
+MH  - Inflammation
+MH  - Microglia
+MH  - Prefrontal Cortex/metabolism
+MH  - SARS-CoV-2/genetics
+MH  - *Transcriptome
+PMC - PMC8287557
+OTO - NOTNLM
+OT  - Choroid plexus
+OT  - Gene expression
+OT  - Microglia
+OT  - Neuroinflammation
+OT  - Prefrontal cortex
+OT  - SARS-CoV-2
+COIS- The authors declare that they have no competing interests.
+EDAT- 2021/07/21 06:00
+MHDA- 2021/07/28 06:00
+PMCR- 2021/07/19
+CRDT- 2021/07/20 05:38
+PHST- 2021/02/24 00:00 [received]
+PHST- 2021/07/06 00:00 [accepted]
+PHST- 2021/07/20 05:38 [entrez]
+PHST- 2021/07/21 06:00 [pubmed]
+PHST- 2021/07/28 06:00 [medline]
+PHST- 2021/07/19 00:00 [pmc-release]
+AID - 10.1186/s13073-021-00933-8 [pii]
+AID - 933 [pii]
+AID - 10.1186/s13073-021-00933-8 [doi]
+PST - epublish
+SO  - Genome Med. 2021 Jul 19;13(1):118. doi: 10.1186/s13073-021-00933-8.
+
+PMID- 37824600
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20231110
+LR  - 20231215
+IS  - 1946-6242 (Electronic)
+IS  - 1946-6234 (Linking)
+VI  - 15
+IP  - 721
+DP  - 2023 Nov 8
+TI  - A single-cell genomic atlas for maturation of the human cerebellum during early 
+      childhood.
+PG  - eade1283
+LID - 10.1126/scitranslmed.ade1283 [doi]
+AB  - Inflammation early in life is a clinically established risk factor for autism 
+      spectrum disorders and schizophrenia, yet the impact of inflammation on human 
+      brain development is poorly understood. The cerebellum undergoes protracted 
+      postnatal maturation, making it especially susceptible to perturbations 
+      contributing to the risk of developing neurodevelopmental disorders. Here, using 
+      single-cell genomics of postmortem cerebellar brain samples, we characterized the 
+      postnatal development of cerebellar neurons and glia in 1- to 5-year-old 
+      children, comparing individuals who had died while experiencing inflammation with 
+      those who had died as a result of an accident. Our analyses revealed that 
+      inflammation and postnatal cerebellar maturation are associated with extensive, 
+      overlapping transcriptional changes primarily in two subtypes of inhibitory 
+      neurons: Purkinje neurons and Golgi neurons. Immunohistochemical analysis of a 
+      subset of these postmortem cerebellar samples revealed no change to Purkinje 
+      neuron soma size but evidence for increased activation of microglia in those 
+      children who had experienced inflammation. Maturation-associated and 
+      inflammation-associated gene expression changes included genes implicated in 
+      neurodevelopmental disorders. A gene regulatory network model integrating cell 
+      type-specific gene expression and chromatin accessibility identified seven 
+      temporally specific gene networks in Purkinje neurons and suggested that 
+      inflammation may be associated with the premature down-regulation of 
+      developmental gene expression programs.
+FAU - Ament, Seth A
+AU  - Ament SA
+AUID- ORCID: 0000-0001-6443-7509
+AD  - Institute for Genome Sciences, University of Maryland School of Medicine, 
+      Baltimore, MD, USA.
+AD  - Maryland Psychiatric Research Center, Department of Psychiatry, University of 
+      Maryland School of Medicine, Baltimore, MD, USA.
+AD  - UM-MIND, University of Maryland School of Medicine, Baltimore, MD, USA.
+FAU - Cortes-Gutierrez, Marcia
+AU  - Cortes-Gutierrez M
+AD  - Institute for Genome Sciences, University of Maryland School of Medicine, 
+      Baltimore, MD, USA.
+FAU - Herb, Brian R
+AU  - Herb BR
+AUID- ORCID: 0000-0002-5910-9647
+AD  - Institute for Genome Sciences, University of Maryland School of Medicine, 
+      Baltimore, MD, USA.
+AD  - Department of Pharmacology, University of Maryland School of Medicine, Baltimore, 
+      MD, USA.
+FAU - Mocci, Evelina
+AU  - Mocci E
+AD  - Institute for Genome Sciences, University of Maryland School of Medicine, 
+      Baltimore, MD, USA.
+AD  - Department of Pain Sciences, University of Maryland School of Nursing, Baltimore, 
+      MD, USA.
+FAU - Colantuoni, Carlo
+AU  - Colantuoni C
+AUID- ORCID: 0000-0001-6818-6380
+AD  - Institute for Genome Sciences, University of Maryland School of Medicine, 
+      Baltimore, MD, USA.
+AD  - Departments of Neurology and Neuroscience, Johns Hopkins School of Medicine, 
+      Baltimore, MD, USA.
+FAU - McCarthy, Margaret M
+AU  - McCarthy MM
+AUID- ORCID: 0000-0003-2243-4726
+AD  - UM-MIND, University of Maryland School of Medicine, Baltimore, MD, USA.
+AD  - Department of Pharmacology, University of Maryland School of Medicine, Baltimore, 
+      MD, USA.
+LA  - eng
+GR  - R01MH091424/NIMH/
+GR  - R21MH128462 AND R24MH114788/NIMH/
+GR  - R01DC019370/National Institute of Deafness and Communication Disorders/
+GR  - R24MH114815/NIMH/
+PT  - Journal Article
+DEP - 20231108
+PL  - United States
+TA  - Sci Transl Med
+JT  - Science translational medicine
+JID - 101505086
+SB  - IM
+MH  - Child, Preschool
+MH  - Humans
+MH  - *Cerebellum/metabolism
+MH  - *Neurons/metabolism
+MH  - Purkinje Cells/metabolism
+MH  - Genomics
+MH  - Inflammation/metabolism
+EDAT- 2023/10/12 18:42
+MHDA- 2023/11/10 06:45
+CRDT- 2023/10/12 14:03
+PHST- 2023/11/10 06:45 [medline]
+PHST- 2023/10/12 18:42 [pubmed]
+PHST- 2023/10/12 14:03 [entrez]
+AID - 10.1126/scitranslmed.ade1283 [doi]
+PST - ppublish
+SO  - Sci Transl Med. 2023 Nov 8;15(721):eade1283. doi: 10.1126/scitranslmed.ade1283. 
+      Epub 2023 Nov 8.
+
+PMID- 38293238
+OWN - NLM
+STAT- PubMed-not-MEDLINE
+LR  - 20240701
+IS  - 2692-8205 (Electronic)
+IS  - 2692-8205 (Linking)
+DP  - 2024 Jan 16
+TI  - Transcriptome Analysis Identifies An ASD-Like Phenotype In Oligodendrocytes And 
+      Microglia From C58/J Amygdala That Is Dependent On Sex and Sociability.
+LID - 2024.01.15.575733 [pii]
+LID - 10.1101/2024.01.15.575733 [doi]
+AB  - BACKGROUND: Autism Spectrum Disorder (ASD) is a group of neurodevelopmental 
+      disorders with higher incidence in males and is characterized by atypical 
+      verbal/nonverbal communication, restricted interests that can be accompanied by 
+      repetitive behavior, and disturbances in social behavior. This study investigated 
+      brain mechanisms that contribute to sociability deficits and sex differences in 
+      an ASD animal model. METHODS: Sociability was measured in C58/J and C57BL/6J mice 
+      using the 3-chamber social choice test. Bulk RNA-Seq and snRNA-Seq identified 
+      transcriptional changes in C58/J and C57BL/6J amygdala within which DMRseq was 
+      used to measure differentially methylated regions in amygdala. RESULTS: C58/J 
+      mice displayed divergent social strata in the 3-chamber test. Transcriptional and 
+      pathway signatures revealed immune-related biological processes differ between 
+      C58/J and C57BL/6J amygdala. Hypermethylated and hypomethylated genes were 
+      identified in C58/J versus C57BL/6J amygdala. snRNA-Seq data in C58/J amygdala 
+      identified differential transcriptional signatures within oligodendrocytes and 
+      microglia characterized by increased ASD risk gene expression and predicted 
+      impaired myelination that was dependent on sex and sociability. RNA velocity, 
+      gene regulatory network, and cell communication analysis showed diminished 
+      oligodendrocyte/microglia differentiation. Findings were verified using bulk 
+      RNA-Seq and demonstrated oxytocin's beneficial effects on myelin gene expression. 
+      LIMITATIONS: Our findings are significant. However, limitations can be noted. The 
+      cellular mechanisms linking reduced oligodendrocyte differentiation and reduced 
+      myelination to an ASD phenotype in C58/J mice need further investigation. 
+      Additional snRNA-Seq and spatial studies would determine if effects in 
+      oligodendrocytes/microglia are unique to amygdala or if this occurs in other 
+      brain regions. Oxytocin's effects need further examination to understand its 
+      potential as an ASD therapeutic. CONCLUSIONS: Our work demonstrates the C58/J 
+      mouse model's utility in evaluating the influence of sex and sociability on the 
+      transcriptome in concomitant brain regions involved in ASD. Our single-nucleus 
+      transcriptome analysis elucidates potential pathological roles of 
+      oligodendrocytes and microglia in ASD. This investigation provides details 
+      regarding regulatory features disrupted in these cell types, including 
+      transcriptional gene dysregulation, aberrant cell differentiation, altered gene 
+      regulatory networks, and changes to key pathways that promote 
+      microglia/oligodendrocyte differentiation. Our studies provide insight into 
+      interactions between genetic risk and epigenetic processes associated with 
+      divergent affiliative behavior and lack of positive sociability.
+FAU - Dalton, George D
+AU  - Dalton GD
+FAU - Siecinski, Stephen K
+AU  - Siecinski SK
+FAU - Nikolova, Viktoriya D
+AU  - Nikolova VD
+FAU - Cofer, Gary P
+AU  - Cofer GP
+FAU - Hornburg, Kathryn
+AU  - Hornburg K
+FAU - Qi, Yi
+AU  - Qi Y
+FAU - Johnson, G Allan
+AU  - Johnson GA
+FAU - Jiang, Yong-Hui
+AU  - Jiang YH
+FAU - Moy, Sheryl S
+AU  - Moy SS
+FAU - Gregory, Simon G
+AU  - Gregory SG
+LA  - eng
+GR  - P50 HD103573/HD/NICHD NIH HHS/United States
+GR  - R01 HD088007/HD/NICHD NIH HHS/United States
+PT  - Journal Article
+PT  - Preprint
+DEP - 20240116
+PL  - United States
+TA  - bioRxiv
+JT  - bioRxiv : the preprint server for biology
+JID - 101680187
+UIN - Behav Brain Funct. 2024 Jun 19;20(1):14. doi: 10.1186/s12993-024-00240-3. PMID: 
+      38898502
+PMC - PMC10827122
+EDAT- 2024/01/31 06:42
+MHDA- 2024/01/31 06:43
+PMCR- 2024/01/30
+CRDT- 2024/01/31 04:22
+PHST- 2024/01/31 06:43 [medline]
+PHST- 2024/01/31 06:42 [pubmed]
+PHST- 2024/01/31 04:22 [entrez]
+PHST- 2024/01/30 00:00 [pmc-release]
+AID - 2024.01.15.575733 [pii]
+AID - 10.1101/2024.01.15.575733 [doi]
+PST - epublish
+SO  - bioRxiv [Preprint]. 2024 Jan 16:2024.01.15.575733. doi: 
+      10.1101/2024.01.15.575733.
+
+PMID- 38898502
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20240619
+LR  - 20250314
+IS  - 1744-9081 (Electronic)
+IS  - 1744-9081 (Linking)
+VI  - 20
+IP  - 1
+DP  - 2024 Jun 19
+TI  - Transcriptome analysis identifies an ASD-Like phenotype in oligodendrocytes and 
+      microglia from C58/J amygdala that is dependent on sex and sociability.
+PG  - 14
+LID - 10.1186/s12993-024-00240-3 [doi]
+LID - 14
+AB  - BACKGROUND: Autism Spectrum Disorder (ASD) is a group of neurodevelopmental 
+      disorders with higher incidence in males and is characterized by atypical 
+      verbal/nonverbal communication, restricted interests that can be accompanied by 
+      repetitive behavior, and disturbances in social behavior. This study investigated 
+      brain mechanisms that contribute to sociability deficits and sex differences in 
+      an ASD animal model. METHODS: Sociability was measured in C58/J and C57BL/6J mice 
+      using the 3-chamber social choice test. Bulk RNA-Seq and snRNA-Seq identified 
+      transcriptional changes in C58/J and C57BL/6J amygdala within which DMRseq was 
+      used to measure differentially methylated regions in amygdala. RESULTS: C58/J 
+      mice displayed divergent social strata in the 3-chamber test. Transcriptional and 
+      pathway signatures revealed immune-related biological processes differ between 
+      C58/J and C57BL/6J amygdala. Hypermethylated and hypomethylated genes were 
+      identified in C58/J versus C57BL/6J amygdala. snRNA-Seq data in C58/J amygdala 
+      identified differential transcriptional signatures within oligodendrocytes and 
+      microglia characterized by increased ASD risk gene expression and predicted 
+      impaired myelination that was dependent on sex and sociability. RNA velocity, 
+      gene regulatory network, and cell communication analysis showed diminished 
+      oligodendrocyte/microglia differentiation. Findings were verified using Bulk 
+      RNA-Seq and demonstrated oxytocin's beneficial effects on myelin gene expression. 
+      LIMITATIONS: Our findings are significant. However, limitations can be noted. The 
+      cellular mechanisms linking reduced oligodendrocyte differentiation and reduced 
+      myelination to an ASD phenotype in C58/J mice need further investigation. 
+      Additional snRNA-Seq and spatial studies would determine if effects in 
+      oligodendrocytes/microglia are unique to amygdala or if this occurs in other 
+      brain regions. Oxytocin's effects need further examination to understand its' 
+      potential as an ASD therapeutic. CONCLUSIONS: Our work demonstrates the C58/J 
+      mouse model's utility in evaluating the influence of sex and sociability on the 
+      transcriptome in concomitant brain regions involved in ASD. Our single-nucleus 
+      transcriptome analysis elucidates potential pathological roles of 
+      oligodendrocytes and microglia in ASD. This investigation provides details 
+      regarding regulatory features disrupted in these cell types, including 
+      transcriptional gene dysregulation, aberrant cell differentiation, altered gene 
+      regulatory networks, and changes to key pathways that promote 
+      microglia/oligodendrocyte differentiation. Our studies provide insight into 
+      interactions between genetic risk and epigenetic processes associated with 
+      divergent affiliative behavior and lack of positive sociability.
+CI  - © 2024. The Author(s).
+FAU - Dalton, George D
+AU  - Dalton GD
+AD  - Duke Molecular Physiology Institute, Duke University School of Medicine, Durham, 
+      NC, 27701, USA.
+FAU - Siecinski, Stephen K
+AU  - Siecinski SK
+AD  - Duke Molecular Physiology Institute, Duke University School of Medicine, Durham, 
+      NC, 27701, USA.
+FAU - Nikolova, Viktoriya D
+AU  - Nikolova VD
+AD  - Department of Psychiatry, The University of North Carolina at Chapel Hill, Chapel 
+      Hill, NC, 27516, USA.
+FAU - Cofer, Gary P
+AU  - Cofer GP
+AD  - Center for In Vivo Microscopy, Duke University, Durham, NC, 27710, USA.
+FAU - Hornburg, Kathryn J
+AU  - Hornburg KJ
+AD  - Center for In Vivo Microscopy, Duke University, Durham, NC, 27710, USA.
+FAU - Qi, Yi
+AU  - Qi Y
+AD  - Center for In Vivo Microscopy, Duke University, Durham, NC, 27710, USA.
+FAU - Johnson, G Allan
+AU  - Johnson GA
+AD  - Center for In Vivo Microscopy, Duke University, Durham, NC, 27710, USA.
+FAU - Jiang, Yong-Hui
+AU  - Jiang YH
+AD  - Department of Genetics, Neuroscience, and Pediatrics, Yale University School of 
+      Medicine, New Haven, CT, 06520, USA.
+FAU - Moy, Sheryl S
+AU  - Moy SS
+AD  - Department of Psychiatry, The University of North Carolina at Chapel Hill, Chapel 
+      Hill, NC, 27516, USA.
+FAU - Gregory, Simon G
+AU  - Gregory SG
+AD  - Duke Molecular Physiology Institute, Duke University School of Medicine, Durham, 
+      NC, 27701, USA. simon.gregory@duke.edu.
+AD  - Department of Neurology, Duke University School of Medicine, Durham, NC, 27710, 
+      USA. simon.gregory@duke.edu.
+AD  - Department of Neurology, Molecular Genetics and Microbiology Duke Molecular 
+      Physiology Institute, 300 N. Duke Street, DUMC 104775, Durham, NC, 27701, USA. 
+      simon.gregory@duke.edu.
+LA  - eng
+GR  - UL1 TR001863/TR/NCATS NIH HHS/United States
+GR  - R01-HD-08800/Eunice Kennedy Shriver National Institute of Child Health and Human 
+      Development of the National Institutes of Health/
+GR  - 10136/AS/Autism Speaks/United States
+PT  - Journal Article
+DEP - 20240619
+PL  - England
+TA  - Behav Brain Funct
+JT  - Behavioral and brain functions : BBF
+JID - 101245751
+RN  - 50-56-6 (Oxytocin)
+SB  - IM
+UOF - bioRxiv. 2024 Jan 16:2024.01.15.575733. doi: 10.1101/2024.01.15.575733. PMID: 
+      38293238
+MH  - Animals
+MH  - Male
+MH  - *Microglia/metabolism
+MH  - Mice
+MH  - *Amygdala/metabolism
+MH  - Female
+MH  - *Oligodendroglia/metabolism
+MH  - *Autism Spectrum Disorder/genetics/pathology
+MH  - *Mice, Inbred C57BL
+MH  - *Social Behavior
+MH  - Gene Expression Profiling/methods
+MH  - Phenotype
+MH  - Sex Characteristics
+MH  - Transcriptome
+MH  - Disease Models, Animal
+MH  - Oxytocin/genetics/metabolism
+PMC - PMC11188533
+OTO - NOTNLM
+OT  - Amygdala
+OT  - Autism
+OT  - Brain
+OT  - Glia
+OT  - Microglia
+OT  - Myelin
+OT  - Neurodegenerative disease
+OT  - Oligodendrocyte
+OT  - Oxytocin
+COIS- The authors declare no competing interests.
+EDAT- 2024/06/20 00:42
+MHDA- 2024/06/20 00:43
+PMCR- 2024/06/19
+CRDT- 2024/06/19 23:38
+PHST- 2024/02/02 00:00 [received]
+PHST- 2024/05/27 00:00 [accepted]
+PHST- 2024/06/20 00:43 [medline]
+PHST- 2024/06/20 00:42 [pubmed]
+PHST- 2024/06/19 23:38 [entrez]
+PHST- 2024/06/19 00:00 [pmc-release]
+AID - 10.1186/s12993-024-00240-3 [pii]
+AID - 240 [pii]
+AID - 10.1186/s12993-024-00240-3 [doi]
+PST - epublish
+SO  - Behav Brain Funct. 2024 Jun 19;20(1):14. doi: 10.1186/s12993-024-00240-3.
+
+PMID- 37333458
+OWN - NLM
+STAT- PubMed-not-MEDLINE
+LR  - 20230620
+IS  - 1663-4365 (Print)
+IS  - 1663-4365 (Electronic)
+IS  - 1663-4365 (Linking)
+VI  - 15
+DP  - 2023
+TI  - Uncovering neuroinflammation-related modules and potential repurposing drugs for 
+      Alzheimer's disease through multi-omics data integrative analysis.
+PG  - 1161405
+LID - 10.3389/fnagi.2023.1161405 [doi]
+LID - 1161405
+AB  - BACKGROUND: Neuroinflammation is one of the key factors leading to neuron death 
+      and synapse dysfunction in Alzheimer's disease (AD). Amyloid-β (Aβ) is thought to 
+      have an association with microglia activation and trigger neuroinflammation in 
+      AD. However, inflammation response in brain disorders is heterogenous, and thus, 
+      it is necessary to unveil the specific gene module of neuroinflammation caused by 
+      Aβ in AD, which might provide novel biomarkers for AD diagnosis and help 
+      understand the mechanism of the disease. METHODS: Transcriptomic datasets of 
+      brain region tissues from AD patients and the corresponding normal tissues were 
+      first used to identify gene modules through the weighted gene co-expression 
+      network analysis (WGCNA) method. Then, key modules highly associated with Aβ 
+      accumulation and neuroinflammatory response were pinpointed by combining module 
+      expression score and functional information. Meanwhile, the relationship of the 
+      Aβ-associated module to the neuron and microglia was explored based on snRNA-seq 
+      data. Afterward, transcription factor (TF) enrichment and the SCENIC analysis 
+      were performed on the Aβ-associated module to discover the related upstream 
+      regulators, and then a PPI network proximity method was employed to repurpose the 
+      potential approved drugs for AD. RESULTS: A total of 16 co-expression modules 
+      were primarily obtained by the WGCNA method. Among them, the green module was 
+      significantly correlated with Aβ accumulation, and its function was mainly 
+      involved in neuroinflammation response and neuron death. Thus, the module was 
+      termed the amyloid-β induced neuroinflammation module (AIM). Moreover, the module 
+      was negatively correlated with neuron percentage and showed a close association 
+      with inflammatory microglia. Finally, based on the module, several important TFs 
+      were recognized as potential diagnostic biomarkers for AD, and then 20 possible 
+      drugs including ibrutinib and ponatinib were picked out for the disease. 
+      CONCLUSION: In this study, a specific gene module, termed AIM, was identified as 
+      a key sub-network of Aβ accumulation and neuroinflammation in AD. Moreover, the 
+      module was verified as having an association with neuron degeneration and 
+      inflammatory microglia transformation. Moreover, some promising TFs and potential 
+      repurposing drugs were presented for AD based on the module. The findings of the 
+      study shed new light on the mechanistic investigation of AD and might make 
+      benefits the treatment of the disease.
+CI  - Copyright © 2023 Li, Lu, Zhao, Lu and Zheng.
+FAU - Li, Shensuo
+AU  - Li S
+AD  - Shanghai Frontiers Science Center for Chinese Medicine Chemical Biology, 
+      Institute of Interdisciplinary Integrative Medicine Research, Shanghai University 
+      of Traditional Chinese Medicine, Shanghai, China.
+FAU - Lu, Changhao
+AU  - Lu C
+AD  - Department of Biomedical Sciences, University of Sassari, Sassari, Italy.
+FAU - Zhao, Zhenzhen
+AU  - Zhao Z
+AD  - Shanghai Frontiers Science Center for Chinese Medicine Chemical Biology, 
+      Institute of Interdisciplinary Integrative Medicine Research, Shanghai University 
+      of Traditional Chinese Medicine, Shanghai, China.
+FAU - Lu, Dong
+AU  - Lu D
+AD  - Shanghai Frontiers Science Center for Chinese Medicine Chemical Biology, 
+      Institute of Interdisciplinary Integrative Medicine Research, Shanghai University 
+      of Traditional Chinese Medicine, Shanghai, China.
+FAU - Zheng, Guangyong
+AU  - Zheng G
+AD  - Shanghai Frontiers Science Center for Chinese Medicine Chemical Biology, 
+      Institute of Interdisciplinary Integrative Medicine Research, Shanghai University 
+      of Traditional Chinese Medicine, Shanghai, China.
+LA  - eng
+PT  - Journal Article
+DEP - 20230602
+PL  - Switzerland
+TA  - Front Aging Neurosci
+JT  - Frontiers in aging neuroscience
+JID - 101525824
+PMC - PMC10272561
+OTO - NOTNLM
+OT  - Alzheimer's disease
+OT  - amyloid-β
+OT  - data integration
+OT  - drug repurposing
+OT  - neuroinflammation
+COIS- The authors declare that the research was conducted in the absence of any 
+      commercial or financial relationships that could be construed as a potential 
+      conflict of interest.
+EDAT- 2023/06/19 06:42
+MHDA- 2023/06/19 06:43
+PMCR- 2023/01/01
+CRDT- 2023/06/19 02:49
+PHST- 2023/02/10 00:00 [received]
+PHST- 2023/05/10 00:00 [accepted]
+PHST- 2023/06/19 06:43 [medline]
+PHST- 2023/06/19 06:42 [pubmed]
+PHST- 2023/06/19 02:49 [entrez]
+PHST- 2023/01/01 00:00 [pmc-release]
+AID - 10.3389/fnagi.2023.1161405 [doi]
+PST - epublish
+SO  - Front Aging Neurosci. 2023 Jun 2;15:1161405. doi: 10.3389/fnagi.2023.1161405. 
+      eCollection 2023.
+
+PMID- 34044854
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20220216
+LR  - 20230920
+IS  - 1756-994X (Electronic)
+IS  - 1756-994X (Linking)
+VI  - 13
+IP  - 1
+DP  - 2021 May 27
+TI  - scGRNom: a computational pipeline of integrative multi-omics analyses for 
+      predicting cell-type disease genes and regulatory networks.
+PG  - 95
+LID - 10.1186/s13073-021-00908-9 [doi]
+LID - 95
+AB  - Understanding cell-type-specific gene regulatory mechanisms from genetic variants 
+      to diseases remains challenging. To address this, we developed a computational 
+      pipeline, scGRNom (single-cell Gene Regulatory Network prediction from 
+      multi-omics), to predict cell-type disease genes and regulatory networks 
+      including transcription factors and regulatory elements. With applications to 
+      schizophrenia and Alzheimer's disease, we predicted disease genes and regulatory 
+      networks for excitatory and inhibitory neurons, microglia, and oligodendrocytes. 
+      Further enrichment analyses revealed cross-disease and disease-specific functions 
+      and pathways at the cell-type level. Our machine learning analysis also found 
+      that cell-type disease genes improved clinical phenotype predictions. scGRNom is 
+      a general-purpose tool available at https://github.com/daifengwanglab/scGRNom .
+FAU - Jin, Ting
+AU  - Jin T
+AD  - Department of Biostatistics and Medical Informatics, University of Wisconsin - 
+      Madison, Madison, WI, 53706, USA.
+AD  - Waisman Center, University of Wisconsin - Madison, Madison, WI, 53705, USA.
+FAU - Rehani, Peter
+AU  - Rehani P
+AD  - Waisman Center, University of Wisconsin - Madison, Madison, WI, 53705, USA.
+AD  - Department of Integrative Biology, University of Wisconsin - Madison, Madison, 
+      WI, 53706, USA.
+AD  - Present address: Morgridge Institute for Research, Madison, WI, 53715, USA.
+FAU - Ying, Mufang
+AU  - Ying M
+AD  - Department of Statistics, University of Wisconsin - Madison, Madison, WI, 53706, 
+      USA.
+AD  - Present address: Department of Statistics, Rutgers University, Piscataway, NJ, 
+      08854, USA.
+FAU - Huang, Jiawei
+AU  - Huang J
+AD  - Department of Statistics, University of Wisconsin - Madison, Madison, WI, 53706, 
+      USA.
+FAU - Liu, Shuang
+AU  - Liu S
+AD  - Waisman Center, University of Wisconsin - Madison, Madison, WI, 53705, USA.
+FAU - Roussos, Panagiotis
+AU  - Roussos P
+AD  - Department of Psychiatry, Icahn School of Medicine at Mount Sinai, New York, NY, 
+      10029, USA.
+AD  - Department of Genetics and Genomic Sciences, Icahn School of Medicine at Mount 
+      Sinai, New York, NY, 10029, USA.
+FAU - Wang, Daifeng
+AU  - Wang D
+AUID- ORCID: 0000-0001-9190-3704
+AD  - Department of Biostatistics and Medical Informatics, University of Wisconsin - 
+      Madison, Madison, WI, 53706, USA. daifeng.wang@wisc.edu.
+AD  - Waisman Center, University of Wisconsin - Madison, Madison, WI, 53705, USA. 
+      daifeng.wang@wisc.edu.
+AD  - Department of Computer Sciences, University of Wisconsin - Madison, Madison, WI, 
+      53706, USA. daifeng.wang@wisc.edu.
+LA  - eng
+GR  - R01 AG067025/AG/NIA NIH HHS/United States
+GR  - R21 CA237955/CA/NCI NIH HHS/United States
+GR  - U01 MH116492/MH/NIMH NIH HHS/United States
+GR  - U54 HD090256/HD/NICHD NIH HHS/United States
+PT  - Journal Article
+PT  - Research Support, N.I.H., Extramural
+PT  - Research Support, Non-U.S. Gov't
+DEP - 20210527
+PL  - England
+TA  - Genome Med
+JT  - Genome medicine
+JID - 101475844
+RN  - 0 (DNA-Binding Proteins)
+SB  - IM
+MH  - Algorithms
+MH  - Chromatin Immunoprecipitation Sequencing
+MH  - Computational Biology/*methods
+MH  - DNA-Binding Proteins
+MH  - Gene Expression Regulation
+MH  - *Gene Regulatory Networks
+MH  - Genetic Association Studies/methods
+MH  - *Genetic Predisposition to Disease
+MH  - *Genome-Wide Association Study/methods
+MH  - *Genomics/methods
+MH  - Humans
+MH  - Models, Biological
+MH  - Organ Specificity/genetics
+MH  - Phenotype
+MH  - Polymorphism, Single Nucleotide
+MH  - Regulatory Sequences, Nucleic Acid
+MH  - *Software
+PMC - PMC8161957
+OTO - NOTNLM
+OT  - Alzheimer’s disease
+OT  - Cell-type disease risk genes
+OT  - Cell-type gene regulatory network
+OT  - Cross-disease functional genomics
+OT  - Schizophrenia
+OT  - Single-cell genomics
+OT  - Single-cell multi-omics integration
+COIS- The authors declare that they have no competing interests.
+EDAT- 2021/05/29 06:00
+MHDA- 2022/02/17 06:00
+PMCR- 2021/05/27
+CRDT- 2021/05/28 06:14
+PHST- 2020/10/04 00:00 [received]
+PHST- 2021/05/13 00:00 [accepted]
+PHST- 2021/05/28 06:14 [entrez]
+PHST- 2021/05/29 06:00 [pubmed]
+PHST- 2022/02/17 06:00 [medline]
+PHST- 2021/05/27 00:00 [pmc-release]
+AID - 10.1186/s13073-021-00908-9 [pii]
+AID - 908 [pii]
+AID - 10.1186/s13073-021-00908-9 [doi]
+PST - epublish
+SO  - Genome Med. 2021 May 27;13(1):95. doi: 10.1186/s13073-021-00908-9.
+
+PMID- 41306051
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20251127
+LR  - 20251210
+IS  - 1530-6860 (Electronic)
+IS  - 0892-6638 (Print)
+IS  - 0892-6638 (Linking)
+VI  - 39
+IP  - 23
+DP  - 2025 Dec 15
+TI  - Single-Nucleus RNA-Seq Reveals Aerobic Exercise-Induced Remodeling of Spinal Cord 
+      Aging in Mice.
+PG  - e71205
+LID - 10.1096/fj.202503256R [doi]
+LID - e71205
+AB  - Spinal cord aging is a critical physiological process that compromises central 
+      nervous system (CNS) homeostasis and plasticity. Exercise, as a systemic 
+      intervention with broad health benefits, has been shown to delay 
+      neurodegeneration and preserve tissue function; however, its impact on dynamic 
+      cellular lineage evolution and intercellular communication within the aging 
+      spinal cord remains poorly characterized. In this study, we employed 
+      single-nucleus RNA sequencing (snRNA-seq) to construct a high-resolution cellular 
+      atlas of the mouse spinal cord under young, aged, and aerobic exercise-intervened 
+      conditions. By integrating unsupervised clustering, cell proportion analysis, 
+      pseudotime trajectory reconstruction, gene regulatory network (GRN) inference, 
+      and intercellular communication mapping, we systematically characterized 
+      transcriptional and cellular alterations associated with aging and their 
+      modulation through exercise. Aging induced pronounced shifts in cell-type 
+      composition and subpopulation structures, which were partially reversed by 
+      exercise intervention. Pseudotime analyses of oligodendrocytes, astrocytes, and 
+      microglia revealed that exercise remodeled their differentiation trajectories and 
+      restored functional states associated with myelin formation, metabolic 
+      homeostasis, and inflammation control. GRN analysis identified several key 
+      regulators whose centrality and expression were disrupted during aging but 
+      reestablished after exercise, suggesting a recovery of transcriptional network 
+      organization. Furthermore, intercellular communication analysis revealed reduced 
+      signaling strength and connectivity during aging, particularly within gap 
+      junction pathways, which were partially restored by exercise, indicating improved 
+      cellular coordination. Together, these findings provide a comprehensive 
+      single-cell landscape of the aging spinal cord and demonstrate that exercise 
+      reprograms cellular lineages and regulatory networks, offering mechanistic 
+      insights into how it mitigates CNS aging and preserves neural function.
+CI  - © 2025 The Author(s). The FASEB Journal published by Wiley Periodicals LLC on 
+      behalf of Federation of American Societies for Experimental Biology.
+FAU - Du, Jiawei
+AU  - Du J
+AUID- ORCID: 0009-0003-8902-2598
+AD  - Department of Orthopaedics, Fourth Medical Centre of Chinese PLA General 
+      Hospital, Beijing, China.
+AD  - Key Laboratory of Sports and Physical Fitness of the Ministry of Education, 
+      Beijing Sport University, Beijing, China.
+FAU - Hou, Jinghua
+AU  - Hou J
+AD  - Key Laboratory of Sports and Physical Fitness of the Ministry of Education, 
+      Beijing Sport University, Beijing, China.
+FAU - Du, Ning
+AU  - Du N
+AD  - Department of Orthopaedics, Fourth Medical Centre of Chinese PLA General 
+      Hospital, Beijing, China.
+AD  - Key Laboratory of Sports and Physical Fitness of the Ministry of Education, 
+      Beijing Sport University, Beijing, China.
+FAU - Zhang, Xuesong
+AU  - Zhang X
+AD  - Department of Orthopaedics, Fourth Medical Centre of Chinese PLA General 
+      Hospital, Beijing, China.
+LA  - eng
+GR  - 82202744/MOST | National Natural Science Foundation of China (NSFC)/
+GR  - 82372466/MOST | National Natural Science Foundation of China (NSFC)/
+PT  - Journal Article
+PL  - United States
+TA  - FASEB J
+JT  - FASEB journal : official publication of the Federation of American Societies for 
+      Experimental Biology
+JID - 8804484
+SB  - IM
+MH  - Animals
+MH  - Mice
+MH  - *Spinal Cord/metabolism/physiology
+MH  - *Physical Conditioning, Animal/physiology
+MH  - *Aging/physiology/genetics
+MH  - RNA-Seq/methods
+MH  - Gene Regulatory Networks
+MH  - Mice, Inbred C57BL
+MH  - Single-Cell Analysis
+MH  - Male
+MH  - Sequence Analysis, RNA
+MH  - Astrocytes/metabolism
+PMC - PMC12658470
+OTO - NOTNLM
+OT  - aerobic exercise
+OT  - single‐nucleus RNA sequencing
+OT  - spinal cord aging
+COIS- The authors declare no conflicts interest.
+EDAT- 2025/11/27 06:28
+MHDA- 2025/11/27 06:29
+PMCR- 2025/11/27
+CRDT- 2025/11/27 03:22
+PHST- 2025/10/11 00:00 [revised]
+PHST- 2025/09/05 00:00 [received]
+PHST- 2025/10/21 00:00 [accepted]
+PHST- 2025/11/27 06:29 [medline]
+PHST- 2025/11/27 06:28 [pubmed]
+PHST- 2025/11/27 03:22 [entrez]
+PHST- 2025/11/27 00:00 [pmc-release]
+AID - FSB271205 [pii]
+AID - 10.1096/fj.202503256R [doi]
+PST - ppublish
+SO  - FASEB J. 2025 Dec 15;39(23):e71205. doi: 10.1096/fj.202503256R.
+
+PMID- 35723032
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20220908
+LR  - 20250728
+IS  - 1096-9896 (Electronic)
+IS  - 0022-3417 (Linking)
+VI  - 258
+IP  - 2
+DP  - 2022 Oct
+TI  - A map of the spatial distribution and tumour-associated macrophage states in 
+      glioblastoma and grade 4 IDH-mutant astrocytoma.
+PG  - 121-135
+LID - 10.1002/path.5984 [doi]
+AB  - Tumour-associated macrophages (TAMs) abundantly infiltrate high-grade gliomas and 
+      orchestrate immune response, but their diversity in isocitrate dehydrogenase 
+      (IDH)-differential grade 4 gliomas remains largely unknown. This study aimed to 
+      dissect the transcriptional states, spatial distribution, and clinicopathological 
+      significance of distinct monocyte-derived TAM (Mo-TAM) and microglia-derived TAM 
+      (Mg-TAM) clusters across glioblastoma-IDH-wild type and 
+      astrocytoma-IDH-mutant-grade 4 (Astro-IDH-mut-G4). Single-cell RNA sequencing was 
+      performed on four cases of human glioblastoma and three cases of 
+      Astro-IDH-mut-G4. Cell clustering, single-cell regulatory network inference, and 
+      gene set enrichment analysis were performed to characterize the functional states 
+      of myeloid clusters. The spatial distribution of TAM subsets was determined in 
+      human glioma tissues using multiplex immunostaining. The prognostic value of 
+      different TAM-cluster specific gene sets was evaluated in the TCGA glioma cohort. 
+      Profiling and unbiased clustering of 24,227 myeloid cells from glioblastoma and 
+      Astro-IDH-mut-G4 identified nine myeloid cell clusters including monocytes, six 
+      Mo/Mg-TAM subsets, dendritic cells, and proliferative myeloid clusters. Different 
+      Mo/Mg-TAM clusters manifest functional and transcriptional diversity controlled 
+      by specific regulons. Multiplex immunostaining of subset-specific markers 
+      identified spatial enrichment of distinct TAM clusters at peri-vascular/necrotic 
+      areas in tumour parenchyma or at the tumour-brain interface. Glioblastoma 
+      harboured a substantially higher number of monocytes and Mo-TAM-inflammatory 
+      clusters, whereas Astro-IDH-mut-G4 had a higher proportion of TAM subsets 
+      mediating antigen presentation. Glioblastomas with a higher proportion of 
+      monocytes exhibited a mesenchymal signature, increased angiogenesis, and worse 
+      patient outcome. Our findings provide insight into myeloid cell diversity and its 
+      clinical relevance in IDH-differential grade 4 gliomas, and may serve as a 
+      resource for immunotherapy development. © 2022 The Pathological Society of Great 
+      Britain and Ireland.
+CI  - © 2022 The Pathological Society of Great Britain and Ireland.
+FAU - Yin, Wen
+AU  - Yin W
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Ping, Yi-Fang
+AU  - Ping YF
+AUID- ORCID: 0000-0002-0699-8401
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Li, Fei
+AU  - Li F
+AD  - Department of Neurosurgery, Southwest Hospital, Third Military Medical University 
+      (Army Medical University), Chongqing, PR China.
+FAU - Lv, Sheng-Qing
+AU  - Lv SQ
+AD  - Department of Neurosurgery, Xinqiao Hospital, Third Military Medical University 
+      (Army Medical University), Chongqing, PR China.
+FAU - Zhang, Xiao-Ning
+AU  - Zhang XN
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Li, Xue-Gang
+AU  - Li XG
+AD  - Department of Neurosurgery, Southwest Hospital, Third Military Medical University 
+      (Army Medical University), Chongqing, PR China.
+FAU - Guo, Ying
+AU  - Guo Y
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Liu, Qing
+AU  - Liu Q
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Li, Tian-Ran
+AU  - Li TR
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Yang, Liu-Qing
+AU  - Yang LQ
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Yang, Kai-Di
+AU  - Yang KD
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Liu, Yu-Qi
+AU  - Liu YQ
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Luo, Chun-Hua
+AU  - Luo CH
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Luo, Tao
+AU  - Luo T
+AUID- ORCID: 0000-0001-9979-6587
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Wang, Wen-Ying
+AU  - Wang WY
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Mao, Min
+AU  - Mao M
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Luo, Min
+AU  - Luo M
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - He, Zhi-Cheng
+AU  - He ZC
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Cao, Mian-Fu
+AU  - Cao MF
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Chen, Cong
+AU  - Chen C
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Miao, Jing-Ya
+AU  - Miao JY
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Zeng, Hui
+AU  - Zeng H
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Wang, Chao
+AU  - Wang C
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Zhou, Lei
+AU  - Zhou L
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Yang, Ying
+AU  - Yang Y
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Yang, Xi
+AU  - Yang X
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Wang, Qiang-Hu
+AU  - Wang QH
+AD  - Department of Bioinformatics, Nanjing Medical University, Nanjing, PR China.
+FAU - Feng, Hua
+AU  - Feng H
+AD  - Department of Neurosurgery, Southwest Hospital, Third Military Medical University 
+      (Army Medical University), Chongqing, PR China.
+FAU - Shi, Yu
+AU  - Shi Y
+AUID- ORCID: 0000-0001-8436-604X
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+FAU - Bian, Xiu-Wu
+AU  - Bian XW
+AUID- ORCID: 0000-0003-4383-0197
+AD  - Institute of Pathology and Southwest Cancer Centre, Southwest Hospital, Third 
+      Military Medical University (Army Medical University) and Key Laboratory of 
+      Tumour Immunopathology, Ministry of Education of China, Chongqing, PR China.
+LA  - eng
+PT  - Journal Article
+PT  - Research Support, Non-U.S. Gov't
+DEP - 20220725
+PL  - England
+TA  - J Pathol
+JT  - The Journal of pathology
+JID - 0204634
+RN  - EC 1.1.1.41 (Isocitrate Dehydrogenase)
+SB  - IM
+MH  - *Astrocytoma/genetics/pathology
+MH  - *Brain Neoplasms/genetics/pathology
+MH  - *Glioblastoma/genetics/pathology
+MH  - *Glioma/genetics
+MH  - Humans
+MH  - Isocitrate Dehydrogenase/genetics
+MH  - Mutation
+MH  - Tumor-Associated Macrophages
+OTO - NOTNLM
+OT  - diffuse glioma
+OT  - single-cell transcriptomics
+OT  - spatial distribution
+OT  - tumour-associated macrophage
+EDAT- 2022/06/21 06:00
+MHDA- 2022/09/09 06:00
+CRDT- 2022/06/20 06:23
+PHST- 2022/05/08 00:00 [revised]
+PHST- 2022/03/22 00:00 [received]
+PHST- 2022/06/16 00:00 [accepted]
+PHST- 2022/06/21 06:00 [pubmed]
+PHST- 2022/09/09 06:00 [medline]
+PHST- 2022/06/20 06:23 [entrez]
+AID - 10.1002/path.5984 [doi]
+PST - ppublish
+SO  - J Pathol. 2022 Oct;258(2):121-135. doi: 10.1002/path.5984. Epub 2022 Jul 25.
+
+PMID- 33766097
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20211215
+LR  - 20240226
+IS  - 1750-1326 (Electronic)
+IS  - 1750-1326 (Linking)
+VI  - 16
+IP  - 1
+DP  - 2021 Mar 25
+TI  - The CD33 short isoform is a gain-of-function variant that enhances Aβ(1-42) 
+      phagocytosis in microglia.
+PG  - 19
+LID - 10.1186/s13024-021-00443-6 [doi]
+LID - 19
+AB  - BACKGROUND: CD33 is genetically linked to Alzheimer's disease (AD) susceptibility 
+      through differential expression of isoforms in microglia. The role of the human 
+      CD33 short isoform (hCD33m), preferentially encoded by an AD-protective CD33 
+      allele (rs12459419T), is unknown. Here, we test whether hCD33m represents a 
+      loss-of-function or gain-of-function variant. METHODS: We have developed two 
+      models to test the role of hCD33m. The first is a new strain of transgenic mice 
+      expressing hCD33m in the microglial cell lineage. The second is U937 cells where 
+      the CD33 gene was disrupted by CRISPR/Cas9 and complemented with different 
+      variants of hCD33. Primary microglia and U937 cells were tested in phagocytosis 
+      assays and single cell RNA sequencing (scRNAseq) was carried out on the primary 
+      microglia. Furthermore, a new monoclonal antibody was developed to detect hCD33m 
+      more efficiently. RESULTS: In both primary microglia and U937 cells, we find that 
+      hCD33m enhances phagocytosis. This contrasts with the human CD33 long isoform 
+      (hCD33M) that represses phagocytosis, as previously demonstrated. As revealed by 
+      scRNAseq, hCD33m(+) microglia are enriched in a cluster of cells defined by an 
+      upregulated expression and gene regulatory network of immediate early genes, 
+      which was further validated within microglia in situ. Using a new hCD33m-specific 
+      antibody enabled hCD33m expression to be examined, demonstrating a preference for 
+      an intracellular location. Moreover, this newly discovered gain-of-function role 
+      for hCD33m is dependent on its cytoplasmic signaling motifs, dominant over 
+      hCD33M, and not due to loss of glycan ligand binding. CONCLUSIONS: These results 
+      provide strong support that hCD33m represents a gain-of-function isoform and 
+      offers insight into what it may take to therapeutically capture the AD-protective 
+      CD33 allele.
+FAU - Bhattacherjee, Abhishek
+AU  - Bhattacherjee A
+AD  - Department of Chemistry, University of Alberta, 11227 Saskatchewan Dr., Gunning 
+      Lemieux Chemistry Centre E5-18A, Edmonton, T6G 2G2, Canada.
+FAU - Jung, Jaesoo
+AU  - Jung J
+AD  - Department of Chemistry, University of Alberta, 11227 Saskatchewan Dr., Gunning 
+      Lemieux Chemistry Centre E5-18A, Edmonton, T6G 2G2, Canada.
+FAU - Zia, Sameera
+AU  - Zia S
+AD  - Neuroscience and Mental Health Institute, University of Alberta, Edmonton, T6G 
+      2E1, Canada.
+FAU - Ho, Madelene
+AU  - Ho M
+AD  - Neuroscience and Mental Health Institute, University of Alberta, Edmonton, T6G 
+      2E1, Canada.
+FAU - Eskandari-Sedighi, Ghazaleh
+AU  - Eskandari-Sedighi G
+AD  - Department of Chemistry, University of Alberta, 11227 Saskatchewan Dr., Gunning 
+      Lemieux Chemistry Centre E5-18A, Edmonton, T6G 2G2, Canada.
+FAU - St Laurent, Chris D
+AU  - St Laurent CD
+AD  - Department of Chemistry, University of Alberta, 11227 Saskatchewan Dr., Gunning 
+      Lemieux Chemistry Centre E5-18A, Edmonton, T6G 2G2, Canada.
+FAU - McCord, Kelli A
+AU  - McCord KA
+AD  - Department of Chemistry, University of Alberta, 11227 Saskatchewan Dr., Gunning 
+      Lemieux Chemistry Centre E5-18A, Edmonton, T6G 2G2, Canada.
+FAU - Bains, Arjun
+AU  - Bains A
+AD  - Department of Chemistry, University of Alberta, 11227 Saskatchewan Dr., Gunning 
+      Lemieux Chemistry Centre E5-18A, Edmonton, T6G 2G2, Canada.
+FAU - Sidhu, Gaurav
+AU  - Sidhu G
+AD  - Department of Chemistry, University of Alberta, 11227 Saskatchewan Dr., Gunning 
+      Lemieux Chemistry Centre E5-18A, Edmonton, T6G 2G2, Canada.
+FAU - Sarkar, Susmita
+AU  - Sarkar S
+AD  - Department of Chemistry, University of Alberta, 11227 Saskatchewan Dr., Gunning 
+      Lemieux Chemistry Centre E5-18A, Edmonton, T6G 2G2, Canada.
+FAU - Plemel, Jason R
+AU  - Plemel JR
+AD  - Neuroscience and Mental Health Institute, University of Alberta, Edmonton, T6G 
+      2E1, Canada.
+AD  - Department of Medicine, Division of Neurology, University of Alberta, Edmonton, 
+      T6G 2E1, Canada.
+FAU - Macauley, Matthew S
+AU  - Macauley MS
+AUID- ORCID: 0000-0003-4579-1048
+AD  - Department of Chemistry, University of Alberta, 11227 Saskatchewan Dr., Gunning 
+      Lemieux Chemistry Centre E5-18A, Edmonton, T6G 2G2, Canada. macauley@ualberta.ca.
+AD  - Department of Medical Microbiology and Immunology, Edmonton, T6G 2E1, Canada. 
+      macauley@ualberta.ca.
+LA  - eng
+GR  - CIHR/Canada
+PT  - Journal Article
+PT  - Research Support, Non-U.S. Gov't
+DEP - 20210325
+PL  - England
+TA  - Mol Neurodegener
+JT  - Molecular neurodegeneration
+JID - 101266600
+RN  - 0 (Amyloid beta-Peptides)
+RN  - 0 (CD33 protein, human)
+RN  - 0 (Peptide Fragments)
+RN  - 0 (Polysaccharides)
+RN  - 0 (Protein Isoforms)
+RN  - 0 (Sialic Acid Binding Ig-like Lectin 3)
+RN  - 0 (amyloid beta-protein (1-42))
+SB  - IM
+MH  - Alleles
+MH  - Amyloid beta-Peptides/*metabolism
+MH  - Animals
+MH  - CRISPR-Cas Systems
+MH  - Crosses, Genetic
+MH  - Female
+MH  - Gain of Function Mutation
+MH  - Gene Editing
+MH  - Gene Regulatory Networks
+MH  - Genes, Immediate-Early
+MH  - Humans
+MH  - Male
+MH  - Mice, Inbred C57BL
+MH  - Mice, Transgenic
+MH  - Microglia/*physiology
+MH  - Peptide Fragments/*metabolism
+MH  - Phagocytosis/*genetics
+MH  - Polysaccharides/metabolism
+MH  - Protein Isoforms/genetics/physiology
+MH  - RNA-Seq
+MH  - Sialic Acid Binding Ig-like Lectin 3/antagonists & 
+      inhibitors/*genetics/physiology
+MH  - Single-Cell Analysis
+MH  - U937 Cells
+MH  - Mice
+PMC - PMC7992807
+OTO - NOTNLM
+OT  - Alzheimer’s disease
+OT  - CD33
+OT  - Gain-of-function
+OT  - Immunomodulatory
+OT  - Isoform
+OT  - Microglia
+OT  - Mouse model
+OT  - Phagocytosis
+COIS- The authors declare no conflicts of interest.
+EDAT- 2021/03/27 06:00
+MHDA- 2021/12/16 06:00
+PMCR- 2021/03/25
+CRDT- 2021/03/26 05:47
+PHST- 2020/11/11 00:00 [received]
+PHST- 2021/03/12 00:00 [accepted]
+PHST- 2021/03/26 05:47 [entrez]
+PHST- 2021/03/27 06:00 [pubmed]
+PHST- 2021/12/16 06:00 [medline]
+PHST- 2021/03/25 00:00 [pmc-release]
+AID - 10.1186/s13024-021-00443-6 [pii]
+AID - 443 [pii]
+AID - 10.1186/s13024-021-00443-6 [doi]
+PST - epublish
+SO  - Mol Neurodegener. 2021 Mar 25;16(1):19. doi: 10.1186/s13024-021-00443-6.
+
+PMID- 39856056
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20250502
+LR  - 20250523
+IS  - 2158-3188 (Electronic)
+IS  - 2158-3188 (Linking)
+VI  - 15
+IP  - 1
+DP  - 2025 Jan 25
+TI  - Systematic dissection of pleiotropic loci and critical regulons in excitatory 
+      neurons and microglia relevant to neuropsychiatric and ocular diseases.
+PG  - 24
+LID - 10.1038/s41398-025-03243-4 [doi]
+LID - 24
+AB  - Advancements in single-cell multimodal techniques have greatly enhanced our 
+      understanding of disease-relevant loci identified through genome-wide association 
+      studies (GWASs). To investigate the biological connections between the eye and 
+      brain, we integrated bulk and single-cell multiomic profiles with GWAS summary 
+      statistics for eight neuropsychiatric and five ocular diseases. Our analysis 
+      uncovered five latent factors explaining 61.7% of the genetic variance across 
+      these 13 diseases, revealing diverse correlational patterns among them. We 
+      identified 45 pleiotropic loci with 91 candidate genes that contribute to disease 
+      risk. By integrating GWAS and single-cell profiles, we implicated excitatory 
+      neurons and microglia as key contributors in the eye-brain connections. Polygenic 
+      enrichment analysis further identified 15 pleiotropic regulons in excitatory 
+      neurons and 16 in microglia that were linked to comorbid conditions. 
+      Functionally, excitatory neuron-specific regulons were involved in axon guidance 
+      and synaptic activity, while microglia-specific regulons were associated with 
+      immune response and cell activation. In sum, these findings underscore the 
+      genetic link between psychiatric disorders and ocular diseases.
+CI  - © 2025. The Author(s).
+FAU - Ma, Yunlong
+AU  - Ma Y
+AUID- ORCID: 0000-0002-1299-4802
+AD  - Oujiang Laboratory, Zhejiang Lab for Regenerative Medicine, Vision and Brain 
+      Health, Eye Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China. 
+      yunlong.ma@pennmedicine.upenn.edu.
+AD  - Department of Psychiatry, Perelman School of Medicine, University of 
+      Pennsylvania, Philadelphia, PA, USA. yunlong.ma@pennmedicine.upenn.edu.
+AD  - Lifespan Brain Institute at Penn Med and the Children's Hospital of Philadelphia, 
+      Philadelphia, PA, USA. yunlong.ma@pennmedicine.upenn.edu.
+FAU - Jiang, Dingping
+AU  - Jiang D
+AD  - Oujiang Laboratory, Zhejiang Lab for Regenerative Medicine, Vision and Brain 
+      Health, Eye Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China.
+AD  - National Engineering Research Center of Ophthalmology and Optometry, Eye 
+      Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China.
+FAU - Li, Jingjing
+AU  - Li J
+AUID- ORCID: 0000-0002-9882-7377
+AD  - Oujiang Laboratory, Zhejiang Lab for Regenerative Medicine, Vision and Brain 
+      Health, Eye Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China.
+AD  - National Engineering Research Center of Ophthalmology and Optometry, Eye 
+      Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China.
+FAU - Zheng, Gongwei
+AU  - Zheng G
+AD  - Oujiang Laboratory, Zhejiang Lab for Regenerative Medicine, Vision and Brain 
+      Health, Eye Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China.
+AD  - National Engineering Research Center of Ophthalmology and Optometry, Eye 
+      Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China.
+FAU - Deng, Yao
+AU  - Deng Y
+AD  - Oujiang Laboratory, Zhejiang Lab for Regenerative Medicine, Vision and Brain 
+      Health, Eye Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China.
+AD  - National Engineering Research Center of Ophthalmology and Optometry, Eye 
+      Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China.
+FAU - Gou, Xuanxuan
+AU  - Gou X
+AD  - Oujiang Laboratory, Zhejiang Lab for Regenerative Medicine, Vision and Brain 
+      Health, Eye Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China.
+AD  - National Engineering Research Center of Ophthalmology and Optometry, Eye 
+      Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China.
+FAU - Gao, Shuaishuai
+AU  - Gao S
+AD  - Oujiang Laboratory, Zhejiang Lab for Regenerative Medicine, Vision and Brain 
+      Health, Eye Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China.
+AD  - National Engineering Research Center of Ophthalmology and Optometry, Eye 
+      Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China.
+FAU - Chen, Cheng
+AU  - Chen C
+AD  - Oujiang Laboratory, Zhejiang Lab for Regenerative Medicine, Vision and Brain 
+      Health, Eye Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China.
+AD  - Institute of Genomic Medicine, Wenzhou Medical University, Wenzhou, Zhejiang, 
+      China.
+FAU - Zhou, Yijun
+AU  - Zhou Y
+AD  - Oujiang Laboratory, Zhejiang Lab for Regenerative Medicine, Vision and Brain 
+      Health, Eye Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China.
+AD  - Institute of Genomic Medicine, Wenzhou Medical University, Wenzhou, Zhejiang, 
+      China.
+FAU - Zhang, Yaru
+AU  - Zhang Y
+AD  - Oujiang Laboratory, Zhejiang Lab for Regenerative Medicine, Vision and Brain 
+      Health, Eye Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China.
+AD  - Institute of Genomic Medicine, Wenzhou Medical University, Wenzhou, Zhejiang, 
+      China.
+FAU - Deng, Chunyu
+AU  - Deng C
+AD  - Oujiang Laboratory, Zhejiang Lab for Regenerative Medicine, Vision and Brain 
+      Health, Eye Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China.
+AD  - National Engineering Research Center of Ophthalmology and Optometry, Eye 
+      Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China.
+FAU - Yao, Yinghao
+AU  - Yao Y
+AD  - Institute of Genomic Medicine, Wenzhou Medical University, Wenzhou, Zhejiang, 
+      China.
+FAU - Han, Haijun
+AU  - Han H
+AD  - School of Medicine, Hangzhou City University, Hangzhou, China.
+FAU - Su, Jianzhong
+AU  - Su J
+AUID- ORCID: 0000-0003-1054-6042
+AD  - Oujiang Laboratory, Zhejiang Lab for Regenerative Medicine, Vision and Brain 
+      Health, Eye Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China. 
+      sujz@wmu.edu.cn.
+AD  - National Engineering Research Center of Ophthalmology and Optometry, Eye 
+      Hospital, Wenzhou Medical University, Wenzhou, Zhejiang, China. sujz@wmu.edu.cn.
+AD  - Institute of Genomic Medicine, Wenzhou Medical University, Wenzhou, Zhejiang, 
+      China. sujz@wmu.edu.cn.
+LA  - eng
+GR  - 32200535/National Natural Science Foundation of China (National Science 
+      Foundation of China)/
+GR  - 61871294/National Natural Science Foundation of China (National Science 
+      Foundation of China)/
+GR  - 82172882/National Natural Science Foundation of China (National Science 
+      Foundation of China)/
+GR  - LR19C060001/Natural Science Foundation of Zhejiang Province (Zhejiang Provincial 
+      Natural Science Foundation)/
+PT  - Journal Article
+DEP - 20250125
+PL  - United States
+TA  - Transl Psychiatry
+JT  - Translational psychiatry
+JID - 101562664
+SB  - IM
+MH  - *Microglia/metabolism
+MH  - Humans
+MH  - Genome-Wide Association Study
+MH  - *Eye Diseases/genetics
+MH  - *Mental Disorders/genetics
+MH  - *Neurons/metabolism
+MH  - *Genetic Pleiotropy
+MH  - Genetic Predisposition to Disease
+MH  - Single-Cell Analysis
+PMC - PMC11760387
+COIS- Ethics approval and consent to participate: All methods were performed in 
+      accordance with relevant guidelines and regulations. The research used publicly 
+      available GWAS summary statistics, eQTL, and single-cell sequencing data. The 
+      current study did not involve direct research on human participants, animals, or 
+      identifiable images. Ethical approval for the generation of the GWAS and other 
+      omics datasets was obtained from the original studies, as detailed in their 
+      respective studies. Since no direct participant involvement occurred, informed 
+      consent was not applicable to this work, but consent for participation was 
+      obtained by the original publications during their data collection processes. 
+      Competing interests: The authors declare no competing interests.
+EDAT- 2025/01/25 13:52
+MHDA- 2025/01/25 13:53
+PMCR- 2025/01/25
+CRDT- 2025/01/24 23:14
+PHST- 2024/06/18 00:00 [received]
+PHST- 2025/01/14 00:00 [accepted]
+PHST- 2024/12/08 00:00 [revised]
+PHST- 2025/01/25 13:53 [medline]
+PHST- 2025/01/25 13:52 [pubmed]
+PHST- 2025/01/24 23:14 [entrez]
+PHST- 2025/01/25 00:00 [pmc-release]
+AID - 10.1038/s41398-025-03243-4 [pii]
+AID - 3243 [pii]
+AID - 10.1038/s41398-025-03243-4 [doi]
+PST - epublish
+SO  - Transl Psychiatry. 2025 Jan 25;15(1):24. doi: 10.1038/s41398-025-03243-4.
+
+PMID- 41690604
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20260320
+LR  - 20260320
+IS  - 1095-953X (Electronic)
+IS  - 0969-9961 (Linking)
+VI  - 221
+DP  - 2026 Apr
+TI  - Temporal modulation of microglial repopulation attenuates retinal degeneration in 
+      retinitis pigmentosa.
+PG  - 107295
+LID - S0969-9961(26)00039-2 [pii]
+LID - 10.1016/j.nbd.2026.107295 [doi]
+AB  - Retinitis pigmentosa (RP) is an inherited retinal degenerative disorder 
+      characterized by the progressive loss of retinal pigment epithelial cells and rod 
+      and cone photoreceptors and irreversible vision loss, with no effective therapies 
+      currently available. Microglia, the resident immune cells in the retina, are 
+      known to aggravate neurodegeneration when chronically activated. Here, we 
+      investigated the impact of temporally controlled microglial depletion and 
+      repopulation on retinal degeneration in rd10 mice. Using the CSF1R inhibitor 
+      PLX5622, we achieved efficient microglial depletion during the peak of 
+      degeneration (P21), followed by spontaneous microglial repopulation. 
+      Short-term-repopulated microglia displayed a ramified morphology and homeostatic 
+      transcriptomic signatures, including the downregulation of disease-associated 
+      microglia (DAM) genes and suppression of neurodegeneration-related pathways, 
+      effects that were correlated with preserved visual function and photoreceptor 
+      survival. However, long-term repopulated microglia progressively exhibited DAM 
+      phenotypes, which coincided with diminished therapeutic efficacy and exacerbated 
+      neurodegeneration. Single-cell RNA sequencing confirmed the dynamic 
+      transcriptional transitions of repopulated microglia, their altered regulon 
+      activity, and their functional association with other immune cells. To counteract 
+      microglial reactivation, we developed a sequential 2-round depletion-repopulation 
+      strategy, which restored microglial homeostasis, reduced the expression of the 
+      proinflammatory cytokine IL-1β, preserved outer nuclear layer thickness, and 
+      sustained visual function. Our findings highlight the time-dependent plasticity 
+      of microglial phenotypes and suggest that temporally optimized microglial 
+      modulation is a promising therapeutic strategy for retinal neurodegeneration in 
+      RP.
+CI  - Copyright © 2026 The Authors. Published by Elsevier Inc. All rights reserved.
+FAU - Zhang, Weitao
+AU  - Zhang W
+AD  - Department of Trauma Medical Center, Daping Hospital, State Key Laboratory of 
+      Trauma and Chemical Poisoning, Army Medical University, and School of Medicine, 
+      Chongqing University, Chongqing, China; Southwest Hospital/Southwest Eye 
+      Hospital, Army Medical University, Chongqing, China; Key Lab of Visual Damage and 
+      Regeneration & Restoration of Chongqing, Chongqing, China.
+FAU - Bian, Baishijiao
+AU  - Bian B
+AD  - Department of Trauma Medical Center, Daping Hospital, State Key Laboratory of 
+      Trauma and Chemical Poisoning, Army Medical University, and School of Medicine, 
+      Chongqing University, Chongqing, China; Southwest Hospital/Southwest Eye 
+      Hospital, Army Medical University, Chongqing, China; Key Lab of Visual Damage and 
+      Regeneration & Restoration of Chongqing, Chongqing, China; Army 953 Hospital, 
+      Shigatse Branch of Xinqiao Hospital, Third Military Medical University (Army 
+      Medical University), Shigatse, Tibet Autonomous Region, China; Jinfeng 
+      Laboratory, Chongqing, China. Electronic address: bbsj@tmmu.edu.cn.
+FAU - Ren, Chunge
+AU  - Ren C
+AD  - Southwest Hospital/Southwest Eye Hospital, Army Medical University, Chongqing, 
+      China; Key Lab of Visual Damage and Regeneration & Restoration of Chongqing, 
+      Chongqing, China.
+FAU - Chen, Min
+AU  - Chen M
+AD  - Southwest Hospital/Southwest Eye Hospital, Army Medical University, Chongqing, 
+      China; Key Lab of Visual Damage and Regeneration & Restoration of Chongqing, 
+      Chongqing, China.
+FAU - Fang, Yajie
+AU  - Fang Y
+AD  - Southwest Hospital/Southwest Eye Hospital, Army Medical University, Chongqing, 
+      China; Key Lab of Visual Damage and Regeneration & Restoration of Chongqing, 
+      Chongqing, China.
+FAU - Zhou, Yixiao
+AU  - Zhou Y
+AD  - Southwest Hospital/Southwest Eye Hospital, Army Medical University, Chongqing, 
+      China; Key Lab of Visual Damage and Regeneration & Restoration of Chongqing, 
+      Chongqing, China.
+FAU - Zhang, Hongjia
+AU  - Zhang H
+AD  - Southwest Hospital/Southwest Eye Hospital, Army Medical University, Chongqing, 
+      China; Key Lab of Visual Damage and Regeneration & Restoration of Chongqing, 
+      Chongqing, China.
+FAU - Li, Bowen
+AU  - Li B
+AD  - Southwest Hospital/Southwest Eye Hospital, Army Medical University, Chongqing, 
+      China; Key Lab of Visual Damage and Regeneration & Restoration of Chongqing, 
+      Chongqing, China.
+FAU - Liu, Hongling
+AU  - Liu H
+AD  - Southwest Hospital/Southwest Eye Hospital, Army Medical University, Chongqing, 
+      China; Key Lab of Visual Damage and Regeneration & Restoration of Chongqing, 
+      Chongqing, China.
+FAU - Zhang, Xue
+AU  - Zhang X
+AD  - Southwest Hospital/Southwest Eye Hospital, Army Medical University, Chongqing, 
+      China; Key Lab of Visual Damage and Regeneration & Restoration of Chongqing, 
+      Chongqing, China.
+FAU - Liu, Yong
+AU  - Liu Y
+AD  - Department of Trauma Medical Center, Daping Hospital, State Key Laboratory of 
+      Trauma and Chemical Poisoning, Army Medical University, and School of Medicine, 
+      Chongqing University, Chongqing, China; Southwest Hospital/Southwest Eye 
+      Hospital, Army Medical University, Chongqing, China; Key Lab of Visual Damage and 
+      Regeneration & Restoration of Chongqing, Chongqing, China; Jinfeng Laboratory, 
+      Chongqing, China; School of Medicine, Chongqing University, Chongqing, China. 
+      Electronic address: liuyong@tmmu.edu.cn.
+FAU - Jiang, Jianxin
+AU  - Jiang J
+AD  - Department of Trauma Medical Center, Daping Hospital, State Key Laboratory of 
+      Trauma and Chemical Poisoning, Army Medical University, Chongqing, China. 
+      Electronic address: hellojjx@tmmu.edu.cn.
+LA  - eng
+PT  - Journal Article
+DEP - 20260212
+PL  - United States
+TA  - Neurobiol Dis
+JT  - Neurobiology of disease
+JID - 9500169
+RN  - 0 (PLX5622)
+RN  - 0 (Csf1r protein, mouse)
+RN  - 0 (Receptors, Granulocyte-Macrophage Colony-Stimulating Factor)
+RN  - 0 (Organic Chemicals)
+SB  - IM
+MH  - Animals
+MH  - *Microglia/drug effects/metabolism/pathology
+MH  - *Retinitis Pigmentosa/pathology/metabolism
+MH  - Mice
+MH  - *Retinal Degeneration/pathology
+MH  - Mice, Inbred C57BL
+MH  - Receptors, Granulocyte-Macrophage Colony-Stimulating Factor/antagonists & 
+      inhibitors
+MH  - Disease Models, Animal
+MH  - Organic Chemicals
+OTO - NOTNLM
+OT  - Depletion
+OT  - Macrophages
+OT  - Microglia
+OT  - Neuroinflammation
+OT  - PLX5622
+OT  - Repopulation
+OT  - Retinitis pigmentosa
+COIS- Declaration of competing interest The authors declare no competing interests.
+EDAT- 2026/02/15 00:31
+MHDA- 2026/03/21 00:34
+CRDT- 2026/02/14 19:14
+PHST- 2025/12/01 00:00 [received]
+PHST- 2026/01/27 00:00 [revised]
+PHST- 2026/01/27 00:00 [accepted]
+PHST- 2026/03/21 00:34 [medline]
+PHST- 2026/02/15 00:31 [pubmed]
+PHST- 2026/02/14 19:14 [entrez]
+AID - S0969-9961(26)00039-2 [pii]
+AID - 10.1016/j.nbd.2026.107295 [doi]
+PST - ppublish
+SO  - Neurobiol Dis. 2026 Apr;221:107295. doi: 10.1016/j.nbd.2026.107295. Epub 2026 Feb 
+      12.

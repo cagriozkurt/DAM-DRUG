@@ -1,0 +1,1447 @@
+
+
+PMID- 39197546
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20240915
+LR  - 20250418
+IS  - 1090-2139 (Electronic)
+IS  - 0889-1591 (Linking)
+VI  - 122
+DP  - 2024 Nov
+TI  - Microbiome-derived indole-3-lactic acid reduces amyloidopathy through 
+      aryl-hydrocarbon receptor activation.
+PG  - 568-582
+LID - S0889-1591(24)00574-9 [pii]
+LID - 10.1016/j.bbi.2024.08.051 [doi]
+AB  - Alzheimer's disease (AD) pathogenesis has been associated with the gut microbiome 
+      and its metabolites, though the specific mechanisms have remained unclear. In our 
+      study, we used a multi-omics approach to identify specific microbial strains and 
+      metabolites that could potentially mitigate amyloidopathy in 5xFAD mice, a widely 
+      used model for AD research. Among the microbial strains tested, three showed 
+      promising results in reducing soluble amyloid-beta (Aβ) levels. Plasma 
+      metabolomics analysis revealed an enrichment of tryptophan (Trp) and 
+      indole-3-lactic acid (ILA) in mice with reduced soluble Aβ levels, suggesting a 
+      potential preventative role. The administration of a combined treatment of Trp 
+      and ILA prevented both Aβ accumulation and cognitive impairment in the 5xFAD 
+      mice. Our investigation into the mechanism revealed that ILA's effect on reducing 
+      Aβ levels was mediated through the activation of microglia and astrocytes, 
+      facilitated by the aryl hydrocarbon receptor (AhR) signaling pathway. These 
+      mechanisms were verified through experiments in 5xFAD mice that included an 
+      additional group with the administration of ILA alone, as well as in vitro 
+      experiments using an AhR inhibitor. Clinical data analysis revealed a greater 
+      abundance of Lactobacillus reuteri in the gut of healthy individuals compared to 
+      those at early stages of Aβ accumulation or with mild cognitive impairment. 
+      Additionally, human post-mortem brain analyses showed an increased expression of 
+      genes associated with the AhR signaling pathway in individuals without AD, 
+      suggesting a protective effect against AD progression. Our results indicate that 
+      ILA from gut microbes could inhibit the progression of amyloidopathy in 5xFAD 
+      mice through activation of AhR signaling in the brain.
+CI  - Copyright © 2024. Published by Elsevier Inc.
+FAU - Kim, Hyun
+AU  - Kim H
+AD  - Department of Biomedical Science and Engineering, Gwangju Institute of Science 
+      and Technology (GIST), Gwangju, Republic of Korea.
+FAU - Lee, Eunkyung
+AU  - Lee E
+AD  - Department of Biomedical Science and Engineering, Gwangju Institute of Science 
+      and Technology (GIST), Gwangju, Republic of Korea.
+FAU - Park, Mincheol
+AU  - Park M
+AD  - Department of Biomedical Science and Engineering, Gwangju Institute of Science 
+      and Technology (GIST), Gwangju, Republic of Korea.
+FAU - Min, Kyungchan
+AU  - Min K
+AD  - Department of Biomedical Science and Engineering, Gwangju Institute of Science 
+      and Technology (GIST), Gwangju, Republic of Korea.
+FAU - Diep, Yen N
+AU  - Diep YN
+AD  - Institute of Quantum Biophysics, Sungkyunkwan University, Suwon, Gyeonggi, 
+      Republic of Korea; Department of Biophysics, Sungkyunkwan University, Suwon, 
+      Gyeonggi, Republic of Korea; Department of Intelligent Precision Healthcare 
+      Convergence, Sungkyunkwan University, Suwon, Gyeonggi, Republic of Korea.
+FAU - Kim, Jinhong
+AU  - Kim J
+AD  - Department of Biomedical Science and Engineering, Gwangju Institute of Science 
+      and Technology (GIST), Gwangju, Republic of Korea.
+FAU - Ahn, Hyeok
+AU  - Ahn H
+AD  - Department of Biomedical Science and Engineering, Gwangju Institute of Science 
+      and Technology (GIST), Gwangju, Republic of Korea.
+FAU - Lee, Eulgi
+AU  - Lee E
+AD  - Department of Biomedical Science and Engineering, Gwangju Institute of Science 
+      and Technology (GIST), Gwangju, Republic of Korea.
+FAU - Kim, Sujeong
+AU  - Kim S
+AD  - Department of Biomedical Science and Engineering, Gwangju Institute of Science 
+      and Technology (GIST), Gwangju, Republic of Korea.
+FAU - Kim, Yunjae
+AU  - Kim Y
+AD  - Department of Biomedical Science and Engineering, Gwangju Institute of Science 
+      and Technology (GIST), Gwangju, Republic of Korea.
+FAU - Kang, You Jung
+AU  - Kang YJ
+AD  - Institute of Quantum Biophysics, Sungkyunkwan University, Suwon, Gyeonggi, 
+      Republic of Korea; Department of Biophysics, Sungkyunkwan University, Suwon, 
+      Gyeonggi, Republic of Korea.
+FAU - Jung, Joon Hyung
+AU  - Jung JH
+AD  - Department of Psychiatry, Chungbuk National University Hospital, Cheongju, 
+      Republic of Korea.
+FAU - Byun, Min Soo
+AU  - Byun MS
+AD  - Department of Neuropsychiatry, Seoul National University Hospital, Seoul, 
+      Republic of Korea; Department of Psychiatry, Seoul National University College of 
+      Medicine, Seoul, Republic of Korea.
+FAU - Joo, Yanghyun
+AU  - Joo Y
+AD  - Department of Biomedical Science and Engineering, Gwangju Institute of Science 
+      and Technology (GIST), Gwangju, Republic of Korea.
+FAU - Jeong, Chanyeong
+AU  - Jeong C
+AD  - Department of Biomedical Science and Engineering, Gwangju Institute of Science 
+      and Technology (GIST), Gwangju, Republic of Korea.
+FAU - Lee, Dong Young
+AU  - Lee DY
+AD  - Department of Neuropsychiatry, Seoul National University Hospital, Seoul, 
+      Republic of Korea; Department of Psychiatry, Seoul National University College of 
+      Medicine, Seoul, Republic of Korea; Institute of Human Behavioral Medicine, 
+      Medical Research Center Seoul National University, Seoul, Republic of Korea.
+FAU - Cho, Hansang
+AU  - Cho H
+AD  - Institute of Quantum Biophysics, Sungkyunkwan University, Suwon, Gyeonggi, 
+      Republic of Korea; Department of Biophysics, Sungkyunkwan University, Suwon, 
+      Gyeonggi, Republic of Korea; Department of Intelligent Precision Healthcare 
+      Convergence, Sungkyunkwan University, Suwon, Gyeonggi, Republic of Korea.
+FAU - Park, Hansoo
+AU  - Park H
+AD  - Department of Biomedical Science and Engineering, Gwangju Institute of Science 
+      and Technology (GIST), Gwangju, Republic of Korea; Genome and Company, 
+      Gyeonggi-do, Republic of Korea. Electronic address: hspark27@gist.ac.kr.
+FAU - Kim, Tae
+AU  - Kim T
+AD  - Department of Biomedical Science and Engineering, Gwangju Institute of Science 
+      and Technology (GIST), Gwangju, Republic of Korea. Electronic address: 
+      tae-kim@gist.ac.kr.
+LA  - eng
+PT  - Journal Article
+DEP - 20240827
+PL  - Netherlands
+TA  - Brain Behav Immun
+JT  - Brain, behavior, and immunity
+JID - 8800478
+RN  - 0 (Amyloid beta-Peptides)
+RN  - 5SW11R7M7M (indole-3-lactic acid)
+RN  - 0 (Indoles)
+RN  - 0 (Receptors, Aryl Hydrocarbon)
+RN  - 8DUH1N11BX (Tryptophan)
+SB  - IM
+EIN - Brain Behav Immun. 2025 Jul;127:423. doi: 10.1016/j.bbi.2025.03.033. PMID: 
+      40251103
+MH  - Animals
+MH  - Female
+MH  - Humans
+MH  - Male
+MH  - Mice
+MH  - *Alzheimer Disease/metabolism
+MH  - *Amyloid beta-Peptides/metabolism
+MH  - Amyloidosis/metabolism
+MH  - Astrocytes/metabolism
+MH  - Brain/metabolism
+MH  - Cognitive Dysfunction/metabolism
+MH  - *Disease Models, Animal
+MH  - *Gastrointestinal Microbiome/drug effects
+MH  - *Indoles/pharmacology
+MH  - Mice, Transgenic
+MH  - Microbiota/drug effects
+MH  - Microglia/metabolism
+MH  - *Receptors, Aryl Hydrocarbon/metabolism
+MH  - Signal Transduction/drug effects
+MH  - Tryptophan/metabolism/pharmacology
+OTO - NOTNLM
+OT  - Alzheimer’s disease
+OT  - Cognitive function
+OT  - Indole
+OT  - Metabolomics
+OT  - Metagenomics
+OT  - Microbiome
+OT  - Neuroinflammation
+OT  - Transcriptomics
+COIS- Declaration of Competing Interest The authors declare that they have no known 
+      competing financial interests or personal relationships that could have appeared 
+      to influence the work reported in this paper.
+EDAT- 2024/08/31 09:50
+MHDA- 2024/09/16 00:42
+CRDT- 2024/08/28 19:23
+PHST- 2024/01/09 00:00 [received]
+PHST- 2024/07/30 00:00 [revised]
+PHST- 2024/08/24 00:00 [accepted]
+PHST- 2024/09/16 00:42 [medline]
+PHST- 2024/08/31 09:50 [pubmed]
+PHST- 2024/08/28 19:23 [entrez]
+AID - S0889-1591(24)00574-9 [pii]
+AID - 10.1016/j.bbi.2024.08.051 [doi]
+PST - ppublish
+SO  - Brain Behav Immun. 2024 Nov;122:568-582. doi: 10.1016/j.bbi.2024.08.051. Epub 
+      2024 Aug 27.
+
+PMID- 41529684
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20260130
+LR  - 20260305
+IS  - 2211-1247 (Electronic)
+VI  - 45
+IP  - 1
+DP  - 2026 Jan 27
+TI  - Angiopoietin-2 aggravates Alzheimer's disease by promoting blood-brain barrier 
+      dysfunction and neuroinflammation.
+PG  - 116621
+LID - S2211-1247(25)01393-2 [pii]
+LID - 10.1016/j.celrep.2025.116621 [doi]
+AB  - Disruption of the blood-brain barrier (BBB) increases vascular permeability and 
+      promotes neuroinflammation, contributing to Alzheimer's disease (AD) progression. 
+      However, the molecular drivers of BBB dysfunction and neuroinflammation in AD 
+      remain poorly defined. Here, we identify angiopoietin-2 (ANGPT2) as a central 
+      mediator of BBB breakdown and AD progression. Transcriptomic analyses of human AD 
+      brains revealed elevated ANGPT2 expression in endothelial cells correlating with 
+      disease severity. In 5xFAD mice, endothelial-specific Angpt2 deletion reduced 
+      β-amyloid deposition, while Angpt2 overexpression via an adeno-associated viral 
+      vector exacerbated the plaque burden. Mechanistically, ANGPT2 suppression of TIE2 
+      signaling increased vascular leakage and fibrin deposition, triggering microglial 
+      activation and neuroinflammatory responses that accelerated disease progression. 
+      Single-nucleus transcriptomic analyses further revealed Angpt2-driven microglial 
+      dysfunction and neuronal impairment consistent with memory deficits observed in 
+      behavioral assays. These findings establish ANGPT2 as a critical driver of BBB 
+      dysfunction and neuroinflammation in AD and highlight its therapeutic potential.
+CI  - Copyright © 2025 The Authors. Published by Elsevier Inc. All rights reserved.
+FAU - Lee, Eunhyeong
+AU  - Lee E
+AD  - Department of Pathology and Cell Biology, Columbia University, New York, NY, USA.
+FAU - Kim, Seoyeon
+AU  - Kim S
+AD  - Department of Integrated Biomedical and Life Science, Korea University, Seoul, 
+      Republic of Korea; L-HOPE Program for Community-Based Total Learning Health 
+      Systems, Korea University, Seoul, Republic of Korea.
+FAU - Zhu, Claire L
+AU  - Zhu CL
+AD  - Department of Pathology and Cell Biology, Columbia University, New York, NY, USA.
+FAU - Acquarone, Erica
+AU  - Acquarone E
+AD  - Department of Pathology and Cell Biology, Columbia University, New York, NY, USA; 
+      Taub Institute for Research on Alzheimer's Disease and the Aging Brain, Columbia 
+      University, New York, NY, USA.
+FAU - Kim, Sungsoo
+AU  - Kim S
+AD  - Department of Pathology and Cell Biology, Columbia University, New York, NY, USA.
+FAU - Lo, An
+AU  - Lo A
+AD  - Department of Pathology and Cell Biology, Columbia University, New York, NY, USA.
+FAU - Omar, Omar M F
+AU  - Omar OMF
+AD  - Center for Vascular Biology, University of Connecticut Medical School, 
+      Farmington, CT, USA.
+FAU - Taddese, Maraake
+AU  - Taddese M
+AD  - Department of Pathology and Cell Biology, Columbia University, New York, NY, USA.
+FAU - Gradinaru, Viviana
+AU  - Gradinaru V
+AD  - Division of Biology & Biological Engineering, California Institute of Technology, 
+      Pasadena, CA, USA.
+FAU - Murphy, Patrick A
+AU  - Murphy PA
+AD  - Center for Vascular Biology, University of Connecticut Medical School, 
+      Farmington, CT, USA.
+FAU - Agalliu, Dritan
+AU  - Agalliu D
+AD  - Department of Pathology and Cell Biology, Columbia University, New York, NY, USA; 
+      Department of Neurology, Columbia University Irving Medical Center, New York, NY, 
+      USA.
+FAU - Arancio, Ottavio
+AU  - Arancio O
+AD  - Department of Pathology and Cell Biology, Columbia University, New York, NY, USA; 
+      Taub Institute for Research on Alzheimer's Disease and the Aging Brain, Columbia 
+      University, New York, NY, USA.
+FAU - An, Joon-Yong
+AU  - An JY
+AD  - Department of Integrated Biomedical and Life Science, Korea University, Seoul, 
+      Republic of Korea; L-HOPE Program for Community-Based Total Learning Health 
+      Systems, Korea University, Seoul, Republic of Korea; School of Biosystems and 
+      Biomedical Sciences, College of Health Science, Korea University, Seoul, Republic 
+      of Korea.
+FAU - Kim, Minah
+AU  - Kim M
+AD  - Department of Pathology and Cell Biology, Columbia University, New York, NY, USA; 
+      Vagelos College of Physicians and Surgeons, Herbert Irving Comprehensive Cancer 
+      Center, Columbia University, New York, NY, USA. Electronic address: 
+      mk4242@cumc.columbia.edu.
+LA  - eng
+GR  - R03 AG073833/AG/NIA NIH HHS/United States
+PT  - Journal Article
+DEP - 20260112
+PL  - United States
+TA  - Cell Rep
+JT  - Cell reports
+JID - 101573691
+RN  - 0 (Angiopoietin-2)
+RN  - EC 2.7.10.1 (Receptor, TIE-2)
+RN  - 0 (Amyloid beta-Peptides)
+RN  - 0 (ANGPT2 protein, human)
+SB  - IM
+MH  - *Alzheimer Disease/metabolism/pathology/genetics
+MH  - *Blood-Brain Barrier/metabolism/pathology
+MH  - *Angiopoietin-2/metabolism/genetics
+MH  - Animals
+MH  - Humans
+MH  - Mice
+MH  - *Neuroinflammatory Diseases/pathology/metabolism
+MH  - Microglia/metabolism/pathology
+MH  - Endothelial Cells/metabolism
+MH  - Receptor, TIE-2/metabolism
+MH  - Amyloid beta-Peptides/metabolism
+MH  - Mice, Transgenic
+MH  - Inflammation/pathology
+MH  - Male
+MH  - Disease Models, Animal
+OTO - NOTNLM
+OT  - Alzheimer’s disease
+OT  - CP: neuroscience
+OT  - angiopoietin-2
+OT  - blood-brain barrier dysfunction
+OT  - neuroinflammation
+OT  - snRNA-seq
+OT  - spatial memory
+OT  - β-amyloid
+COIS- Declaration of interests The authors declare no competing interests.
+EDAT- 2026/01/14 00:37
+MHDA- 2026/01/30 06:29
+CRDT- 2026/01/13 18:40
+PHST- 2025/05/15 00:00 [received]
+PHST- 2025/08/20 00:00 [revised]
+PHST- 2025/11/05 00:00 [accepted]
+PHST- 2026/01/30 06:29 [medline]
+PHST- 2026/01/14 00:37 [pubmed]
+PHST- 2026/01/13 18:40 [entrez]
+AID - S2211-1247(25)01393-2 [pii]
+AID - 10.1016/j.celrep.2025.116621 [doi]
+PST - ppublish
+SO  - Cell Rep. 2026 Jan 27;45(1):116621. doi: 10.1016/j.celrep.2025.116621. Epub 2026 
+      Jan 12.
+
+PMID- 40462993
+OWN - NLM
+STAT- PubMed-not-MEDLINE
+LR  - 20250604
+IS  - 2692-8205 (Electronic)
+IS  - 2692-8205 (Linking)
+DP  - 2025 May 16
+TI  - High-Resolution Spatial Profiling of Microglia Reveals Proximity Associated 
+      Immunometabolic Reprogramming in Alzheimer's Disease.
+LID - 2025.05.16.654329 [pii]
+LID - 10.1101/2025.05.16.654329 [doi]
+AB  - Single-cell RNA sequencing has demonstrated that the presence of parenchymal 
+      amyloid plaques and intracellular hyperphosphorylated tau pathology is associated 
+      with distinctive (and possibly disease-driving) microglial heterogeneity. 
+      However, our understanding of how proximity to these Alzheimer's disease (AD) 
+      pathological hallmarks in situ relates to microglial gene expression remains 
+      obscure. Here, we utilized high-resolution spatial transcriptomics (ST) via the 
+      Xenium platform with a fully customized gene panel to elucidate 
+      disease-associated microglial subtypes in tandem with examining metabolic 
+      signatures across AD-relevant mouse models and well-characterized human 
+      postmortem tissue. Three mouse models were evaluated: PS19, APP/PS1, and 5xFAD. 
+      Analyzing anatomical features across entire hemisections, our approach resolved 
+      the distribution of five disease-associated microglial subtypes, while 
+      deciphering how proximity to cerebral amyloid plaques influenced transcriptional 
+      mediators governing metabolic pathways. We observed robust alterations in 
+      glycolytic and cholesterol/lipid processing pathways in plaque-associated 
+      microglia, consistent with a specific switch to glycolysis and lipid-fueled 
+      metabolism in the plaque niche. Extending our analysis to human postmortem 
+      dorsolateral prefrontal cortex (dlPFC), we identified conserved disease-reactive 
+      microglial states, i.e., similar proximity-dependent metabolic shifts around 
+      amyloid plaques. Further, integrating spatial transcriptomics with 
+      machine-learning approaches revealed novel anatomic domain-specific cellular gene 
+      expression profiling features, highlighting differential vulnerabilities of 
+      neuronal, glial, and vascular populations near specific microglial subtypes. 
+      Together, our findings provide one of the first comprehensive and high-resolution 
+      atlas of microglial immunometabolic states across species, anatomical regions, 
+      and AD pathological burden.
+FAU - Saito, Kai
+AU  - Saito K
+FAU - Goulding, Danielle S
+AU  - Goulding DS
+FAU - Nolt, Georgia L
+AU  - Nolt GL
+FAU - Dimas, Sophia H
+AU  - Dimas SH
+FAU - Moore, Lauren C
+AU  - Moore LC
+FAU - Stevens, Isaiah O
+AU  - Stevens IO
+FAU - Anderson, Sonya
+AU  - Anderson S
+FAU - Snipes, Andy
+AU  - Snipes A
+FAU - Macauley, Shannon L
+AU  - Macauley SL
+FAU - Nelson, Peter T
+AU  - Nelson PT
+FAU - Johnson, Lance A
+AU  - Johnson LA
+FAU - Morganti, Josh M
+AU  - Morganti JM
+AUID- ORCID: 0000-0002-4183-0049
+LA  - eng
+PT  - Journal Article
+PT  - Preprint
+DEP - 20250516
+PL  - United States
+TA  - bioRxiv
+JT  - bioRxiv : the preprint server for biology
+JID - 101680187
+PMC - PMC12132303
+EDAT- 2025/06/04 06:27
+MHDA- 2025/06/04 06:28
+PMCR- 2025/06/03
+CRDT- 2025/06/04 04:56
+PHST- 2025/06/04 06:28 [medline]
+PHST- 2025/06/04 06:27 [pubmed]
+PHST- 2025/06/04 04:56 [entrez]
+PHST- 2025/06/03 00:00 [pmc-release]
+AID - 2025.05.16.654329 [pii]
+AID - 10.1101/2025.05.16.654329 [doi]
+PST - epublish
+SO  - bioRxiv [Preprint]. 2025 May 16:2025.05.16.654329. doi: 
+      10.1101/2025.05.16.654329.
+
+PMID- 39103533
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20250423
+LR  - 20250721
+IS  - 1476-5578 (Electronic)
+IS  - 1359-4184 (Print)
+IS  - 1359-4184 (Linking)
+VI  - 30
+IP  - 2
+DP  - 2025 Feb
+TI  - Single-cell spatial transcriptomics reveals distinct patterns of dysregulation in 
+      non-neuronal and neuronal cells induced by the Trem2(R47H) Alzheimer's risk gene 
+      mutation.
+PG  - 461-477
+LID - 10.1038/s41380-024-02651-0 [doi]
+AB  - The R47H missense mutation of the TREM2 gene is a known risk factor for 
+      development of Alzheimer's Disease. In this study, we analyze the impact of the 
+      Trem2(R47H) mutation on specific cell types in multiple cortical and subcortical 
+      brain regions in the context of wild-type and 5xFAD mouse background. We profile 
+      19 mouse brain sections consisting of wild-type, Trem2(R47H), 5xFAD and 
+      Trem2(R47H); 5xFAD genotypes using MERFISH spatial transcriptomics, a technique 
+      that enables subcellular profiling of spatial gene expression. Spatial 
+      transcriptomics and neuropathology data are analyzed using our custom pipeline to 
+      identify plaque and Trem2(R47H)-induced transcriptomic dysregulation. We 
+      initially analyze cell type-specific transcriptomic alterations induced by plaque 
+      proximity. Next, we analyze spatial distributions of disease associated microglia 
+      and astrocytes, and how they vary between 5xFAD and Trem2(R47H); 5xFAD mouse 
+      models. Finally, we analyze the impact of the Trem2(R47H) mutation on neuronal 
+      transcriptomes. The Trem2(R47H) mutation induces consistent upregulation of Bdnf 
+      and Ntrk2 across many cortical excitatory neuron types, independent of amyloid 
+      pathology. Spatial investigation of genotype enriched subclusters identified 
+      spatially localized neuronal subpopulations reduced in 5xFAD and Trem2(R47H); 
+      5xFAD mice. Overall, our MERFISH spatial transcriptomics analysis identifies 
+      glial and neuronal transcriptomic alterations induced independently by 5xFAD and 
+      Trem2(R47H) mutations, impacting inflammatory responses in microglia and 
+      astrocytes, and activity and BDNF signaling in neurons.
+CI  - © 2024. The Author(s).
+FAU - Johnston, Kevin G
+AU  - Johnston KG
+AD  - Department of Anatomy and Neurobiology, School of Medicine, University of 
+      California, Irvine, CA, 92697, USA.
+FAU - Berackey, Bereket T
+AU  - Berackey BT
+AD  - Department of Anatomy and Neurobiology, School of Medicine, University of 
+      California, Irvine, CA, 92697, USA.
+AD  - Department of Biomedical Engineering, University of California, Irvine, CA, 
+      92697, USA.
+FAU - Tran, Kristine M
+AU  - Tran KM
+AD  - Department of Neurobiology and Behavior, Charlie Dunlop School of Biological 
+      Sciences, University of California, Irvine, CA, 92697, USA.
+FAU - Gelber, Alon
+AU  - Gelber A
+AD  - Department of Cognitive Science, University of California, San Diego, CA, 92037, 
+      USA.
+FAU - Yu, Zhaoxia
+AU  - Yu Z
+AD  - Department of Statistics, School of Computer and Information Science, University 
+      of California, Irvine, CA, 92697, USA.
+AD  - Center for Neural Circuit Mapping, University of California, Irvine, CA, 92697, 
+      USA.
+FAU - MacGregor, Grant R
+AU  - MacGregor GR
+AD  - Department of Developmental and Cell Biology, University of California, Irvine, 
+      CA, 92697, USA.
+AD  - Institute for Memory Impairments and Neurological Disorders (UCI MIND), Irvine, 
+      USA.
+FAU - Mukamel, Eran A
+AU  - Mukamel EA
+AUID- ORCID: 0000-0003-3203-9535
+AD  - Department of Cognitive Science, University of California, San Diego, CA, 92037, 
+      USA.
+FAU - Tan, Zhiqun
+AU  - Tan Z
+AUID- ORCID: 0000-0002-2235-4577
+AD  - Department of Anatomy and Neurobiology, School of Medicine, University of 
+      California, Irvine, CA, 92697, USA.
+AD  - Center for Neural Circuit Mapping, University of California, Irvine, CA, 92697, 
+      USA.
+AD  - Institute for Memory Impairments and Neurological Disorders (UCI MIND), Irvine, 
+      USA.
+AD  - Department of Molecular Biology and Biochemistry School of Biological Sciences, 
+      University of California, Irvine, CA, 92697, USA.
+FAU - Green, Kim N
+AU  - Green KN
+AUID- ORCID: 0000-0002-6049-6744
+AD  - Department of Neurobiology and Behavior, Charlie Dunlop School of Biological 
+      Sciences, University of California, Irvine, CA, 92697, USA.
+AD  - Institute for Memory Impairments and Neurological Disorders (UCI MIND), Irvine, 
+      USA.
+FAU - Xu, Xiangmin
+AU  - Xu X
+AUID- ORCID: 0000-0002-5828-1533
+AD  - Department of Anatomy and Neurobiology, School of Medicine, University of 
+      California, Irvine, CA, 92697, USA. xiangmix@uci.edu.
+AD  - Department of Biomedical Engineering, University of California, Irvine, CA, 
+      92697, USA. xiangmix@uci.edu.
+AD  - Center for Neural Circuit Mapping, University of California, Irvine, CA, 92697, 
+      USA. xiangmix@uci.edu.
+AD  - Institute for Memory Impairments and Neurological Disorders (UCI MIND), Irvine, 
+      USA. xiangmix@uci.edu.
+LA  - eng
+GR  - U54 AG054349/AG/NIA NIH HHS/United States
+GR  - R01 AG067153/AG/NIA NIH HHS/United States
+GR  - U01 AG076791/AG/NIA NIH HHS/United States
+GR  - R01 AG065675/AG/NIA NIH HHS/United States
+GR  - R01 AG082127/AG/NIA NIH HHS/United States
+GR  - RF1 AG065675/AG/NIA NIH HHS/United States
+GR  - T32 DC010775/DC/NIDCD NIH HHS/United States
+GR  - T32 DC010775-14/U.S. Department of Health & Human Services | NIH | National 
+      Institute on Deafness and Other Communication Disorders (NIDCD)/
+PT  - Journal Article
+DEP - 20240805
+PL  - England
+TA  - Mol Psychiatry
+JT  - Molecular psychiatry
+JID - 9607835
+RN  - 0 (Receptors, Immunologic)
+RN  - 0 (Membrane Glycoproteins)
+RN  - 0 (Trem2 protein, mouse)
+RN  - EC 2.7.10.1 (Receptor, trkB)
+RN  - 0 (Brain-Derived Neurotrophic Factor)
+RN  - EC 2.7.10.1 (Ntrk2 protein, mouse)
+SB  - IM
+UOF - Res Sq. 2023 Dec 07:rs.3.rs-3656139. doi: 10.21203/rs.3.rs-3656139/v1. PMID: 
+      38106071
+MH  - Animals
+MH  - *Alzheimer Disease/genetics/metabolism
+MH  - *Receptors, Immunologic/genetics/metabolism
+MH  - Mice
+MH  - *Membrane Glycoproteins/genetics/metabolism
+MH  - Mice, Transgenic
+MH  - Neurons/metabolism
+MH  - Transcriptome/genetics
+MH  - Microglia/metabolism
+MH  - Brain/metabolism
+MH  - Disease Models, Animal
+MH  - Plaque, Amyloid/metabolism/genetics
+MH  - Mutation/genetics
+MH  - Astrocytes/metabolism
+MH  - Single-Cell Analysis/methods
+MH  - Humans
+MH  - Mutation, Missense/genetics
+MH  - Receptor, trkB/metabolism/genetics
+MH  - Brain-Derived Neurotrophic Factor/metabolism/genetics
+MH  - Gene Expression Profiling/methods
+MH  - Male
+PMC - PMC11746152
+MID - NIHMS2043213
+COIS- Competing interests: The authors declare no competing interests. Ethics approval 
+      and consent to participate: This study did not involve any human subjects. All 
+      animal care and related experimental procedures were conducted following the 
+      highest ethical standards and were approved by the UC Irvine Institutional Animal 
+      Care and Use Committee. All animals were bred and raised by the Transgenic Mouse 
+      Facility at UCI under a regular light/dark (12 h/12 h) cycle with ad libitum 
+      access to food and water.
+EDAT- 2024/08/06 00:42
+MHDA- 2025/01/21 09:03
+PMCR- 2024/08/05
+CRDT- 2024/08/05 23:26
+PHST- 2024/02/27 00:00 [received]
+PHST- 2024/06/26 00:00 [accepted]
+PHST- 2024/06/20 00:00 [revised]
+PHST- 2025/01/21 09:03 [medline]
+PHST- 2024/08/06 00:42 [pubmed]
+PHST- 2024/08/05 23:26 [entrez]
+PHST- 2024/08/05 00:00 [pmc-release]
+AID - 10.1038/s41380-024-02651-0 [pii]
+AID - 2651 [pii]
+AID - 10.1038/s41380-024-02651-0 [doi]
+PST - ppublish
+SO  - Mol Psychiatry. 2025 Feb;30(2):461-477. doi: 10.1038/s41380-024-02651-0. Epub 
+      2024 Aug 5.
+
+PMID- 40346446
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20250510
+LR  - 20250721
+IS  - 1552-5279 (Electronic)
+IS  - 1552-5260 (Print)
+IS  - 1552-5260 (Linking)
+VI  - 21
+IP  - 5
+DP  - 2025 May
+TI  - PLCG2 modulates TREM2 expression and signaling in response to Alzheimer's disease 
+      pathology.
+PG  - e70231
+LID - 10.1002/alz.70231 [doi]
+LID - e70231
+AB  - BACKGROUND: Phospholipase C gamma 2 (PLCG2) is an intracellular effector of 
+      microglial cell surface receptors, including triggering receptor expressed on 
+      myeloid cells 2 (TREM2). Variants which alter PLCG2 activity impact Alzheimer's 
+      disease (AD) risk, but the effects of PLCG2 deficiency in AD remain unclear. 
+      METHODS: 5xFAD mice were crossed with PLCG2- and TREM2-deficient mice to assess 
+      the role of PLCG2 in response to amyloid pathology. Human bulk RNA-sequencing 
+      data were used to validate findings in AD patients. RESULTS: In 5xFAD mice, the 
+      absence of PLCG2 resulted in reduced TREM2 expression and impaired microglial 
+      associations with amyloid beta plaques. Transcriptomic analysis revealed 
+      perturbations in immune-related pathways shared between PLCG2 and TREM2 
+      deficiencies, as well as distinct differences. Human transcriptomics revealed 
+      positive correlations between PLCG2 and TREM2 independent of pathological scores. 
+      DISCUSSION: PLCG2 is a critical component of TREM2 signal transduction and may 
+      play an upstream role in TREM2 regulation. These findings clarify the mechanisms 
+      of risk and protective PLCG2 variants. HIGHLIGHTS: The role of phospholipase C 
+      gamma 2 (PLCG2) deficiency in response to amyloid beta (Aβ) pathology was 
+      investigated in 5xFAD mice and with human cortical transcriptomics. PLCG2 
+      deficiency significantly reduces triggering receptor expressed on myeloid cells 2 
+      (TREM2) expression, while TREM2 deficiency increases PLCG2 expression. PLCG2 
+      expression predicts TREM2 expression in human cortex independent of pathology. 
+      PLCG2 and TREM2 deficiencies similarly impair microglial responses to Aβ plaques, 
+      exacerbate neuronal pathology, and impair gene expression associated with immune 
+      responses. PLCG2 deficiency confers distinct transcriptional perturbations from 
+      TREM2 deficiency. PLCG2 may play an upstream role in the regulation of the 
+      TREM2-mediated immune response.
+CI  - © 2025 The Author(s). Alzheimer's & Dementia published by Wiley Periodicals LLC 
+      on behalf of Alzheimer's Association.
+FAU - Messenger, Evan J
+AU  - Messenger EJ
+AD  - Stark Neuroscience, Indiana University School of Medicine, Indianapolis, Indiana, 
+      USA.
+FAU - Baar, Sydney A
+AU  - Baar SA
+AD  - Stark Neuroscience, Indiana University School of Medicine, Indianapolis, Indiana, 
+      USA.
+FAU - Bedford, Logan M
+AU  - Bedford LM
+AD  - Stark Neuroscience, Indiana University School of Medicine, Indianapolis, Indiana, 
+      USA.
+FAU - Tsai, Andy P
+AU  - Tsai AP
+AD  - Stark Neuroscience, Indiana University School of Medicine, Indianapolis, Indiana, 
+      USA.
+FAU - Lin, Peter Bor-Chian
+AU  - Lin PB
+AD  - Stark Neuroscience, Indiana University School of Medicine, Indianapolis, Indiana, 
+      USA.
+FAU - Ferguson, Chloe A
+AU  - Ferguson CA
+AD  - Stark Neuroscience, Indiana University School of Medicine, Indianapolis, Indiana, 
+      USA.
+FAU - Xu, Guixiang
+AU  - Xu G
+AD  - Stark Neuroscience, Indiana University School of Medicine, Indianapolis, Indiana, 
+      USA.
+FAU - Wallace, Abigail
+AU  - Wallace A
+AD  - Stark Neuroscience, Indiana University School of Medicine, Indianapolis, Indiana, 
+      USA.
+FAU - Landreth, Gary E
+AU  - Landreth GE
+AD  - Stark Neuroscience, Indiana University School of Medicine, Indianapolis, Indiana, 
+      USA.
+AD  - Department of Anatomy, Cell Biology & Physiology, Indiana University School of 
+      Medicine, Indianapolis, Indiana, USA.
+FAU - Lamb, Bruce T
+AU  - Lamb BT
+AD  - Stark Neuroscience, Indiana University School of Medicine, Indianapolis, Indiana, 
+      USA.
+AD  - Department of Medical and Molecular Genetics, Indiana University School of 
+      Medicine, Indianapolis, Indiana, USA.
+FAU - Bissel, Stephanie J
+AU  - Bissel SJ
+AUID- ORCID: 0000-0002-7376-2327
+AD  - Stark Neuroscience, Indiana University School of Medicine, Indianapolis, Indiana, 
+      USA.
+AD  - Department of Medical and Molecular Genetics, Indiana University School of 
+      Medicine, Indianapolis, Indiana, USA.
+LA  - eng
+GR  - T32AG071444/NIA Training Grant on Alzheimer's Disease and ADRD at Indiana 
+      University/
+GR  - RF1AG074566/AG/NIA NIH HHS/United States
+GR  - Paul and Carole Stark Medical Neuroscience Fellowship/
+GR  - U54AG065181/IU/Purdue TREAT-AD Center/
+GR  - RF1 AG074566/AG/NIA NIH HHS/United States
+GR  - U54 AG065181/AG/NIA NIH HHS/United States
+GR  - R01 AG074566/AG/NIA NIH HHS/United States
+GR  - U54AG054345/IU/JAX/PITT MODEL-AD Center/
+PT  - Journal Article
+PL  - United States
+TA  - Alzheimers Dement
+JT  - Alzheimer's & dementia : the journal of the Alzheimer's Association
+JID - 101231978
+RN  - 0 (Membrane Glycoproteins)
+RN  - 0 (Receptors, Immunologic)
+RN  - EC 3.1.4.3 (Phospholipase C gamma)
+RN  - 0 (TREM2 protein, human)
+RN  - 0 (Trem2 protein, mouse)
+RN  - EC 3.1.4.3 (PLCG2 protein, human)
+RN  - 0 (Amyloid beta-Peptides)
+SB  - IM
+MH  - *Alzheimer Disease/pathology/metabolism/genetics
+MH  - Animals
+MH  - *Membrane Glycoproteins/metabolism/genetics
+MH  - *Receptors, Immunologic/metabolism/genetics
+MH  - *Phospholipase C gamma/genetics/metabolism
+MH  - Humans
+MH  - Mice
+MH  - Microglia/metabolism/pathology
+MH  - *Signal Transduction
+MH  - Mice, Transgenic
+MH  - Brain/pathology/metabolism
+MH  - Disease Models, Animal
+MH  - Plaque, Amyloid/pathology/metabolism
+MH  - Amyloid beta-Peptides/metabolism
+MH  - Male
+MH  - Mice, Knockout
+PMC - PMC12064341
+OTO - NOTNLM
+OT  - 5xFAD
+OT  - Alzheimer's disease
+OT  - amyloid pathology
+OT  - immune response
+OT  - microglia
+OT  - phospholipase C gamma 2
+OT  - triggering receptor expressed on myeloid cells 2
+COIS- The authors declare no competing financial interests. Author disclosures are 
+      available in the supporting information.
+EDAT- 2025/05/10 00:47
+MHDA- 2025/05/11 00:46
+PMCR- 2025/05/09
+CRDT- 2025/05/09 23:31
+PHST- 2025/04/03 00:00 [revised]
+PHST- 2025/02/07 00:00 [received]
+PHST- 2025/04/07 00:00 [accepted]
+PHST- 2025/05/11 00:46 [medline]
+PHST- 2025/05/10 00:47 [pubmed]
+PHST- 2025/05/09 23:31 [entrez]
+PHST- 2025/05/09 00:00 [pmc-release]
+AID - ALZ70231 [pii]
+AID - 10.1002/alz.70231 [doi]
+PST - ppublish
+SO  - Alzheimers Dement. 2025 May;21(5):e70231. doi: 10.1002/alz.70231.
+
+PMID- 36805764
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20230223
+LR  - 20250909
+IS  - 1756-994X (Electronic)
+IS  - 1756-994X (Linking)
+VI  - 15
+IP  - 1
+DP  - 2023 Feb 20
+TI  - TREM2 splice isoforms generate soluble TREM2 species that disrupt long-term 
+      potentiation.
+PG  - 11
+LID - 10.1186/s13073-023-01160-z [doi]
+LID - 11
+AB  - BACKGROUND: TREM2 is a transmembrane receptor expressed by myeloid cells and acts 
+      to regulate their immune response. TREM2 governs the response of microglia to 
+      amyloid and tau pathologies in the Alzheimer's disease (AD) brain. TREM2 is also 
+      present in a soluble form (sTREM2), and its CSF levels fluctuate as a function of 
+      AD progression. Analysis of stroke and AD mouse models revealed that sTREM2 
+      proteins bind to neurons, which suggests sTREM2 may act in a non-cell autonomous 
+      manner to influence neuronal function. sTREM2 arises from the proteolytic 
+      cleavage of the membrane-associated receptor. However, alternatively spliced 
+      TREM2 species lacking a transmembrane domain have been postulated to contribute 
+      to the pool of sTREM2. Thus, both the source of sTREM2 species and its actions in 
+      the brain remain unclear. METHODS: The expression of TREM2 isoforms in the AD 
+      brain was assessed through the analysis of the Accelerating Medicines Partnership 
+      for Alzheimer's Disease Consortium transcriptomics data, as well as qPCR analysis 
+      using post-mortem samples of AD patients and of the AD mouse model 5xFAD. TREM2 
+      cleavage and secretion were studied in vitro using HEK-293T and HMC3 cell lines. 
+      Synaptic plasticity, as evaluated by induction of LTP in hippocampal brain 
+      slices, was employed as a measure of sTREM2 actions. RESULTS: Three distinct 
+      TREM2 transcripts, namely ENST00000373113 (TREM2(230)), which encodes the 
+      full-length transmembrane receptor, and the alternatively spliced isoforms 
+      ENST00000373122 (TREM2(222)) and ENST00000338469 (TREM2(219)), are moderately 
+      increased in specific brain regions of patients with AD. We provide experimental 
+      evidence that TREM2 alternatively spliced isoforms are translated and secreted as 
+      sTREM2. Furthermore, our functional analysis reveals that all sTREM2 species 
+      inhibit LTP induction, and this effect is abolished by the GABAA receptor 
+      antagonist picrotoxin. CONCLUSIONS: TREM2 transcripts can give rise to a 
+      heterogeneous pool of sTREM2 which acts to inhibit LTP. These results provide 
+      novel insight into the generation, regulation, and function of sTREM2 which fits 
+      into the complex biology of TREM2 and its role in human health and disease. Given 
+      that sTREM2 levels are linked to AD pathogenesis and progression, our finding 
+      that sTREM2 species interfere with LTP furthers our understanding about the role 
+      of TREM2 in AD.
+CI  - © 2023. The Author(s).
+FAU - Moutinho, Miguel
+AU  - Moutinho M
+AD  - Stark Neurosciences Research Institute, Indiana University School of Medicine, 
+      Indianapolis, IN, USA.
+AD  - Department of Anatomy, Cell Biology and Physiology, Indiana University School of 
+      Medicine, Indianapolis, IN, 46202, USA.
+FAU - Coronel, Israel
+AU  - Coronel I
+AD  - Stark Neurosciences Research Institute, Indiana University School of Medicine, 
+      Indianapolis, IN, USA.
+AD  - Department of Anatomy, Cell Biology and Physiology, Indiana University School of 
+      Medicine, Indianapolis, IN, 46202, USA.
+FAU - Tsai, Andy P
+AU  - Tsai AP
+AD  - Stark Neurosciences Research Institute, Indiana University School of Medicine, 
+      Indianapolis, IN, USA.
+FAU - Di Prisco, Gonzalo Viana
+AU  - Di Prisco GV
+AD  - Stark Neurosciences Research Institute, Indiana University School of Medicine, 
+      Indianapolis, IN, USA.
+AD  - Department of Pharmacology and Toxicology, Indiana University, School of 
+      Medicine, Indianapolis, IN, 46202, USA.
+FAU - Pennington, Taylor
+AU  - Pennington T
+AD  - Stark Neurosciences Research Institute, Indiana University School of Medicine, 
+      Indianapolis, IN, USA.
+AD  - Department of Pharmacology and Toxicology, Indiana University, School of 
+      Medicine, Indianapolis, IN, 46202, USA.
+FAU - Atwood, Brady K
+AU  - Atwood BK
+AD  - Stark Neurosciences Research Institute, Indiana University School of Medicine, 
+      Indianapolis, IN, USA.
+AD  - Department of Pharmacology and Toxicology, Indiana University, School of 
+      Medicine, Indianapolis, IN, 46202, USA.
+FAU - Puntambekar, Shweta S
+AU  - Puntambekar SS
+AD  - Stark Neurosciences Research Institute, Indiana University School of Medicine, 
+      Indianapolis, IN, USA.
+AD  - Department of Medical and Molecular Genetics, Indiana University School of 
+      Medicine, Indianapolis, IN, USA.
+FAU - Smith, Daniel C
+AU  - Smith DC
+AD  - Stark Neurosciences Research Institute, Indiana University School of Medicine, 
+      Indianapolis, IN, USA.
+FAU - Martinez, Pablo
+AU  - Martinez P
+AD  - Stark Neurosciences Research Institute, Indiana University School of Medicine, 
+      Indianapolis, IN, USA.
+AD  - Department of Anatomy, Cell Biology and Physiology, Indiana University School of 
+      Medicine, Indianapolis, IN, 46202, USA.
+FAU - Han, Seonggyun
+AU  - Han S
+AD  - Department of Biomedical Informatics, University of Utah School of Medicine, Salt 
+      Lake City, UT, USA.
+FAU - Lee, Younghee
+AU  - Lee Y
+AD  - Department of Biomedical Informatics, University of Utah School of Medicine, Salt 
+      Lake City, UT, USA.
+FAU - Lasagna-Reeves, Cristian A
+AU  - Lasagna-Reeves CA
+AD  - Stark Neurosciences Research Institute, Indiana University School of Medicine, 
+      Indianapolis, IN, USA.
+AD  - Department of Anatomy, Cell Biology and Physiology, Indiana University School of 
+      Medicine, Indianapolis, IN, 46202, USA.
+FAU - Lamb, Bruce T
+AU  - Lamb BT
+AD  - Stark Neurosciences Research Institute, Indiana University School of Medicine, 
+      Indianapolis, IN, USA.
+AD  - Department of Medical and Molecular Genetics, Indiana University School of 
+      Medicine, Indianapolis, IN, USA.
+FAU - Bissel, Stephanie J
+AU  - Bissel SJ
+AD  - Stark Neurosciences Research Institute, Indiana University School of Medicine, 
+      Indianapolis, IN, USA.
+AD  - Department of Medical and Molecular Genetics, Indiana University School of 
+      Medicine, Indianapolis, IN, USA.
+FAU - Nho, Kwangsik
+AU  - Nho K
+AD  - Stark Neurosciences Research Institute, Indiana University School of Medicine, 
+      Indianapolis, IN, USA.
+AD  - Department of Radiology and Imaging Sciences, Indiana Alzheimer's Disease 
+      Research Center, Indiana University School of Medicine, Indianapolis, IN, USA.
+FAU - Landreth, Gary E
+AU  - Landreth GE
+AUID- ORCID: 0000-0003-0525-9145
+AD  - Stark Neurosciences Research Institute, Indiana University School of Medicine, 
+      Indianapolis, IN, USA. glandret@iu.edu.
+AD  - Department of Anatomy, Cell Biology and Physiology, Indiana University School of 
+      Medicine, Indianapolis, IN, 46202, USA. glandret@iu.edu.
+LA  - eng
+GR  - RF1 AG051495/AG/NIA NIH HHS/United States
+GR  - U01 AG072177/AG/NIA NIH HHS/United States
+GR  - P50 AG005146/AG/NIA NIH HHS/United States
+GR  - T32 DK064466/DK/NIDDK NIH HHS/United States
+GR  - RF1 AG076610/AG/NIA NIH HHS/United States
+GR  - R01 LM012535/LM/NLM NIH HHS/United States
+GR  - T32 GM077229/GM/NIGMS NIH HHS/United States
+GR  - R01 AG076610/AG/NIA NIH HHS/United States
+PT  - Journal Article
+PT  - Research Support, N.I.H., Extramural
+PT  - Research Support, Non-U.S. Gov't
+DEP - 20230220
+PL  - England
+TA  - Genome Med
+JT  - Genome medicine
+JID - 101475844
+RN  - 0 (Protein Isoforms)
+RN  - 0 (TREM2 protein, human)
+RN  - 0 (Membrane Glycoproteins)
+RN  - 0 (Receptors, Immunologic)
+RN  - 0 (Trem2 protein, mouse)
+SB  - IM
+MH  - Animals
+MH  - Mice
+MH  - Humans
+MH  - *Long-Term Potentiation
+MH  - *Alzheimer Disease/genetics
+MH  - Protein Isoforms/genetics
+MH  - Brain
+MH  - Cell Line
+MH  - Disease Models, Animal
+MH  - Membrane Glycoproteins/genetics
+MH  - Receptors, Immunologic/genetics
+PMC - PMC9940368
+OTO - NOTNLM
+OT  - Alzheimer’s disease
+OT  - Soluble TREM2
+OT  - TREM2
+OT  - TREM2 splicing
+COIS- The Indiana CTSI Eli Lilly-Stark Neurosciences Post-Doctoral Research Fellowship 
+      in Neurodegeneration does not constitute a competing interest. The authors 
+      declare that they have no competing interests.
+EDAT- 2023/02/23 06:00
+MHDA- 2023/02/25 06:00
+PMCR- 2023/02/20
+CRDT- 2023/02/22 10:02
+PHST- 2022/06/02 00:00 [received]
+PHST- 2023/02/03 00:00 [accepted]
+PHST- 2023/02/22 10:02 [entrez]
+PHST- 2023/02/23 06:00 [pubmed]
+PHST- 2023/02/25 06:00 [medline]
+PHST- 2023/02/20 00:00 [pmc-release]
+AID - 10.1186/s13073-023-01160-z [pii]
+AID - 1160 [pii]
+AID - 10.1186/s13073-023-01160-z [doi]
+PST - epublish
+SO  - Genome Med. 2023 Feb 20;15(1):11. doi: 10.1186/s13073-023-01160-z.
+
+PMID- 37577582
+OWN - NLM
+STAT- PubMed-not-MEDLINE
+LR  - 20230814
+IS  - 2692-8205 (Electronic)
+IS  - 2692-8205 (Linking)
+DP  - 2023 Aug 5
+TI  - BAC Transgenic Expression of Human TREM2-R47H Remodels Amyloid Plaques but Unable 
+      to Reprogram Plaque-associated Microglial Reactivity in 5xFAD Mice.
+LID - 2023.08.03.551881 [pii]
+LID - 10.1101/2023.08.03.551881 [doi]
+AB  - BACKGROUND: Genetic study of late-onset Alzheimer's disease (AD) reveals that a 
+      rare Arginine-to-Histamine mutation at amino acid residue 47 (R47H) in Triggering 
+      Receptor Expressed on Myeloid Cells 2 (TREM2) results in increased disease risk. 
+      TREM2 plays critical roles in regulating microglial response to amyloid plaques 
+      in AD, leading to their clustering and activation surrounding the plaques. We 
+      previously showed that increasing human TREM2 gene dosage exerts neuroprotective 
+      effects against AD-related deficits in amyloid depositing mouse models of AD. 
+      However, the in vivo effects of the R47H mutation on human TREM2-mediated 
+      microglial reprogramming and neuroprotection remains poorly understood. METHOD: 
+      Here we created a BAC transgenic mouse model expressing human TREM2 with the R47H 
+      mutation in its cognate genomic context (BAC-TREM2-R47H). Importantly, the BAC 
+      used in this study was engineered to delete critical exons of other TREM-like 
+      genes on the BAC to prevent confounding effects of overexpressing multiple 
+      TREM-like genes. We crossed BAC-TREM2- R47H mice with 5xFAD [1], an amyloid 
+      depositing mouse model of AD, to evaluate amyloid pathologies and microglial 
+      phenotypes, transcriptomics and in situ expression of key TREM2 -dosage dependent 
+      genes. We also compared the key findings in 5xFAD/BAC-TREM2-R47H to those 
+      observed in 5xFAD/BAC-TREM2 mice. RESULT: Both BAC-TREM2 and BAC-TREM2-R47H 
+      showed proper expression of three splicing isoforms of TREM2 that are normally 
+      found in human. In 5xFAD background, elevated TREM2-R47H gene dosages 
+      significantly reduced the plaque burden, especially the filamentous type. The 
+      results were consistent with enhanced phagocytosis and altered NLRP3 inflammasome 
+      activation in BAC- TREM2-R47H microglia in vitro. However, unlike TREM2 
+      overexpression, elevated TREM2- R47H in 5xFAD failed to ameliorate cognitive and 
+      transcriptomic deficits. In situ analysis of key TREM2 -dosage dependent genes 
+      and microglial morphology uncovered that TREM2-R47H showed a loss-of-function 
+      phenotype in reprogramming of plaque-associated microglial reactivity and gene 
+      expression in 5xFAD. CONCLUSION: Our study demonstrated that the AD-risk variant 
+      has a previously unknown, mixture of partial and full loss of TREM2 functions in 
+      modulating microglial response in AD mouse brains. Together, our new 
+      BAC-TREM2-R47H model and prior BAC-TREM2 mice are invaluable resource to 
+      facilitate the therapeutic discovery that target human TREM2 and its R47H variant 
+      to ameliorate AD and other neurodegenerative disorders.
+FAU - Lee, C Y Daniel
+AU  - Lee CYD
+AUID- ORCID: 0000-0001-7936-3119
+FAU - De La Rocha, Amberlene J
+AU  - De La Rocha AJ
+FAU - Inouye, Kellie
+AU  - Inouye K
+FAU - Langfelder, Peter
+AU  - Langfelder P
+FAU - Daggett, Anthony
+AU  - Daggett A
+FAU - Gu, Xiaofeng
+AU  - Gu X
+FAU - Jiang, Lu-Lin
+AU  - Jiang LL
+FAU - Pamonag, Zoe
+AU  - Pamonag Z
+FAU - Vaca, Raymond G
+AU  - Vaca RG
+FAU - Richman, Jeffrey
+AU  - Richman J
+FAU - Kawaguchi, Riki
+AU  - Kawaguchi R
+FAU - Gao, Fuying
+AU  - Gao F
+FAU - Xu, Huaxi
+AU  - Xu H
+FAU - Yang, X William
+AU  - Yang XW
+LA  - eng
+PT  - Journal Article
+PT  - Preprint
+DEP - 20230805
+PL  - United States
+TA  - bioRxiv
+JT  - bioRxiv : the preprint server for biology
+JID - 101680187
+PMC - PMC10418161
+EDAT- 2023/08/14 06:43
+MHDA- 2023/08/14 06:44
+PMCR- 2023/08/11
+CRDT- 2023/08/14 05:02
+PHST- 2023/08/14 06:44 [medline]
+PHST- 2023/08/14 06:43 [pubmed]
+PHST- 2023/08/14 05:02 [entrez]
+PHST- 2023/08/11 00:00 [pmc-release]
+AID - 2023.08.03.551881 [pii]
+AID - 10.1101/2023.08.03.551881 [doi]
+PST - epublish
+SO  - bioRxiv [Preprint]. 2023 Aug 5:2023.08.03.551881. doi: 10.1101/2023.08.03.551881.
+
+PMID- 37961246
+OWN - NLM
+STAT- PubMed-not-MEDLINE
+LR  - 20240108
+IS  - 2692-8205 (Electronic)
+IS  - 2692-8205 (Linking)
+DP  - 2023 Nov 4
+TI  - Human neural stem cells restore spatial memory in a transgenic Alzheimer's 
+      disease mouse model by an immunomodulating mechanism.
+LID - 2023.11.01.565161 [pii]
+LID - 10.1101/2023.11.01.565161 [doi]
+AB  - INTRODUCTION: Stem cells are a promising therapeutic in Alzheimer's disease (AD) 
+      given the complex pathophysiologic pathways involved. However, the therapeutic 
+      mechanisms of stem cells remain unclear. Here, we used spatial transcriptomics to 
+      elucidate therapeutic mechanisms of human neural stem cells (hNSCs) in an animal 
+      model of AD. METHODS: hNSCs were transplanted into the fimbria fornix of the 
+      hippocampus using the 5XFAD mouse model. Spatial memory was assessed by Morris 
+      water maze. Amyloid plaque burden was quantified. Spatial transcriptomics was 
+      performed and differentially expressed genes (DEGs) identified both globally and 
+      within the hippocampus. Subsequent pathway enrichment and ligand-receptor network 
+      analysis was performed. RESULTS: hNSC transplantation restored learning curves of 
+      5XFAD mice. However, there were no changes in amyloid plaque burden. Spatial 
+      transcriptomics showed 1061 DEGs normalized in hippocampal subregions. Plaque 
+      induced genes in microglia, along with populations of stage 1 and stage 2 disease 
+      associated microglia (DAM), were normalized upon hNSC transplantation. Pathologic 
+      signaling between hippocampus and DAM was also restored. DISCUSSION: hNSCs 
+      normalized many dysregulated genes, although this was not mediated by a change in 
+      amyloid plaque levels. Rather, hNSCs appear to exert beneficial effects in part 
+      by modulating microglia-mediated neuroinflammation and signaling in AD.
+FAU - Chen, Kevin S
+AU  - Chen KS
+AUID- ORCID: 0000-0003-0738-3799
+FAU - Noureldein, Mohamed H
+AU  - Noureldein MH
+AUID- ORCID: 0000-0002-7021-1511
+FAU - McGinley, Lisa M
+AU  - McGinley LM
+AUID- ORCID: 0000-0003-0346-8242
+FAU - Hayes, John M
+AU  - Hayes JM
+FAU - Rigan, Diana M
+AU  - Rigan DM
+FAU - Kwentus, Jacquelin F
+AU  - Kwentus JF
+FAU - Mason, Shayna N
+AU  - Mason SN
+FAU - Mendelson, Faye E
+AU  - Mendelson FE
+AUID- ORCID: 0000-0002-5601-7675
+FAU - Savelieffd, Masha G
+AU  - Savelieffd MG
+AUID- ORCID: 0000-0001-5575-2494
+FAU - Feldman, Eva L
+AU  - Feldman EL
+AUID- ORCID: 0000-0002-9162-2694
+LA  - eng
+PT  - Journal Article
+PT  - Preprint
+DEP - 20231104
+PL  - United States
+TA  - bioRxiv
+JT  - bioRxiv : the preprint server for biology
+JID - 101680187
+UIN - Front Aging Neurosci. 2023 Dec 14;15:1306004. doi: 10.3389/fnagi.2023.1306004. 
+      PMID: 38155736
+PMC - PMC10635057
+EDAT- 2023/11/14 06:43
+MHDA- 2023/11/14 06:44
+PMCR- 2023/11/09
+CRDT- 2023/11/14 03:54
+PHST- 2023/11/14 06:44 [medline]
+PHST- 2023/11/14 06:43 [pubmed]
+PHST- 2023/11/14 03:54 [entrez]
+PHST- 2023/11/09 00:00 [pmc-release]
+AID - 2023.11.01.565161 [pii]
+AID - 10.1101/2023.11.01.565161 [doi]
+PST - epublish
+SO  - bioRxiv [Preprint]. 2023 Nov 4:2023.11.01.565161. doi: 10.1101/2023.11.01.565161.
+
+PMID- 38155736
+OWN - NLM
+STAT- PubMed-not-MEDLINE
+LR  - 20240210
+IS  - 1663-4365 (Print)
+IS  - 1663-4365 (Electronic)
+IS  - 1663-4365 (Linking)
+VI  - 15
+DP  - 2023
+TI  - Human neural stem cells restore spatial memory in a transgenic Alzheimer's 
+      disease mouse model by an immunomodulating mechanism.
+PG  - 1306004
+LID - 10.3389/fnagi.2023.1306004 [doi]
+LID - 1306004
+AB  - INTRODUCTION: Stem cells are a promising therapeutic in Alzheimer's disease (AD) 
+      given the complex pathophysiologic pathways involved. However, the therapeutic 
+      mechanisms of stem cells remain unclear. Here, we used spatial transcriptomics to 
+      elucidate therapeutic mechanisms of human neural stem cells (hNSCs) in an animal 
+      model of AD. METHODS: hNSCs were transplanted into the fimbria fornix of the 
+      hippocampus using the 5XFAD mouse model. Spatial memory was assessed by Morris 
+      water maze. Amyloid plaque burden was quantified. Spatial transcriptomics was 
+      performed and differentially expressed genes (DEGs) identified both globally and 
+      within the hippocampus. Subsequent pathway enrichment and ligand-receptor network 
+      analysis was performed. RESULTS: hNSC transplantation restored learning curves of 
+      5XFAD mice. However, there were no changes in amyloid plaque burden. Spatial 
+      transcriptomics showed 1,061 DEGs normalized in hippocampal subregions. Plaque 
+      induced genes in microglia, along with populations of stage 1 and stage 2 disease 
+      associated microglia (DAM), were normalized upon hNSC transplantation. Pathologic 
+      signaling between hippocampus and DAM was also restored. DISCUSSION: hNSCs 
+      normalized many dysregulated genes, although this was not mediated by a change in 
+      amyloid plaque levels. Rather, hNSCs appear to exert beneficial effects in part 
+      by modulating microglia-mediated neuroinflammation and signaling in AD.
+CI  - Copyright © 2023 Chen, Noureldein, McGinley, Hayes, Rigan, Kwentus, Mason, 
+      Mendelson, Savelieff and Feldman.
+FAU - Chen, Kevin S
+AU  - Chen KS
+AD  - Department of Neurology, University of Michigan, Ann Arbor, MI, United States.
+AD  - Department of Neurosurgery, University of Michigan, Ann Arbor, MI, United States.
+AD  - NeuroNetwork for Emerging Therapies, University of Michigan, Ann Arbor, MI, 
+      United States.
+FAU - Noureldein, Mohamed H
+AU  - Noureldein MH
+AD  - Department of Neurology, University of Michigan, Ann Arbor, MI, United States.
+AD  - NeuroNetwork for Emerging Therapies, University of Michigan, Ann Arbor, MI, 
+      United States.
+FAU - McGinley, Lisa M
+AU  - McGinley LM
+AD  - Department of Neurology, University of Michigan, Ann Arbor, MI, United States.
+AD  - NeuroNetwork for Emerging Therapies, University of Michigan, Ann Arbor, MI, 
+      United States.
+FAU - Hayes, John M
+AU  - Hayes JM
+AD  - Department of Neurology, University of Michigan, Ann Arbor, MI, United States.
+AD  - NeuroNetwork for Emerging Therapies, University of Michigan, Ann Arbor, MI, 
+      United States.
+FAU - Rigan, Diana M
+AU  - Rigan DM
+AD  - Department of Neurology, University of Michigan, Ann Arbor, MI, United States.
+AD  - NeuroNetwork for Emerging Therapies, University of Michigan, Ann Arbor, MI, 
+      United States.
+FAU - Kwentus, Jacquelin F
+AU  - Kwentus JF
+AD  - Department of Neurology, University of Michigan, Ann Arbor, MI, United States.
+AD  - NeuroNetwork for Emerging Therapies, University of Michigan, Ann Arbor, MI, 
+      United States.
+FAU - Mason, Shayna N
+AU  - Mason SN
+AD  - Department of Neurology, University of Michigan, Ann Arbor, MI, United States.
+AD  - NeuroNetwork for Emerging Therapies, University of Michigan, Ann Arbor, MI, 
+      United States.
+FAU - Mendelson, Faye E
+AU  - Mendelson FE
+AD  - Department of Neurology, University of Michigan, Ann Arbor, MI, United States.
+AD  - NeuroNetwork for Emerging Therapies, University of Michigan, Ann Arbor, MI, 
+      United States.
+FAU - Savelieff, Masha G
+AU  - Savelieff MG
+AD  - Department of Biomedical Sciences, University of North Dakota, Grand Forks, ND, 
+      United States.
+FAU - Feldman, Eva L
+AU  - Feldman EL
+AD  - Department of Neurology, University of Michigan, Ann Arbor, MI, United States.
+AD  - NeuroNetwork for Emerging Therapies, University of Michigan, Ann Arbor, MI, 
+      United States.
+LA  - eng
+GR  - U01 AG057562/AG/NIA NIH HHS/United States
+PT  - Journal Article
+DEP - 20231214
+PL  - Switzerland
+TA  - Front Aging Neurosci
+JT  - Frontiers in aging neuroscience
+JID - 101525824
+UOF - bioRxiv. 2023 Nov 04:2023.11.01.565161. doi: 10.1101/2023.11.01.565161. PMID: 
+      37961246
+PMC - PMC10753006
+OTO - NOTNLM
+OT  - Alzheimer’s disease
+OT  - cell communication
+OT  - disease-associated microglia
+OT  - immunomodulation
+OT  - microglia
+OT  - neural stem cell
+OT  - spatial transcriptomics
+OT  - stem cell therapy
+COIS- The authors declare that the research was conducted in the absence of any 
+      commercial or financial relationships that could be construed as a potential 
+      conflict of interest.
+EDAT- 2023/12/29 06:43
+MHDA- 2023/12/29 06:44
+PMCR- 2023/01/01
+CRDT- 2023/12/29 03:36
+PHST- 2023/10/02 00:00 [received]
+PHST- 2023/11/22 00:00 [accepted]
+PHST- 2023/12/29 06:44 [medline]
+PHST- 2023/12/29 06:43 [pubmed]
+PHST- 2023/12/29 03:36 [entrez]
+PHST- 2023/01/01 00:00 [pmc-release]
+AID - 10.3389/fnagi.2023.1306004 [doi]
+PST - epublish
+SO  - Front Aging Neurosci. 2023 Dec 14;15:1306004. doi: 10.3389/fnagi.2023.1306004. 
+      eCollection 2023.
+
+PMID- 38426371
+OWN - NLM
+STAT- MEDLINE
+DCOM- 20240422
+LR  - 20250219
+IS  - 1552-5279 (Electronic)
+IS  - 1552-5260 (Print)
+IS  - 1552-5260 (Linking)
+VI  - 20
+IP  - 4
+DP  - 2024 Apr
+TI  - Genetic diversity promotes resilience in a mouse model of Alzheimer's disease.
+PG  - 2794-2816
+LID - 10.1002/alz.13753 [doi]
+AB  - INTRODUCTION: Alzheimer's disease (AD) is a neurodegenerative disorder with 
+      multifactorial etiology, including genetic factors that play a significant role 
+      in disease risk and resilience. However, the role of genetic diversity in 
+      preclinical AD studies has received limited attention. METHODS: We crossed five 
+      Collaborative Cross strains with 5xFAD C57BL/6J female mice to generate F1 mice 
+      with and without the 5xFAD transgene. Amyloid plaque pathology, microglial and 
+      astrocytic responses, neurofilament light chain levels, and gene expression were 
+      assessed at various ages. RESULTS: Genetic diversity significantly impacts 
+      AD-related pathology. Hybrid strains showed resistance to amyloid plaque 
+      formation and neuronal damage. Transcriptome diversity was maintained across ages 
+      and sexes, with observable strain-specific variations in AD-related phenotypes. 
+      Comparative gene expression analysis indicated correlations between mouse strains 
+      and human AD. DISCUSSION: Increasing genetic diversity promotes resilience to 
+      AD-related pathogenesis, relative to an inbred C57BL/6J background, reinforcing 
+      the importance of genetic diversity in uncovering resilience in the development 
+      of AD. HIGHLIGHTS: Genetic diversity's impact on AD in mice was explored. Diverse 
+      F1 mouse strains were used for AD study, via the Collaborative Cross. 
+      Strain-specific variations in AD pathology, glia, and transcription were found. 
+      Strains resilient to plaque formation and plasma neurofilament light chain (NfL) 
+      increases were identified. Correlations with human AD transcriptomics were 
+      observed.
+CI  - © 2024 The Authors. Alzheimer's & Dementia published by Wiley Periodicals LLC on 
+      behalf of Alzheimer's Association.
+FAU - Soni, Neelakshi
+AU  - Soni N
+AD  - Department of Neurobiology and Behavior, University of California, Irvine, 
+      California, USA.
+FAU - Hohsfield, Lindsay A
+AU  - Hohsfield LA
+AD  - Department of Neurobiology and Behavior, University of California, Irvine, 
+      California, USA.
+AD  - Institute for Memory Impairments and Neurological Disorders, University of 
+      California, Irvine, California, USA.
+FAU - Tran, Kristine M
+AU  - Tran KM
+AD  - Department of Neurobiology and Behavior, University of California, Irvine, 
+      California, USA.
+FAU - Kawauchi, Shimako
+AU  - Kawauchi S
+AD  - Institute for Memory Impairments and Neurological Disorders, University of 
+      California, Irvine, California, USA.
+AD  - Transgenic Mouse Facility, ULAR, Office of Research, University of California, 
+      Irvine, California, USA.
+FAU - Walker, Amber
+AU  - Walker A
+AD  - Institute for Memory Impairments and Neurological Disorders, University of 
+      California, Irvine, California, USA.
+AD  - Transgenic Mouse Facility, ULAR, Office of Research, University of California, 
+      Irvine, California, USA.
+FAU - Javonillo, Dominic
+AU  - Javonillo D
+AD  - Department of Neurobiology and Behavior, University of California, Irvine, 
+      California, USA.
+FAU - Phan, Jimmy
+AU  - Phan J
+AD  - Institute for Memory Impairments and Neurological Disorders, University of 
+      California, Irvine, California, USA.
+FAU - Matheos, Dina
+AU  - Matheos D
+AD  - Department of Neurobiology and Behavior, University of California, Irvine, 
+      California, USA.
+FAU - Da Cunha, Celia
+AU  - Da Cunha C
+AD  - Institute for Memory Impairments and Neurological Disorders, University of 
+      California, Irvine, California, USA.
+FAU - Uyar, Asli
+AU  - Uyar A
+AD  - The Jackson Laboratory, Bar Harbor, Maine, USA.
+FAU - Milinkeviciute, Giedre
+AU  - Milinkeviciute G
+AD  - Institute for Memory Impairments and Neurological Disorders, University of 
+      California, Irvine, California, USA.
+FAU - Gomez-Arboledas, Angela
+AU  - Gomez-Arboledas A
+AD  - Institute for Memory Impairments and Neurological Disorders, University of 
+      California, Irvine, California, USA.
+FAU - Tran, Katelynn
+AU  - Tran K
+AD  - Institute for Memory Impairments and Neurological Disorders, University of 
+      California, Irvine, California, USA.
+FAU - Kaczorowski, Catherine C
+AU  - Kaczorowski CC
+AD  - Department of Neurology, University of Michigan, Ann Arbor, Michigan, USA.
+FAU - Wood, Marcelo A
+AU  - Wood MA
+AD  - Department of Neurobiology and Behavior, University of California, Irvine, 
+      California, USA.
+AD  - Institute for Memory Impairments and Neurological Disorders, University of 
+      California, Irvine, California, USA.
+FAU - Tenner, Andrea J
+AU  - Tenner AJ
+AD  - Department of Neurobiology and Behavior, University of California, Irvine, 
+      California, USA.
+AD  - Institute for Memory Impairments and Neurological Disorders, University of 
+      California, Irvine, California, USA.
+AD  - Department of Molecular Biology and Biochemistry, University of California, 
+      Irvine, California, USA.
+AD  - Department of Pathology and Laboratory Medicine, University of California, 
+      Irvine, California, USA.
+FAU - LaFerla, Frank M
+AU  - LaFerla FM
+AD  - Department of Neurobiology and Behavior, University of California, Irvine, 
+      California, USA.
+AD  - Institute for Memory Impairments and Neurological Disorders, University of 
+      California, Irvine, California, USA.
+FAU - Carter, Gregory W
+AU  - Carter GW
+AD  - The Jackson Laboratory, Bar Harbor, Maine, USA.
+FAU - Mortazavi, Ali
+AU  - Mortazavi A
+AD  - Institute for Memory Impairments and Neurological Disorders, University of 
+      California, Irvine, California, USA.
+AD  - Department of Developmental and Cellular Biology, University of California, 
+      Irvine, California, USA.
+AD  - Center for Complex Biological Systems, University of California, Irvine, 
+      California, USA.
+FAU - Swarup, Vivek
+AU  - Swarup V
+AD  - Department of Neurobiology and Behavior, University of California, Irvine, 
+      California, USA.
+AD  - Institute for Memory Impairments and Neurological Disorders, University of 
+      California, Irvine, California, USA.
+FAU - MacGregor, Grant R
+AU  - MacGregor GR
+AD  - Transgenic Mouse Facility, ULAR, Office of Research, University of California, 
+      Irvine, California, USA.
+AD  - Department of Developmental and Cellular Biology, University of California, 
+      Irvine, California, USA.
+FAU - Green, Kim N
+AU  - Green KN
+AD  - Department of Neurobiology and Behavior, University of California, Irvine, 
+      California, USA.
+AD  - Institute for Memory Impairments and Neurological Disorders, University of 
+      California, Irvine, California, USA.
+LA  - eng
+GR  - P30 CA062203/CA/NCI NIH HHS/United States
+GR  - T32 AG000096/AG/NIA NIH HHS/United States
+GR  - U54 AG054349/AG/NIA NIH HHS/United States
+PT  - Journal Article
+PT  - Research Support, N.I.H., Extramural
+PT  - Research Support, Non-U.S. Gov't
+DEP - 20240301
+PL  - United States
+TA  - Alzheimers Dement
+JT  - Alzheimer's & dementia : the journal of the Alzheimer's Association
+JID - 101231978
+RN  - 0 (Amyloid beta-Peptides)
+SB  - IM
+MH  - Mice
+MH  - Humans
+MH  - Female
+MH  - Animals
+MH  - *Alzheimer Disease/pathology
+MH  - Plaque, Amyloid/pathology
+MH  - *Resilience, Psychological
+MH  - Mice, Inbred C57BL
+MH  - Microglia/metabolism
+MH  - Genetic Variation/genetics
+MH  - Disease Models, Animal
+MH  - Mice, Transgenic
+MH  - Amyloid beta-Peptides/metabolism
+PMC - PMC11032575
+OTO - NOTNLM
+OT  - 5xFAD
+OT  - Alzheimer's disease
+OT  - amyloid
+OT  - astrocytes
+OT  - collaborative cross mice
+OT  - genetic diversity
+OT  - microglia
+OT  - neurofilament light chain
+OT  - resilience
+COIS- The authors declare no conflicts of interest. Author disclosures are available in 
+      the supporting information.
+EDAT- 2024/03/01 06:44
+MHDA- 2024/04/22 06:44
+PMCR- 2024/03/01
+CRDT- 2024/03/01 05:32
+PHST- 2024/01/29 00:00 [revised]
+PHST- 2023/11/17 00:00 [received]
+PHST- 2024/01/30 00:00 [accepted]
+PHST- 2024/04/22 06:44 [medline]
+PHST- 2024/03/01 06:44 [pubmed]
+PHST- 2024/03/01 05:32 [entrez]
+PHST- 2024/03/01 00:00 [pmc-release]
+AID - ALZ13753 [pii]
+AID - 10.1002/alz.13753 [doi]
+PST - ppublish
+SO  - Alzheimers Dement. 2024 Apr;20(4):2794-2816. doi: 10.1002/alz.13753. Epub 2024 
+      Mar 1.
+

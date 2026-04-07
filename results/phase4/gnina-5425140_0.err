@@ -1,0 +1,26 @@
+2026-03-24 20:16:58,585 INFO Target:    PPARG_1FM9_LBD_prep
+2026-03-24 20:16:58,586 INFO Receptor:  PPARG_1FM9_LBD_prep.pdbqt
+2026-03-24 20:16:58,586 INFO Rescoring: 30 compounds (top 30 minus 0 blacklisted)
+2026-03-24 20:16:58,586 INFO CPUs:      20
+2026-03-24 20:16:58,587 INFO Box:       center=(12.487, -3.853, 46.330)  size=24Å
+2026-03-24 20:17:42,116 INFO   Progress: 10/30 — ok=10 fail=0
+2026-03-24 20:18:09,585 INFO   Progress: 20/30 — ok=20 fail=0
+2026-03-24 20:18:58,697 WARNING   FAILED CHEMBL623: timeout
+2026-03-24 20:18:58,698 INFO   Progress: 30/30 — ok=29 fail=1
+2026-03-24 20:18:58,707 INFO 
+=== Gnina complete: PPARG_1FM9_LBD_prep ===
+2026-03-24 20:18:58,708 INFO   Rescored: 29  Failed: 1
+2026-03-24 20:18:58,711 INFO   Scores saved: gnina_scores_PPARG_1FM9_LBD_prep.csv  (29 entries)
+2026-03-24 20:18:58,711 INFO 
+  Top 10 by CNN score:
+2026-03-24 20:18:58,711 INFO     CHEMBL898             CNN=0.9554  Vina= -8.77  CNNaff=5.98
+2026-03-24 20:18:58,711 INFO     CHEMBL1201203         CNN=0.9453  Vina= -8.73  CNNaff=6.68
+2026-03-24 20:18:58,712 INFO     CHEMBL294199          CNN=0.9452  Vina= -8.18  CNNaff=6.07
+2026-03-24 20:18:58,712 INFO     CHEMBL1256841         CNN=0.9445  Vina= -8.66  CNNaff=6.05
+2026-03-24 20:18:58,712 INFO     CHEMBL439849          CNN=0.8885  Vina= -8.68  CNNaff=6.45
+2026-03-24 20:18:58,712 INFO     CHEMBL41355           CNN=0.8726  Vina= -8.25  CNNaff=6.31
+2026-03-24 20:18:58,712 INFO     CHEMBL108             CNN=0.8704  Vina= -8.21  CNNaff=6.15
+2026-03-24 20:18:58,712 INFO     CHEMBL282052          CNN=0.8625  Vina= -9.12  CNNaff=6.15
+2026-03-24 20:18:58,712 INFO     CHEMBL53              CNN=0.8244  Vina= -8.06  CNNaff=5.91
+2026-03-24 20:18:58,712 INFO     CHEMBL2105760         CNN=0.8116  Vina= -8.24  CNNaff=6.39
+2026-03-24 20:18:58,712 INFO Next step: 15_run_gnina.slurm → 16_consensus_filter.py

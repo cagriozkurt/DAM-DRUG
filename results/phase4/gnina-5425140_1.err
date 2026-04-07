@@ -1,0 +1,25 @@
+2026-03-24 20:16:58,616 INFO Target:    IRF8_AF2_DBD_prep
+2026-03-24 20:16:58,616 INFO Receptor:  IRF8_AF2_DBD_prep.pdbqt
+2026-03-24 20:16:58,617 INFO Rescoring: 30 compounds (top 30 minus 0 blacklisted)
+2026-03-24 20:16:58,617 INFO CPUs:      20
+2026-03-24 20:16:58,619 INFO Box:       center=(-29.595, -2.566, 20.373)  size=20Å
+2026-03-24 20:17:27,213 INFO   Progress: 10/30 — ok=10 fail=0
+2026-03-24 20:17:51,681 INFO   Progress: 20/30 — ok=20 fail=0
+2026-03-24 20:18:38,803 INFO   Progress: 30/30 — ok=30 fail=0
+2026-03-24 20:18:38,811 INFO 
+=== Gnina complete: IRF8_AF2_DBD_prep ===
+2026-03-24 20:18:38,811 INFO   Rescored: 30  Failed: 0
+2026-03-24 20:18:38,814 INFO   Scores saved: gnina_scores_IRF8_AF2_DBD_prep.csv  (30 entries)
+2026-03-24 20:18:38,814 INFO 
+  Top 10 by CNN score:
+2026-03-24 20:18:38,814 INFO     CHEMBL1089318         CNN=0.8374  Vina= -6.94  CNNaff=5.62
+2026-03-24 20:18:38,814 INFO     CHEMBL285674          CNN=0.8060  Vina= -6.49  CNNaff=4.75
+2026-03-24 20:18:38,815 INFO     CHEMBL1568698         CNN=0.7717  Vina= -6.59  CNNaff=4.51
+2026-03-24 20:18:38,815 INFO     CHEMBL490             CNN=0.7484  Vina= -6.68  CNNaff=5.20
+2026-03-24 20:18:38,815 INFO     CHEMBL2103837         CNN=0.7411  Vina= -6.71  CNNaff=5.07
+2026-03-24 20:18:38,815 INFO     CHEMBL42              CNN=0.7401  Vina= -6.70  CNNaff=4.68
+2026-03-24 20:18:38,815 INFO     CHEMBL646             CNN=0.7401  Vina= -6.54  CNNaff=5.26
+2026-03-24 20:18:38,815 INFO     CHEMBL282052          CNN=0.7308  Vina= -6.49  CNNaff=4.82
+2026-03-24 20:18:38,815 INFO     CHEMBL569713          CNN=0.7303  Vina= -6.44  CNNaff=4.56
+2026-03-24 20:18:38,815 INFO     CHEMBL661             CNN=0.7269  Vina= -6.45  CNNaff=4.81
+2026-03-24 20:18:38,815 INFO Next step: 15_run_gnina.slurm → 16_consensus_filter.py
