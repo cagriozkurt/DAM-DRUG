@@ -162,14 +162,14 @@ export DAM_DRUG_DIR=/path/to/DAM-DRUG   # required by every script
 
 ### Docker images (recommended)
 
-Dockerfiles are in `docker/`. Images are hosted on Docker Hub.
+Dockerfiles are in `docker/`. Images are hosted on GitHub Container Registry (ghcr.io).
 
 | Image | Used by | Pull |
 |-------|---------|------|
-| `ghcr.io/cagriozkurt/dam-drug-scanpy` | Phases 1, 2 (GRN), 6 (figures), tables | `docker pull ghcr.io/cagriozkurt/dam-drug-scanpy:latest` |
-| `ghcr.io/cagriozkurt/dam-drug-r` | Phase 2 LR (CellChat/NicheNet) | `docker pull ghcr.io/cagriozkurt/dam-drug-r:latest` |
+| `ghcr.io/cagriozkurt/dam-drug-scanpy` | Phases 1, 2 (GRN), 6 (figures), tables | `apptainer pull dam-drug-scanpy.sif docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest` |
+| `ghcr.io/cagriozkurt/dam-drug-r` | Phase 2 LR (CellChat/NicheNet) | `apptainer pull dam-drug-r.sif docker://ghcr.io/cagriozkurt/dam-drug-r:latest` |
 
-**On TRUBA** — Apptainer pulls directly from Docker Hub and converts to SIF:
+**On TRUBA** — Apptainer pulls directly from ghcr.io and converts to SIF:
 
 ```bash
 apptainer pull ~/containers/dam-drug-scanpy.sif docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
