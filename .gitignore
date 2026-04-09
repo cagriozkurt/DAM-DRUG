@@ -60,8 +60,9 @@ results/phase4/mmpbsa/*/
 results/phase4/mmpbsa_tier2/*/
 
 # ── MD run directories — exclude all per-complex subdirectories ───────────────
-# Summary CSVs at results/phase4/ level are kept
+# Summary CSVs at results/phase4/ level are kept; .xvg time-series are committed
 results/phase4/md/*/
+!results/phase4/md/**/*.xvg
 
 # ── fpocket raw per-pocket outputs — keep only summary files ─────────────────
 # Summary CSVs (e.g. pocket_info.csv) are kept; per-pocket .pqr/.pdb excluded

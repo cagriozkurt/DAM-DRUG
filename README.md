@@ -90,7 +90,10 @@ python code/phase6_figures/supp_fig_s7_bhlhe_coexpr.py
 python code/phase6_figures/supp_fig_s8_slit2_robo2_expr.py
 ```
 
-> `fig1_atlas.py` requires the trajectory h5ad file (~3.3 GB, from SEA-AD). Download it first with `bash code/phase1_QC/01_data_acquisition.sh` (requires AWS CLI).
+> **Data requirements for specific figures:**
+> - `fig1_atlas.py`, `supp_fig_s3_qc.py`, `supp_fig_s7_bhlhe_coexpr.py` — require SEA-AD h5ad files (~3.3–36 GB). Download with `bash code/phase1_QC/01_data_acquisition.sh` (requires AWS CLI).
+> - `supp_fig_s8_slit2_robo2_expr.py` — requires `results/phase2/LR/prep/counts_raw.h5` (873 MB sparse count matrix). Download from Zenodo: `wget -P results/phase2/LR/prep/ https://zenodo.org/records/PLACEHOLDER/files/counts_raw.h5` *(DOI will be updated upon manuscript submission)*.
+> - `supp_fig_s5_md_rmsd.py` — requires GROMACS `.xvg` files, which are included in the repository under `results/phase4/md/`.
 
 **Run all tables:**
 
