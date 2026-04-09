@@ -24,7 +24,8 @@ set -eo pipefail
 
 PROJDIR=${DAM_DRUG_DIR:-/arf/scratch/mozkurt/DAM-DRUG}
 export DAM_DRUG_DIR=$PROJDIR
-CONTAINER=$HOME/containers/scanpy-env.sif
+SIF=$HOME/containers/dam-drug-scanpy.sif
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://mozkurt/dam-drug-scanpy:latest
 GRN=$PROJDIR/results/phase2/GRN
 
 ADJ=$GRN/adj_matrix_aggregated.tsv
@@ -49,7 +50,7 @@ else
     echo "=== pyscenic ctx: $(date) ==="
     apptainer exec \
       --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
-      $CONTAINER \
+      "$SIF" \
       conda run -n scenic \
         pyscenic ctx \
           "$ADJ" \
@@ -70,7 +71,7 @@ else
     echo "=== pyscenic aucell: $(date) ==="
     apptainer exec \
       --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
-      $CONTAINER \
+      "$SIF" \
       conda run -n scenic \
         pyscenic aucell \
           "$LOOM" \
@@ -84,7 +85,7 @@ fi
 echo "=== Summarizing regulon activity: $(date) ==="
 apptainer exec \
   --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
-  $CONTAINER \
+  "$SIF" \
   conda run -n scenic python - << 'PYEOF'
 import os, loompy, pandas as pd
 from pathlib import Path

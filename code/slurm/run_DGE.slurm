@@ -10,7 +10,8 @@
 #SBATCH --mem=180G         # barbun has 384 GB/node; use 180 GB to leave headroom
 
 PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
-CONTAINER=$HOME/containers/scanpy-env.sif
+SIF=$HOME/containers/dam-drug-scanpy.sif
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://mozkurt/dam-drug-scanpy:latest
 H5AD_SRC=$PROJDIR/data/raw/SEA-AD/SEA-AD_Microglia_multi-regional_final-nuclei.2025-07-24.h5ad
 H5AD_TMP=/tmp/SEA-AD_Microglia.h5ad
 
@@ -30,8 +31,8 @@ export SEA_AD_H5AD=$H5AD_TMP   # script will use this if set
 apptainer exec \
   --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
   --bind /tmp:/tmp \
-  $CONTAINER \
-  python $PROJDIR/code/phase1_QC/04_DGE_microglial_states.py
+  "$SIF" \
+  conda run -n scanpy_env python $PROJDIR/code/phase1_QC/04_DGE_microglial_states.py
 
 echo "Done: $(date)"
 

@@ -1,0 +1,36 @@
+# DAM-DRUG — Python analysis environments (scanpy_env + scenic)
+#
+# Contains two conda environments:
+#   scanpy_env  — figure generation, QC, tables (phases 1, 6)
+#   scenic      — pySCENIC GRN inference (phase 2)
+#
+# Build (from repo root):
+#   docker build -f docker/Dockerfile.scanpy -t mozkurt/dam-drug-scanpy:latest .
+#
+# Push:
+#   docker push mozkurt/dam-drug-scanpy:latest
+#
+# Pull on TRUBA (converts to SIF automatically):
+#   apptainer pull ~/containers/dam-drug-scanpy.sif docker://mozkurt/dam-drug-scanpy:latest
+#
+# Run locally:
+#   docker run --rm -v $(pwd):/work mozkurt/dam-drug-scanpy \
+#     conda run -n scanpy_env python code/phase6_figures/fig2_targets.py
+
+FROM continuumio/miniconda3:24.3.0-0
+
+LABEL org.opencontainers.image.description="DAM-DRUG scanpy_env + scenic Python environments"
+LABEL org.opencontainers.image.source="https://github.com/mozkurt/DAM-DRUG"
+
+# Install mamba for faster environment solving
+RUN conda install -n base -c conda-forge mamba -y && conda clean -a -y
+
+# ── scanpy_env ────────────────────────────────────────────────────────────────
+COPY envs/scanpy_env.yml /tmp/scanpy_env.yml
+RUN mamba env create -f /tmp/scanpy_env.yml && conda clean -a -y
+
+# ── scenic ────────────────────────────────────────────────────────────────────
+COPY envs/scenic.yml /tmp/scenic.yml
+RUN mamba env create -f /tmp/scenic.yml && conda clean -a -y
+
+WORKDIR /work

@@ -17,7 +17,8 @@
 set -eo pipefail
 
 PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
-CONTAINER=$HOME/containers/scanpy-env.sif
+SIF=$HOME/containers/dam-drug-scanpy.sif
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://mozkurt/dam-drug-scanpy:latest
 
 export DAM_DRUG_DIR=$PROJDIR
 mkdir -p $PROJDIR/logs $PROJDIR/results/figures
@@ -38,7 +39,7 @@ ls $ROC_DIR/*.csv
 
 apptainer exec \
   --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
-  $CONTAINER \
+  "$SIF" \
   conda run -n scenic \
     python $PROJDIR/code/phase6_figures/supp_fig_s4_docking_roc.py
 

@@ -13,19 +13,15 @@
 PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
 export DAM_DRUG_DIR=$PROJDIR
 
-# 1. Total Isolation: Wipe R paths so it only sees the container's internals
-export R_LIBS_USER=""
-export R_LIBS_SITE=""
-export R_LIBS=""
+SIF=$HOME/containers/dam-drug-r.sif
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://mozkurt/dam-drug-r:latest
 
 echo "=== SEA-AD CellChat Analysis (Apptainer) ==="
 echo "Node: $SLURMD_NODENAME"
 echo "Start: $(date)"
 
-# 2. Execute using the verified image
-# We bind /arf so the container can read the 34GB counts_raw.h5
-apptainer exec --cleanenv --nv --bind /arf:/arf \
-    $PROJDIR/cellchat.sif \
-    /opt/conda/envs/cellchat_r/bin/Rscript --vanilla $PROJDIR/code/phase2_LR/37_cellchat_nichechat.R
+apptainer exec --cleanenv --bind /arf:/arf \
+    "$SIF" \
+    Rscript --vanilla $PROJDIR/code/phase2_LR/37_cellchat_nichechat.R
 
 echo "Analysis complete: $(date)"

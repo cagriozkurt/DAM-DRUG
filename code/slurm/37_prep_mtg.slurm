@@ -13,13 +13,14 @@
 PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
 export DAM_DRUG_DIR=$PROJDIR
 
+SIF=$HOME/containers/dam-drug-scanpy.sif
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://mozkurt/dam-drug-scanpy:latest
+
 echo "=== MTG Preprocessing (Apptainer) ==="
 echo "Start: $(date)"
 
-# Run using the new scanpy.sif
-# We use --env to ensure the internal conda environment is active
 apptainer exec --cleanenv --bind /arf:/arf \
-    $PROJDIR/scanpy.sif \
-    /opt/conda/envs/scanpy_env/bin/python $PROJDIR/code/phase2_LR/36_prep_mtg_for_cellchat.py
+    "$SIF" \
+    conda run -n scanpy_env python $PROJDIR/code/phase2_LR/36_prep_mtg_for_cellchat.py
 
 echo "Done: $(date)"

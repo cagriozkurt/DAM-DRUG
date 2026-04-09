@@ -65,12 +65,21 @@ DAM-DRUG/
 
 All main and supplementary figures, and all manuscript tables, can be reproduced locally from pre-computed result files already present in `results/`. No HPC, no GROMACS, no GNINA, no large data downloads required.
 
-**Setup (one environment, ~5 minutes):**
+**Setup — option A: Docker (recommended, exact environment):**
 
 ```bash
-conda env create -f envs/scanpy_env.yml -n scanpy_env
+docker pull mozkurt/dam-drug-scanpy:latest
+export DAM_DRUG_DIR=/path/to/DAM-DRUG
+alias pyrun="docker run --rm -v $DAM_DRUG_DIR:/work -w /work mozkurt/dam-drug-scanpy conda run -n scanpy_env python"
+```
+
+**Setup — option B: conda (~5 minutes):**
+
+```bash
+conda env create -f envs/scanpy_env.yml
 conda activate scanpy_env
 export DAM_DRUG_DIR=/path/to/DAM-DRUG
+alias pyrun="python"
 ```
 
 **Run all figures:**
@@ -145,68 +154,76 @@ Install these before running Phases 3–4:
 
 ## Environment setup
 
-All environments are specified in `envs/`. Set the project root environment variable first — every script reads it:
+Two Docker images cover all analysis and figure steps. For full pipeline execution on TRUBA, conda environments are also provided.
 
 ```bash
-export DAM_DRUG_DIR=/path/to/DAM-DRUG   # set this before running any script
+export DAM_DRUG_DIR=/path/to/DAM-DRUG   # required by every script
 ```
 
-### Environment 1 — scenic (pySCENIC GRN inference)
+### Docker images (recommended)
 
-Used by: Phase 2 GRN steps 05, 25, 26, 28
+Dockerfiles are in `docker/`. Images are hosted on Docker Hub.
 
+| Image | Used by | Pull |
+|-------|---------|------|
+| `mozkurt/dam-drug-scanpy` | Phases 1, 2 (GRN), 6 (figures), tables | `docker pull mozkurt/dam-drug-scanpy:latest` |
+| `mozkurt/dam-drug-r` | Phase 2 LR (CellChat/NicheNet) | `docker pull mozkurt/dam-drug-r:latest` |
+
+**On TRUBA** — Apptainer pulls directly from Docker Hub and converts to SIF:
+
+```bash
+apptainer pull ~/containers/dam-drug-scanpy.sif docker://mozkurt/dam-drug-scanpy:latest
+apptainer pull ~/containers/dam-drug-r.sif       docker://mozkurt/dam-drug-r:latest
+```
+
+All SLURM scripts auto-pull the SIF on first run if `~/containers/dam-drug-scanpy.sif` (or `dam-drug-r.sif`) is absent.
+
+**Run a figure locally with Docker:**
+
+```bash
+docker run --rm -v $DAM_DRUG_DIR:/work -w /work \
+  mozkurt/dam-drug-scanpy \
+  conda run -n scanpy_env python code/phase6_figures/fig2_targets.py
+```
+
+### Conda environments (alternative / HPC pipeline steps)
+
+Conda YAMLs in `envs/` match the exact package versions used. Use these if you prefer conda over Docker, or for the two pipeline-only environments (`mmpbsa`, `scMultiomeGRN`) that are not containerized due to system-level dependencies (GROMACS module, CUDA).
+
+#### scenic — pySCENIC GRN inference (Phase 2 steps 05, 25, 26, 28)
 ```bash
 conda env create -f envs/scenic.yml
-conda activate scenic
 ```
 
-### Environment 2 — scanpy_env (main analysis + figures)
-
-Used by: Phases 1, 2 (aggregate), 3, 5 (partial), 6, tables
-
+#### scanpy_env — main analysis + figures (Phases 1, 2 partial, 6, tables)
 ```bash
 conda env create -f envs/scanpy_env.yml
-conda activate scanpy_env
 ```
 
-### Environment 3 — scMultiomeGRN (multi-omic GRN + CellOracle)
-
-Used by: Phase 2 scMultiomeGRN (steps 30–33), Phase 2 ATAC (step 33), Phase 5 CellOracle (step 35)
-
+#### scMultiomeGRN — multi-omic GRN + CellOracle (Phase 2 steps 30–33, Phase 5 step 35)
 ```bash
 conda env create -f envs/scmultiomegrn.yml
-conda activate scMultiomeGRN
-# Install build-time deps first, then velocyto, then celloracle:
 pip install "cython" "numpy<2"
 pip install velocyto==0.17.17 --no-build-isolation
 pip install celloracle==0.20.0
-# PyTorch with CUDA 12.1 (for TRUBA V100; omit --index-url for CPU-only):
+# PyTorch with CUDA 12.1 (TRUBA V100); omit --index-url for CPU-only:
 pip install torch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 \
     --index-url https://download.pytorch.org/whl/cu121
 pip install torch_geometric lightning
 ```
 
-### Environment 4 — cellchat_r (CellChat in R)
-
-Used by: Phase 2 LR steps 36–39
-
+#### cellchat_r — CellChat in R (Phase 2 LR steps 37–39)
 ```bash
 conda env create -f envs/cellchat_r.yml
-conda activate cellchat_r
-# Install CellChat from GitHub (exact version used: 2.2.0.9001):
-Rscript -e 'devtools::install_github("jinworks/CellChat@v2.2.0")'
+Rscript -e 'remotes::install_github("jinworks/CellChat", upgrade="never", build_vignettes=FALSE)'
 ```
 
-### Environment 5 — mmpbsa (docking + MM-GBSA + pydeseq2)
-
-Used by: Phase 4 docking/MM-GBSA (steps 13–23), Phase 5 bulk DESeq2 (steps 19, 24)
-
+#### mmpbsa — docking + MM-GBSA + pydeseq2 (Phase 4, steps 13–23; Phase 5 steps 19, 24)
 ```bash
 conda env create -f envs/mmpbsa.yml
-conda activate mmpbsa
 export PATH="$HOME/.local/bin:$PATH"
-# gmx_MMPBSA and meeko are pip-installed to ~/.local/bin:
-pip install gmx_MMPBSA==1.6.4 meeko==0.7.1 pydeseq2==0.5.4 acpype==2023.10.27
+pip install gmx_MMPBSA==1.6.4 meeko==0.7.1 acpype==2023.10.27
+# GROMACS: module load apps/gromacs/2024.1-oneapi2024  (TRUBA only)
 ```
 
 ---

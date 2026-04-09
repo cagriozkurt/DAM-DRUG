@@ -23,7 +23,8 @@
 set -eo pipefail
 
 PROJDIR=${DAM_DRUG_DIR:-/arf/scratch/mozkurt/DAM-DRUG}
-CONTAINER=$HOME/containers/scanpy-env.sif
+SIF=$HOME/containers/dam-drug-scanpy.sif
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://mozkurt/dam-drug-scanpy:latest
 H5AD_SRC=$PROJDIR/data/raw/SEA-AD/SEA-AD_Microglia_multi-regional_final-nuclei.2025-07-24.h5ad
 H5AD_TMP=/tmp/SEA-AD_Microglia.h5ad
 
@@ -44,14 +45,14 @@ export SEA_AD_H5AD=$H5AD_TMP
 apptainer exec \
   --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
   --bind /tmp:/tmp \
-  $CONTAINER \
+  "$SIF" \
   conda run -n scenic \
     pip install -q --user python-igraph leidenalg
 
 apptainer exec \
   --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
   --bind /tmp:/tmp \
-  $CONTAINER \
+  "$SIF" \
   conda run -n scenic \
     python $PROJDIR/code/phase1_QC/27_trajectory_paga.py
 

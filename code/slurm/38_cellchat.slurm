@@ -21,9 +21,9 @@ set -eo pipefail
 
 PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
 export DAM_DRUG_DIR=$PROJDIR
-# Isolate conda R from polluted user library (has libsvml-dependent binaries)
-export R_LIBS_USER=""
-export R_LIBS=""
+
+SIF=$HOME/containers/dam-drug-r.sif
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://mozkurt/dam-drug-r:latest
 
 mkdir -p $PROJDIR/logs
 
@@ -31,18 +31,22 @@ echo "=== CellChat + NicheNet ==="
 echo "Job: $SLURM_JOB_ID on $SLURMD_NODENAME"
 echo "Start: $(date)"
 
-module load miniconda3
-
 # Verify key packages available before submitting full job
-conda run -n cellchat_r Rscript -e "
+apptainer exec \
+  --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
+  "$SIF" \
+  Rscript -e "
 for (pkg in c('CellChat','Matrix','hdf5r')) {
     ok <- requireNamespace(pkg, quietly=TRUE)
     cat(sprintf('%-20s %s\n', pkg, if(ok) 'OK' else 'MISSING'))
-    if (!ok) stop(paste(pkg, 'not installed — run 36_install_r_cellchat.slurm first'))
+    if (!ok) stop(paste(pkg, 'not found in dam-drug-r image'))
 }
 "
 
-conda run -n cellchat_r Rscript --vanilla $PROJDIR/code/phase2_LR/37_cellchat_nichechat.R
+apptainer exec \
+  --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
+  "$SIF" \
+  Rscript --vanilla $PROJDIR/code/phase2_LR/37_cellchat_nichechat.R
 
 echo ""
 echo "=== Done: $(date) ==="

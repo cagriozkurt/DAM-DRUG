@@ -26,7 +26,8 @@ set -eo pipefail
 
 SEED=$SLURM_ARRAY_TASK_ID          # 1, 2, 3, or 4
 PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
-CONTAINER=$HOME/containers/scanpy-env.sif
+SIF=$HOME/containers/dam-drug-scanpy.sif
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://mozkurt/dam-drug-scanpy:latest
 
 GRN_DIR=$PROJDIR/results/phase2/GRN
 LOOM=$GRN_DIR/microglia_raw.loom
@@ -48,7 +49,7 @@ fi
 
 apptainer exec \
   --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
-  $CONTAINER \
+  "$SIF" \
   conda run -n scenic \
     pyscenic grn \
       "$LOOM" \

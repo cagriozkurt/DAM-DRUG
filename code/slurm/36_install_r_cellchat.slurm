@@ -1,4 +1,7 @@
 #!/bin/bash
+# OBSOLETE — CellChat is now pre-installed in docker://mozkurt/dam-drug-r:latest
+# Use: apptainer pull ~/containers/dam-drug-r.sif docker://mozkurt/dam-drug-r:latest
+# This script is kept for historical reference only; do not submit.
 #SBATCH --account=mozkurt
 #SBATCH --job-name=r_install
 #SBATCH --output=/arf/scratch/mozkurt/DAM-DRUG/logs/r_install-%j.out
