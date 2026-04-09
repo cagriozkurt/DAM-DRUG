@@ -73,6 +73,14 @@ export DAM_DRUG_DIR=/path/to/DAM-DRUG
 alias pyrun="docker run --rm -v $DAM_DRUG_DIR:/work -w /work ghcr.io/cagriozkurt/dam-drug-scanpy conda run -n scanpy_env python"
 ```
 
+**Setup — option A (HPC/Apptainer):**
+
+```bash
+apptainer pull ~/containers/dam-drug-scanpy.sif docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
+export DAM_DRUG_DIR=/path/to/DAM-DRUG
+alias pyrun="apptainer exec --bind $DAM_DRUG_DIR:/work --pwd /work $HOME/containers/dam-drug-scanpy.sif conda run -n scanpy_env python"
+```
+
 **Setup — option B: conda (~5 minutes):**
 
 ```bash
