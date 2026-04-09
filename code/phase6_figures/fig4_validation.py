@@ -10,7 +10,7 @@ Panels:
 Run locally (all required CSVs present):
   python code/phase6_figures/fig4_validation.py
 
-Panel C: loads results/phase2/atac_da/fimo_enrichment_summary.csv if present;
+Panel C: loads results/phase2/ATAC_validation/motif_enrichment_summary.csv if present;
           falls back to hardcoded values from the TRUBA run.
 """
 
@@ -25,7 +25,7 @@ from pathlib import Path
 PROJECT = Path(__file__).resolve().parents[2]
 GSE     = PROJECT / "results/phase5/gse95587"
 CO      = PROJECT / "results/phase5/celloracle"
-ATAC    = PROJECT / "results/phase2/atac_da"
+ATAC    = PROJECT / "results/phase2/ATAC_validation"
 OUT     = PROJECT / "results/figures"
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -128,11 +128,11 @@ def panel_celloracle(ax):
 # ── Panel C: ATAC motif enrichment ────────────────────────────────────────────
 def panel_atac(ax):
     # Try to load from file (rsynced from TRUBA); fall back to known results
-    fimo_file = ATAC / "fimo_enrichment_summary.csv"
+    fimo_file = ATAC / "motif_enrichment_summary.csv"
     if fimo_file.exists():
         df = pd.read_csv(fimo_file)
     else:
-        print("  [Panel C] fimo_enrichment_summary.csv not found — using hardcoded results")
+        print("  [Panel C] motif_enrichment_summary.csv not found — using hardcoded results")
         df = pd.DataFrame({
             "tf":          ["PPARG", "IKZF1", "RELB", "SPI1", "IRF8", "RUNX1", "CEBPB"],
             "fold_enrich": [4.5,      3.9,     3.9,    3.8,    3.5,    3.5,     3.3],
