@@ -1,0 +1,41 @@
+# DAM-DRUG — pySCENIC GRN inference environment
+# Used by: Phase 2 GRN steps 05, 25, 26, 28
+# Exact versions from scenic env in original scanpy-env.sif container
+#
+# Recreate:
+#   conda env create -f envs/scenic.yml
+#   conda activate scenic
+
+name: scenic
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10.20
+  - pip
+  - pip:
+    - pyscenic==0.12.1
+    - ctxcore==0.2.0
+    - arboreto==0.1.6
+    - loompy==3.0.8
+    - dask==2023.12.0
+    - distributed==2023.12.0
+    - numpy==1.26.4          # NOTE: 1.x required by pySCENIC (not 2.x)
+    - anndata==0.11.4
+    - scanpy==1.11.5
+    - scipy==1.15.3
+    - pandas==2.3.3
+    - matplotlib==3.10.8
+    - seaborn==0.13.2
+    - scikit-learn==1.7.2
+    - statsmodels==0.14.6
+    - h5py==3.16.0
+    - umap-learn==0.5.11
+    - leidenalg==0.11.0
+    - numba==0.64.0
+    - networkx==3.4.2
+    - tqdm==4.67.3
+    - pynndescent==0.6.0
+    - cytoolz==1.1.0
+    - interlap==0.2.7
+    - multiprocessing-on-dill==3.5.0a4

@@ -152,18 +152,16 @@ export DAM_DRUG_DIR=/path/to/DAM-DRUG   # set this before running any script
 Used by: Phase 2 GRN steps 05, 25, 26, 28
 
 ```bash
-conda env create -f envs/scanpy_env.yml -n scenic
+conda env create -f envs/scenic.yml
 conda activate scenic
 ```
-
-> This creates the `scenic` environment as named in the YAML. The same file also documents `scanpy_env` (Environment 2 below) — two environments, one spec file.
 
 ### Environment 2 — scanpy_env (main analysis + figures)
 
 Used by: Phases 1, 2 (aggregate), 3, 5 (partial), 6, tables
 
 ```bash
-conda env create -f envs/scanpy_env.yml -n scanpy_env
+conda env create -f envs/scanpy_env.yml
 conda activate scanpy_env
 ```
 
