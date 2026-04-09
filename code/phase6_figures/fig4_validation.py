@@ -131,6 +131,8 @@ def panel_atac(ax):
     fimo_file = ATAC / "motif_enrichment_summary.csv"
     if fimo_file.exists():
         df = pd.read_csv(fimo_file)
+        df = df.rename(columns={"TF": "tf", "enrichment_ratio": "fold_enrich"})
+        df = df.sort_values("fold_enrich", ascending=False).drop_duplicates("tf")
     else:
         print("  [Panel C] motif_enrichment_summary.csv not found — using hardcoded results")
         df = pd.DataFrame({
