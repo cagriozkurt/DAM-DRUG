@@ -9,6 +9,7 @@ Runs locally (no h5ad needed):
   python code/phase6_figures/supp_fig_s1_regulon_heatmap.py
 """
 
+import os
 import numpy as np
 import pandas as pd
 import matplotlib
@@ -18,7 +19,7 @@ import matplotlib.colors as mcolors
 import seaborn as sns
 from pathlib import Path
 
-PROJECT = Path("/Volumes/PortableSSD/untitled folder/DAM-DRUG")
+PROJECT = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
 GRN     = PROJECT / "results/phase2/GRN"
 OUT     = PROJECT / "results/figures"
 OUT.mkdir(parents=True, exist_ok=True)

@@ -10,6 +10,7 @@ Runs locally:
   python code/phase6_figures/supp_fig_s6_af2_quality.py
 """
 
+import os
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
@@ -17,7 +18,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from pathlib import Path
 
-PROJECT  = Path("/Volumes/PortableSSD/untitled folder/DAM-DRUG")
+PROJECT  = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
 AF2_DIR  = PROJECT / "data/structures/af2"
 OUT      = PROJECT / "results/figures"
 OUT.mkdir(parents=True, exist_ok=True)

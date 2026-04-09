@@ -40,7 +40,7 @@ conda activate mmpbsa || { echo "ERROR: cannot activate mmpbsa env"; exit 1; }
 export PATH="$HOME/.local/bin:$PATH"
 
 # Install packages if needed (no-op if already installed)
-pip install -q pydeseq2 adjustText 2>/dev/null || true
+pip install -q pydeseq2==0.5.4 adjustText 2>/dev/null || true
 
 # ── Main Python pipeline ─────────────────────────────────────────────────────
 python3 << 'PYEOF'

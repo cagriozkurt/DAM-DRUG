@@ -28,7 +28,7 @@ PHASE4   = PROJECT / "results/phase4"
 # Standard targets: Vina ≤ -6.5 AND CNN ≥ 0.70
 # BHLHE41: shallow bHLH surface — lower Vina threshold to -5.5
 # IKZF1:   CRBN pocket; CNN is reliable but Vina underestimates — CNN ≥ 0.85 only
-# MAF:     top score -5.33 (Vina), shallow bZIP — use CNN ≥ 0.72 as sole criterion
+# MAF:     top score -5.33 (Vina), shallow bZIP — use CNN ≥ 0.75 as sole criterion
 THRESHOLDS = {
     "PPARG_1FM9_LBD_prep":   {"vina": -6.5,  "cnn": 0.70},
     "IRF8_AF2_DBD_prep":     {"vina": -6.5,  "cnn": 0.70},

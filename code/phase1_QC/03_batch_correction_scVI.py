@@ -15,6 +15,7 @@ Requires: scvi-tools>=1.0, harmonypy, scib (for benchmarking)
 GPU strongly recommended for scVI at full SEA-AD scale.
 """
 
+import os
 import scanpy as sc
 import anndata as ad
 import pandas as pd
@@ -25,7 +26,7 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
-PROJECT = Path("/Volumes/PortableSSD/untitled folder/DAM-DRUG")
+PROJECT = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
 PROC    = PROJECT / "data/processed"
 RES     = PROJECT / "results/phase1"
 sc.settings.figdir = str(RES)

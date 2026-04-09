@@ -8,6 +8,7 @@ Fetches all ChEMBL max_phase=4 compounds, applies Ro5 + CNS MPO filters
 locally, writes data/compounds/tier2_approved.csv (~1500-2500 rows, ~5-15 min).
 PDBQT generation is handled by 20_prep_tier2_library.slurm (batch job).
 """
+import os
 import sys, time
 from pathlib import Path
 
@@ -16,7 +17,7 @@ try:
 except ImportError:
     sys.exit("ERROR: pandas not found")
 
-_TRUBA = Path('/arf/scratch/mozkurt/DAM-DRUG/data/compounds')
+_TRUBA = Path(os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG")) / "data/compounds"
 _LOCAL = Path(__file__).resolve().parents[2] / 'data/compounds'
 OUT_DIR   = _TRUBA if _TRUBA.exists() else _LOCAL
 TIER1_CSV = OUT_DIR / 'tier1_cns_approved.csv'

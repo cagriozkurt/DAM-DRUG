@@ -12,11 +12,12 @@ Run locally:
   python code/tables/make_table4_5_docking.py
 """
 
+import os
 import pandas as pd
 import numpy as np
 from pathlib import Path
 
-PROJECT = Path("/Volumes/PortableSSD/untitled folder/DAM-DRUG")
+PROJECT = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
 P4      = PROJECT / "results/phase4"
 OUT     = PROJECT / "results/tables"
 OUT.mkdir(parents=True, exist_ok=True)

@@ -1,0 +1,60 @@
+# DAM-DRUG — MM-GBSA / Molecular Dynamics environment
+# Used for: Ligand preparation (Phase 4, step 13),
+#           Docking (steps 14–15),
+#           MM-GBSA scoring (steps 17, 22),
+#           100 ns MD stability validation (step 18)
+#
+# Source of truth: TRUBA system module + SLURM scripts
+#
+# GROMACS: all MD simulations (MM-GBSA and 100 ns stability) used the TRUBA
+#    system module `apps/gromacs/2024.1-oneapi2024` (gmx_mpi 2024.1).
+#    The gromacs-2024.sif container (gmx 2023.2-dev) was created for an
+#    unrelated project and was NOT used for DAM-DRUG MD runs.
+#
+# Python tools (pip-installed; exact versions unknown — recover from backup SIF):
+#   gmx_MMPBSA, acpype, meeko, openbabel
+#
+# !! pydeseq2 VERSION NOT IN THIS ENV:
+#    24_pseudobulk_deseq2.slurm and 19_deseq2_gse95587.slurm both run
+#    `pip install -q pydeseq2` (NO VERSION PIN) at SLURM job runtime inside
+#    this mmpbsa conda env. The installed version is PyPI-latest at job
+#    submission time — not recoverable without SLURM job output logs.
+#    Manuscript cites "pydeseq2 0.4"; check TRUBA job logs to confirm exact
+#    version (pip prints "Successfully installed pydeseq2-X.Y.Z" on install).
+#
+# Recreate Python tools:
+#   conda env create -f envs/mmpbsa.yml
+#   conda activate mmpbsa
+#   pip install gmx_MMPBSA acpype meeko
+
+name: mmpbsa
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12        # exact: miniconda_backup.tar (mmpbsa env uses Python 3.12, NOT 3.10)
+  - openbabel=3.1.1    # exact: miniconda_backup.tar (mmpbsa/conda-meta/openbabel-3.1.1-py312hbfe4552_9.json)
+                       # 3D conformer generation: obabel --gen3d -p 7.4 -h (MMFF94)
+  - rdkit              # required by meeko
+  - numpy=2.4.3        # exact: miniconda_backup.tar
+  - pandas
+  - scipy
+  - pip
+  - pip:
+    - pydeseq2==0.5.4  # exact: miniconda_backup.tar; installed at SLURM job runtime via pip install -q
+                       # NOTE: manuscript incorrectly stated "pydeseq2 0.4" — actual version is 0.5.4
+    - meeko==0.7.1     # exact: ~/.local/lib/python3.12/site-packages/meeko-0.7.1.dist-info
+                       # PDBQT prep: mk_prepare_ligand.py (Gasteiger charges); pip-installed to ~/.local/bin
+    - gmx_MMPBSA==1.6.4  # exact: ~/.local/lib/python3.12/site-packages/gmx_MMPBSA-1.6.4.dist-info
+                       # MM-GBSA scoring; pip-installed to ~/.local/bin; requires AmberTools (tleap from mmpbsa env)
+    - acpype==2023.10.27  # exact: miniconda_backup.tar; GAFF2 topology generation
+
+# GROMACS (NOT conda-managed — TRUBA system module):
+# gmx_mpi 2024.1  /arf/sw/apps/gromacs/2024.1-oneapi-2024/bin/gmx_mpi
+#                 (module load apps/gromacs/2024.1-oneapi2024)
+# Force field:   AMBER99SB-ILDN; water model: TIP3P; ligand FF: GAFF2
+
+# External docking binaries (NOT conda-managed):
+# AutoDock Vina 1.2   confirmed: README.md
+# GNINA 1.0           confirmed: README.md
+# fpocket ≥3          pocket detection; version at runtime via `fpocket --version`

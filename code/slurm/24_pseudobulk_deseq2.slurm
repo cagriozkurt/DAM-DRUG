@@ -33,7 +33,8 @@
 
 set -eo pipefail
 
-OUT_DIR=/arf/scratch/mozkurt/DAM-DRUG/results/phase1/DGE_pseudobulk
+OUT_DIR=${DAM_DRUG_DIR:-/arf/scratch/mozkurt/DAM-DRUG}/results/phase1/DGE_pseudobulk
+export DAM_DRUG_DIR=${DAM_DRUG_DIR:-/arf/scratch/mozkurt/DAM-DRUG}
 mkdir -p "$OUT_DIR"
 
 echo "Start: $(date)"
@@ -45,10 +46,10 @@ source /arf/sw/comp/python/miniconda3/etc/profile.d/conda.sh
 conda activate mmpbsa || { echo "ERROR: cannot activate mmpbsa env"; exit 1; }
 export PATH="$HOME/.local/bin:$PATH"
 
-pip install -q pydeseq2 anndata 2>/dev/null || true
+pip install -q pydeseq2==0.5.4 anndata 2>/dev/null || true
 
 python3 << 'PYEOF'
-import warnings, sys
+import os, warnings, sys
 warnings.filterwarnings("ignore")
 
 import numpy as np
@@ -57,7 +58,7 @@ import scipy.sparse as sp
 from pathlib import Path
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
-PROJDIR = Path("/arf/scratch/mozkurt/DAM-DRUG")
+PROJDIR = Path(os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG"))
 H5AD    = next((PROJDIR / "data/raw/SEA-AD").glob(
                 "SEA-AD_Microglia_multi-regional_final-nuclei.*.h5ad"))
 OUT_DIR = PROJDIR / "results/phase1/DGE_pseudobulk"

@@ -25,7 +25,8 @@
 
 set -eo pipefail
 
-PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
+PROJDIR=${DAM_DRUG_DIR:-/arf/scratch/mozkurt/DAM-DRUG}
+export DAM_DRUG_DIR=$PROJDIR
 OUT_DIR=$PROJDIR/data/compounds
 PDBQT_DIR=$OUT_DIR/tier2_pdbqt
 mkdir -p "$PDBQT_DIR"
@@ -59,8 +60,10 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 
 import pandas as pd
 
-TIER2_CSV = Path('/arf/scratch/mozkurt/DAM-DRUG/data/compounds/tier2_approved.csv')
-PDBQT_DIR = Path('/arf/scratch/mozkurt/DAM-DRUG/data/compounds/tier2_pdbqt')
+import os as _os
+_PROJ = _os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG")
+TIER2_CSV = Path(_PROJ) / 'data/compounds/tier2_approved.csv'
+PDBQT_DIR = Path(_PROJ) / 'data/compounds/tier2_pdbqt'
 NCPUS = 20
 
 df = pd.read_csv(TIER2_CSV)
@@ -134,7 +137,7 @@ with ProcessPoolExecutor(max_workers=NCPUS) as ex:
 
 print(f"\nFinal: ok={results['ok']}  skip={results['skip']}  fail={results['fail']}")
 if fail_log:
-    Path('/arf/scratch/mozkurt/DAM-DRUG/data/compounds/tier2_failures.txt').write_text('\n'.join(fail_log[:50]))
+    (Path(_PROJ) / 'data/compounds/tier2_failures.txt').write_text('\n'.join(fail_log[:50]))
     print(f"First failures written to tier2_failures.txt")
 
 # Count valid PDBQTs

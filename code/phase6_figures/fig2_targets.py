@@ -92,11 +92,11 @@ def panel_dge_bubble(ax):
     cb.set_label("log₂FC", fontsize=8)
     cb.ax.tick_params(labelsize=7)
 
-    # Size legend
+    # Size legend — placed below the axes to avoid overlapping the colorbar
     for lfc, label in [(1, "1"), (2, "2"), (3, "3")]:
         ax.scatter([], [], s=lfc * 30 + 20, color="grey", alpha=0.6, label=f"|log₂FC|={label}")
     ax.legend(fontsize=7, frameon=False, title="|log₂FC|", title_fontsize=7,
-              bbox_to_anchor=(1.05, 0), loc="lower left", borderaxespad=0)
+              bbox_to_anchor=(0.0, -0.14), loc="upper left", borderaxespad=0, ncol=3)
 
 
 # ── Panel B: AUCell regulon heatmap ───────────────────────────────────────────
@@ -241,14 +241,15 @@ def panel_gse_forest(ax):
 
 # ── Compose figure ────────────────────────────────────────────────────────────
 def main():
-    fig = plt.figure(figsize=(18, 14))
-    gs  = fig.add_gridspec(2, 2, hspace=0.38, wspace=0.35,
+    # 3-panel layout: A (top-left), C (bottom-left), B (right, full height)
+    # Panel D (GSE95587 forest plot) moved to Figure 4A to avoid duplication.
+    fig = plt.figure(figsize=(18, 10))
+    gs  = fig.add_gridspec(2, 2, hspace=0.42, wspace=0.35,
                             width_ratios=[1, 1.8])
 
     ax_a = fig.add_subplot(gs[0, 0])
-    ax_b = fig.add_subplot(gs[0, 1])
+    ax_b = fig.add_subplot(gs[:, 1])   # spans both rows
     ax_c = fig.add_subplot(gs[1, 0])
-    ax_d = fig.add_subplot(gs[1, 1])
 
     print("Panel A: DGE bubble...")
     panel_dge_bubble(ax_a)
@@ -256,8 +257,6 @@ def main():
     panel_auc_heatmap(ax_b)
     print("Panel C: Pseudotime correlation...")
     panel_pseudotime_corr(ax_c)
-    print("Panel D: GSE95587 forest...")
-    panel_gse_forest(ax_d)
 
     out_pdf = OUT / "fig2_target_prioritization.pdf"
     out_png = OUT / "fig2_target_prioritization.png"

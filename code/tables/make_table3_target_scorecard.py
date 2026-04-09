@@ -18,11 +18,12 @@ Run locally:
   python code/tables/make_table3_target_scorecard.py
 """
 
+import os
 import pandas as pd
 import numpy as np
 from pathlib import Path
 
-PROJECT = Path("/Volumes/PortableSSD/untitled folder/DAM-DRUG")
+PROJECT = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
 OUT_CSV = PROJECT / "results/tables/table3_target_scorecard.csv"
 OUT_MD  = PROJECT / "results/tables/table3_target_scorecard.md"
 OUT_CSV.parent.mkdir(parents=True, exist_ok=True)

@@ -16,6 +16,7 @@ Runs locally:
   python code/phase6_figures/supp_fig_s2_celloracle.py
 """
 
+import os
 import numpy as np
 import pandas as pd
 import matplotlib
@@ -24,7 +25,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from pathlib import Path
 
-PROJECT = Path("/Volumes/PortableSSD/untitled folder/DAM-DRUG")
+PROJECT = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
 CO_DIR  = PROJECT / "results/phase5/celloracle"
 OUT     = PROJECT / "results/figures"
 OUT.mkdir(parents=True, exist_ok=True)

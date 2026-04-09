@@ -22,7 +22,8 @@
 
 set -eo pipefail
 
-PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
+PROJDIR=${DAM_DRUG_DIR:-/arf/scratch/mozkurt/DAM-DRUG}
+export DAM_DRUG_DIR=$PROJDIR
 CONTAINER=$HOME/containers/scanpy-env.sif
 GRN=$PROJDIR/results/phase2/GRN
 
@@ -88,7 +89,7 @@ apptainer exec \
 import os, loompy, pandas as pd
 from pathlib import Path
 
-GRN = Path("/arf/scratch/mozkurt/DAM-DRUG/results/phase2/GRN")
+GRN = Path(os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG")) / "results/phase2/GRN"
 AUC_LOOM = GRN / "scenic_auc_aggregated.loom"
 TF_TARGETS = ["SPI1", "RUNX1", "IRF8", "PPARG", "CEBPB", "IKZF1",
               "RELB", "BHLHE40", "BHLHE41"]

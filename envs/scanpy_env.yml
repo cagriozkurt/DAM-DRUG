@@ -1,0 +1,80 @@
+# DAM-DRUG — Python analysis environments
+#
+# TWO conda environments exist inside the original scanpy-env.sif container
+# (backed up as ~/containers_backup.tar, extracted to /tmp/containers/scanpy-env.sif):
+#
+#   1. scenic   — pySCENIC GRN inference stack (Phase 2, steps 05/25/26/28)
+#   2. scanpy_env — scanpy visualisation + figure generation (Phase 1, 6)
+#
+# Exact versions sourced from:
+#   envs/original_scenic_conda_list.txt  (scenic env in original SIF)
+#   envs/scanpy_sif_conda_list.txt       (scanpy_env in current scanpy.sif)
+#
+# pydeseq2 and scvi-tools locations: TBD (check base env of original SIF;
+#   see envs/original_base_search.txt)
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Environment 1: scenic (pySCENIC / GRN inference)
+# Recreate: conda env create -f envs/scanpy_env.yml -n scenic
+# ─────────────────────────────────────────────────────────────────────────────
+name: scenic
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10.20           # exact
+  - pip
+  - pip:
+    # pySCENIC stack — all exact from original_scenic_conda_list.txt
+    - pyscenic==0.12.1       # exact (README/manuscript listed "0.12"; actual is 0.12.1)
+    - ctxcore==0.2.0         # RcisTarget backend
+    - arboreto==0.1.6        # GRNBoost2
+    - loompy==3.0.8          # loom file I/O
+    - dask==2023.12.0        # parallel backend
+    - distributed==2023.12.0
+    - numpy==1.26.4          # exact (NOTE: 1.x in scenic env, not 2.x)
+    - anndata==0.11.4        # exact
+    - scanpy==1.11.5         # exact
+    - scipy==1.15.3          # exact
+    - pandas==2.3.3          # exact
+    - matplotlib==3.10.8     # exact
+    - seaborn==0.13.2        # exact
+    - scikit-learn==1.7.2    # exact
+    - statsmodels==0.14.6    # exact
+    - h5py==3.16.0           # exact
+    - umap-learn==0.5.11     # exact
+    - leidenalg==0.11.0      # exact
+    - numba==0.64.0          # exact
+    - networkx==3.4.2        # exact
+    - tqdm==4.67.3           # exact
+    - pynndescent==0.6.0     # exact
+    - cytoolz==1.1.0         # exact
+    - interlap==0.2.7        # exact
+    - multiprocessing-on-dill==3.5.0a4  # dask worker dependency
+
+---
+# ─────────────────────────────────────────────────────────────────────────────
+# Environment 2: scanpy_env (figure generation / trajectory / QC)
+# Recreate: conda env create -f envs/scanpy_env.yml -n scanpy_env
+# ─────────────────────────────────────────────────────────────────────────────
+# name: scanpy_env
+# channels:
+#   - conda-forge
+# dependencies:
+#   - python=3.10.20           # exact
+#   - scanpy=1.11.5            # exact
+#   - anndata=0.11.4           # exact
+#   - numpy=2.2.6              # exact (NOTE: 2.x in scanpy_env, different from scenic)
+#   - scipy=1.15.2             # exact
+#   - pandas=2.3.3             # exact
+#   - matplotlib=3.10.8        # exact
+#   - seaborn=0.13.2           # exact
+#   - scikit-learn=1.7.2       # exact
+#   - statsmodels=0.14.6       # exact
+#   - h5py=3.16.0              # exact
+#   - umap-learn=0.5.11        # exact
+#   - leidenalg=0.11.0         # exact
+#   - numba=0.65.0             # exact (0.65 vs 0.64 in scenic)
+#   - networkx=3.4.2           # exact
+#
+# pydeseq2, scvi-tools, celloracle, velocyto: location TBD

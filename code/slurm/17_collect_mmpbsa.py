@@ -9,12 +9,13 @@ Output: results/phase4/mmpbsa/mmpbsa_summary.csv
 Columns: target, chembl_id, vina_score, dg_gbsa, sem, rank_vina, rank_gbsa
 """
 
+import os
 import sys
 import csv
 from pathlib import Path
 
 PROJDIR = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(
-    "/arf/scratch/mozkurt/DAM-DRUG"
+    os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG")
 )
 MMPBSA_ROOT = PROJDIR / "results" / "phase4" / "mmpbsa"
 OUT_CSV = MMPBSA_ROOT / "mmpbsa_summary.csv"

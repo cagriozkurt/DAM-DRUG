@@ -14,13 +14,14 @@ Runs locally:
   python code/phase6_figures/supp_fig_s5_md_rmsd.py
 """
 
+import os
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-PROJECT = Path("/Volumes/PortableSSD/untitled folder/DAM-DRUG")
+PROJECT = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
 MD_DIR  = PROJECT / "results/phase4/md"
 OUT     = PROJECT / "results/figures"
 OUT.mkdir(parents=True, exist_ok=True)

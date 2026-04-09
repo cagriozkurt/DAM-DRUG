@@ -11,7 +11,7 @@
 # =============================================================================
 
 set -euo pipefail
-PROJECT_ROOT="/Volumes/PortableSSD/untitled folder/DAM-DRUG"
+PROJECT_ROOT="${DAM_DRUG_DIR:-/Volumes/PortableSSD/untitled folder/DAM-DRUG}"
 RAW="$PROJECT_ROOT/data/raw"
 
 if ! command -v aws &>/dev/null; then

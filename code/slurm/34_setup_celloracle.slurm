@@ -44,10 +44,10 @@ else
     conda run -n scMultiomeGRN pip install "cython" "numpy<2" 2>&1
 
     echo "Step 2: Install velocyto with --no-build-isolation..."
-    conda run -n scMultiomeGRN pip install velocyto --no-build-isolation 2>&1 || true
+    conda run -n scMultiomeGRN pip install velocyto==0.17.17 --no-build-isolation 2>&1 || true
 
     echo "Step 3: Install celloracle (velocyto already satisfied)..."
-    conda run -n scMultiomeGRN pip install celloracle 2>&1 || true
+    conda run -n scMultiomeGRN pip install celloracle==0.20.0 2>&1 || true
 
     # Final check
     conda run -n scMultiomeGRN python -c "import celloracle; print('celloracle', celloracle.__version__)" \
