@@ -22,7 +22,7 @@
 
 set -eo pipefail
 
-PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
+PROJDIR=${DAM_DRUG_DIR:-/arf/scratch/mozkurt/DAM-DRUG}
 CONTAINER=$HOME/containers/scanpy-env.sif
 H5AD_SRC=$PROJDIR/data/raw/SEA-AD/SEA-AD_Microglia_multi-regional_final-nuclei.2025-07-24.h5ad
 H5AD_TMP=/tmp/SEA-AD_Microglia.h5ad
