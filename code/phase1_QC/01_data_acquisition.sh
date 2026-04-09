@@ -33,7 +33,7 @@ fi
 MG_DIR="$RAW/SEA-AD"
 mkdir -p "$MG_DIR"
 
-echo "=== [1/3] Downloading SEA-AD Microglia pre-release (~3.3 GB) ==="
+echo "=== [1/2] Downloading SEA-AD Microglia pre-release (~3.3 GB) ==="
 aws s3 cp \
   "s3://sea-ad-single-cell-profiling/Microglia-and-Immune-for-AAIC/SEA-AD_Microglia-and-Immune_multi-regional_final-nuclei_AAIC-pre-release.2025-07-24.h5ad" \
   "$MG_DIR/SEA-AD_Microglia_multi-regional_final-nuclei.2025-07-24.h5ad" \
@@ -54,7 +54,7 @@ echo "  Done: $(du -sh "$MG_DIR/SEA-AD_Microglia_multi-regional_final-nuclei.202
 MTG_DIR="$RAW/SEA-AD"
 
 echo ""
-echo "=== [2/3] Downloading SEA-AD MTG full RNAseq (~36 GB) — may take 1-2 hours ==="
+echo "=== [2/2] Downloading SEA-AD MTG full RNAseq (~36 GB) — may take 1-2 hours ==="
 echo "    (Skip with Ctrl-C if storage is limited; microglia pre-release is sufficient)"
 aws s3 cp \
   "s3://sea-ad-single-cell-profiling/MTG/RNAseq/SEAAD_MTG_RNAseq_final-nuclei.2024-02-13.h5ad" \
@@ -63,27 +63,6 @@ aws s3 cp \
   --only-show-errors
 
 echo "  Done: $(du -sh "$MTG_DIR/SEAAD_MTG_RNAseq_final-nuclei.2024-02-13.h5ad" | cut -f1)"
-
-# =============================================================================
-# 3. Mathys et al. 2019 (Synapse — requires account + synapseclient)
-# =============================================================================
-# Run: synapse login  (first time only; enter credentials at prompt)
-# Size: ~1 GB
-
-MATHYS_DIR="$RAW/mathys2019"
-mkdir -p "$MATHYS_DIR"
-
-echo ""
-echo "=== [3/3] Downloading Mathys 2019 (Synapse syn18485175) ==="
-
-if ! command -v synapse &>/dev/null; then
-  echo "ERROR: synapseclient not found — install with: pip install synapseclient"
-  echo "Then authenticate: synapse login"
-  exit 1
-fi
-
-synapse get -r syn18485175 --downloadLocation "$MATHYS_DIR"
-echo "  Mathys 2019 complete."
 
 # =============================================================================
 # DEFERRED: MTG ATACseq (18 GB) — download before Phase 2 only
