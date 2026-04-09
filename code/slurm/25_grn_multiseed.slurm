@@ -27,7 +27,7 @@ set -eo pipefail
 SEED=$SLURM_ARRAY_TASK_ID          # 1, 2, 3, or 4
 PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
 SIF=$HOME/containers/dam-drug-scanpy.sif
-[ -f "$SIF" ] || apptainer pull "$SIF" docker://mozkurt/dam-drug-scanpy:latest
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
 
 GRN_DIR=$PROJDIR/results/phase2/GRN
 LOOM=$GRN_DIR/microglia_raw.loom

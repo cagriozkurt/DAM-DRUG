@@ -23,7 +23,7 @@ PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
 export DAM_DRUG_DIR=$PROJDIR
 
 SIF=$HOME/containers/dam-drug-r.sif
-[ -f "$SIF" ] || apptainer pull "$SIF" docker://mozkurt/dam-drug-r:latest
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-r:latest
 
 mkdir -p $PROJDIR/logs
 

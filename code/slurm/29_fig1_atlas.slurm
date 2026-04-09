@@ -17,7 +17,7 @@ set -eo pipefail
 
 PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
 SIF=$HOME/containers/dam-drug-scanpy.sif
-[ -f "$SIF" ] || apptainer pull "$SIF" docker://mozkurt/dam-drug-scanpy:latest
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
 
 export DAM_DRUG_DIR=$PROJDIR
 mkdir -p $PROJDIR/logs $PROJDIR/results/figures

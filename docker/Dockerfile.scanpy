@@ -5,22 +5,22 @@
 #   scenic      — pySCENIC GRN inference (phase 2)
 #
 # Build (from repo root):
-#   docker build -f docker/Dockerfile.scanpy -t mozkurt/dam-drug-scanpy:latest .
+#   docker build -f docker/Dockerfile.scanpy -t ghcr.io/cagriozkurt/dam-drug-scanpy:latest .
 #
 # Push:
-#   docker push mozkurt/dam-drug-scanpy:latest
+#   docker push ghcr.io/cagriozkurt/dam-drug-scanpy:latest
 #
 # Pull on TRUBA (converts to SIF automatically):
-#   apptainer pull ~/containers/dam-drug-scanpy.sif docker://mozkurt/dam-drug-scanpy:latest
+#   apptainer pull ~/containers/dam-drug-scanpy.sif docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
 #
 # Run locally:
-#   docker run --rm -v $(pwd):/work mozkurt/dam-drug-scanpy \
+#   docker run --rm -v $(pwd):/work ghcr.io/cagriozkurt/dam-drug-scanpy \
 #     conda run -n scanpy_env python code/phase6_figures/fig2_targets.py
 
 FROM continuumio/miniconda3:24.3.0-0
 
 LABEL org.opencontainers.image.description="DAM-DRUG scanpy_env + scenic Python environments"
-LABEL org.opencontainers.image.source="https://github.com/mozkurt/DAM-DRUG"
+LABEL org.opencontainers.image.source="https://github.com/cagriozkurt/DAM-DRUG"
 
 # Install mamba for faster environment solving
 RUN conda install -n base -c conda-forge mamba -y && conda clean -a -y

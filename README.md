@@ -68,9 +68,9 @@ All main and supplementary figures, and all manuscript tables, can be reproduced
 **Setup — option A: Docker (recommended, exact environment):**
 
 ```bash
-docker pull mozkurt/dam-drug-scanpy:latest
+docker pull ghcr.io/cagriozkurt/dam-drug-scanpy:latest
 export DAM_DRUG_DIR=/path/to/DAM-DRUG
-alias pyrun="docker run --rm -v $DAM_DRUG_DIR:/work -w /work mozkurt/dam-drug-scanpy conda run -n scanpy_env python"
+alias pyrun="docker run --rm -v $DAM_DRUG_DIR:/work -w /work ghcr.io/cagriozkurt/dam-drug-scanpy conda run -n scanpy_env python"
 ```
 
 **Setup — option B: conda (~5 minutes):**
@@ -166,14 +166,14 @@ Dockerfiles are in `docker/`. Images are hosted on Docker Hub.
 
 | Image | Used by | Pull |
 |-------|---------|------|
-| `mozkurt/dam-drug-scanpy` | Phases 1, 2 (GRN), 6 (figures), tables | `docker pull mozkurt/dam-drug-scanpy:latest` |
-| `mozkurt/dam-drug-r` | Phase 2 LR (CellChat/NicheNet) | `docker pull mozkurt/dam-drug-r:latest` |
+| `ghcr.io/cagriozkurt/dam-drug-scanpy` | Phases 1, 2 (GRN), 6 (figures), tables | `docker pull ghcr.io/cagriozkurt/dam-drug-scanpy:latest` |
+| `ghcr.io/cagriozkurt/dam-drug-r` | Phase 2 LR (CellChat/NicheNet) | `docker pull ghcr.io/cagriozkurt/dam-drug-r:latest` |
 
 **On TRUBA** — Apptainer pulls directly from Docker Hub and converts to SIF:
 
 ```bash
-apptainer pull ~/containers/dam-drug-scanpy.sif docker://mozkurt/dam-drug-scanpy:latest
-apptainer pull ~/containers/dam-drug-r.sif       docker://mozkurt/dam-drug-r:latest
+apptainer pull ~/containers/dam-drug-scanpy.sif docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
+apptainer pull ~/containers/dam-drug-r.sif       docker://ghcr.io/cagriozkurt/dam-drug-r:latest
 ```
 
 All SLURM scripts auto-pull the SIF on first run if `~/containers/dam-drug-scanpy.sif` (or `dam-drug-r.sif`) is absent.
@@ -182,7 +182,7 @@ All SLURM scripts auto-pull the SIF on first run if `~/containers/dam-drug-scanp
 
 ```bash
 docker run --rm -v $DAM_DRUG_DIR:/work -w /work \
-  mozkurt/dam-drug-scanpy \
+  ghcr.io/cagriozkurt/dam-drug-scanpy \
   conda run -n scanpy_env python code/phase6_figures/fig2_targets.py
 ```
 

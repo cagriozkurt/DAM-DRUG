@@ -4,22 +4,22 @@
 #           CellChat v2.2.0 (GitHub), NicheNet (via CellChat dep)
 #
 # Build (from repo root):
-#   docker build -f docker/Dockerfile.r -t mozkurt/dam-drug-r:latest .
+#   docker build -f docker/Dockerfile.r -t ghcr.io/cagriozkurt/dam-drug-r:latest .
 #
 # Push:
-#   docker push mozkurt/dam-drug-r:latest
+#   docker push ghcr.io/cagriozkurt/dam-drug-r:latest
 #
 # Pull on TRUBA (converts to SIF automatically):
-#   apptainer pull ~/containers/dam-drug-r.sif docker://mozkurt/dam-drug-r:latest
+#   apptainer pull ~/containers/dam-drug-r.sif docker://ghcr.io/cagriozkurt/dam-drug-r:latest
 #
 # Run locally:
-#   docker run --rm -v $(pwd):/work mozkurt/dam-drug-r \
+#   docker run --rm -v $(pwd):/work ghcr.io/cagriozkurt/dam-drug-r \
 #     Rscript code/phase2_LR/37_cellchat_nichechat.R
 
 FROM rocker/r-ver:4.3.3
 
 LABEL org.opencontainers.image.description="DAM-DRUG R/CellChat environment"
-LABEL org.opencontainers.image.source="https://github.com/mozkurt/DAM-DRUG"
+LABEL org.opencontainers.image.source="https://github.com/cagriozkurt/DAM-DRUG"
 
 # System libraries required by R packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
