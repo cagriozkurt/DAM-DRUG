@@ -4,7 +4,7 @@
 
 Çağrı Özkurt, Pelin Kelicen-Uğur — Hacettepe University
 
-> Özkurt Ç, Kelicen-Uğur P. *Briefings in Bioinformatics* (under review).
+> Özkurt Ç, Kelicen-Uğur P. (manuscript in preparation).
 
 ---
 
@@ -571,7 +571,7 @@ python code/tables/make_table4_5_docking.py       # Docking + MM-GBSA results
 ```
 Özkurt Ç, Kelicen-Uğur P. Integrative Single-Cell Analysis of Alzheimer's Disease Microglia
 Identifies IKZF1 as a Late-Stage Neuroinflammatory Regulator and Prioritises Tafamidis and
-Diflunisal as Candidate Repurposable Therapeutics. Briefings in Bioinformatics (under review).
+Diflunisal as Candidate Repurposable Therapeutics. (manuscript in preparation)
 ```
 
 ---
