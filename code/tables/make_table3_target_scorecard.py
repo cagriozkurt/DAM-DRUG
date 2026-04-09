@@ -128,7 +128,7 @@ for tf in TARGETS:
         r["bulk_padj"]   = None
 
     # ATAC enrichment (hardcoded from step 2.8)
-    r["ATAC_enrichment_x"] = atac.get(tf, None)
+    r["ATAC_enrichment"] = atac.get(tf, None)
 
     # CellOracle KO magnitude (hardcoded from step 5.7)
     r["CellOracle_KO_LateAD_DAM"] = ko_mag.get(tf, None)
@@ -154,7 +154,7 @@ print()
 print(table[["TF", "pySCENIC_regulon", "AUC_LateAD_DAM", "pseudotime_rho",
              "scRNA_contrast", "scRNA_log2FC", "scRNA_padj",
              "bulk_log2FC", "bulk_padj",
-             "ATAC_enrichment_x", "CellOracle_KO_LateAD_DAM",
+             "ATAC_enrichment", "CellOracle_KO_LateAD_DAM",
              "fpocket_drug_score"]].to_string(index=False))
 
 # ── Markdown version (manuscript-ready) ──────────────────────────────────────
@@ -181,7 +181,7 @@ for _, r in table.iterrows():
     _no_bulk = r["bulk_log2FC"] is None or (isinstance(r["bulk_log2FC"], float) and np.isnan(r["bulk_log2FC"]))
     bulk_cell  = ("—" if _no_bulk else
                   f"{fmt(r['bulk_log2FC'], '+.3f')}{sig(r['bulk_padj'])}")
-    atac_cell  = fmt(r["ATAC_enrichment_x"], ".1f", "×")
+    atac_cell  = fmt(r["ATAC_enrichment"], ".1f", "×")
     ko_cell    = fmt(r["CellOracle_KO_LateAD_DAM"], ".3f")
     auc_cell   = fmt(r["AUC_LateAD_DAM"], ".4f")
     pt_cell    = fmt(r["pseudotime_rho"], "+.3f")
