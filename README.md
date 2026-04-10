@@ -64,34 +64,13 @@ All main and supplementary figures and manuscript tables can be reproduced from 
 
 ### Step 1 — Set up environment
 
-Choose one option and run the setup commands once.
-
-**Option A — Docker (local machine, exact environment):**
-
-```bash
-docker pull ghcr.io/cagriozkurt/dam-drug-scanpy:latest
-export DAM_DRUG_DIR=/path/to/DAM-DRUG
-alias pyrun="docker run --rm -v $DAM_DRUG_DIR:/work -w /work ghcr.io/cagriozkurt/dam-drug-scanpy conda run -n scanpy_env python"
-```
-
-**Option B — Apptainer (HPC/TRUBA, exact environment):**
-
 ```bash
 apptainer pull ~/containers/dam-drug-scanpy.sif docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
 export DAM_DRUG_DIR=/path/to/DAM-DRUG
 alias pyrun="apptainer exec --bind $DAM_DRUG_DIR:/work --pwd /work $HOME/containers/dam-drug-scanpy.sif conda run -n scanpy_env python"
 ```
 
-**Option C — conda (~5 minutes):**
-
-```bash
-conda env create -f envs/scanpy_env.yml
-conda activate scanpy_env
-export DAM_DRUG_DIR=/path/to/DAM-DRUG
-alias pyrun="python"
-```
-
-> All three options define a `pyrun` alias. Use `pyrun` for all commands below.
+> `pyrun` is the alias used for all commands below.
 
 ### Step 2 — Run figures
 
@@ -159,31 +138,31 @@ The upstream computations (pySCENIC GRN inference, AutoDock Vina/GNINA docking, 
 | fpocket | 4.x | https://github.com/Discngine/fpocket — build from source |
 | GROMACS | 2024.1 | HPC module: `module load apps/gromacs/2024.1-oneapi2024` |
 
-#### Conda environments
+#### Apptainer images
+
+Most SLURM scripts use Apptainer images pulled automatically on first run. Pull them manually if preferred:
 
 ```bash
-export DAM_DRUG_DIR=/path/to/DAM-DRUG
+apptainer pull ~/containers/dam-drug-scanpy.sif docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
+apptainer pull ~/containers/dam-drug-r.sif       docker://ghcr.io/cagriozkurt/dam-drug-r:latest
 ```
 
-| Environment | File | Used by |
-|-------------|------|---------|
-| `scanpy_env` | `envs/scanpy_env.yml` | Phases 1, 2 (partial), 6, tables |
-| `scenic` | `envs/scenic.yml` | Phase 2 pySCENIC steps |
-| `scMultiomeGRN` | `envs/scmultiomegrn.yml` | Phase 2 scMultiomeGRN + Phase 5 CellOracle |
-| `cellchat_r` | `envs/cellchat_r.yml` | Phase 2 CellChat (R) |
-| `mmpbsa` | `envs/mmpbsa.yml` | Phase 4 docking + MM-GBSA |
+| Image | Covers |
+|-------|--------|
+| `dam-drug-scanpy.sif` | `scanpy_env` (analysis + figures) and `scenic` (pySCENIC) |
+| `dam-drug-r.sif` | `cellchat_r` (CellChat/R) |
+
+#### Conda environments (pipeline-only, not containerized)
+
+Two environments require system-level dependencies and must be installed via conda:
 
 ```bash
-conda env create -f envs/scanpy_env.yml
-conda env create -f envs/scenic.yml
-conda env create -f envs/cellchat_r.yml
-
-# mmpbsa — extra pip installs required:
+# mmpbsa — docking + MM-GBSA (requires GROMACS module on HPC):
 conda env create -f envs/mmpbsa.yml
 conda activate mmpbsa && export PATH="$HOME/.local/bin:$PATH"
 pip install gmx_MMPBSA==1.6.4 meeko==0.7.1 acpype==2023.10.27
 
-# scMultiomeGRN — extra pip installs required:
+# scMultiomeGRN — CellOracle + PyTorch (requires CUDA on HPC):
 conda env create -f envs/scmultiomegrn.yml
 conda activate scMultiomeGRN
 pip install "cython" "numpy<2"
@@ -193,12 +172,6 @@ pip install celloracle==0.20.0
 pip install torch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 \
     --index-url https://download.pytorch.org/whl/cu121
 pip install torch_geometric lightning
-```
-
-On TRUBA, all SLURM scripts auto-pull the Docker images as Apptainer SIF files on first run:
-```bash
-apptainer pull ~/containers/dam-drug-scanpy.sif docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
-apptainer pull ~/containers/dam-drug-r.sif       docker://ghcr.io/cagriozkurt/dam-drug-r:latest
 ```
 
 ### Data download
