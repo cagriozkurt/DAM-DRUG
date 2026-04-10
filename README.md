@@ -151,27 +151,23 @@ apptainer pull ~/containers/dam-drug-r.sif       docker://ghcr.io/cagriozkurt/da
 |-------|--------|
 | `dam-drug-scanpy.sif` | `scanpy_env` (analysis + figures) and `scenic` (pySCENIC) |
 | `dam-drug-r.sif` | `cellchat_r` (CellChat/R) |
-
-#### Conda environments (pipeline-only, not containerized)
-
-Two environments require system-level dependencies and must be installed via conda:
+| `dam-drug-scmultiomegrn.sif` | `scMultiomeGRN` (CellOracle + PyTorch GRN, phases 2 & 5) |
 
 ```bash
-# mmpbsa — docking + MM-GBSA (requires GROMACS module on HPC):
+apptainer pull ~/containers/dam-drug-scmultiomegrn.sif \
+    docker://ghcr.io/cagriozkurt/dam-drug-scmultiomegrn:latest
+```
+
+> GPU scripts pass `--nv` to expose the host GPU driver. SLURM scripts handle this automatically.
+
+#### Conda environment (pipeline-only, not containerized)
+
+`mmpbsa` requires the GROMACS system module and cannot be containerized portably:
+
+```bash
 conda env create -f envs/mmpbsa.yml
 conda activate mmpbsa && export PATH="$HOME/.local/bin:$PATH"
 pip install gmx_MMPBSA==1.6.4 meeko==0.7.1 acpype==2023.10.27
-
-# scMultiomeGRN — CellOracle + PyTorch (requires CUDA on HPC):
-conda env create -f envs/scmultiomegrn.yml
-conda activate scMultiomeGRN
-pip install "cython" "numpy<2"
-pip install velocyto==0.17.17 --no-build-isolation
-pip install celloracle==0.20.0
-# PyTorch with CUDA 12.1 (TRUBA V100); omit --index-url for CPU-only:
-pip install torch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 \
-    --index-url https://download.pytorch.org/whl/cu121
-pip install torch_geometric lightning
 ```
 
 ### Data download
@@ -244,7 +240,7 @@ python code/phase2_GRN/28_regulon_pseudotime_correlation.py
 
 | Step | Script | Environment | Notes |
 |------|--------|-------------|-------|
-| 30 | `code/slurm/30_setup_scMultiomeGRN.slurm` | scMultiomeGRN | [HPC] Install scMultiomeGRN package |
+| 30 | `code/slurm/30_setup_scMultiomeGRN.slurm` | scMultiomeGRN | [HPC] Download scMultiomeGRN tool source from Zenodo |
 | 31 | `code/phase2_GRN/31_prep_scMultiomeGRN_input.py` | scMultiomeGRN | [local] Prepare MTX input files |
 | 32 | `code/slurm/32_scMultiomeGRN_infer.slurm` | scMultiomeGRN | [HPC] scMultiomeGRN inference |
 
@@ -347,9 +343,10 @@ sbatch code/slurm/18b_core_rmsd_analysis.slurm
 ```bash
 sbatch code/slurm/19_deseq2_gse95587.slurm
 
-conda activate scMultiomeGRN && export DAM_DRUG_DIR=/path/to/DAM-DRUG
-python code/phase5_validation/35_celloracle_perturbation.py
-# or: sbatch code/slurm/35_celloracle_perturbation.slurm
+export DAM_DRUG_DIR=/path/to/DAM-DRUG
+apptainer exec --bind $DAM_DRUG_DIR:/work $HOME/containers/dam-drug-scmultiomegrn.sif \
+    conda run -n scMultiomeGRN python code/phase5_validation/35_celloracle_perturbation.py
+# or on HPC: sbatch code/slurm/35_celloracle_perturbation.slurm
 ```
 
 #### Phase 6 — Figures and tables

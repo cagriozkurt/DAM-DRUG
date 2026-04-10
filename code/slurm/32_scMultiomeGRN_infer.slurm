@@ -17,14 +17,13 @@
 # Array index → state:
 #   0=Homeostatic  1=DAM  2=DAM-IRM  3=IRM  4=LateAD-DAM  5=LAM
 #
-# Prereq: sbatch code/slurm/31_scMultiomeGRN_env.slurm  (creates conda env)
 # Submit: sbatch code/slurm/32_scMultiomeGRN_infer.slurm
 # One state test: sbatch --array=1 code/slurm/32_scMultiomeGRN_infer.slurm
 # ─────────────────────────────────────────────────────────────────────────────
 
 set -eo pipefail
 
-PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
+PROJDIR=${DAM_DRUG_DIR:-/arf/scratch/mozkurt/DAM-DRUG}
 TOOLDIR=$PROJDIR/tools/scMultiomeGRN/extracted/ScmultiomeGRN-main
 DATADIR=$PROJDIR/tools/scMultiomeGRN/data_resource
 INPUTDIR=$PROJDIR/results/phase2/scMultiomeGRN/input
@@ -40,8 +39,8 @@ echo "=== scMultiomeGRN: $STATE (task $SLURM_ARRAY_TASK_ID) ==="
 echo "Job: $SLURM_JOB_ID on $SLURMD_NODENAME"
 echo "Start: $(date)"
 
-# ── Load conda (miniconda3 module = conda command) ────────────────────────────
-module load miniconda3
+SIF=$HOME/containers/dam-drug-scmultiomegrn.sif
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scmultiomegrn:latest
 
 echo "GPU: $(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null || echo 'not detected yet')"
 
@@ -166,8 +165,11 @@ print(f"\nTarget TF ranks ({cell_type}):")
 print(found.to_string(index=False))
 PYEOF
 
-# ── Run inside scMultiomeGRN conda env ────────────────────────────────────────
-conda run -n scMultiomeGRN python $SCRIPT
+# ── Run inside scMultiomeGRN container ───────────────────────────────────────
+apptainer exec --nv \
+  --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
+  "$SIF" \
+  conda run -n scMultiomeGRN python $SCRIPT
 
 echo ""
 echo "=== $STATE done: $(date) ==="

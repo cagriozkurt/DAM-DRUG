@@ -1,0 +1,80 @@
+# DAM-DRUG — scMultiomeGRN + CellOracle environment
+#
+# Contains one conda environment:
+#   scMultiomeGRN  — scMultiomeGRN GRN inference, CellOracle KO, ATAC/FIMO (phases 2, 5)
+#
+# Build (from repo root):
+#   docker buildx build --platform linux/amd64 \
+#     -f docker/Dockerfile.scmultiomegrn \
+#     -t ghcr.io/cagriozkurt/dam-drug-scmultiomegrn:latest --push .
+#
+# Pull on TRUBA (converts to SIF automatically):
+#   apptainer pull ~/containers/dam-drug-scmultiomegrn.sif \
+#     docker://ghcr.io/cagriozkurt/dam-drug-scmultiomegrn:latest
+#
+# Run with GPU on TRUBA:
+#   apptainer exec --nv --bind $DAM_DRUG_DIR:/work --pwd /work \
+#     ~/containers/dam-drug-scmultiomegrn.sif \
+#     conda run -n scMultiomeGRN python code/phase5_validation/35_celloracle_perturbation.py
+#
+# Note: PyTorch CUDA wheels bundle their own CUDA runtime. The --nv flag
+# exposes the host GPU driver; no CUDA base image required.
+
+FROM continuumio/miniconda3:24.3.0-0
+
+LABEL org.opencontainers.image.description="DAM-DRUG scMultiomeGRN + CellOracle environment"
+LABEL org.opencontainers.image.source="https://github.com/cagriozkurt/DAM-DRUG"
+
+# gcc needed for velocyto C extension (speedboosted.c)
+RUN apt-get update && apt-get install -y --no-install-recommends build-essential && rm -rf /var/lib/apt/lists/*
+
+# Install mamba for faster solving
+RUN conda install -n base -c conda-forge mamba -y && conda clean -a -y
+
+# ── scMultiomeGRN (conda packages) ───────────────────────────────────────────
+# Conda deps are installed explicitly here; pip deps follow in order below
+# because velocyto requires --no-build-isolation (cython must be present first)
+RUN mamba create -n scMultiomeGRN -y \
+        -c bioconda -c conda-forge \
+        python=3.10 \
+        bedops \
+        "meme=5.4.1" \
+        perl-bioperl \
+        arboreto \
+        "anndata=0.10.8" \
+        h5py \
+        pandas \
+        scanpy \
+        scikit-learn \
+        scipy \
+        statsmodels \
+        tqdm \
+        gensim \
+    && conda clean -a -y
+
+# ── pip packages (order matters) ─────────────────────────────────────────────
+# Step 1: numpy constraint + cython (velocyto build dep)
+RUN conda run -n scMultiomeGRN pip install "numpy<2" cython
+
+# Step 2: velocyto needs cython already installed; --no-build-isolation skips
+#         isolated build env so the above cython is visible
+RUN conda run -n scMultiomeGRN pip install velocyto==0.17.17 --no-build-isolation
+
+# Step 3: setuptools 60 (provides pkg_resources required by gimmemotifs/celloracle)
+RUN conda run -n scMultiomeGRN pip install "setuptools==60.0.0"
+
+# Step 4: CellOracle
+RUN conda run -n scMultiomeGRN pip install celloracle==0.20.0
+
+# Step 5: PyTorch with CUDA 12.1 wheels (works with TRUBA V100 via --nv)
+RUN conda run -n scMultiomeGRN pip install \
+        torch==2.4.0 \
+        torchvision==0.19.0 \
+        torchaudio==2.4.0 \
+        --index-url https://download.pytorch.org/whl/cu121
+
+# Step 6: Graph neural network + Lightning
+RUN conda run -n scMultiomeGRN pip install torch_geometric lightning \
+    && conda clean -a -y
+
+WORKDIR /work

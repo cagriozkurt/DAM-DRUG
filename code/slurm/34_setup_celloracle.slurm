@@ -9,6 +9,10 @@
 #SBATCH --ntasks=20
 #SBATCH --mem=16G
 # ─────────────────────────────────────────────────────────────────────────────
+# OBSOLETE — CellOracle is now pre-installed in
+#   docker://ghcr.io/cagriozkurt/dam-drug-scmultiomegrn:latest
+# Do not submit this script. Kept for historical reference only.
+# ─────────────────────────────────────────────────────────────────────────────
 # Step 1 of 5.7 CellOracle:
 #   - Install celloracle into scMultiomeGRN env
 #   - Print version, available classes, and key method signatures

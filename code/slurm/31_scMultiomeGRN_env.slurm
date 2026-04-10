@@ -9,6 +9,10 @@
 #SBATCH --ntasks=20
 #SBATCH --mem=128G
 # ─────────────────────────────────────────────────────────────────────────────
+# OBSOLETE — scMultiomeGRN env is now pre-installed in
+#   docker://ghcr.io/cagriozkurt/dam-drug-scmultiomegrn:latest
+# Do not submit this script. Kept for historical reference only.
+# ─────────────────────────────────────────────────────────────────────────────
 # One-time setup for scMultiomeGRN (item 2.8) — RESUMABLE
 #
 # Steps (each skipped if already done):

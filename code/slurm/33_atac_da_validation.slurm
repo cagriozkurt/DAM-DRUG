@@ -19,13 +19,12 @@
 #   5. FIMO scan with 9 target TF motifs
 #   6. Enrichment summary
 #
-# Prereq: sbatch code/slurm/31_scMultiomeGRN_env.slurm  (scMultiomeGRN env)
 # Submit: sbatch code/slurm/33_atac_da_validation.slurm
 # ─────────────────────────────────────────────────────────────────────────────
 
 set -eo pipefail
 
-PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
+PROJDIR=${DAM_DRUG_DIR:-/arf/scratch/mozkurt/DAM-DRUG}
 export DAM_DRUG_DIR=$PROJDIR
 
 mkdir -p $PROJDIR/logs
@@ -34,13 +33,13 @@ echo "=== ATAC DA Validation ==="
 echo "Job: $SLURM_JOB_ID on $SLURMD_NODENAME"
 echo "Start: $(date)"
 
-# Load conda (for scMultiomeGRN env which has scanpy, scipy, FIMO, bedops)
-module load miniconda3
+SIF=$HOME/containers/dam-drug-scmultiomegrn.sif
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scmultiomegrn:latest
 
-# Install missing packages if not already present
-conda run -n scMultiomeGRN pip install -q scanpy statsmodels 2>/dev/null || true
-
-conda run -n scMultiomeGRN \
+apptainer exec \
+  --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
+  "$SIF" \
+  conda run -n scMultiomeGRN \
     python $PROJDIR/code/phase2_GRN/32_atac_da_validation.py
 
 echo ""
