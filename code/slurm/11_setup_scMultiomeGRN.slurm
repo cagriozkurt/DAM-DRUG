@@ -1,8 +1,9 @@
 #!/bin/bash
-#SBATCH --account=mozkurt
+# Account is read from $SBATCH_ACCOUNT — set it in your shell profile:
+#   export SBATCH_ACCOUNT=your_account_name
 #SBATCH --job-name=scMultiomeGRN_setup
-#SBATCH --output=/arf/scratch/mozkurt/DAM-DRUG/logs/scmultiome_setup-%j.out
-#SBATCH --error=/arf/scratch/mozkurt/DAM-DRUG/logs/scmultiome_setup-%j.err
+#SBATCH --output=logs/%x-%j.out
+#SBATCH --error=logs/%x-%j.err
 #SBATCH --time=01:00:00
 #SBATCH --partition=barbun
 #SBATCH --nodes=1
@@ -20,9 +21,9 @@
 
 set -eo pipefail
 
-PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
+PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
 WORKDIR=$PROJDIR/tools/scMultiomeGRN
-mkdir -p $WORKDIR $PROJDIR/logs
+mkdir -p "$WORKDIR" "$PROJDIR/logs"
 
 echo "=== scMultiomeGRN Setup ==="
 echo "Start: $(date)"
@@ -30,7 +31,7 @@ echo "Start: $(date)"
 # ── Download from Zenodo ───────────────────────────────────────────────────────
 echo ""
 echo "--- Downloading from Zenodo 10.5281/zenodo.14848389 ---"
-cd $WORKDIR
+cd "$WORKDIR"
 
 # Zenodo API to get download links
 ZENODO_RECORD="14848389"
@@ -66,12 +67,12 @@ for f in files:
 "
 
 echo "Download done: $(date)"
-ls -lh $WORKDIR
+ls -lh "$WORKDIR"
 
 # ── Inspect and extract ────────────────────────────────────────────────────────
 echo ""
 echo "--- Inspecting package contents ---"
-for f in $WORKDIR/*.zip $WORKDIR/*.tar.gz $WORKDIR/*.tar; do
+for f in "$WORKDIR"/*.zip "$WORKDIR"/*.tar.gz "$WORKDIR"/*.tar; do
     [ -f "$f" ] || continue
     echo "Archive: $f"
     case "$f" in
@@ -86,39 +87,39 @@ echo ""
 echo "--- Attempting pip install ---"
 
 # Try direct pip install from PyPI first
-pip install --user scMultiomeGRN 2>&1 | tail -5 || true
+pip install scMultiomeGRN 2>&1 | tail -5 || true
 
 # Try installing from downloaded package
-for f in $WORKDIR/*.zip $WORKDIR/*.tar.gz $WORKDIR/*.whl; do
+for f in "$WORKDIR"/*.zip "$WORKDIR"/*.tar.gz "$WORKDIR"/*.whl; do
     [ -f "$f" ] || continue
-    echo "Trying: pip install --user $f"
-    pip install --user "$f" 2>&1 | tail -10 || true
+    echo "Trying: pip install $f"
+    pip install "$f" 2>&1 | tail -10 || true
 done
 
 # Extract and look for setup.py / pyproject.toml
-cd $WORKDIR
-for f in *.zip; do
+mkdir -p "$WORKDIR/extracted"
+for f in "$WORKDIR"/*.zip; do
     [ -f "$f" ] || continue
-    python3 -c "import zipfile; z=zipfile.ZipFile('$f'); z.extractall('extracted')" 2>/dev/null || true
+    python3 -c "import zipfile; z=zipfile.ZipFile('$f'); z.extractall('$WORKDIR/extracted')" 2>/dev/null || true
 done
-for f in *.tar.gz; do
+for f in "$WORKDIR"/*.tar.gz; do
     [ -f "$f" ] || continue
-    tar -xzf "$f" -C extracted/ 2>/dev/null || mkdir -p extracted && tar -xzf "$f" -C extracted/ || true
+    tar -xzf "$f" -C "$WORKDIR/extracted/" || true
 done
 
 echo ""
 echo "--- Extracted contents ---"
-find $WORKDIR/extracted -maxdepth 3 -name "*.py" | head -30
-find $WORKDIR/extracted -maxdepth 2 -name "setup.py" -o -name "pyproject.toml" -o -name "requirements.txt" | head -10
+find "$WORKDIR/extracted" -maxdepth 3 -name "*.py" | head -30
+find "$WORKDIR/extracted" -maxdepth 2 -name "setup.py" -o -name "pyproject.toml" -o -name "requirements.txt" | head -10
 
 # ── Print README and requirements ─────────────────────────────────────────────
 echo ""
 echo "--- README ---"
-find $WORKDIR/extracted -maxdepth 3 -name "README*" | head -3 | xargs -I{} sh -c 'echo "=== {} ==="; head -80 "{}"'
+find "$WORKDIR/extracted" -maxdepth 3 -name "README*" | head -3 | xargs -I{} sh -c 'echo "=== {} ==="; head -80 "{}"'
 
 echo ""
 echo "--- requirements.txt ---"
-find $WORKDIR/extracted -maxdepth 3 -name "requirements*.txt" | xargs -I{} sh -c 'echo "=== {} ==="; cat "{}"'
+find "$WORKDIR/extracted" -maxdepth 3 -name "requirements*.txt" | xargs -I{} sh -c 'echo "=== {} ==="; cat "{}"'
 
 # ── Check if importable ────────────────────────────────────────────────────────
 echo ""

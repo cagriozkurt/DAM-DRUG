@@ -1,8 +1,9 @@
 #!/bin/bash
-#SBATCH --account=mozkurt
+# Account is read from $SBATCH_ACCOUNT — set it in your shell profile:
+#   export SBATCH_ACCOUNT=your_account_name
 #SBATCH --job-name=deseq2_gse95587
-#SBATCH --output=/arf/scratch/mozkurt/DAM-DRUG/logs/deseq2_gse95587-%j.out
-#SBATCH --error=/arf/scratch/mozkurt/DAM-DRUG/logs/deseq2_gse95587-%j.err
+#SBATCH --output=logs/%x-%j.out
+#SBATCH --error=logs/%x-%j.err
 #SBATCH --time=02:00:00
 #SBATCH --partition=barbun
 #SBATCH --nodes=1
@@ -20,31 +21,31 @@
 #   3. pyDESeq2              → deseq2_all_genes.csv + deseq2_target_tfs.csv
 #   4. Forest plot           → forest_plot_target_tfs.pdf + .png
 #
-# Packages required (pip install): pydeseq2 pandas matplotlib adjustText
+# Requires: pydeseq2, pandas, matplotlib, adjustText (all in containers/scenic.sif)
 # ─────────────────────────────────────────────────────────────────────────────
 
 set -eo pipefail
 
-DATA_DIR=/arf/scratch/mozkurt/DAM-DRUG/data/raw/Mayo/suppl
-OUT_DIR=/arf/scratch/mozkurt/DAM-DRUG/results/phase5/gse95587
-mkdir -p "$OUT_DIR"
+PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
+export DAM_DRUG_DIR=$PROJDIR
+OUT_DIR=$PROJDIR/results/phase5/gse95587
+mkdir -p "$OUT_DIR" "$PROJDIR/logs"
+
+SIF=$PROJDIR/containers/scenic.sif
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
 
 echo "Start: $(date)"
 echo "Node:  $SLURMD_NODENAME"
 
-# ── Environment ──────────────────────────────────────────────────────────────
-source /etc/profile.d/modules.sh
-module load miniconda3
-source /arf/sw/comp/python/miniconda3/etc/profile.d/conda.sh
-conda activate mmpbsa || { echo "ERROR: cannot activate mmpbsa env"; exit 1; }
-export PATH="$HOME/.local/bin:$PATH"
-
-# Install packages if needed (no-op if already installed)
-pip install -q pydeseq2==0.5.4 adjustText 2>/dev/null || true
-
 # ── Main Python pipeline ─────────────────────────────────────────────────────
-python3 << 'PYEOF'
-import gzip, sys, warnings
+apptainer exec \
+  --bind "$PROJDIR:$PROJDIR" \
+  "$SIF" \
+  python - << 'PYEOF'
+import gzip
+import os
+import sys
+import warnings
 from pathlib import Path
 
 import numpy as np
@@ -53,11 +54,14 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+from pydeseq2.dds import DeseqDataSet
+from pydeseq2.ds import DeseqStats
 
 warnings.filterwarnings('ignore')
 
-DATA_DIR = Path('/arf/scratch/mozkurt/DAM-DRUG/data/raw/Mayo/suppl')
-OUT_DIR  = Path('/arf/scratch/mozkurt/DAM-DRUG/results/phase5/gse95587')
+PROJDIR  = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
+DATA_DIR = PROJDIR / 'data/raw/Mayo/suppl'
+OUT_DIR  = PROJDIR / 'results/phase5/gse95587'
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Target TF Entrez gene IDs (Homo sapiens)
@@ -98,7 +102,7 @@ with gzip.open(series_file, 'rt') as f:
 
 gsm_ids = fields['Sample_geo_accession']
 n = len(gsm_ids)
-print(f"  {n} samples: {gsm_ids[0]} … {gsm_ids[-1]}")
+print(f"  {n} samples: {gsm_ids[0]} ... {gsm_ids[-1]}")
 
 # Parse characteristics (each line is "key: value" for all samples)
 chars = {}
@@ -144,7 +148,7 @@ for f in sorted(DATA_DIR.glob('GSM*.tsv.gz')):
 print(f"  Count files found: {len(gsm_to_file)}")
 missing = [g for g in gsm_ids if g not in gsm_to_file]
 if missing:
-    print(f"  WARN: {len(missing)} GSMs have no count file — will be 0-filled")
+    print(f"  WARN: {len(missing)} GSMs have no count file -- will be 0-filled")
 
 # Build sparse-style dict first to avoid huge memory
 all_genes = set()
@@ -179,16 +183,13 @@ counts_mat = pd.DataFrame(
 )
 counts_mat.index.name = 'entrez_id'
 counts_mat.to_csv(OUT_DIR / 'raw_counts.tsv', sep='\t')
-print(f"  Count matrix: {counts_mat.shape[0]} genes × {counts_mat.shape[1]} samples")
+print(f"  Count matrix: {counts_mat.shape[0]} genes x {counts_mat.shape[1]} samples")
 print(f"  Written: raw_counts.tsv")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Step 3: pyDESeq2
 # ─────────────────────────────────────────────────────────────────────────────
 print("\n=== Step 3: pyDESeq2 ===")
-
-from pydeseq2.dds import DeseqDataSet
-from pydeseq2.ds import DeseqStats
 
 # Keep only AD and CON, drop samples with NA covariates
 meta_deseq = meta[meta['condition'].isin(['AD', 'CON'])].copy()
@@ -201,7 +202,7 @@ meta_deseq['sex_bin'] = (meta_deseq['sex'] == 'M').astype(int)
 counts_deseq = counts_mat[meta_deseq.index].T  # samples × genes
 print(f"  Samples in DESeq2: {len(meta_deseq)}  (AD={sum(meta_deseq.condition=='AD')}, CON={sum(meta_deseq.condition=='CON')})")
 
-# Filter low-count genes: ≥ 10 reads in at least 10 samples
+# Filter low-count genes: >= 10 reads in at least 10 samples
 keep = (counts_deseq >= 10).sum(axis=0) >= 10
 counts_deseq = counts_deseq.loc[:, keep]
 print(f"  Genes after count filter: {counts_deseq.shape[1]}")
@@ -299,7 +300,7 @@ ax.axvline(0, color='grey', linestyle='--', linewidth=0.8, zorder=1)
 ax.set_yticks(list(y_pos))
 ax.set_yticklabels(plot_df['gene'].tolist(), fontsize=11)
 ax.set_xlabel('log$_2$ fold change  (AD vs Control)', fontsize=11)
-ax.set_title('Target TF expression — GSE95587\nFusiform gyrus, AD vs Control\n'
+ax.set_title('Target TF expression -- GSE95587\nFusiform gyrus, AD vs Control\n'
              'Design: condition + sex + age + RIN', fontsize=10)
 
 patch_up  = mpatches.Patch(color='#d62728', label='Up (padj<0.05)')

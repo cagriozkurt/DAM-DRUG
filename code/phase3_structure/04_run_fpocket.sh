@@ -5,11 +5,11 @@
 # Output directories are moved to results/phase3/fpocket/.
 #
 # Usage (inside container):
-#   conda run -n base bash code/phase3_structure/09_run_fpocket.sh
+#   apptainer exec containers/fpocket.sif bash code/phase3_structure/04_run_fpocket.sh
 
 set -e
 
-PROJDIR=${DAM_DRUG_DIR:-/Volumes/PortableSSD/untitled\ folder/DAM-DRUG}
+PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
 PREP_DIR="${PROJDIR}/data/structures/prepared"
 OUT_DIR="${PROJDIR}/results/phase3/fpocket"
 

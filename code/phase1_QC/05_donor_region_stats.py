@@ -21,7 +21,7 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 
-PROJECT = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
+PROJECT = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 H5AD    = PROJECT / "results/phase1/trajectory/microglia_trajectory.h5ad"
 OUT     = PROJECT / "results/phase1/donor_region"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -29,6 +29,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 print("Loading obs only from microglia_trajectory.h5ad ...")
 adata = ad.read_h5ad(H5AD, backed="r")
 obs   = adata.obs.copy()
+adata.file.close()
 print(f"  {obs.shape[0]:,} cells × obs columns: {list(obs.columns)}")
 
 # ── Identify key columns ────────────────────────────────────────────────────
@@ -91,7 +92,7 @@ if DONOR_COL and STATE_COL:
 
     # Summary: n donors contributing each state
     donor_per_state = ct_donor.groupby(STATE_COL).agg(
-        n_donors=("Donor ID" if DONOR_COL == "Donor ID" else DONOR_COL, "nunique"),
+        n_donors=(DONOR_COL, "nunique"),
         mean_cells=("n_cells", "mean"),
         median_cells=("n_cells", "median"),
         min_cells=("n_cells", "min"),

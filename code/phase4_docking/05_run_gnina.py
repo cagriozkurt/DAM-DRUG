@@ -5,10 +5,10 @@ Takes top-N Vina poses per target, filters promiscuous binders,
 rescores with gnina CNN (--cnn_scoring rescore, no new search).
 
 Usage:
-    python 15_run_gnina.py <target_stem> [--cpus N] [--top N]
+    python 05_run_gnina.py <target_stem> [--cpus N] [--top N]
 
 Example:
-    python 15_run_gnina.py PPARG_1FM9_LBD_prep --cpus 20 --top 30
+    python 05_run_gnina.py PPARG_1FM9_LBD_prep --cpus 20 --top 30
 
 Output per compound:
     results/phase4/gnina/<target_stem>/<chembl_id>.pdbqt   (rescored poses)
@@ -29,13 +29,13 @@ from pathlib import Path
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-PROJECT      = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
+PROJECT      = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 VINA_OUT     = PROJECT / "results/phase4/vina"
 GNINA_OUT    = PROJECT / "results/phase4/gnina"
 RECEPTOR_DIR = PROJECT / "data/docking/receptors"
 CONF_DIR     = PROJECT / "data/docking/configs"
 SCORE_DIR    = PROJECT / "results/phase4"
-GNINA_BIN    = os.environ.get("GNINA", str(Path.home() / "apps/gnina/gnina"))
+GNINA_BIN    = os.environ.get("GNINA", "gnina")
 
 # Receptor PDBQT stem → filename mapping
 RECEPTOR_MAP = {
@@ -286,7 +286,7 @@ def main():
     for r in results[:10]:
         log.info(f"    {r['chembl_id']:20s}  CNN={r['cnn_score']:.4f}  Vina={r['vina_score']:6.2f}  CNNaff={r['cnn_affinity']:.2f}")
 
-    log.info("Next step: 15_run_gnina.slurm → 16_consensus_filter.py")
+    log.info("Next step: 21_run_gnina.slurm → 06_consensus_filter.py")
 
 
 if __name__ == "__main__":

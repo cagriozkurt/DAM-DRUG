@@ -1,31 +1,32 @@
 #!/bin/bash
-#SBATCH --account=mozkurt
+# Account is read from $SBATCH_ACCOUNT — set it in your shell profile:
+#   export SBATCH_ACCOUNT=your_account_name
 #SBATCH --job-name=cellchat
-#SBATCH --output=/arf/scratch/mozkurt/DAM-DRUG/logs/cellchat-%j.out
-#SBATCH --error=/arf/scratch/mozkurt/DAM-DRUG/logs/cellchat-%j.err
+#SBATCH --output=logs/%x-%j.out
+#SBATCH --error=logs/%x-%j.err
 #SBATCH --time=08:00:00
 #SBATCH --partition=hamsi
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=56
 #SBATCH --mem=128G
-# ────────────────────────────────────────────────────────────────────────────���
+# ─────────────────────────────────────────────────────────────────────────────
 # Step 2 of 2: CellChat + NicheNet R analysis
-# Prereq: 36_install_r_cellchat.slurm must have completed successfully
-#         37_prep_mtg.slurm must have completed (produces prep/ directory)
+# Prereq: 14_install_r_cellchat.slurm must have completed successfully
+#         15_prep_mtg.slurm must have completed (produces prep/ directory)
 #
-# Submit: sbatch code/slurm/38_cellchat.slurm
+# Submit: sbatch code/slurm/16_cellchat.slurm
 # ─────────────────────────────────────────────────────────────────────────────
 
 set -eo pipefail
 
-PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
+PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
 export DAM_DRUG_DIR=$PROJDIR
 
-SIF=$HOME/containers/dam-drug-r.sif
+SIF=$PROJDIR/containers/dam-drug-r.sif
 [ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-r:latest
 
-mkdir -p $PROJDIR/logs
+mkdir -p "$PROJDIR/logs"
 
 echo "=== CellChat + NicheNet ==="
 echo "Job: $SLURM_JOB_ID on $SLURMD_NODENAME"
@@ -33,7 +34,7 @@ echo "Start: $(date)"
 
 # Verify key packages available before submitting full job
 apptainer exec \
-  --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
+  --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
   Rscript -e "
 for (pkg in c('CellChat','Matrix','hdf5r')) {
@@ -44,9 +45,9 @@ for (pkg in c('CellChat','Matrix','hdf5r')) {
 "
 
 apptainer exec \
-  --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
+  --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  Rscript --vanilla $PROJDIR/code/phase2_LR/37_cellchat_nichechat.R
+  Rscript --vanilla "$PROJDIR/code/phase2_LR/02_cellchat_nichechat.R"
 
 echo ""
 echo "=== Done: $(date) ==="

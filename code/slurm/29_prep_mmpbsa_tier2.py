@@ -2,16 +2,12 @@
 DAM-DRUG Phase 4 — MM-GBSA preparation for Tier-2 hits
 ========================================================
 Prepares work directories for the 10 selected Tier-2 consensus hits
-(6 vs IKZF1_8RQC, 4 vs IRF8_AF2_DBD) for gmx_MMPBSA via 17_run_mmpbsa.slurm.
+(6 vs IKZF1_8RQC, 4 vs IRF8_AF2_DBD) for gmx_MMPBSA via 22_run_mmpbsa.slurm.
 
-Run on TRUBA login node (no GPU needed — prep only):
-    conda activate mmpbsa
-    python code/phase4_docking/22_prep_mmpbsa_tier2.py
+Run on the login node (no GPU needed — prep only):
+    apptainer exec containers/scenic.sif python code/slurm/29_prep_mmpbsa_tier2.py
 
-Requires:
-    obabel (~/.local/bin/obabel)
-    acpype (conda env mmpbsa)
-    rdkit  (conda env mmpbsa)
+Requires obabel, acpype, and rdkit — all provided by the scenic.sif container.
 """
 
 import json
@@ -23,16 +19,21 @@ import time
 import urllib.request
 from pathlib import Path
 
+try:
+    from rdkit import Chem as _Chem
+except ImportError:
+    _Chem = None
+
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-PROJECT      = Path(os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG"))
+PROJECT      = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 VINA_TIER2   = PROJECT / "results/phase4/vina_tier2"
 MMPBSA_DIR   = PROJECT / "results/phase4/mmpbsa_tier2"
 RECEPTOR_DIR = PROJECT / "data/structures/prepared"
 MANIFEST     = MMPBSA_DIR / "manifest.txt"
-OBABEL       = os.environ.get("OBABEL", str(Path.home() / ".local/bin/obabel"))
-ACPYPE       = os.environ.get("ACPYPE", "acpype")   # in conda env PATH
+OBABEL       = os.environ.get("OBABEL") or shutil.which("obabel") or str(PROJECT / "bin/obabel")
+ACPYPE       = os.environ.get("ACPYPE", "acpype")
 
 # Tier-2 target name → receptor PDB filename
 RECEPTOR_PDB = {
@@ -58,7 +59,7 @@ SELECTED = [
 ]
 
 
-# ── GROMACS MDP file templates (same as 17_prep_mmpbsa.py) ─────────────────
+# ── GROMACS MDP file templates (same as 07_prep_mmpbsa.py) ─────────────────
 
 EM_MDP = """\
 ; Energy minimisation
@@ -186,8 +187,9 @@ def fetch_smiles(chembl_id: str) -> str:
 
 def get_formal_charge(smiles: str) -> int:
     try:
-        from rdkit import Chem
-        mol = Chem.MolFromSmiles(smiles)
+        if _Chem is None:
+            return 0
+        mol = _Chem.MolFromSmiles(smiles)
         if mol is None:
             return 0
         return sum(a.GetFormalCharge() for a in mol.GetAtoms())
@@ -354,9 +356,9 @@ def main():
     log.info(f"\n{'='*60}")
     log.info(f"Prepared: {n_ok}   Failed: {n_fail}")
     log.info(f"Manifest: {MANIFEST}  ({n_ok} entries)")
-    log.info(f"Next: edit 17_run_mmpbsa.slurm  #SBATCH --array=0-{n_ok-1}")
+    log.info(f"Next: edit 22_run_mmpbsa.slurm  #SBATCH --array=0-{n_ok-1}")
     log.info(f"      update --output/--error paths to mmpbsa_tier2-%A_%a")
-    log.info(f"      sbatch code/slurm/17_run_mmpbsa.slurm")
+    log.info(f"      sbatch code/slurm/22_run_mmpbsa.slurm")
 
 
 if __name__ == "__main__":

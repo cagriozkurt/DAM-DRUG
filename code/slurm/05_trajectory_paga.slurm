@@ -1,8 +1,9 @@
 #!/bin/bash
-#SBATCH --account=mozkurt
+# Account is read from $SBATCH_ACCOUNT — set it in your shell profile:
+#   export SBATCH_ACCOUNT=your_account_name
 #SBATCH --job-name=traj_paga
-#SBATCH --output=/arf/scratch/mozkurt/DAM-DRUG/logs/traj_paga-%j.out
-#SBATCH --error=/arf/scratch/mozkurt/DAM-DRUG/logs/traj_paga-%j.err
+#SBATCH --output=logs/%x-%j.out
+#SBATCH --error=logs/%x-%j.err
 #SBATCH --time=08:00:00
 #SBATCH --partition=barbun
 #SBATCH --nodes=1
@@ -17,44 +18,35 @@
 #   results/phase1/trajectory/umap_paga_pseudotime.pdf
 #   results/phase1/trajectory/microglia_trajectory.h5ad
 #
-# Submit: sbatch code/slurm/27_trajectory_paga.slurm
+# Submit: sbatch code/slurm/05_trajectory_paga.slurm
 # ─────────────────────────────────────────────────────────────────────────────
 
 set -eo pipefail
 
-PROJDIR=${DAM_DRUG_DIR:-/arf/scratch/mozkurt/DAM-DRUG}
-SIF=$HOME/containers/dam-drug-scanpy.sif
+PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
+SIF=$PROJDIR/containers/scenic.sif
 [ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
 H5AD_SRC=$PROJDIR/data/raw/SEA-AD/SEA-AD_Microglia_multi-regional_final-nuclei.2025-07-24.h5ad
 H5AD_TMP=/tmp/SEA-AD_Microglia.h5ad
 
-mkdir -p $PROJDIR/logs $PROJDIR/results/phase1/trajectory
+mkdir -p "$PROJDIR/logs" "$PROJDIR/results/phase1/trajectory"
 
 echo "Job: $SLURM_JOB_ID on $SLURMD_NODENAME"
 echo "Start: $(date)"
 
 # Copy h5ad to NVMe /tmp for fast I/O
 echo "Copying h5ad to /tmp..."
-cp $H5AD_SRC $H5AD_TMP
+cp "$H5AD_SRC" "$H5AD_TMP"
 echo "Copy done: $(date)"
 
 export DAM_DRUG_DIR=$PROJDIR
 export SEA_AD_H5AD=$H5AD_TMP
 
-# Install missing deps to ~/.local (home is mounted; container is read-only)
 apptainer exec \
-  --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
+  --bind "$PROJDIR:$PROJDIR" \
   --bind /tmp:/tmp \
   "$SIF" \
-  conda run -n scenic \
-    pip install -q --user python-igraph leidenalg
-
-apptainer exec \
-  --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
-  --bind /tmp:/tmp \
-  "$SIF" \
-  conda run -n scenic \
-    python $PROJDIR/code/phase1_QC/27_trajectory_paga.py
+  python "$PROJDIR/code/phase1_QC/04_trajectory_paga.py"
 
 echo "Done: $(date)"
-rm -f $H5AD_TMP
+rm -f "$H5AD_TMP"

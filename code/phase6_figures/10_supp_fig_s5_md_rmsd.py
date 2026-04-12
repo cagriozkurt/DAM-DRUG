@@ -11,17 +11,16 @@ All traces: core-RMSD (ligand after fit to binding-site backbone).
 Running average (window=50 ps) overlaid on raw trace.
 
 Runs locally:
-  python code/phase6_figures/supp_fig_s5_md_rmsd.py
+  python code/phase6_figures/10_supp_fig_s5_md_rmsd.py
 """
 
-import os
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-PROJECT = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
+PROJECT = Path(__file__).resolve().parents[2]
 MD_DIR  = PROJECT / "results/phase4/md"
 OUT     = PROJECT / "results/figures"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -91,60 +90,65 @@ PANELS = [
     },
 ]
 
-# ── Plot ───────────────────────────────────────────────────────────────────
-fig, axes = plt.subplots(2, 2, figsize=(10, 7), constrained_layout=True)
-axes_flat = axes.flatten()
+def main():
+    # ── Plot ───────────────────────────────────────────────────────────────
+    fig, axes = plt.subplots(2, 2, figsize=(10, 7), constrained_layout=True)
+    axes_flat = axes.flatten()
 
-for ax, panel in zip(axes_flat, PANELS):
-    run_dir = MD_DIR / panel["target_dir"] / panel["chembl"]
-    xvg_path = run_dir / panel["xvg"]
-    if not xvg_path.exists():
-        xvg_path = run_dir / "ligand_rmsd.xvg"
+    for ax, panel in zip(axes_flat, PANELS):
+        run_dir  = MD_DIR / panel["target_dir"] / panel["chembl"]
+        xvg_path = run_dir / panel["xvg"]
+        if not xvg_path.exists():
+            xvg_path = run_dir / "ligand_rmsd.xvg"
 
-    t, rmsd = parse_xvg(xvg_path)
+        t, rmsd = parse_xvg(xvg_path)
 
-    # Convert time to ns (GROMACS outputs in ps)
-    t_ns = t / 1000.0
-    # Convert RMSD to Å (GROMACS outputs in nm)
-    rmsd_A = rmsd * 10.0
+        # Convert time to ns (GROMACS outputs in ps)
+        t_ns = t / 1000.0
+        # Convert RMSD to Å (GROMACS outputs in nm)
+        rmsd_A = rmsd * 10.0
 
-    # Running average
-    window = min(50, len(rmsd_A) // 10)
-    avg_A  = running_avg(rmsd_A, window=window) if window > 1 else rmsd_A
+        # Running average
+        window = min(50, len(rmsd_A) // 10)
+        avg_A  = running_avg(rmsd_A, window=window) if window > 1 else rmsd_A
 
-    # Plot raw (thin, low alpha) + average (thick)
-    ax.plot(t_ns, rmsd_A, color=panel["color"], alpha=0.25, linewidth=0.6, rasterized=True)
-    ax.plot(t_ns, avg_A,  color=panel["color"], alpha=0.95, linewidth=1.8,
-            label=f"{window}-frame avg")
+        # Plot raw (thin, low alpha) + average (thick)
+        ax.plot(t_ns, rmsd_A, color=panel["color"], alpha=0.25, linewidth=0.6, rasterized=True)
+        ax.plot(t_ns, avg_A,  color=panel["color"], alpha=0.95, linewidth=1.8,
+                label=f"{window}-frame avg")
 
-    ax.set_xlabel("Time (ns)", fontsize=8)
-    ax.set_ylabel("Ligand RMSD (Å)", fontsize=8)
-    ax.set_title(f"{panel['drug']}\n{panel['target']}", fontsize=8.5, fontweight="bold")
-    ax.spines[["top", "right"]].set_visible(False)
-    ax.set_xlim(0, t_ns[-1])
+        ax.set_xlabel("Time (ns)", fontsize=8)
+        ax.set_ylabel("Ligand RMSD (Å)", fontsize=8)
+        ax.set_title(f"{panel['drug']}\n{panel['target']}", fontsize=8.5, fontweight="bold")
+        ax.spines[["top", "right"]].set_visible(False)
+        ax.set_xlim(0, t_ns[-1])
 
-    # Stability annotation
-    last20 = rmsd_A[int(len(rmsd_A) * 0.8):]
-    mean20 = last20.mean()
-    std20  = last20.std()
-    ax.axhline(mean20, color=panel["color"], linestyle="--", linewidth=0.8, alpha=0.7)
-    ax.text(0.97, 0.95, f"Last 20 ns: {mean20:.2f}±{std20:.2f} Å",
-            transform=ax.transAxes, ha="right", va="top", fontsize=7,
-            color=panel["color"])
+        # Stability annotation
+        last20 = rmsd_A[int(len(rmsd_A) * 0.8):]
+        mean20 = last20.mean()
+        std20  = last20.std()
+        ax.axhline(mean20, color=panel["color"], linestyle="--", linewidth=0.8, alpha=0.7)
+        ax.text(0.97, 0.95, f"Last 20 ns: {mean20:.2f}±{std20:.2f} Å",
+                transform=ax.transAxes, ha="right", va="top", fontsize=7,
+                color=panel["color"])
 
-    # Panel label
-    ax.text(-0.12, 1.04, panel["label"], transform=ax.transAxes,
-            fontsize=12, fontweight="bold")
+        # Panel label
+        ax.text(-0.12, 1.04, panel["label"], transform=ax.transAxes,
+                fontsize=12, fontweight="bold")
 
-fig.suptitle(
-    "Supplementary Figure S5 — MD Simulation Ligand RMSD Traces (100 ns)",
-    fontsize=10
-)
+    fig.suptitle(
+        "Supplementary Figure S5 — MD Simulation Ligand RMSD Traces (100 ns)",
+        fontsize=10
+    )
 
-# ── Save ───────────────────────────────────────────────────────────────────
-for ext in ("pdf", "png"):
-    fig.savefig(OUT / f"supp_fig_S5_md_rmsd.{ext}",
-                bbox_inches="tight", dpi=300)
-    print(f"Saved → {OUT}/supp_fig_S5_md_rmsd.{ext}")
+    # ── Save ───────────────────────────────────────────────────────────────
+    for ext in ("pdf", "png"):
+        fig.savefig(OUT / f"supp_fig_S5_md_rmsd.{ext}",
+                    bbox_inches="tight", dpi=300)
+        print(f"Saved → {OUT}/supp_fig_S5_md_rmsd.{ext}")
 
-plt.close(fig)
+    plt.close(fig)
+
+
+if __name__ == "__main__":
+    main()

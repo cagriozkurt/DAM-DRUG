@@ -1,8 +1,9 @@
 #!/bin/bash
-#SBATCH --account=mozkurt
+# Account is read from $SBATCH_ACCOUNT — set it in your shell profile:
+#   export SBATCH_ACCOUNT=your_account_name
 #SBATCH --job-name=md100ns
-#SBATCH --output=/arf/scratch/mozkurt/DAM-DRUG/logs/md100ns-%A_%a.out
-#SBATCH --error=/arf/scratch/mozkurt/DAM-DRUG/logs/md100ns-%A_%a.err
+#SBATCH --output=logs/%x-%A_%a.out
+#SBATCH --error=logs/%x-%A_%a.err
 #SBATCH --open-mode=append          # accumulate logs across checkpoint restarts
 #SBATCH --time=72:00:00
 #SBATCH --partition=barbun
@@ -15,10 +16,10 @@
 # 100 ns production MD stability validation — top MM-GBSA hits
 #
 # Manifest: results/phase4/md/md100ns_manifest.txt  (4 lines, MM-GBSA workdirs)
-#   /arf/scratch/mozkurt/DAM-DRUG/results/phase4/mmpbsa/IRF8_AF2_DBD_prep/CHEMBL2103837
-#   /arf/scratch/mozkurt/DAM-DRUG/results/phase4/mmpbsa/IRF8_AF2_DBD_prep/CHEMBL490
-#   /arf/scratch/mozkurt/DAM-DRUG/results/phase4/mmpbsa/IRF8_AF2_DBD_prep/CHEMBL42
-#   /arf/scratch/mozkurt/DAM-DRUG/results/phase4/mmpbsa/PPARG_1FM9_LBD_prep/CHEMBL898
+#   $PROJDIR/results/phase4/mmpbsa/IRF8_AF2_DBD_prep/CHEMBL2103837
+#   $PROJDIR/results/phase4/mmpbsa/IRF8_AF2_DBD_prep/CHEMBL490
+#   $PROJDIR/results/phase4/mmpbsa/IRF8_AF2_DBD_prep/CHEMBL42
+#   $PROJDIR/results/phase4/mmpbsa/PPARG_1FM9_LBD_prep/CHEMBL898
 #
 # Output goes to: results/phase4/md/<target>/<chembl>/
 #
@@ -34,17 +35,21 @@
 #   Protein–ligand H-bond occupancy > 30%
 # ─────────────────────────────────────────────────────────────────────────────
 
-PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
+set -eo pipefail
+
+PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
 MANIFEST=$PROJDIR/results/phase4/md/md100ns_manifest.txt
 
-SRC=$(sed -n "$((SLURM_ARRAY_TASK_ID + 1))p" $MANIFEST)
+mkdir -p "$PROJDIR/logs"
+
+SRC=$(sed -n "$((SLURM_ARRAY_TASK_ID + 1))p" "$MANIFEST")
 if [ -z "$SRC" ]; then
     echo "ERROR: No entry at index $SLURM_ARRAY_TASK_ID in manifest"
     exit 1
 fi
 
-TARGET=$(basename $(dirname $SRC))
-CHEMBL=$(basename $SRC)
+TARGET=$(basename "$(dirname "$SRC")")
+CHEMBL=$(basename "$SRC")
 WORKDIR=$PROJDIR/results/phase4/md/$TARGET/$CHEMBL
 mkdir -p "$WORKDIR"
 
@@ -56,13 +61,14 @@ echo "Start:   $(date)"
 
 cd "$WORKDIR" || { echo "Cannot cd to $WORKDIR"; exit 1; }
 
-# ── Module / environment init (identical to 17_run_mmpbsa.slurm) ──────────
+# ── Module / environment init (identical to 22_run_mmpbsa.slurm) ──────────
 source /etc/profile.d/modules.sh
 module load apps/gromacs/2024.1-oneapi2024 || { echo "ERROR: Cannot load GROMACS"; exit 1; }
 module load miniconda3                      || { echo "ERROR: Cannot load miniconda3"; exit 1; }
-source /arf/sw/comp/python/miniconda3/etc/profile.d/conda.sh
+CONDA_BASE=$(conda info --base 2>/dev/null || true)
+[ -z "$CONDA_BASE" ] && CONDA_BASE=$(dirname "$(dirname "$(which conda 2>/dev/null)")")
+source "$CONDA_BASE/etc/profile.d/conda.sh"
 conda activate mmpbsa || { echo "ERROR: Cannot activate mmpbsa env"; exit 1; }
-export PATH="$HOME/.local/bin:$PATH"
 
 GMX=$(command -v gmx_mpi || command -v gmx || echo "")
 [ -z "$GMX" ] && { echo "ERROR: GROMACS not found after module load"; exit 1; }
@@ -74,15 +80,13 @@ if [ -f "MD100NS_DONE" ]; then
     exit 0
 fi
 
-set -eo pipefail
-
 # ── Copy source files from MM-GBSA workdir (idempotent) ───────────────────
 for f in receptor.pdb lig_GMX.itp lig_GMX.gro em.mdp meta.txt; do
     [ -f "$f" ] || cp "$SRC/$f" .
 done
 
 # ── Step 0.5: trim extreme-coordinate receptor residues ───────────────────
-# Same logic as 17_run_mmpbsa.slurm; no-op for compact crystal structures.
+# Same logic as 22_run_mmpbsa.slurm; no-op for compact crystal structures.
 echo "=== Step 0.5: receptor coordinate check ==="
 python3 -c "
 import math
@@ -167,7 +171,7 @@ print(f'Complex: {len(pa)} protein + {len(la)} ligand atoms')
 "
 
     echo "=== Step 2b: forcefield copy + GAFF2 atomtype injection ==="
-    FF_SRC=$(find /arf/sw/apps/gromacs -name "amber99sb-ildn.ff" -type d 2>/dev/null | head -1)
+    FF_SRC=$(find "${GMXDATA:-}" -name "amber99sb-ildn.ff" -type d 2>/dev/null | head -1)
     [ -z "$FF_SRC" ] && FF_SRC="${GMXLIB}/amber99sb-ildn.ff"
     rm -rf amber99sb-ildn.ff
     cp -r "$FF_SRC" .
@@ -516,7 +520,7 @@ echo "Frames in trajectory: $FRAMES / 10000"
 
 if [ "$FRAMES" -lt 10000 ]; then
     echo "Simulation incomplete — resubmit this job to continue from checkpoint"
-    echo "  sbatch --array=$SLURM_ARRAY_TASK_ID code/slurm/18_run_md100ns.slurm"
+    echo "  sbatch --array=$SLURM_ARRAY_TASK_ID code/slurm/24_run_md100ns.slurm"
     exit 0   # clean exit; not an error; log will show progress on next run
 fi
 

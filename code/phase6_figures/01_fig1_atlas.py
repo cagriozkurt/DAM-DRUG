@@ -10,10 +10,8 @@ Panels:
   F. Stacked bar: substate composition by Braak stage
 
 Runs on TRUBA (needs microglia_trajectory.h5ad ~3 GB).
-Submit via 29_fig1_atlas.slurm, or run interactively:
-  apptainer exec --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \\
-    ~/containers/scanpy-env.sif \\
-    conda run -n scenic python code/phase6_figures/fig1_atlas.py
+Submit via 10_fig1_atlas.slurm, or run interactively:
+  apptainer exec containers/scenic.sif python code/phase6_figures/01_fig1_atlas.py
 """
 
 import os
@@ -29,7 +27,7 @@ from matplotlib.patheffects import withStroke
 import seaborn as sns
 from pathlib import Path
 
-PROJECT = Path(os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG"))
+PROJECT = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 TRAJ    = PROJECT / "results/phase1/trajectory"
 EXPLORE = PROJECT / "results/phase1/explore"
 OUT     = PROJECT / "results/figures"

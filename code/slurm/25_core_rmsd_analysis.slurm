@@ -1,8 +1,9 @@
 #!/bin/bash
-#SBATCH --account=mozkurt
+# Account is read from $SBATCH_ACCOUNT — set it in your shell profile:
+#   export SBATCH_ACCOUNT=your_account_name
 #SBATCH --job-name=core_rmsd
-#SBATCH --output=/arf/scratch/mozkurt/DAM-DRUG/logs/core_rmsd-%A_%a.out
-#SBATCH --error=/arf/scratch/mozkurt/DAM-DRUG/logs/core_rmsd-%A_%a.err
+#SBATCH --output=logs/%x-%A_%a.out
+#SBATCH --error=logs/%x-%A_%a.err
 #SBATCH --time=01:00:00
 #SBATCH --partition=barbun
 #SBATCH --nodes=1
@@ -17,7 +18,7 @@
 # flexible C-terminus (per-residue RMSF up to 14.7 Å) that dominates the
 # backbone RMSD calculation and inflates the ligand RMSD (via bad fitting).
 # This script:
-#   1. Reads the per-residue RMSF (already computed in 18_run_md100ns.slurm)
+#   1. Reads the per-residue RMSF (already computed in 24_run_md100ns.slurm)
 #   2. Identifies stable-core residues: RMSF < RMSF_CUTOFF_NM (default 0.4 nm)
 #   3. Builds a Core_Backbone index group from backbone atoms of those residues
 #   4. Recomputes backbone RMSD (fit=Core_Backbone, group=Core_Backbone)
@@ -26,28 +27,32 @@
 #   7. Writes md100ns_core_result.txt with the corrected metrics
 #
 # Uses the PBC-corrected trajectory (md100ns_whole.xtc) already produced
-# by 18_run_md100ns.slurm Step 11.
+# by 24_run_md100ns.slurm Step 11.
 #
 # Acceptance criteria (same as primary analysis):
 #   Core backbone RMSD < 3.0 Å  (last-50 ns average)
 #   Ligand RMSD       < 2.0 Å  (last-50 ns average, fit on Core_Backbone)
 #   Contact occupancy > 30%    (mindist ≤ 3.5 Å, from existing hbond_num.xvg)
 #
-# Same manifest as 18_run_md100ns.slurm:
-#   /arf/scratch/mozkurt/DAM-DRUG/results/phase4/md/md100ns_manifest.txt
+# Same manifest as 24_run_md100ns.slurm:
+#   $PROJDIR/results/phase4/md/md100ns_manifest.txt
 # ─────────────────────────────────────────────────────────────────────────────
 
-PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
+set -eo pipefail
+
+PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
 MANIFEST=$PROJDIR/results/phase4/md/md100ns_manifest.txt
 
-SRC=$(sed -n "$((SLURM_ARRAY_TASK_ID + 1))p" $MANIFEST)
+mkdir -p "$PROJDIR/logs"
+
+SRC=$(sed -n "$((SLURM_ARRAY_TASK_ID + 1))p" "$MANIFEST")
 if [ -z "$SRC" ]; then
     echo "ERROR: No entry at index $SLURM_ARRAY_TASK_ID in manifest"
     exit 1
 fi
 
-TARGET=$(basename $(dirname $SRC))
-CHEMBL=$(basename $SRC)
+TARGET=$(basename "$(dirname "$SRC")")
+CHEMBL=$(basename "$SRC")
 WORKDIR=$PROJDIR/results/phase4/md/$TARGET/$CHEMBL
 
 echo "Job:     $SLURM_JOB_ID  Array: $SLURM_ARRAY_JOB_ID[$SLURM_ARRAY_TASK_ID]"
@@ -65,10 +70,8 @@ fi
 
 # Verify prerequisites
 for f in rmsf.xvg md100ns_whole.xtc md100ns.tpr em.gro index.ndx hbond_num.xvg; do
-    [ -f "$f" ] || { echo "ERROR: missing $f — run 18_run_md100ns.slurm first"; exit 1; }
+    [ -f "$f" ] || { echo "ERROR: missing $f — run 24_run_md100ns.slurm first"; exit 1; }
 done
-
-set -eo pipefail
 
 # ── Module / environment ────────────────────────────────────────────────────
 source /etc/profile.d/modules.sh

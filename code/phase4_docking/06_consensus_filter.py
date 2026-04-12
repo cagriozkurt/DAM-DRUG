@@ -8,7 +8,7 @@ and outputs a ranked shortlist for MM-GBSA (top 5–10 per target).
 Runs locally (no cluster required).
 
 Usage:
-    python 16_consensus_filter.py
+    python 06_consensus_filter.py
 
 Outputs:
     results/phase4/consensus_hits.csv        — all passing compounds per target
@@ -18,11 +18,13 @@ Outputs:
 
 import csv
 import os
+import datetime
 from pathlib import Path
 from collections import defaultdict
 
-PROJECT  = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
+PROJECT  = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 PHASE4   = PROJECT / "results/phase4"
+PHASE4.mkdir(parents=True, exist_ok=True)
 
 # ── Per-target thresholds ─────────────────────────────────────────────────────
 # Standard targets: Vina ≤ -6.5 AND CNN ≥ 0.70
@@ -61,7 +63,8 @@ def load_scores(target_stem):
     f = PHASE4 / f"gnina_scores_{target_stem}.csv"
     if not f.exists():
         return []
-    return list(csv.DictReader(open(f)))
+    with open(f) as fh:
+        return list(csv.DictReader(fh))
 
 
 def consensus_score(vina, cnn):
@@ -151,7 +154,7 @@ def main():
     # ── Human-readable report ─────────────────────────────────────────────────
     lines = []
     lines.append("DAM-DRUG Phase 4 — Consensus Filter Report")
-    lines.append(f"Generated: 2026-03-24")
+    lines.append(f"Generated: {datetime.date.today()}")
     lines.append("=" * 70)
     lines.append("")
     lines.append("Thresholds applied:")

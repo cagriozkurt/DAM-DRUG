@@ -23,8 +23,8 @@ Outputs:
   results/phase5/celloracle/KO_<TF>_transition_table.csv
 
 Run:
-  conda run -n scMultiomeGRN python code/phase5_validation/35_celloracle_perturbation.py
-  OR: sbatch code/slurm/35_celloracle_perturbation.slurm
+  apptainer exec containers/scmultiomegrn.sif python code/phase5_validation/01_celloracle_perturbation.py
+  OR: sbatch code/slurm/33_celloracle_perturbation.slurm
 """
 
 import os
@@ -43,7 +43,7 @@ from pathlib import Path
 sc.settings.verbosity = 1
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
-PROJECT      = Path(os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG"))
+PROJECT      = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 # Primary: trajectory h5ad (has UMAP + state labels); fallback: original SEA-AD h5ad
 MICROGLIA_H5  = PROJECT / "results/phase1/trajectory/microglia_trajectory.h5ad"
 SEAAD_H5      = PROJECT / "data/raw/SEA-AD/SEA-AD_Microglia_multi-regional_final-nuclei.2025-07-24.h5ad"
@@ -365,7 +365,6 @@ for tf in KO_TFS:
 
     # ── Save per-cell delta summary (direction of shift by state) ─────────────
     try:
-        import pandas as pd
         delta_df = pd.DataFrame(
             oracle.delta_embedding,
             index=oracle.adata.obs_names,

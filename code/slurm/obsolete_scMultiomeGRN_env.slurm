@@ -1,8 +1,9 @@
 #!/bin/bash
-#SBATCH --account=mozkurt
+# Account is read from $SBATCH_ACCOUNT — set it in your shell profile:
+#   export SBATCH_ACCOUNT=your_account_name
 #SBATCH --job-name=scmgrn_env
-#SBATCH --output=/arf/scratch/mozkurt/DAM-DRUG/logs/scmgrn_env-%j.out
-#SBATCH --error=/arf/scratch/mozkurt/DAM-DRUG/logs/scmgrn_env-%j.err
+#SBATCH --output=logs/%x-%j.out
+#SBATCH --error=logs/%x-%j.err
 #SBATCH --time=06:00:00
 #SBATCH --partition=barbun
 #SBATCH --nodes=1
@@ -21,20 +22,20 @@
 #   3. Download hg38 chromosome FASTAs
 #   4. Export per-state MTX from h5ads
 #
-# Submit: sbatch code/slurm/31_scMultiomeGRN_env.slurm
+# Submit: sbatch code/slurm/obsolete_scMultiomeGRN_env.slurm
 # ─────────────────────────────────────────────────────────────────────────────
 
 set -eo pipefail
 
-PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
+PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
+export DAM_DRUG_DIR=$PROJDIR
 TOOLDIR=$PROJDIR/tools/scMultiomeGRN/extracted/ScmultiomeGRN-main
 DATADIR=$PROJDIR/tools/scMultiomeGRN/data_resource
-CONTAINER=$HOME/containers/scanpy-env.sif
+CONTAINER=$PROJDIR/containers/scenic.sif
 export ATAC_H5AD=$PROJDIR/data/raw/SEA-AD/SEAAD_MTG_ATACseq_final-nuclei.2024-12-06.h5ad
-export DAM_DRUG_DIR=$PROJDIR
 
 CKPT_DIR=$PROJDIR/results/phase2/scMultiomeGRN/.checkpoints
-mkdir -p $PROJDIR/logs $CKPT_DIR
+mkdir -p "$PROJDIR/logs" "$CKPT_DIR"
 
 echo "=== scMultiomeGRN One-Time Setup ==="
 echo "Job: $SLURM_JOB_ID on $SLURMD_NODENAME"
@@ -67,7 +68,7 @@ else
             torch_geometric lightning h5py \
             pandas scikit-learn scipy tqdm gensim
     fi
-    touch $CKPT_DIR/env.done
+    touch "$CKPT_DIR/env.done"
     echo "Done."
 fi
 
@@ -77,23 +78,23 @@ echo "--- Step 2: HOCOMOCOv11 motifs ---"
 MOTIF_DIR=$DATADIR/HOCOMOCOv11
 
 if [ -f "$CKPT_DIR/motifs.done" ]; then
-    echo "SKIP (checkpoint exists): $(ls $MOTIF_DIR/*.meme 2>/dev/null | wc -l) .meme files"
+    echo "SKIP (checkpoint exists): $(ls "$MOTIF_DIR"/*.meme 2>/dev/null | wc -l) .meme files"
 else
-    mkdir -p $DATADIR
-    unzip -o -q $TOOLDIR/data_resource/HOCOMOCOv11.zip -d $DATADIR/
-    NMEME=$(ls $MOTIF_DIR/*.meme 2>/dev/null | wc -l)
+    mkdir -p "$DATADIR"
+    unzip -o -q "$TOOLDIR/data_resource/HOCOMOCOv11.zip" -d "$DATADIR/"
+    NMEME=$(ls "$MOTIF_DIR"/*.meme 2>/dev/null | wc -l)
     echo "Extracted: $NMEME .meme files"
-    [ "$NMEME" -gt 0 ] && touch $CKPT_DIR/motifs.done
+    [ "$NMEME" -gt 0 ] && touch "$CKPT_DIR/motifs.done"
 fi
 
 # ── 3. hg38 genome ────────────────────────────────────────────────────────────
 echo ""
 echo "--- Step 3: hg38 genome ---"
 GENOME_DIR=$DATADIR/download_genome/hg38
-mkdir -p $GENOME_DIR
+mkdir -p "$GENOME_DIR"
 
 if [ -f "$CKPT_DIR/genome.done" ]; then
-    echo "SKIP (checkpoint exists): $(ls $GENOME_DIR/*.fa 2>/dev/null | wc -l) chromosomes"
+    echo "SKIP (checkpoint exists): $(ls "$GENOME_DIR"/*.fa 2>/dev/null | wc -l) chromosomes"
 else
     MISSING=0
     for CHR in $(seq 1 22) X Y M; do
@@ -102,7 +103,7 @@ else
 
     if [ $MISSING -gt 0 ]; then
         echo "Downloading $MISSING missing chromosome FASTAs..."
-        cd $GENOME_DIR
+        cd "$GENOME_DIR"
         for CHR in $(seq 1 22) X Y M; do
             FA="chr${CHR}.fa"
             [ -f "$FA" ] && continue
@@ -110,11 +111,11 @@ else
                  -O "${FA}.gz" && gunzip "${FA}.gz" &
         done
         wait
-        echo "Genome ready: $(ls $GENOME_DIR/*.fa | wc -l) chromosomes"
+        echo "Genome ready: $(ls "$GENOME_DIR"/*.fa | wc -l) chromosomes"
     else
         echo "All chromosomes present."
     fi
-    touch $CKPT_DIR/genome.done
+    touch "$CKPT_DIR/genome.done"
 fi
 
 # ── 4. Export per-state MTX ───────────────────────────────────────────────────
@@ -144,12 +145,11 @@ else
     echo "Memory: $(free -h | awk '/^Mem/ {print $2}') total"
 
     apptainer exec \
-      --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
-      $CONTAINER \
-      conda run -n scenic \
-        python $PROJDIR/code/phase2_GRN/31_prep_scMultiomeGRN_input.py
+      --bind "$PROJDIR:$PROJDIR" \
+      "$CONTAINER" \
+      python "$PROJDIR/code/phase2_GRN/04_prep_scMultiomeGRN_input.py"
 fi
 
 echo ""
 echo "=== Setup complete: $(date) ==="
-echo "Next: sbatch code/slurm/32_scMultiomeGRN_infer.slurm"
+echo "Next: sbatch code/slurm/12_scMultiomeGRN_infer.slurm"

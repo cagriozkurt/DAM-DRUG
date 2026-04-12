@@ -10,7 +10,7 @@ Targets: PPARG, IKZF1, IRF8, BHLHE41, RUNX1, RUNX2, MAF (7 original)
 Requires: biopython (available in scanpy-env)
 
 Run on login node or compute node:
-  conda run -n base python code/phase3_structure/07_trim_domains.py
+  apptainer exec containers/scenic.sif python code/phase3_structure/02_trim_domains.py
 """
 
 import os
@@ -23,7 +23,7 @@ from Bio.PDB import PDBIO, Select
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-PROJECT  = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
+PROJECT  = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 STRUCT   = PROJECT / "data/structures"
 AF2_DIR  = STRUCT / "af2"
 PDB_DIR  = STRUCT / "pdb"
@@ -182,4 +182,4 @@ trim(AF2_DIR / "PIK3CA_AF2.pdb", "PIK3CA_AF2_KD", chains=["A"],
 log.info("\n=== Trimmed files ===")
 for f in sorted(TRIM_DIR.glob("*.pdb")):
     log.info(f"  {f.name}  {f.stat().st_size//1024} KB")
-log.info("Done. Ready for 08_prepare_structures.py (PDBFixer).")
+log.info("Done. Ready for 03_prepare_structures.py (PDBFixer).")

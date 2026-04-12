@@ -23,13 +23,14 @@ import logging
 import numpy as np
 import pandas as pd
 import scanpy as sc
+import loompy
 from pathlib import Path
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
-PROJECT  = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
+PROJECT  = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 RAW      = PROJECT / "data/raw/SEA-AD"
 RESOURCE = PROJECT / "data/resources"
 RES      = PROJECT / "results/phase2/GRN"
@@ -112,11 +113,12 @@ def prepare_loom():
     mg.obs["state"] = mg.obs[SUPERTYPE_COL].map(STATE_MAP)
 
     # Subsample for GRNBoost2 — 100K cells is standard practice; reduces dask graph to ~25 GB
-    # Stratify by state to preserve representation of rare states (LAM, IRM)
+    # Simple random draw without replacement; NOT stratified by state or donor.
+    # Substate representation is proportional by chance (see manuscript Methods §GRN inference).
     N_GRN = 100_000
     if mg.n_obs > N_GRN:
         sc.pp.subsample(mg, n_obs=N_GRN, random_state=42)
-        log.info(f"  Subsampled to {mg.n_obs:,} cells for GRNBoost2 (stratified by state kept proportional)")
+        log.info(f"  Subsampled to {mg.n_obs:,} cells (uniform random, random_state=42)")
 
     # Keep only essential obs columns — loompy rejects column names with "/"
     keep_cols = ["state", SUPERTYPE_COL, "Donor ID", "Braak Stage", "APOE Genotype", "Brain Region"]
@@ -201,8 +203,6 @@ def summarize():
         return
 
     log.info("Summarizing regulon activity by microglial state...")
-    import loompy
-
     with loompy.connect(str(AUC_LOOM), mode="r", validate=False) as ds:
         # pySCENIC writes RegulonsAUC as a structured numpy array (one field per regulon)
         auc_raw = ds.ca["RegulonsAUC"]
@@ -254,4 +254,4 @@ if __name__ == "__main__":
     run_ctx()
     run_aucell()
     summarize()
-    log.info("Next step: run 06_druggability_screening.py")
+    log.info("Next step: sbatch code/slurm/07_grn_multiseed.slurm (5-seed GRNBoost2 on HPC)")

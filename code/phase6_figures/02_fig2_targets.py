@@ -8,12 +8,12 @@ Panels:
   D. GSE95587 bulk replication forest plot
 
 Run locally:
-  python code/phase6_figures/fig2_targets.py
+  python code/phase6_figures/02_fig2_targets.py
 
 Requires: pandas, numpy, matplotlib, seaborn, scipy
 Aggregated GRN files (B, C): rsync from TRUBA first:
-  rsync truba:/arf/scratch/mozkurt/DAM-DRUG/results/phase2/GRN/regulon_auc_by_state_aggregated.csv results/phase2/GRN/
-  rsync truba:/arf/scratch/mozkurt/DAM-DRUG/results/phase2/GRN/regulon_pseudotime_corr.csv results/phase2/GRN/
+  rsync truba:$DAM_DRUG_DIR/results/phase2/GRN/regulon_auc_by_state_aggregated.csv results/phase2/GRN/
+  rsync truba:$DAM_DRUG_DIR/results/phase2/GRN/regulon_pseudotime_corr.csv results/phase2/GRN/
 """
 
 import numpy as np

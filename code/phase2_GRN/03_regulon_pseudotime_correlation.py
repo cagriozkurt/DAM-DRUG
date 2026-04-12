@@ -31,9 +31,10 @@ import loompy
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-PROJECT  = Path(os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG"))
+PROJECT  = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 GRN      = PROJECT / "results/phase2/GRN"
 TRAJ     = PROJECT / "results/phase1/trajectory"
+GRN.mkdir(parents=True, exist_ok=True)
 
 AUC_LOOM = GRN / "scenic_auc_aggregated.loom"
 PT_CSV   = TRAJ / "pseudotime.csv"

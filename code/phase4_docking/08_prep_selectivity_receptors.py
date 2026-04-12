@@ -11,11 +11,9 @@ Off-targets:
   HERG    — hERG potassium channel      (PDB 7CN1, K+ cavity marker, 3.7 Å cryo-EM)
 
 Run on TRUBA login node (no GPU needed):
-    conda activate mmpbsa
-    python code/phase4_docking/23_prep_selectivity_receptors.py
+    apptainer exec containers/scenic.sif python code/phase4_docking/08_prep_selectivity_receptors.py
 
-Requires:
-    obabel (~/.local/bin/obabel)
+Requires: obabel (available in container)
 """
 
 import logging
@@ -27,11 +25,11 @@ from pathlib import Path
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-PROJECT   = Path(os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG"))
+PROJECT   = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 PDB_DIR   = PROJECT / "data/structures/pdb"
 RECV_DIR  = PROJECT / "data/docking/receptors"
 CONF_DIR  = PROJECT / "data/docking/configs"
-OBABEL    = os.environ.get("OBABEL", str(Path.home() / ".local/bin/obabel"))
+OBABEL    = os.environ.get("OBABEL", "obabel")
 
 for d in (PDB_DIR, RECV_DIR, CONF_DIR):
     d.mkdir(parents=True, exist_ok=True)
@@ -241,7 +239,7 @@ def main():
     log.info(f"Prepared {ok_count}/{len(OFFTARGETS)} off-target receptors")
     log.info(f"Receptors: {RECV_DIR}/DRD2_prep.pdbqt, HTR2A_prep.pdbqt, HERG_prep.pdbqt")
     log.info(f"Configs:   {CONF_DIR}/DRD2.conf, HTR2A.conf, HERG.conf")
-    log.info(f"Next: sbatch code/slurm/23_run_selectivity_docking.slurm")
+    log.info(f"Next: sbatch code/slurm/31_run_selectivity_docking.slurm")
 
 
 if __name__ == "__main__":

@@ -15,11 +15,9 @@ Why Python preprocessing:
   The 34 GB h5ad is too large to load in R directly. Python/scanpy
   streams it efficiently; we write only the cells and genes needed.
 
-Run: sbatch code/slurm/37_prep_mtg.slurm
+Run: sbatch code/slurm/15_prep_mtg.slurm
   or interactively:
-      apptainer exec --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
-        ~/containers/scanpy-env.sif \
-        conda run -n scenic python code/phase2_LR/36_prep_mtg_for_cellchat.py
+      apptainer exec containers/scenic.sif python code/phase2_LR/01_prep_mtg_for_cellchat.py
 """
 
 import os
@@ -30,7 +28,7 @@ import scipy.sparse as sp
 import h5py
 from pathlib import Path
 
-PROJDIR = Path(os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG"))
+PROJDIR = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 MTG_H5AD = PROJDIR / "data/raw/SEA-AD/SEAAD_MTG_RNAseq_final-nuclei.2024-02-13.h5ad"
 OUT      = PROJDIR / "results/phase2/LR/prep"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -204,6 +202,7 @@ def main():
         f.create_dataset("gene_names",
                          data=np.array(genes, dtype="S"),
                          compression="gzip")
+    adata.file.close()
 
     # cell_meta.csv
     meta_path = OUT / "cell_meta.csv"

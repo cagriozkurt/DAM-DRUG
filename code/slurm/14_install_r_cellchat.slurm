@@ -1,11 +1,12 @@
 #!/bin/bash
 # OBSOLETE — CellChat is now pre-installed in docker://ghcr.io/cagriozkurt/dam-drug-r:latest
-# Use: apptainer pull ~/containers/dam-drug-r.sif docker://ghcr.io/cagriozkurt/dam-drug-r:latest
+# Use: apptainer pull $PROJDIR/containers/dam-drug-r.sif docker://ghcr.io/cagriozkurt/dam-drug-r:latest
 # This script is kept for historical reference only; do not submit.
-#SBATCH --account=mozkurt
+# Account is read from $SBATCH_ACCOUNT — set it in your shell profile:
+#   export SBATCH_ACCOUNT=your_account_name
 #SBATCH --job-name=r_install
-#SBATCH --output=/arf/scratch/mozkurt/DAM-DRUG/logs/r_install-%j.out
-#SBATCH --error=/arf/scratch/mozkurt/DAM-DRUG/logs/r_install-%j.err
+#SBATCH --output=logs/%x-%j.out
+#SBATCH --error=logs/%x-%j.err
 #SBATCH --time=04:00:00
 #SBATCH --partition=hamsi
 #SBATCH --nodes=1
@@ -19,13 +20,13 @@
 # conda-forge handles libcurl, libxml2, libpng, harfbuzz, nlopt etc.
 # — avoids the "unable to compile from source" failures seen with module R.
 #
-# Submit: sbatch code/slurm/36_install_r_cellchat.slurm
+# Submit: sbatch code/slurm/14_install_r_cellchat.slurm
 # ─────────────────────────────────────────────────────────────────────────────
 
 set -eo pipefail
 
-PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
-mkdir -p $PROJDIR/logs
+PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
+mkdir -p "$PROJDIR/logs"
 
 module load miniconda3
 

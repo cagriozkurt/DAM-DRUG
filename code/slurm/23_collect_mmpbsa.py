@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-17_collect_mmpbsa.py
+23_collect_mmpbsa.py
 --------------------
 Aggregate mmpbsa_result.txt files from all 26 MM-GBSA workdirs into a
 ranked CSV.  Run from the project root or pass PROJDIR as first argument.
@@ -12,10 +12,11 @@ Columns: target, chembl_id, vina_score, dg_gbsa, sem, rank_vina, rank_gbsa
 import os
 import sys
 import csv
+from collections import defaultdict
 from pathlib import Path
 
 PROJDIR = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(
-    os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG")
+    os.environ.get("DAM_DRUG_DIR", str(Path.cwd()))
 )
 MMPBSA_ROOT = PROJDIR / "results" / "phase4" / "mmpbsa"
 OUT_CSV = MMPBSA_ROOT / "mmpbsa_summary.csv"
@@ -56,8 +57,6 @@ def main():
 
     # Rank within each target by vina (ascending = more negative = better)
     # and by dg_gbsa (ascending)
-    from collections import defaultdict
-
     by_target = defaultdict(list)
     for r in rows:
         by_target[r["target"]].append(r)

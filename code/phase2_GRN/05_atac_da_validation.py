@@ -9,10 +9,10 @@ Strategy:
   5. FIMO scan with 9 target TF motifs from HOCOMOCOv11
   6. Report: enrichment of target TF motifs in AD-upregulated peaks
 
-Requires scMultiomeGRN conda env (has FIMO, bedops, scipy, pandas):
-  conda run -n scMultiomeGRN python code/phase2_GRN/32_atac_da_validation.py
+Requires scMultiomeGRN container (has FIMO, bedops, scipy, pandas):
+  apptainer exec containers/scmultiomegrn.sif python code/phase2_GRN/05_atac_da_validation.py
 
-Or submit via: sbatch code/slurm/33_atac_da_validation.slurm
+Or submit via: sbatch code/slurm/13_atac_da_validation.slurm
 """
 
 import os
@@ -21,13 +21,15 @@ import re
 import subprocess
 import numpy as np
 import pandas as pd
+import scanpy as sc
 import scipy.sparse as sp
 import scipy.stats as stats
 from pathlib import Path
+from statsmodels.stats.multitest import multipletests
 from tqdm import tqdm
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
-PROJECT  = Path(os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG"))
+PROJECT  = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 ATAC_H5AD = PROJECT / "data/raw/SEA-AD/SEAAD_MTG_ATACseq_final-nuclei.2024-12-06.h5ad"
 TOOLDIR  = PROJECT / "tools/scMultiomeGRN/extracted/ScmultiomeGRN-main"
 DATADIR  = PROJECT / "tools/scMultiomeGRN/data_resource"
@@ -64,7 +66,6 @@ if PSEUDO_FILE.exists():
     meta   = pd.read_csv(OUT / "pseudobulk_meta.csv", index_col=0)
 else:
     print("[Step 1] Loading ATAC h5ad (backed)...", flush=True)
-    import scanpy as sc
     atac = sc.read_h5ad(ATAC_H5AD, backed='r')
     print(f"  Total: {atac.n_obs:,} cells × {atac.n_vars:,} peaks")
 
@@ -164,7 +165,6 @@ else:
             pvals[j] = 1.0
 
     # BH FDR
-    from statsmodels.stats.multitest import multipletests
     _, padj, _, _ = multipletests(pvals, method="fdr_bh")
 
     da = pd.DataFrame({
@@ -230,13 +230,13 @@ else:
 # ── Step 4: Extract FASTA sequences ───────────────────────────────────────────
 UP_FASTA  = OUT / "daps_ad_up.fasta"
 BG_FASTA  = OUT / "background_peaks.fasta"
-PERL_LOC  = run("which perl")
 
 def bed_to_fasta(bed_file, fasta_file):
     if fasta_file.exists():
         print(f"  SKIP — {fasta_file.name} exists")
         return
-    cmd = (f"{PERL_LOC} {GET_SEQ_PERL} "
+    perl_loc = run("which perl")
+    cmd = (f"{perl_loc} {GET_SEQ_PERL} "
            f"{bed_file.resolve()} {fasta_file.resolve()} {GENOME_DIR.resolve()}")
     run(cmd, verbose=True)
 
@@ -248,9 +248,9 @@ bed_to_fasta(OUT / "background_peaks.bed", BG_FASTA)
 # ── Step 5: FIMO scan for target TF motifs ────────────────────────────────────
 FIMO_DIR = OUT / "fimo_results"
 FIMO_DIR.mkdir(exist_ok=True)
-FIMO_LOC = run("which fimo")
 
 print("\n[Step 5] FIMO motif scanning...", flush=True)
+FIMO_LOC = run("which fimo")
 
 # Find motif files for target TFs
 motif_files = list(MOTIF_DIR.glob("*.meme"))
@@ -302,8 +302,10 @@ for tf in TARGET_TFS:
         n_bg = count_hits("background")
 
         # Enrichment ratio (hits per peak)
-        n_up_peaks = len(open(UP_BED).readlines())
-        n_bg_peaks = len(open(OUT / "background_peaks.bed").readlines())
+        with open(UP_BED) as _f:
+            n_up_peaks = sum(1 for _ in _f)
+        with open(OUT / "background_peaks.bed") as _f:
+            n_bg_peaks = sum(1 for _ in _f)
         rate_up = n_up / max(n_up_peaks, 1)
         rate_bg = n_bg / max(n_bg_peaks, 1)
         enrichment = rate_up / max(rate_bg, 1e-6)

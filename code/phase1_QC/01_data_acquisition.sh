@@ -11,7 +11,7 @@
 # =============================================================================
 
 set -euo pipefail
-PROJECT_ROOT="${DAM_DRUG_DIR:-/Volumes/PortableSSD/untitled folder/DAM-DRUG}"
+PROJECT_ROOT="${DAM_DRUG_DIR:-$(pwd)}"
 RAW="$PROJECT_ROOT/data/raw"
 
 if ! command -v aws &>/dev/null; then
@@ -33,14 +33,20 @@ fi
 MG_DIR="$RAW/SEA-AD"
 mkdir -p "$MG_DIR"
 
+MG_FILE="$MG_DIR/SEA-AD_Microglia_multi-regional_final-nuclei.2025-07-24.h5ad"
+MG_SHA256="f7ba373c6554ba0f04a9a67704e2046e18608bbc6a435a5f71af4c164a1a421f"
 echo "=== [1/2] Downloading SEA-AD Microglia pre-release (~3.3 GB) ==="
-aws s3 cp \
-  "s3://sea-ad-single-cell-profiling/Microglia-and-Immune-for-AAIC/SEA-AD_Microglia-and-Immune_multi-regional_final-nuclei_AAIC-pre-release.2025-07-24.h5ad" \
-  "$MG_DIR/SEA-AD_Microglia_multi-regional_final-nuclei.2025-07-24.h5ad" \
-  --no-sign-request \
-  --only-show-errors
-
-echo "  Done: $(du -sh "$MG_DIR/SEA-AD_Microglia_multi-regional_final-nuclei.2025-07-24.h5ad" | cut -f1)"
+if [ -f "$MG_FILE" ] && echo "$MG_SHA256  $MG_FILE" | sha256sum -c --quiet 2>/dev/null; then
+  echo "  Already exists and checksum OK, skipping."
+else
+  aws s3 cp \
+    "s3://sea-ad-single-cell-profiling/Microglia-and-Immune-for-AAIC/SEA-AD_Microglia-and-Immune_multi-regional_final-nuclei_AAIC-pre-release.2025-07-24.h5ad" \
+    "$MG_FILE" \
+    --no-sign-request \
+    --only-show-errors
+  echo "$MG_SHA256  $MG_FILE" | sha256sum -c || { echo "ERROR: checksum mismatch for $MG_FILE"; exit 1; }
+  echo "  Done: $(du -sh "$MG_FILE" | cut -f1)"
+fi
 
 # =============================================================================
 # 2. SEA-AD — MTG RNAseq full object (SECONDARY — all cell types, for context)
@@ -53,16 +59,22 @@ echo "  Done: $(du -sh "$MG_DIR/SEA-AD_Microglia_multi-regional_final-nuclei.202
 
 MTG_DIR="$RAW/SEA-AD"
 
+MTG_FILE="$MTG_DIR/SEAAD_MTG_RNAseq_final-nuclei.2024-02-13.h5ad"
+MTG_SHA256="9c1b48266d0a9aef76ad20fb8487d604158b10fad18dc0de85d5261ef06cb7c8"
 echo ""
 echo "=== [2/2] Downloading SEA-AD MTG full RNAseq (~36 GB) — may take 1-2 hours ==="
 echo "    (Skip with Ctrl-C if storage is limited; microglia pre-release is sufficient)"
-aws s3 cp \
-  "s3://sea-ad-single-cell-profiling/MTG/RNAseq/SEAAD_MTG_RNAseq_final-nuclei.2024-02-13.h5ad" \
-  "$MTG_DIR/SEAAD_MTG_RNAseq_final-nuclei.2024-02-13.h5ad" \
-  --no-sign-request \
-  --only-show-errors
-
-echo "  Done: $(du -sh "$MTG_DIR/SEAAD_MTG_RNAseq_final-nuclei.2024-02-13.h5ad" | cut -f1)"
+if [ -f "$MTG_FILE" ] && echo "$MTG_SHA256  $MTG_FILE" | sha256sum -c --quiet 2>/dev/null; then
+  echo "  Already exists and checksum OK, skipping."
+else
+  aws s3 cp \
+    "s3://sea-ad-single-cell-profiling/MTG/RNAseq/SEAAD_MTG_RNAseq_final-nuclei.2024-02-13.h5ad" \
+    "$MTG_FILE" \
+    --no-sign-request \
+    --only-show-errors
+  echo "$MTG_SHA256  $MTG_FILE" | sha256sum -c || { echo "ERROR: checksum mismatch for $MTG_FILE"; exit 1; }
+  echo "  Done: $(du -sh "$MTG_FILE" | cut -f1)"
+fi
 
 # =============================================================================
 # DEFERRED: MTG ATACseq (18 GB) — download before Phase 2 only

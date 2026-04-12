@@ -20,10 +20,11 @@ Outputs:
   data/compounds/tier1_cns_approved.csv      (metadata: name, MW, logP, etc.)
 
 Run on login node (internet required for ChEMBL API).
-Conformer generation via obabel (available at ~/.local/bin/obabel).
-PDBQT conversion via meeko (pip install --user meeko).
+Conformer generation via obabel; PDBQT conversion via meeko.
+Both are available inside the docking container.
 """
 
+import csv
 import os
 import time
 import json
@@ -36,13 +37,14 @@ from pathlib import Path
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-PROJECT   = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
+PROJECT   = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 COMP_DIR  = PROJECT / "data/compounds"
 PDBQT_DIR = COMP_DIR / "pdbqt"
 for d in [COMP_DIR, PDBQT_DIR]:
     d.mkdir(parents=True, exist_ok=True)
 
-OBABEL = os.environ.get("OBABEL", "obabel")
+OBABEL     = os.environ.get("OBABEL", "obabel")
+MK_PREPARE = os.environ.get("MK_PREPARE_LIGAND", "mk_prepare_ligand.py")
 CHEMBL_API = "https://www.ebi.ac.uk/chembl/api/data"
 
 # ── ChEMBL download ───────────────────────────────────────────────────────────
@@ -142,10 +144,7 @@ def smiles_to_3d(smiles: str, name: str, out_sdf: Path) -> bool:
 
 def sdf_to_pdbqt(sdf_path: Path, pdbqt_path: Path) -> bool:
     """3D SDF → PDBQT via meeko mk_prepare_ligand.py."""
-    mk = Path.home() / ".local/bin/mk_prepare_ligand.py"
-    if not mk.exists():
-        mk = Path("mk_prepare_ligand.py")  # fallback if in PATH
-    cmd = ["python3", str(mk), "-i", str(sdf_path), "-o", str(pdbqt_path)]
+    cmd = ["python3", MK_PREPARE, "-i", str(sdf_path), "-o", str(pdbqt_path)]
     result = subprocess.run(cmd, capture_output=True, text=True)
     return result.returncode == 0 and pdbqt_path.exists() and pdbqt_path.stat().st_size > 0
 
@@ -158,7 +157,6 @@ csv_out = COMP_DIR / "tier1_cns_approved.csv"
 
 if csv_out.exists():
     log.info(f"Already have {csv_out.name} — loading")
-    import csv
     records = []
     with open(csv_out) as f:
         records = list(csv.DictReader(f))
@@ -174,7 +172,6 @@ else:
         for r in records:
             f.write(f"{r['smiles']}\t{r['name']}\n")
 
-    import csv
     with open(csv_out, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=records[0].keys())
         w.writeheader()
@@ -233,4 +230,4 @@ for sdf in sorted(sdf_dir.glob("*.sdf")):
 
 log.info(f"PDBQT complete: {n_pdbqt_ok} ok, {n_pdbqt_fail} failed")
 log.info(f"\nLigand library ready: {n_pdbqt_ok} compounds in {PDBQT_DIR}")
-log.info("Next step: 14_run_vina.slurm")
+log.info("Next step: 20_run_vina.slurm")

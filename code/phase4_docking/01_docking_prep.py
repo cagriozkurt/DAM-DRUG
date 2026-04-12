@@ -31,7 +31,7 @@ from pathlib import Path
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-PROJECT   = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
+PROJECT   = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 FPOCKET   = PROJECT / "results/phase3/fpocket"
 PREPARED  = PROJECT / "data/structures/prepared"
 RECV_DIR  = PROJECT / "data/docking/receptors"
@@ -178,6 +178,7 @@ for stem, tier, track in TARGETS:
 log.info("\n--- IKZF1 PROTAC track (8RQC) ---")
 
 pdb_8rqc = PROJECT / "data/structures/pdb" / "8RQC.pdb"
+pdb_8rqc.parent.mkdir(parents=True, exist_ok=True)
 if not pdb_8rqc.exists():
     log.info("  Downloading 8RQC from RCSB...")
     try:
@@ -221,7 +222,7 @@ if pdb_8rqc and pdb_8rqc.exists():
         conf_8rqc  = CONF_DIR  / "IKZF1_8RQC_CRBN.conf"
         write_vina_config(conf_8rqc, pdbqt_8rqc, lig_cx, lig_cy, lig_cz, lig_box)
         log.info(f"  Config written: {conf_8rqc.name}")
-        log.info("  NOTE: Run 12b_ikzf1_protac_prep.py to extract CRBN receptor and prepare PDBQT")
+        log.info("  NOTE: Run 02_ikzf1_protac_prep.py to extract CRBN receptor and prepare PDBQT")
 
         records.append({
             "stem": "IKZF1_8RQC_CRBN", "tier": "PROTAC", "track": "molecular_glue",
@@ -241,4 +242,4 @@ log.info("DOCKING TARGETS SUMMARY")
 log.info(f"{'='*70}")
 log.info(df[["stem", "tier", "center_x", "center_y", "center_z", "box_size", "drug_score"]].to_string(index=False))
 log.info(f"\nSaved → {out_csv}")
-log.info("\nNext step: 13_prep_ligands.py (download + filter + 3D-conform Repurposing Hub library)")
+log.info("\nNext step: 03_prep_ligands.py (download + filter + 3D-conform Repurposing Hub library)")

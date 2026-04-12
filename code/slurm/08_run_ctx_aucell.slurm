@@ -1,8 +1,9 @@
 #!/bin/bash
-#SBATCH --account=mozkurt
+# Account is read from $SBATCH_ACCOUNT — set it in your shell profile:
+#   export SBATCH_ACCOUNT=your_account_name
 #SBATCH --job-name=ctx_aucell
-#SBATCH --output=/arf/scratch/mozkurt/DAM-DRUG/logs/ctx_aucell-%j.out
-#SBATCH --error=/arf/scratch/mozkurt/DAM-DRUG/logs/ctx_aucell-%j.err
+#SBATCH --output=logs/%x-%j.out
+#SBATCH --error=logs/%x-%j.err
 #SBATCH --time=72:00:00
 #SBATCH --partition=barbun
 #SBATCH --nodes=1
@@ -17,14 +18,14 @@
 #         results/phase2/GRN/regulon_auc_by_state_aggregated.csv
 #         results/phase2/GRN/TF_regulon_summary_aggregated.csv
 #
-# Submit: sbatch code/slurm/26_run_ctx_aucell.slurm
+# Submit: sbatch code/slurm/08_run_ctx_aucell.slurm
 # ─────────────────────────────────────────────────────────────────────────────
 
 set -eo pipefail
 
-PROJDIR=${DAM_DRUG_DIR:-/arf/scratch/mozkurt/DAM-DRUG}
+PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
 export DAM_DRUG_DIR=$PROJDIR
-SIF=$HOME/containers/dam-drug-scanpy.sif
+SIF=$PROJDIR/containers/scenic.sif
 [ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
 GRN=$PROJDIR/results/phase2/GRN
 
@@ -36,12 +37,12 @@ MOTIF_TBL=$PROJDIR/data/resources/motifs/motifs-v10nr_clust-nr.hgnc-m0.001-o0.0.
 REG=$GRN/regulons_aggregated.csv
 AUC_LOOM=$GRN/scenic_auc_aggregated.loom
 
+mkdir -p "$PROJDIR/logs"
 echo "Job: $SLURM_JOB_ID on $SLURMD_NODENAME"
 echo "Start: $(date)"
-mkdir -p $PROJDIR/logs
 
-[ -f "$ADJ" ]   || { echo "ERROR: $ADJ not found"; exit 1; }
-[ -f "$LOOM" ]  || { echo "ERROR: $LOOM not found"; exit 1; }
+[ -f "$ADJ" ]  || { echo "ERROR: $ADJ not found"; exit 1; }
+[ -f "$LOOM" ] || { echo "ERROR: $LOOM not found"; exit 1; }
 
 # ── Step 1: pyscenic ctx ──────────────────────────────────────────────────────
 if [ -f "$REG" ] && [ -s "$REG" ]; then
@@ -49,18 +50,17 @@ if [ -f "$REG" ] && [ -s "$REG" ]; then
 else
     echo "=== pyscenic ctx: $(date) ==="
     apptainer exec \
-      --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
+      --bind "$PROJDIR:$PROJDIR" \
       "$SIF" \
-      conda run -n scenic \
-        pyscenic ctx \
-          "$ADJ" \
-          "$RANKINGS" \
-          --annotations_fname "$MOTIF_TBL" \
-          --expression_mtx_fname "$LOOM" \
-          --output "$REG" \
-          --num_workers 20 \
-          --mode dask_multiprocessing \
-          --mask_dropouts
+      pyscenic ctx \
+        "$ADJ" \
+        "$RANKINGS" \
+        --annotations_fname "$MOTIF_TBL" \
+        --expression_mtx_fname "$LOOM" \
+        --output "$REG" \
+        --num_workers 20 \
+        --mode dask_multiprocessing \
+        --mask_dropouts
     echo "ctx done: $(date)"
 fi
 
@@ -70,27 +70,26 @@ if [ -f "$AUC_LOOM" ] && [ -s "$AUC_LOOM" ]; then
 else
     echo "=== pyscenic aucell: $(date) ==="
     apptainer exec \
-      --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
+      --bind "$PROJDIR:$PROJDIR" \
       "$SIF" \
-      conda run -n scenic \
-        pyscenic aucell \
-          "$LOOM" \
-          "$REG" \
-          --output "$AUC_LOOM" \
-          --num_workers 20
+      pyscenic aucell \
+        "$LOOM" \
+        "$REG" \
+        --output "$AUC_LOOM" \
+        --num_workers 20
     echo "aucell done: $(date)"
 fi
 
 # ── Step 3: summarize regulon activity by state ───────────────────────────────
 echo "=== Summarizing regulon activity: $(date) ==="
 apptainer exec \
-  --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
+  --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  conda run -n scenic python - << 'PYEOF'
+  python - << 'PYEOF'
 import os, loompy, pandas as pd
 from pathlib import Path
 
-GRN = Path(os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG")) / "results/phase2/GRN"
+GRN = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd()))) / "results/phase2/GRN"
 AUC_LOOM = GRN / "scenic_auc_aggregated.loom"
 TF_TARGETS = ["SPI1", "RUNX1", "IRF8", "PPARG", "CEBPB", "IKZF1",
               "RELB", "BHLHE40", "BHLHE41"]

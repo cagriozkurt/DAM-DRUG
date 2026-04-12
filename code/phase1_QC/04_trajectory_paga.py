@@ -32,7 +32,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 log = logging.getLogger(__name__)
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
-PROJECT  = Path(os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG"))
+PROJECT  = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 RAW      = PROJECT / "data/raw/SEA-AD"
 RES      = PROJECT / "results/phase1/trajectory"
 RES.mkdir(parents=True, exist_ok=True)
@@ -140,9 +140,10 @@ def main():
     if resume_from < 2:
         log.info("Step 2: PAGA...")
         sc.tl.paga(mg, groups="state")
+        paga_cats = list(mg.obs["state"].cat.categories)
         conn = pd.DataFrame(
             mg.uns["paga"]["connectivities"].toarray(),
-            index=STATE_ORDER, columns=STATE_ORDER,
+            index=paga_cats, columns=paga_cats,
         )
         log.info(f"  PAGA connectivity:\n{conn.round(3)}")
         sc.pl.paga(mg, color=["state"], layout="eq_tree",

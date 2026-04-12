@@ -1,6 +1,6 @@
 # Phase 2.9–2.10: CellChat + NicheNet — L-R interactions in MTG microglia
 # ==========================================================================
-# Inputs  (from 36_prep_mtg_for_cellchat.py):
+# Inputs  (from 01_prep_mtg_for_cellchat.py):
 #   results/phase2/LR/prep/counts_raw.h5
 #   results/phase2/LR/prep/cell_meta.csv
 #   results/phase2/LR/prep/microglia_markers.csv
@@ -15,7 +15,7 @@
 #   nichechat/ligand_target_heatmap.pdf
 #   nichechat/ligand_expression_dotplot.pdf
 #
-# Run: sbatch code/slurm/37_cellchat.slurm
+# Run: sbatch code/slurm/17_cellchat_final.slurm
 
 suppressPackageStartupMessages({
     library(Matrix)
@@ -33,7 +33,7 @@ cat(sprintf("nichenetr available: %s\n", HAS_NICHENET))
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 proj_dir  <- Sys.getenv("DAM_DRUG_DIR",
-                         unset="/arf/scratch/mozkurt/DAM-DRUG")
+                         unset=getwd())
 prep_dir  <- file.path(proj_dir, "results/phase2/LR/prep")
 cc_out    <- file.path(proj_dir, "results/phase2/LR/cellchat")
 nn_out    <- file.path(proj_dir, "results/phase2/LR/nichechat")

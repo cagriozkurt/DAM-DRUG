@@ -22,7 +22,7 @@ import scipy.io
 import scanpy as sc
 from pathlib import Path
 
-PROJECT = Path(os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG"))
+PROJECT = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 TRAJ    = PROJECT / "results/phase1/trajectory"
 OUT     = PROJECT / "results/phase2/scMultiomeGRN/input"
 

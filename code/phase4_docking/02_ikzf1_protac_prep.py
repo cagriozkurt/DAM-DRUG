@@ -26,14 +26,22 @@ Outputs:
 import os
 import re
 import logging
+import shutil
 import subprocess
 from pathlib import Path
 from collections import defaultdict
 
+try:
+    from pdbfixer import PDBFixer
+    from openmm.app import PDBFile
+    HAS_PDBFIXER = True
+except ImportError:
+    HAS_PDBFIXER = False
+
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-PROJECT  = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
+PROJECT  = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 PDB_DIR  = PROJECT / "data/structures/pdb"
 PREP_DIR = PROJECT / "data/structures/prepared"
 RECV_DIR = PROJECT / "data/docking/receptors"
@@ -43,7 +51,7 @@ pdb_8rqc = PDB_DIR / "8RQC.pdb"
 OBABEL = os.environ.get("OBABEL", "obabel")
 
 if not pdb_8rqc.exists():
-    log.error(f"8RQC.pdb not found at {pdb_8rqc}. Run 12_docking_prep.py first.")
+    log.error(f"8RQC.pdb not found at {pdb_8rqc}. Run 01_docking_prep.py first.")
     raise SystemExit(1)
 
 # ── Parse COMPND to identify chain→molecule mapping ──────────────────────────
@@ -136,36 +144,36 @@ log.info("Running PDBFixer on extracted receptor...")
 
 prep_pdb = PREP_DIR / "8RQC_CRBN_ZF2_prep.pdb"
 
-try:
-    from pdbfixer import PDBFixer
-    from openmm.app import PDBFile
-
-    fixer = PDBFixer(filename=str(out_pdb))
-    fixer.removeHeterogens(keepWater=False)
-    fixer.findMissingResidues()
-
-    # Skip terminal extensions
-    chains = list(fixer.topology.chains())
-    filtered = {}
-    for key, residues in fixer.missingResidues.items():
-        chain_idx, res_idx = key
-        n_res = sum(1 for _ in chains[chain_idx].residues())
-        if 0 < res_idx < n_res:
-            filtered[key] = residues
-    fixer.missingResidues = filtered
-
-    fixer.findMissingAtoms()
-    fixer.addMissingAtoms()
-    fixer.addMissingHydrogens(7.4)
-
-    with open(str(prep_pdb), "w") as f:
-        PDBFile.writeFile(fixer.topology, fixer.positions, f)
-    log.info(f"PDBFixer done: {prep_pdb.name}  ({prep_pdb.stat().st_size // 1024} KB)")
-
-except Exception as e:
-    log.warning(f"PDBFixer failed ({e}) — using extracted PDB directly")
-    import shutil
+if not HAS_PDBFIXER:
+    log.warning("pdbfixer/openmm not available — using extracted PDB directly")
     shutil.copy(out_pdb, prep_pdb)
+else:
+    try:
+        fixer = PDBFixer(filename=str(out_pdb))
+        fixer.removeHeterogens(keepWater=False)
+        fixer.findMissingResidues()
+
+        # Skip terminal extensions
+        chains = list(fixer.topology.chains())
+        filtered = {}
+        for key, residues in fixer.missingResidues.items():
+            chain_idx, res_idx = key
+            n_res = sum(1 for _ in chains[chain_idx].residues())
+            if 0 < res_idx < n_res:
+                filtered[key] = residues
+        fixer.missingResidues = filtered
+
+        fixer.findMissingAtoms()
+        fixer.addMissingAtoms()
+        fixer.addMissingHydrogens(7.4)
+
+        with open(str(prep_pdb), "w") as f:
+            PDBFile.writeFile(fixer.topology, fixer.positions, f)
+        log.info(f"PDBFixer done: {prep_pdb.name}  ({prep_pdb.stat().st_size // 1024} KB)")
+
+    except Exception as e:
+        log.warning(f"PDBFixer failed ({e}) — using extracted PDB directly")
+        shutil.copy(out_pdb, prep_pdb)
 
 # ── Convert to PDBQT ─────────────────────────────────────────────────────────
 pdbqt_out = RECV_DIR / "IKZF1_8RQC_CRBN_prep.pdbqt"
@@ -191,4 +199,4 @@ log.info(f"  Chains retained: {keep_chains}")
 log.info(f"  QFC removed (re-dock site)")
 log.info(f"  ZN ions kept (ZF2 structural)")
 log.info(f"  Receptor PDBQT: {pdbqt_out}")
-log.info("Next: 13_prep_ligands.py → 14_run_vina.slurm")
+log.info("Next: 03_prep_ligands.py → 20_run_vina.slurm")

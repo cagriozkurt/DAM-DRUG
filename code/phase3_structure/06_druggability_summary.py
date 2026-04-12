@@ -18,8 +18,9 @@ from pathlib import Path
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-PROJECT  = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
+PROJECT  = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 RES3     = PROJECT / "results/phase3"
+RES3.mkdir(parents=True, exist_ok=True)
 IN_CSV   = RES3 / "pocket_summary.csv"
 RANK_CSV = RES3 / "druggability_ranking.csv"
 FIG_OUT  = RES3 / "pocket_summary_plots.png"
@@ -141,4 +142,4 @@ log.info("=" * 70)
 cols = ["tf", "structure_id", "drug_score", "pocket_score", "volume_A3",
         "n_pockets_total", "af2_pocket_plddt_flag"]
 log.info(rank_df[[c for c in cols if c in rank_df.columns]].to_string())
-log.info(f"\nNext step: run 12_docking_prep.py")
+log.info(f"\nNext step: run 01_docking_prep.py")

@@ -1,8 +1,9 @@
 #!/bin/bash
-#SBATCH --account=mozkurt
+# Account is read from $SBATCH_ACCOUNT — set it in your shell profile:
+#   export SBATCH_ACCOUNT=your_account_name
 #SBATCH --job-name=tier2_prep
-#SBATCH --output=/arf/scratch/mozkurt/DAM-DRUG/logs/tier2_prep-%j.out
-#SBATCH --error=/arf/scratch/mozkurt/DAM-DRUG/logs/tier2_prep-%j.err
+#SBATCH --output=logs/%x-%j.out
+#SBATCH --error=logs/%x-%j.err
 #SBATCH --time=04:00:00
 #SBATCH --partition=barbun
 #SBATCH --nodes=1
@@ -12,8 +13,8 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # Phase 4 contingency — Tier 2 PDBQT generation (batch step)
 #
-# PREREQUISITE: run 20_fetch_tier2.py interactively on the login node first.
-#   conda activate mmpbsa && python3 20_fetch_tier2.py
+# PREREQUISITE: run 26_fetch_tier2.py interactively on the login node first:
+#   apptainer exec containers/scenic.sif python code/slurm/26_fetch_tier2.py
 # That script fetches from ChEMBL (needs internet) and writes
 #   data/compounds/tier2_approved.csv
 # This SLURM script then generates 3D conformers + PDBQTs in parallel
@@ -25,43 +26,38 @@
 
 set -eo pipefail
 
-PROJDIR=${DAM_DRUG_DIR:-/arf/scratch/mozkurt/DAM-DRUG}
+PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
 export DAM_DRUG_DIR=$PROJDIR
 OUT_DIR=$PROJDIR/data/compounds
 PDBQT_DIR=$OUT_DIR/tier2_pdbqt
-mkdir -p "$PDBQT_DIR"
+mkdir -p "$PDBQT_DIR" "$PROJDIR/logs"
+
+SIF=$PROJDIR/containers/scenic.sif
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
 
 echo "Start: $(date)"
 echo "Node:  $SLURMD_NODENAME"
 
-# ── Environment ──────────────────────────────────────────────────────────────
-source /etc/profile.d/modules.sh
-module load miniconda3
-source /arf/sw/comp/python/miniconda3/etc/profile.d/conda.sh
-conda activate mmpbsa || { echo "ERROR: cannot activate mmpbsa env"; exit 1; }
-export PATH="$HOME/.local/bin:$PATH"
-
-# Verify prerequisite CSV exists (written by 20_fetch_tier2.py on login node)
+# Verify prerequisite CSV exists (written by 26_fetch_tier2.py on login node)
 TIER2_CSV=$OUT_DIR/tier2_approved.csv
-[ -f "$TIER2_CSV" ] || { echo "ERROR: $TIER2_CSV not found — run 20_fetch_tier2.py on login node first"; exit 1; }
-echo "Tier-2 CSV: $(wc -l < $TIER2_CSV) rows"
+[ -f "$TIER2_CSV" ] || { echo "ERROR: $TIER2_CSV not found — run 26_fetch_tier2.py on login node first"; exit 1; }
+echo "Tier-2 CSV: $(wc -l < "$TIER2_CSV") rows"
 
 echo ""
 echo "=== 3D conformers + PDBQT ==="
 
-TIER2_CSV=$OUT_DIR/tier2_approved.csv
-PDBQT_DIR=$OUT_DIR/tier2_pdbqt
-NCPUS=20
-
-python3 << 'PYEOF'
+apptainer exec \
+  --bind "$PROJDIR:$PROJDIR" \
+  "$SIF" \
+  python - << PYEOF
 import subprocess, sys
 from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
+import os as _os
 import pandas as pd
 
-import os as _os
-_PROJ = _os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG")
+_PROJ = _os.environ.get("DAM_DRUG_DIR", str(Path.cwd()))
 TIER2_CSV = Path(_PROJ) / 'data/compounds/tier2_approved.csv'
 PDBQT_DIR = Path(_PROJ) / 'data/compounds/tier2_pdbqt'
 NCPUS = 20

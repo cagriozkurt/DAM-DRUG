@@ -1,8 +1,9 @@
 #!/bin/bash
-#SBATCH --account=mozkurt
+# Account is read from $SBATCH_ACCOUNT — set it in your shell profile:
+#   export SBATCH_ACCOUNT=your_account_name
 #SBATCH --job-name=pseudobulk_deseq2
-#SBATCH --output=/arf/scratch/mozkurt/DAM-DRUG/logs/pseudobulk_deseq2-%j.out
-#SBATCH --error=/arf/scratch/mozkurt/DAM-DRUG/logs/pseudobulk_deseq2-%j.err
+#SBATCH --output=logs/%x-%j.out
+#SBATCH --error=logs/%x-%j.err
 #SBATCH --time=04:00:00
 #SBATCH --partition=barbun
 #SBATCH --nodes=1
@@ -12,11 +13,11 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # Phase 1 — Pseudobulk DESeq2 (donor-level replicates, sex + age covariates)
 #
-# Replaces cell-level Wilcoxon DGE (04_DGE_microglial_states.py) with the
+# Replaces cell-level Wilcoxon DGE (03_DGE_microglial_states.py) with the
 # methodologically correct pseudobulk approach:
 #   1. Aggregate raw UMI counts per (donor × microglial state)
 #   2. Run pydeseq2 with design ~ group + sex + age_z
-#   3. Output mirrors 04_DGE_microglial_states.py file naming
+#   3. Output mirrors 03_DGE_microglial_states.py file naming
 #      (dge_pb_{contrast}.csv) so downstream scripts can use either.
 #
 # Contrasts (same as Wilcoxon):
@@ -33,22 +34,22 @@
 
 set -eo pipefail
 
-OUT_DIR=${DAM_DRUG_DIR:-/arf/scratch/mozkurt/DAM-DRUG}/results/phase1/DGE_pseudobulk
-export DAM_DRUG_DIR=${DAM_DRUG_DIR:-/arf/scratch/mozkurt/DAM-DRUG}
-mkdir -p "$OUT_DIR"
+PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
+SIF=$PROJDIR/containers/scenic.sif
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
+
+OUT_DIR=$PROJDIR/results/phase1/DGE_pseudobulk
+mkdir -p "$PROJDIR/logs" "$OUT_DIR"
+
+export DAM_DRUG_DIR=$PROJDIR
 
 echo "Start: $(date)"
 echo "Node:  $SLURMD_NODENAME"
 
-source /etc/profile.d/modules.sh
-module load miniconda3
-source /arf/sw/comp/python/miniconda3/etc/profile.d/conda.sh
-conda activate mmpbsa || { echo "ERROR: cannot activate mmpbsa env"; exit 1; }
-export PATH="$HOME/.local/bin:$PATH"
-
-pip install -q pydeseq2==0.5.4 anndata 2>/dev/null || true
-
-python3 << 'PYEOF'
+apptainer exec \
+  --bind "$PROJDIR:$PROJDIR" \
+  "$SIF" \
+  python3 << 'PYEOF'
 import os, warnings, sys
 warnings.filterwarnings("ignore")
 
@@ -56,9 +57,11 @@ import numpy as np
 import pandas as pd
 import scipy.sparse as sp
 from pathlib import Path
+from pydeseq2.dds import DeseqDataSet
+from pydeseq2.ds import DeseqStats
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
-PROJDIR = Path(os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG"))
+PROJDIR = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 H5AD    = next((PROJDIR / "data/raw/SEA-AD").glob(
                 "SEA-AD_Microglia_multi-regional_final-nuclei.*.h5ad"))
 OUT_DIR = PROJDIR / "results/phase1/DGE_pseudobulk"
@@ -177,9 +180,6 @@ def run_deseq2(counts_df, meta_df, test_col, case, ctrl, contrast_name,
     Run pydeseq2 on pseudobulk counts.
     design ~ test_col + sex_bin [+ age_z if variance > 0]
     """
-    from pydeseq2.dds import DeseqDataSet
-    from pydeseq2.ds import DeseqStats
-
     # Keep only samples belonging to case / ctrl groups
     keep = meta_df[test_col].isin([case, ctrl])
     c_sub = counts_df.loc[keep]

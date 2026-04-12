@@ -1,20 +1,21 @@
 """
 DAM-DRUG Phase 4 — AutoDock Vina docking (single target)
 =========================================================
-Called by 14_run_vina.slurm for each docking target.
+Called by 20_run_vina.slurm for each docking target.
 Runs Vina on all ligand PDBQTs in parallel using multiprocessing.
 
 Usage:
-    python 14_run_vina.py <target_stem> [--cpus N]
+    python 04_run_vina.py <target_stem> [--cpus N]
 
 Example:
-    python 14_run_vina.py PPARG_1FM9_LBD_prep --cpus 20
+    python 04_run_vina.py PPARG_1FM9_LBD_prep --cpus 20
 
 Output per compound:
     results/phase4/vina/<target_stem>/<chembl_id>.pdbqt   (poses)
     results/phase4/vina/<target_stem>/<chembl_id>.log     (scores)
 """
 
+import csv
 import os
 import sys
 import argparse
@@ -26,11 +27,11 @@ from pathlib import Path
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-PROJECT   = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
+PROJECT   = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 PDBQT_DIR = PROJECT / "data/compounds/pdbqt"
 CONF_DIR  = PROJECT / "data/docking/configs"
 VINA_OUT  = PROJECT / "results/phase4/vina"
-VINA_BIN  = os.environ.get("VINA", str(Path.home() / "apps/vina/vina"))
+VINA_BIN  = os.environ.get("VINA", "vina")
 
 
 def run_one(args):
@@ -64,10 +65,11 @@ def main():
     conf = CONF_DIR / f"{stem}.conf"
     if not conf.exists():
         # Try without _prep suffix for PROTAC target
-        conf_alt = CONF_DIR / f"{stem}.conf"
+        conf_alt = CONF_DIR / f"{stem.removesuffix('_prep')}.conf"
         if not conf_alt.exists():
             log.error(f"Config not found: {conf}")
             sys.exit(1)
+        conf = conf_alt
 
     out_dir = VINA_OUT / stem
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -118,7 +120,6 @@ def main():
                     pass
 
     if scores:
-        import csv
         score_csv = PROJECT / "results/phase4" / f"vina_scores_{stem}.csv"
         with open(score_csv, "w", newline="") as f:
             w = csv.writer(f)
@@ -132,7 +133,7 @@ def main():
         for cid, sc in top10:
             log.info(f"    {cid:20s}  {sc:7.2f} kcal/mol")
 
-    log.info("Next step: 15_run_gnina.py (CNN rescoring of top poses)")
+    log.info("Next step: 05_run_gnina.py (CNN rescoring of top poses)")
 
 
 if __name__ == "__main__":

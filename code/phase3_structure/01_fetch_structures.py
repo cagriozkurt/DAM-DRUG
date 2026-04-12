@@ -6,7 +6,7 @@ structures from RCSB PDB for the 7 priority TF targets + 3 additional
 targets added in step 3.2b: SPI1, ACSL1, PIK3CA.
 
 Run on login node (no SLURM needed — small files, fast):
-  conda run -n scenic python code/phase3_structure/06_fetch_structures.py
+  apptainer exec containers/scenic.sif python code/phase3_structure/01_fetch_structures.py
 """
 
 import os
@@ -18,7 +18,7 @@ from pathlib import Path
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-PROJECT = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
+PROJECT = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 STRUCT  = PROJECT / "data/structures"
 AF2_DIR = STRUCT / "af2"
 PDB_DIR = STRUCT / "pdb"

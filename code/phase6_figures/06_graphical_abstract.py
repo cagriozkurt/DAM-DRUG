@@ -35,11 +35,6 @@ C_SLIT   = "#6C3483"   # violet     — CellChat finding
 C_ARROW  = "#555555"
 C_STEP   = "#ECF0F1"   # step label bg
 
-fig = plt.figure(figsize=(18, 8), facecolor=BG)
-ax  = fig.add_axes([0, 0, 1, 1], facecolor=BG)
-ax.set_xlim(0, 18)
-ax.set_ylim(0, 8)
-ax.axis("off")
 
 # ── Helper: rounded box with header stripe ─────────────────────────────────────
 def rbox(ax, x, y, w, h, color, title, body_lines,
@@ -124,129 +119,140 @@ def varrow(ax, x, y1, y2, color=C_ARROW, lw=2):
                 zorder=6)
 
 
-# ── Title bar ─────────────────────────────────────────────────────────────────
-title_rect = mpatches.Rectangle((0, 7.25), 18, 0.75,
-                                 color=C_INPUT, zorder=1)
-ax.add_patch(title_rect)
-ax.text(9, 7.625,
-        "Integrative Single-Cell Analysis of AD Microglia: "
-        "IKZF1 Identification and Drug Repurposing",
-        ha="center", va="center", fontsize=13.5,
-        fontweight="bold", color="white", zorder=2)
+def main():
+    fig = plt.figure(figsize=(18, 8), facecolor=BG)
+    ax  = fig.add_axes([0, 0, 1, 1], facecolor=BG)
+    ax.set_xlim(0, 18)
+    ax.set_ylim(0, 8)
+    ax.axis("off")
 
-# ── Section label: PIPELINE ────────────────────────────────────────────────────
-ax.text(0.30, 7.10, "PIPELINE", fontsize=8, color="#888888",
-        fontweight="bold", va="center")
-ax.plot([0.28, 17.7], [6.98, 6.98], color="#DDDDDD", lw=1, zorder=1)
+    # ── Title bar ─────────────────────────────────────────────────────────────
+    title_rect = mpatches.Rectangle((0, 7.25), 18, 0.75,
+                                     color=C_INPUT, zorder=1)
+    ax.add_patch(title_rect)
+    ax.text(9, 7.625,
+            "Integrative Single-Cell Analysis of AD Microglia: "
+            "IKZF1 Identification and Drug Repurposing",
+            ha="center", va="center", fontsize=13.5,
+            fontweight="bold", color="white", zorder=2)
 
-# ── Pipeline boxes (y: 5.15 – 6.90, box height 1.65) ─────────────────────────
-PY   = 5.10
-PH   = 1.72
-GAP  = 0.28
-PW   = 2.95
-PX0  = 0.28
+    # ── Section label: PIPELINE ───────────────────────────────────────────────
+    ax.text(0.30, 7.10, "PIPELINE", fontsize=8, color="#888888",
+            fontweight="bold", va="center")
+    ax.plot([0.28, 17.7], [6.98, 6.98], color="#DDDDDD", lw=1, zorder=1)
 
-pipeline = [
-    (C_INPUT,  "Data Input",
-     ["236,002 nuclei · 84 donors", "SEA-AD multi-regional atlas",
-      "Braak 0–VI continuum"]),
-    (C_TRAJ,   "Trajectory",
-     ["PAGA + Diffusion Pseudotime", "HM→IRM→DAM→LAM→LateAD-DAM",
-      "5 ordered substates"]),
-    (C_GRN,    "GRN Inference",
-     ["pySCENIC · 5-seed GRNBoost2", "1.46 M edges · 46 regulons",
-      "AUCell + pseudotime scoring"]),
-    (C_SCREEN, "Virtual Screening",
-     ["1,677 FDA drugs · Vina+Gnina", "6 TF structural targets",
-      "MM-GBSA · 100 ns MD"]),
-    (C_CELL,   "Cell Communication",
-     ["CellChat · 3,718 L-R pairs", "15 cell types · MTG",
-      "Pathway-level analysis"]),
-]
+    # ── Pipeline boxes (y: 5.15 – 6.90, box height 1.65) ─────────────────────
+    PY   = 5.10
+    PH   = 1.72
+    GAP  = 0.28
+    PW   = 2.95
+    PX0  = 0.28
 
-pipe_centers = []
-for i, (col, title, body) in enumerate(pipeline):
-    x = PX0 + i * (PW + GAP)
-    rbox(ax, x, PY, PW, PH, col, title, body,
-         title_size=10, body_size=8.3)
-    cx = x + PW / 2
-    pipe_centers.append(cx)
-    if i < len(pipeline) - 1:
-        harrow(ax, x + PW + 0.04, x + PW + GAP - 0.04,
-               PY + PH / 2, color=col)
+    pipeline = [
+        (C_INPUT,  "Data Input",
+         ["236,002 nuclei · 84 donors", "SEA-AD multi-regional atlas",
+          "Braak 0–VI continuum"]),
+        (C_TRAJ,   "Trajectory",
+         ["PAGA + Diffusion Pseudotime", "HM→IRM→DAM→LAM→LateAD-DAM",
+          "5 ordered substates"]),
+        (C_GRN,    "GRN Inference",
+         ["pySCENIC · 5-seed GRNBoost2", "1.46 M edges · 46 regulons",
+          "AUCell + pseudotime scoring"]),
+        (C_SCREEN, "Virtual Screening",
+         ["1,677 FDA drugs · Vina+Gnina", "6 TF structural targets",
+          "MM-GBSA · 100 ns MD"]),
+        (C_CELL,   "Cell Communication",
+         ["CellChat · 3,718 L-R pairs", "15 cell types · MTG",
+          "Pathway-level analysis"]),
+    ]
 
-# ── Section label: KEY FINDINGS ───────────────────────────────────────────────
-ax.plot([0.28, 17.7], [4.85, 4.85], color="#DDDDDD", lw=1, zorder=1)
-ax.text(0.30, 4.72, "KEY FINDINGS", fontsize=8, color="#888888",
-        fontweight="bold", va="center")
+    pipe_centers = []
+    for i, (col, title, body) in enumerate(pipeline):
+        x = PX0 + i * (PW + GAP)
+        rbox(ax, x, PY, PW, PH, col, title, body,
+             title_size=10, body_size=8.3)
+        cx = x + PW / 2
+        pipe_centers.append(cx)
+        if i < len(pipeline) - 1:
+            harrow(ax, x + PW + 0.04, x + PW + GAP - 0.04,
+                   PY + PH / 2, color=col)
 
-# ── Output boxes (y: 0.85 – 4.45, box height 3.30) ───────────────────────────
-OY  = 0.85
-OH  = 3.55
-OW  = 5.10
-OGap = 0.48
-OX  = [0.28, 0.28 + OW + OGap, 0.28 + 2 * (OW + OGap)]
+    # ── Section label: KEY FINDINGS ───────────────────────────────────────────
+    ax.plot([0.28, 17.7], [4.85, 4.85], color="#DDDDDD", lw=1, zorder=1)
+    ax.text(0.30, 4.72, "KEY FINDINGS", fontsize=8, color="#888888",
+            fontweight="bold", va="center")
 
-findings = [
-    (C_IKZF, "IKZF1",
-     ["Primary late-disease regulator",
-      "LateAD-DAM · AUCell = 0.153",
-      "Spearman ρ = +0.309 with DPT",
-      "Six independent modalities:",
-      "DGE · AUCell · DPT · Bulk · ATAC · KO",
-      "PROTAC/molecular glue candidate"]),
-    (C_DRUG, "Tafamidis  ·  Diflunisal",
-     ["Repurposing candidates",
-      "Tafamidis \u2192 IRF8  (\u0394G = \u22129.5 kcal/mol)",
-      "Diflunisal \u2192 PPARG  (\u0394G = \u22122.8 kcal/mol)",
-      "MM-GBSA · 100 ns MD validation",
-      "Both: established TTR stabilisers",
-      "Convergent pharmacophore hypothesis"]),
-    (C_SLIT, "SLIT2 → ROBO2",
-     ["Inhibitory interneuron → Microglia",
-      "Dominant extrinsic signal in AD MTG",
-      "Cumulative probability = 0.318",
-      "Pvalb · Lamp5 · Chandelier · Sst",
-      "GAS6-MERTK → IRF8 efferocytosis",
-      "Novel axis — unreported in human AD"]),
-]
+    # ── Output boxes (y: 0.85 – 4.45, box height 3.30) ───────────────────────
+    OY   = 0.85
+    OH   = 3.55
+    OW   = 5.10
+    OGap = 0.48
+    OX   = [0.28, 0.28 + OW + OGap, 0.28 + 2 * (OW + OGap)]
 
-out_centers = []
-for i, (col, title, body) in enumerate(findings):
-    ox = OX[i]
-    output_box(ax, ox, OY, OW, OH, col, title, body,
-               title_size=11.5, body_size=8.8)
-    out_centers.append(ox + OW / 2)
+    findings = [
+        (C_IKZF, "IKZF1",
+         ["Primary late-disease regulator",
+          "LateAD-DAM · AUCell = 0.153",
+          "Spearman ρ = +0.309 with DPT",
+          "Six independent modalities:",
+          "DGE · AUCell · DPT · Bulk · ATAC · KO",
+          "PROTAC/molecular glue candidate"]),
+        (C_DRUG, "Tafamidis  ·  Diflunisal",
+         ["Repurposing candidates",
+          "Tafamidis \u2192 IRF8  (\u0394G = \u22129.5 kcal/mol)",
+          "Diflunisal \u2192 PPARG  (\u0394G = \u22122.8 kcal/mol)",
+          "MM-GBSA · 100 ns MD validation",
+          "Both: established TTR stabilisers",
+          "Convergent pharmacophore hypothesis"]),
+        (C_SLIT, "SLIT2 → ROBO2",
+         ["Inhibitory interneuron → Microglia",
+          "Dominant extrinsic signal in AD MTG",
+          "Cumulative probability = 0.318",
+          "Pvalb · Lamp5 · Chandelier · Sst",
+          "GAS6-MERTK → IRF8 efferocytosis",
+          "Novel axis — unreported in human AD"]),
+    ]
 
-# ── Connecting arrows: pipeline source → finding ──────────────────────────────
-# GRN (idx 2) → IKZF1
-# Virtual Screening (idx 3) → Tafamidis/Diflunisal
-# CellChat (idx 4) → SLIT2-ROBO2
-connections = [(2, 0, C_GRN), (3, 1, C_SCREEN), (4, 2, C_CELL)]
-for pi, oi, col in connections:
-    sx = pipe_centers[pi]
-    dx = out_centers[oi]
-    # vertical from pipeline bottom
-    varrow(ax, sx, PY, PY - 0.18, color=col, lw=1.8)
-    # angled line to output top
-    ax.annotate("", xy=(dx, OY + OH + 0.04),
-                xytext=(sx, PY - 0.18),
-                arrowprops=dict(arrowstyle="-|>", color=col,
-                                lw=1.8, mutation_scale=13,
-                                connectionstyle="arc3,rad=0.0"),
-                zorder=6)
+    out_centers = []
+    for i, (col, title, body) in enumerate(findings):
+        ox = OX[i]
+        output_box(ax, ox, OY, OW, OH, col, title, body,
+                   title_size=11.5, body_size=8.8)
+        out_centers.append(ox + OW / 2)
 
-# ── Footer ─────────────────────────────────────────────────────────────────────
-ax.text(9, 0.30,
-        "Data: SEA-AD atlas (Allen Institute for Brain Science) · GSE95587 · "
-        "ChEMBL (max_phase = 4) · AlphaFold2 DB · RCSB PDB",
-        ha="center", va="center", fontsize=7.5, color="#999999")
+    # ── Connecting arrows: pipeline source → finding ──────────────────────────
+    # GRN (idx 2) → IKZF1
+    # Virtual Screening (idx 3) → Tafamidis/Diflunisal
+    # CellChat (idx 4) → SLIT2-ROBO2
+    connections = [(2, 0, C_GRN), (3, 1, C_SCREEN), (4, 2, C_CELL)]
+    for pi, oi, col in connections:
+        sx = pipe_centers[pi]
+        dx = out_centers[oi]
+        # vertical from pipeline bottom
+        varrow(ax, sx, PY, PY - 0.18, color=col, lw=1.8)
+        # angled line to output top
+        ax.annotate("", xy=(dx, OY + OH + 0.04),
+                    xytext=(sx, PY - 0.18),
+                    arrowprops=dict(arrowstyle="-|>", color=col,
+                                    lw=1.8, mutation_scale=13,
+                                    connectionstyle="arc3,rad=0.0"),
+                    zorder=6)
 
-# ── Save ───────────────────────────────────────────────────────────────────────
-for ext in ("pdf", "png"):
-    out = OUT_DIR / f"graphical_abstract.{ext}"
-    fig.savefig(out, dpi=300, bbox_inches="tight", facecolor=BG)
-    print(f"Saved {out}")
+    # ── Footer ────────────────────────────────────────────────────────────────
+    ax.text(9, 0.30,
+            "Data: SEA-AD atlas (Allen Institute for Brain Science) · GSE95587 · "
+            "ChEMBL (max_phase = 4) · AlphaFold2 DB · RCSB PDB",
+            ha="center", va="center", fontsize=7.5, color="#999999")
 
-plt.close(fig)
-print("Done.")
+    # ── Save ──────────────────────────────────────────────────────────────────
+    for ext in ("pdf", "png"):
+        out = OUT_DIR / f"graphical_abstract.{ext}"
+        fig.savefig(out, dpi=300, bbox_inches="tight", facecolor=BG)
+        print(f"Saved {out}")
+
+    plt.close(fig)
+    print("Done.")
+
+
+if __name__ == "__main__":
+    main()

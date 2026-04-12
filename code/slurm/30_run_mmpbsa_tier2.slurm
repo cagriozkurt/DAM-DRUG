@@ -1,8 +1,9 @@
 #!/bin/bash
-#SBATCH --account=mozkurt
-#SBATCH --job-name=mmpbsa
-#SBATCH --output=/arf/scratch/mozkurt/DAM-DRUG/logs/mmpbsa_tier2-%A_%a.out
-#SBATCH --error=/arf/scratch/mozkurt/DAM-DRUG/logs/mmpbsa_tier2-%A_%a.err
+# Account is read from $SBATCH_ACCOUNT — set it in your shell profile:
+#   export SBATCH_ACCOUNT=your_account_name
+#SBATCH --job-name=mmpbsa_tier2
+#SBATCH --output=logs/%x-%A_%a.out
+#SBATCH --error=logs/%x-%A_%a.err
 #SBATCH --time=04:00:00
 #SBATCH --partition=barbun
 #SBATCH --nodes=1
@@ -11,11 +12,15 @@
 #SBATCH --mem=16G
 #SBATCH --array=0-9   # 26 complexes in manifest
 
-PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
+set -eo pipefail
+
+PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
 MANIFEST=$PROJDIR/results/phase4/mmpbsa_tier2/manifest.txt
 
+mkdir -p "$PROJDIR/logs"
+
 # Read work directory for this array task
-WORKDIR=$(sed -n "$((SLURM_ARRAY_TASK_ID + 1))p" $MANIFEST)
+WORKDIR=$(sed -n "$((SLURM_ARRAY_TASK_ID + 1))p" "$MANIFEST")
 if [ -z "$WORKDIR" ]; then
     echo "ERROR: No entry at index $SLURM_ARRAY_TASK_ID in manifest"
     exit 1
@@ -26,7 +31,7 @@ echo "Node:    $SLURMD_NODENAME"
 echo "Workdir: $WORKDIR"
 echo "Start:   $(date)"
 
-cd $WORKDIR || { echo "Cannot cd to $WORKDIR"; exit 1; }
+cd "$WORKDIR" || { echo "Cannot cd to $WORKDIR"; exit 1; }
 
 # ── Initialize module environment ──────────────────────────────────────────
 # TRUBA barbun batch jobs don't source /etc/profile.d automatically; we must
@@ -37,18 +42,16 @@ module load apps/gromacs/2024.1-oneapi2024 || { echo "ERROR: Cannot load GROMACS
 module load miniconda3                      || { echo "ERROR: Cannot load miniconda3 module"; exit 1; }
 
 # ── Activate conda environment (provides gmx_MMPBSA, acpype, AmberTools) ──
-source /arf/sw/comp/python/miniconda3/etc/profile.d/conda.sh
+CONDA_BASE=$(conda info --base 2>/dev/null || true)
+[ -z "$CONDA_BASE" ] && CONDA_BASE=$(dirname "$(dirname "$(which conda 2>/dev/null)")")
+source "$CONDA_BASE/etc/profile.d/conda.sh"
 conda activate mmpbsa || { echo "ERROR: Cannot activate mmpbsa conda env"; exit 1; }
-
-# gmx_MMPBSA and acpype are pip-installed to ~/.local/bin (#!/usr/bin/python3 shebang);
-# mmpbsa conda env provides tleap (AmberTools) which gmx_MMPBSA calls internally.
-export PATH="$HOME/.local/bin:$PATH"
 
 GMX=$(command -v gmx_mpi || command -v gmx || echo "")
 [ -z "$GMX" ] && { echo "ERROR: GROMACS not found after module load"; exit 1; }
 echo "GROMACS: $GMX"
 
-command -v gmx_MMPBSA &>/dev/null || { echo "ERROR: gmx_MMPBSA not found — expected at ~/.local/bin/gmx_MMPBSA"; exit 1; }
+command -v gmx_MMPBSA &>/dev/null || { echo "ERROR: gmx_MMPBSA not found — install via: pip install gmx_MMPBSA"; exit 1; }
 
 # ── Check prerequisites ────────────────────────────────────────────────────
 for f in receptor.pdb lig_GMX.itp lig_GMX.gro em.mdp nvt.mdp npt.mdp md.mdp mmpbsa.in; do
@@ -63,8 +66,6 @@ if [ -f "MMPBSA_DONE" ]; then
     echo "Already complete — skipping"
     exit 0
 fi
-
-set -eo pipefail  # exit on any error, including inside pipes
 
 # ── Step 0.5: Trim disordered termini from receptor ───────────────────────
 # AF2 models (e.g. BHLHE41_AF2_bHLH) can have N/C-terminal tails that are
@@ -199,7 +200,7 @@ print(f'Complex: {n_prot} protein + {n_lig} ligand = {n_total} atoms')
 # rejected.  Fix: copy amber99sb-ildn.ff locally, inject GAFF2 types into the
 # local ffnonbonded.itp (where they're inside the forcefield chain), then
 # include lig_mol.itp (without [ atomtypes ]) after the local forcefield.
-FF_SRC=$(find /arf/sw/apps/gromacs -name "amber99sb-ildn.ff" -type d 2>/dev/null | head -1)
+FF_SRC=$(find "${GMXDATA:-}" -name "amber99sb-ildn.ff" -type d 2>/dev/null | head -1)
 [ -z "$FF_SRC" ] && FF_SRC="${GMXLIB}/amber99sb-ildn.ff"
 # Always re-copy a clean forcefield — never reuse a directory from a prior run,
 # which may have atomtypes injected in the wrong position (after [ pairtypes ]).

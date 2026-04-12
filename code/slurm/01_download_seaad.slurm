@@ -1,16 +1,18 @@
 #!/bin/bash
-#SBATCH --account=mozkurt
+# Account is read from $SBATCH_ACCOUNT — set it in your shell profile:
+#   export SBATCH_ACCOUNT=your_account_name
 #SBATCH --job-name=seaad-download
-#SBATCH --output=/arf/scratch/mozkurt/DAM-DRUG/logs/download-%j.out
-#SBATCH --error=/arf/scratch/mozkurt/DAM-DRUG/logs/download-%j.err
+#SBATCH --output=logs/%x-%j.out
+#SBATCH --error=logs/%x-%j.err
 #SBATCH --time=06:00:00
 #SBATCH --partition=barbun
 #SBATCH --nodes=1
 #SBATCH --ntasks=20
 #SBATCH --mem=16G
 
-OUTDIR=/arf/scratch/mozkurt/DAM-DRUG/data/raw/SEA-AD
-mkdir -p $OUTDIR /arf/scratch/mozkurt/DAM-DRUG/logs
+PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
+OUTDIR=$PROJDIR/data/raw/SEA-AD
+mkdir -p "$OUTDIR" "$PROJDIR/logs"
 
 BASE=https://sea-ad-single-cell-profiling.s3.amazonaws.com
 

@@ -5,14 +5,13 @@ Mandatory binding-site refinement step before fpocket / docking.
 
 For each trimmed structure:
   1. PDBFixer: add missing residues, add missing heavy atoms, add hydrogens
-  2. OpenMM minimization (1000 steps, implicit solvent) to relieve clashes
+  2. OpenMM minimization (200 steps, implicit solvent) to relieve clashes
   3. Write prepared PDB to data/structures/prepared/
 
-Requires: pdbfixer, openmm
-  conda install -n base -c conda-forge pdbfixer openmm
+Requires: pdbfixer, openmm (included in scenic container)
 
 Run on compute node (CPU OpenMM):
-  conda run -n base python code/phase3_structure/08_prepare_structures.py
+  apptainer exec containers/scenic.sif python code/phase3_structure/03_prepare_structures.py
 """
 
 import os
@@ -22,7 +21,7 @@ from pathlib import Path
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-PROJECT  = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
+PROJECT  = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 TRIM_DIR = PROJECT / "data/structures/trimmed"
 PREP_DIR = PROJECT / "data/structures/prepared"
 PREP_DIR.mkdir(parents=True, exist_ok=True)
@@ -40,7 +39,7 @@ try:
     from pdbfixer import PDBFixer
     HAS_PDBFIXER = True
 except ImportError:
-    log.error("pdbfixer not found — install with: conda install -c conda-forge pdbfixer")
+    log.error("pdbfixer not found — use: apptainer exec containers/scenic.sif python ...")
     raise SystemExit(1)
 
 
@@ -149,4 +148,4 @@ if failed:
     log.error(f"Failed: {failed}")
     raise SystemExit(1)
 
-log.info("Done. Ready for 09_run_fpocket.sh")
+log.info("Done. Ready for 04_run_fpocket.sh")

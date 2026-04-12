@@ -65,9 +65,9 @@ All main and supplementary figures and manuscript tables can be reproduced from 
 ### Step 1 — Set up environment
 
 ```bash
-apptainer pull ~/containers/dam-drug-scanpy.sif docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
 export DAM_DRUG_DIR=/path/to/DAM-DRUG
-alias pyrun="apptainer exec --bind $DAM_DRUG_DIR:/work --pwd /work $HOME/containers/dam-drug-scanpy.sif conda run -n scanpy_env python"
+apptainer pull "$DAM_DRUG_DIR/containers/scenic.sif" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
+alias pyrun="apptainer exec --bind \"\$DAM_DRUG_DIR:\$DAM_DRUG_DIR\" \"\$DAM_DRUG_DIR/containers/scenic.sif\" python"
 ```
 
 > `pyrun` is the alias used for all commands below.
@@ -77,15 +77,15 @@ alias pyrun="apptainer exec --bind $DAM_DRUG_DIR:/work --pwd /work $HOME/contain
 ```bash
 cd $DAM_DRUG_DIR
 
-pyrun code/phase6_figures/fig2_targets.py
-pyrun code/phase6_figures/fig3_docking.py
-pyrun code/phase6_figures/fig4_validation.py
-pyrun code/phase6_figures/fig_cellchat.py
-pyrun code/phase6_figures/supp_fig_s1_regulon_heatmap.py
-pyrun code/phase6_figures/supp_fig_s2_celloracle.py
-pyrun code/phase6_figures/supp_fig_s5_md_rmsd.py
-pyrun code/phase6_figures/supp_fig_s6_af2_quality.py
-pyrun code/phase6_figures/supp_fig_s7_bhlhe_coexpr.py
+pyrun code/phase6_figures/02_fig2_targets.py
+pyrun code/phase6_figures/03_fig3_docking.py
+pyrun code/phase6_figures/04_fig4_validation.py
+pyrun code/phase6_figures/05_fig_cellchat.py
+pyrun code/phase6_figures/07_supp_fig_s1_regulon_heatmap.py
+pyrun code/phase6_figures/08_supp_fig_s2_celloracle.py
+pyrun code/phase6_figures/10_supp_fig_s5_md_rmsd.py
+pyrun code/phase6_figures/11_supp_fig_s6_af2_quality.py
+pyrun code/phase6_figures/12_supp_fig_s7_bhlhe_coexpr.py
 ```
 
 Outputs are written to `results/figures/` as PDF and PNG.
@@ -94,9 +94,9 @@ Outputs are written to `results/figures/` as PDF and PNG.
 
 | Figure | Missing file | How to obtain |
 |--------|-------------|---------------|
-| `fig1_atlas.py`, `supp_fig_s7_bhlhe_coexpr.py` | SEA-AD h5ad (~3.3–36 GB) | `bash code/phase1_QC/01_data_acquisition.sh` (requires AWS CLI) |
-| `supp_fig_s3_qc.py` | `results/phase1/trajectory/microglia_trajectory.h5ad` | Run `sbatch code/slurm/27_trajectory_paga.slurm` on HPC (128 GB RAM, ~8 h) after downloading the SEA-AD microglia h5ad |
-| `supp_fig_s8_slit2_robo2_expr.py` | `results/phase2/LR/prep/counts_raw.h5` (873 MB) | `wget -P results/phase2/LR/prep/ https://zenodo.org/records/PLACEHOLDER/files/counts_raw.h5` *(DOI updated upon submission)* |
+| `01_fig1_atlas.py`, `12_supp_fig_s7_bhlhe_coexpr.py` | SEA-AD h5ad (~3.3–36 GB) | `bash code/phase1_QC/01_data_acquisition.sh` (requires AWS CLI) |
+| `09_supp_fig_s3_qc.py` | `results/phase1/trajectory/microglia_trajectory.h5ad` | Run `sbatch code/slurm/05_trajectory_paga.slurm` on HPC (128 GB RAM, ~8 h) after downloading the SEA-AD microglia h5ad |
+| `13_supp_fig_s8_slit2_robo2_expr.py` | `results/phase2/LR/prep/counts_raw.h5` (873 MB) | `wget -P results/phase2/LR/prep/ https://zenodo.org/records/PLACEHOLDER/files/counts_raw.h5` *(DOI updated upon submission)* |
 
 ### Step 3 — Run tables
 
@@ -132,8 +132,8 @@ The upstream computations (pySCENIC GRN inference, AutoDock Vina/GNINA docking, 
 | Tool | Version | Install |
 |------|---------|---------|
 | AWS CLI | any | `brew install awscli` or https://aws.amazon.com/cli/ |
-| AutoDock Vina | 1.2 | https://github.com/ccsb-scripps/AutoDock-Vina/releases — place at `~/apps/vina/vina` or set `VINA` env var |
-| GNINA | 1.3.2 | https://github.com/gnina/gnina/releases — place at `~/apps/gnina/gnina` or set `GNINA` env var; requires CUDA/cuDNN 9 |
+| AutoDock Vina | 1.2 | https://github.com/ccsb-scripps/AutoDock-Vina/releases — place at `$DAM_DRUG_DIR/bin/vina` or set `VINA` env var |
+| GNINA | 1.3.2 | https://github.com/gnina/gnina/releases — place at `$DAM_DRUG_DIR/bin/gnina` or set `GNINA` env var; requires CUDA/cuDNN 9 |
 | OpenBabel | 3.1.1 | `conda install -c conda-forge openbabel=3.1.1` (in mmpbsa env) |
 | fpocket | 4.x | https://github.com/Discngine/fpocket — build from source |
 | GROMACS | 2024.1 | HPC module: `module load apps/gromacs/2024.1-oneapi2024` |
@@ -143,20 +143,16 @@ The upstream computations (pySCENIC GRN inference, AutoDock Vina/GNINA docking, 
 Most SLURM scripts use Apptainer images pulled automatically on first run. Pull them manually if preferred:
 
 ```bash
-apptainer pull ~/containers/dam-drug-scanpy.sif docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
-apptainer pull ~/containers/dam-drug-r.sif       docker://ghcr.io/cagriozkurt/dam-drug-r:latest
+apptainer pull "$DAM_DRUG_DIR/containers/scenic.sif"               docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
+apptainer pull "$DAM_DRUG_DIR/containers/dam-drug-r.sif"           docker://ghcr.io/cagriozkurt/dam-drug-r:latest
+apptainer pull "$DAM_DRUG_DIR/containers/dam-drug-scmultiomegrn.sif" docker://ghcr.io/cagriozkurt/dam-drug-scmultiomegrn:latest
 ```
 
 | Image | Covers |
 |-------|--------|
-| `dam-drug-scanpy.sif` | `scanpy_env` (analysis + figures) and `scenic` (pySCENIC) |
-| `dam-drug-r.sif` | `cellchat_r` (CellChat/R) |
-| `dam-drug-scmultiomegrn.sif` | `scMultiomeGRN` (CellOracle + PyTorch GRN, phases 2 & 5) |
-
-```bash
-apptainer pull ~/containers/dam-drug-scmultiomegrn.sif \
-    docker://ghcr.io/cagriozkurt/dam-drug-scmultiomegrn:latest
-```
+| `scenic.sif` | analysis + figures (scanpy, pySCENIC, pydeseq2) |
+| `dam-drug-r.sif` | CellChat/R |
+| `dam-drug-scmultiomegrn.sif` | CellOracle + PyTorch GRN (phases 2 & 5) |
 
 > GPU scripts pass `--nv` to expose the host GPU driver. SLURM scripts handle this automatically.
 
@@ -166,7 +162,7 @@ apptainer pull ~/containers/dam-drug-scmultiomegrn.sif \
 
 ```bash
 conda env create -f envs/mmpbsa.yml
-conda activate mmpbsa && export PATH="$HOME/.local/bin:$PATH"
+conda activate mmpbsa
 pip install gmx_MMPBSA==1.6.4 meeko==0.7.1 acpype==2023.10.27
 ```
 
@@ -183,7 +179,7 @@ bash code/phase1_QC/01_data_acquisition.sh
 
 > The MTG ATACseq file (`SEAAD_MTG_ATACseq_final-nuclei.2024-12-06.h5ad`, ~18 GB) is commented out in the script. Download it manually before running step 33 (ATAC DA validation).
 
-**GSE95587** (bulk replication, Phase 5) is downloaded automatically by `19_deseq2_gse95587.slurm` via `GEOparse`.
+**GSE95587** (bulk replication, Phase 5) is downloaded automatically by `32_deseq2_gse95587.slurm` via `GEOparse`.
 
 ### Execution order
 
@@ -196,18 +192,19 @@ Scripts are numbered 01–42. Numbers in `code/slurm/` correspond to the same st
 | Step | Script | Environment | Notes |
 |------|--------|-------------|-------|
 | 01 | `code/phase1_QC/01_data_acquisition.sh` | system | Downloads SEA-AD datasets |
-| 02a | `code/phase1_QC/02a_explore_microglia_object.py` | scanpy_env | [local] Explore pre-release microglia h5ad; marker and batch checks |
-| 04 | `code/phase1_QC/04_DGE_microglial_states.py` | scanpy_env | [local] Wilcoxon rank-sum DGE per substate |
-| 24 | `code/slurm/24_pseudobulk_deseq2.slurm` | mmpbsa | [HPC] Pseudobulk DESeq2 validation |
-| 27 | `code/slurm/27_trajectory_paga.slurm` | scanpy_env | [HPC] PAGA + diffusion pseudotime (128 GB, ~8 h) |
+| 02 | `code/phase1_QC/02_explore_microglia_object.py` | scanpy_env | [local] Explore pre-release microglia h5ad; marker and batch checks |
+| 03 | `code/phase1_QC/03_DGE_microglial_states.py` | scanpy_env | [local] Wilcoxon rank-sum DGE per substate |
+| 04 | `code/slurm/04_pseudobulk_deseq2.slurm` | mmpbsa | [HPC] Pseudobulk DESeq2 validation |
+| 05 | `code/slurm/05_trajectory_paga.slurm` | scanpy_env | [HPC] PAGA + diffusion pseudotime (128 GB, ~8 h) |
 
 ```bash
-conda activate scanpy_env && export DAM_DRUG_DIR=/path/to/DAM-DRUG
-python code/phase1_QC/02a_explore_microglia_object.py
-python code/phase1_QC/04_DGE_microglial_states.py
+export DAM_DRUG_DIR=/path/to/DAM-DRUG
+conda activate scanpy_env
+python code/phase1_QC/02_explore_microglia_object.py
+python code/phase1_QC/03_DGE_microglial_states.py
 
-sbatch code/slurm/24_pseudobulk_deseq2.slurm
-sbatch code/slurm/27_trajectory_paga.slurm   # after step 26
+sbatch code/slurm/04_pseudobulk_deseq2.slurm
+sbatch code/slurm/05_trajectory_paga.slurm   # after step 26
 ```
 
 #### Phase 2 — Gene regulatory network inference
@@ -216,40 +213,41 @@ sbatch code/slurm/27_trajectory_paga.slurm   # after step 26
 
 | Step | Script | Environment | Notes |
 |------|--------|-------------|-------|
-| 05 | `code/phase2_GRN/05_pySCENIC_GRN.py` | scenic | [local] Prepare pySCENIC inputs |
-| 25 | `code/slurm/25_grn_multiseed.slurm` | scenic | [HPC] 5-seed GRNBoost2 + RcisTarget (array job) |
-| 26 | `code/slurm/26_run_ctx_aucell.slurm` | scenic | [HPC] AUCell scoring across all cells |
-| 25b | `code/phase2_GRN/25_aggregate_grn.py` | scanpy_env | [local] Aggregate multi-seed GRN; filter regulons |
-| 28 | `code/slurm/28_regulon_pseudotime_corr.slurm` | scenic | [HPC] Regulon–pseudotime Spearman correlation |
-| 28b | `code/phase2_GRN/28_regulon_pseudotime_correlation.py` | scanpy_env | [local] Post-process correlation results |
+| 01 | `code/phase2_GRN/01_pySCENIC_GRN.py` | scenic | [local] Prepare pySCENIC inputs |
+| 07 | `code/slurm/07_grn_multiseed.slurm` | scenic | [HPC] 5-seed GRNBoost2 + RcisTarget (array job) |
+| 08 | `code/slurm/08_run_ctx_aucell.slurm` | scenic | [HPC] AUCell scoring across all cells |
+| 02 | `code/phase2_GRN/02_aggregate_grn.py` | scanpy_env | [local] Aggregate multi-seed GRN; filter regulons |
+| 09 | `code/slurm/09_regulon_pseudotime_corr.slurm` | scenic | [HPC] Regulon–pseudotime Spearman correlation |
+| 03 | `code/phase2_GRN/03_regulon_pseudotime_correlation.py` | scanpy_env | [local] Post-process correlation results |
 
 ```bash
+export DAM_DRUG_DIR=/path/to/DAM-DRUG
 conda activate scenic
-python code/phase2_GRN/05_pySCENIC_GRN.py
+python code/phase2_GRN/01_pySCENIC_GRN.py
 
-sbatch code/slurm/25_grn_multiseed.slurm
-sbatch code/slurm/26_run_ctx_aucell.slurm   # after step 25
-sbatch code/slurm/28_regulon_pseudotime_corr.slurm
+sbatch code/slurm/07_grn_multiseed.slurm
+sbatch code/slurm/08_run_ctx_aucell.slurm   # after step 25
+sbatch code/slurm/09_regulon_pseudotime_corr.slurm
 
 conda activate scanpy_env
-python code/phase2_GRN/25_aggregate_grn.py
-python code/phase2_GRN/28_regulon_pseudotime_correlation.py
+python code/phase2_GRN/02_aggregate_grn.py
+python code/phase2_GRN/03_regulon_pseudotime_correlation.py
 ```
 
 **scMultiomeGRN (multi-omic cross-validation):**
 
 | Step | Script | Environment | Notes |
 |------|--------|-------------|-------|
-| 30 | `code/slurm/30_setup_scMultiomeGRN.slurm` | scMultiomeGRN | [HPC] Download scMultiomeGRN tool source from Zenodo |
-| 31 | `code/phase2_GRN/31_prep_scMultiomeGRN_input.py` | scMultiomeGRN | [local] Prepare MTX input files |
-| 32 | `code/slurm/32_scMultiomeGRN_infer.slurm` | scMultiomeGRN | [HPC] scMultiomeGRN inference |
+| 11 | `code/slurm/11_setup_scMultiomeGRN.slurm` | scMultiomeGRN | [HPC] Download scMultiomeGRN tool source from Zenodo |
+| 04 | `code/phase2_GRN/04_prep_scMultiomeGRN_input.py` | scMultiomeGRN | [local] Prepare MTX input files |
+| 12 | `code/slurm/12_scMultiomeGRN_infer.slurm` | scMultiomeGRN | [HPC] scMultiomeGRN inference |
 
 **ATAC chromatin validation:**
 
 | Step | Script | Environment | Notes |
 |------|--------|-------------|-------|
-| 32b | `code/phase2_GRN/32_atac_da_validation.py` | scMultiomeGRN | [local] DA peak analysis |
-| 33 | `code/slurm/33_atac_da_validation.slurm` | scMultiomeGRN | [HPC] Full ATAC DA on cluster |
+| 05 | `code/phase2_GRN/05_atac_da_validation.py` | scMultiomeGRN | [local] DA peak analysis |
+| 13 | `code/slurm/13_atac_da_validation.slurm` | scMultiomeGRN | [HPC] Full ATAC DA on cluster |
 
 > Download `SEAAD_MTG_ATACseq_final-nuclei.2024-12-06.h5ad` (~18 GB) before running step 33.
 
@@ -257,10 +255,10 @@ python code/phase2_GRN/28_regulon_pseudotime_correlation.py
 
 | Step | Script | Environment | Notes |
 |------|--------|-------------|-------|
-| 36 | `code/phase2_LR/36_prep_mtg_for_cellchat.py` | scanpy_env | [local] Extract MTG microglia subset |
-| 37 | `code/slurm/37_prep_mtg.slurm` | cellchat_r | [HPC] Prepare MTG Seurat object |
-| 38 | `code/slurm/38_cellchat.slurm` | cellchat_r | [HPC] CellChat inference (all cell types) |
-| 39 | `code/slurm/39_cellchat_final.slurm` | cellchat_r | [HPC] Finalize and export CellChat object |
+| 01 | `code/phase2_LR/01_prep_mtg_for_cellchat.py` | scanpy_env | [local] Extract MTG microglia subset |
+| 15 | `code/slurm/15_prep_mtg.slurm` | cellchat_r | [HPC] Prepare MTG Seurat object |
+| 16 | `code/slurm/16_cellchat.slurm` | cellchat_r | [HPC] CellChat inference (all cell types) |
+| 17 | `code/slurm/17_cellchat_final.slurm` | cellchat_r | [HPC] Finalize and export CellChat object |
 
 > CellChat is pre-installed in `ghcr.io/cagriozkurt/dam-drug-r:latest`. SLURM scripts use this image automatically.
 
@@ -268,85 +266,89 @@ python code/phase2_GRN/28_regulon_pseudotime_correlation.py
 
 | Step | Script | Environment | Notes |
 |------|--------|-------------|-------|
-| 06 | `code/phase3_structure/06_fetch_structures.py` | scanpy_env | Download AF2 + PDB structures for 6 TF targets |
-| 07 | `code/phase3_structure/07_trim_domains.py` | scanpy_env | Trim to DNA-binding domain |
-| 08 | `code/phase3_structure/08_prepare_structures.py` | mmpbsa | PDBFixer → PDBQT (obabel, Gasteiger charges) |
-| 09 | `code/phase3_structure/09_run_fpocket.sh` | system | fpocket pocket detection |
-| 10 | `code/phase3_structure/10_parse_fpocket.py` | scanpy_env | Parse fpocket scores; select docking pockets |
-| 11 | `code/phase3_structure/11_druggability_summary.py` | scanpy_env | Druggability summary table |
+| 01 | `code/phase3_structure/01_fetch_structures.py` | scanpy_env | Download AF2 + PDB structures for 6 TF targets |
+| 02 | `code/phase3_structure/02_trim_domains.py` | scanpy_env | Trim to DNA-binding domain |
+| 03 | `code/phase3_structure/03_prepare_structures.py` | mmpbsa | PDBFixer → PDBQT (obabel, Gasteiger charges) |
+| 04 | `code/phase3_structure/04_run_fpocket.sh` | system | fpocket pocket detection |
+| 05 | `code/phase3_structure/05_parse_fpocket.py` | scanpy_env | Parse fpocket scores; select docking pockets |
+| 06 | `code/phase3_structure/06_druggability_summary.py` | scanpy_env | Druggability summary table |
 
 ```bash
-conda activate scanpy_env && export DAM_DRUG_DIR=/path/to/DAM-DRUG
-python code/phase3_structure/06_fetch_structures.py
-python code/phase3_structure/07_trim_domains.py
+export DAM_DRUG_DIR=/path/to/DAM-DRUG
+conda activate scanpy_env
+python code/phase3_structure/01_fetch_structures.py
+python code/phase3_structure/02_trim_domains.py
 
-conda activate mmpbsa && export PATH="$HOME/.local/bin:$PATH"
-python code/phase3_structure/08_prepare_structures.py
-bash code/phase3_structure/09_run_fpocket.sh
+conda activate mmpbsa
+python code/phase3_structure/03_prepare_structures.py
+bash code/phase3_structure/04_run_fpocket.sh
 
 conda activate scanpy_env
-python code/phase3_structure/10_parse_fpocket.py
-python code/phase3_structure/11_druggability_summary.py
+python code/phase3_structure/05_parse_fpocket.py
+python code/phase3_structure/06_druggability_summary.py
 ```
 
 #### Phase 4 — Virtual screening
 
 | Step | Script | Environment | Notes |
 |------|--------|-------------|-------|
-| 12 | `code/phase4_docking/12_docking_prep.py` | mmpbsa | [local] Compute Vina grid boxes; receptor PDBQT |
-| 13 | `code/phase4_docking/13_prep_ligands.py` | mmpbsa | [local] SMILES → 3D SDF → PDBQT |
-| 14 | `code/slurm/14_run_vina.slurm` | mmpbsa | [HPC] AutoDock Vina screen (20 parallel workers) |
-| 15 | `code/slurm/15_run_gnina.slurm` | mmpbsa | [HPC] GNINA CNN rescoring of Vina poses |
-| 16 | `code/phase4_docking/16_consensus_filter.py` | scanpy_env | [local] Consensus filter (Vina ≤ −8.5 AND CNN ≥ 0.75) |
-| 17 | `code/phase4_docking/17_prep_mmpbsa.py` | mmpbsa | [local] Prepare MM-GBSA workdirs (GAFF2 topology) |
-| 17b | `code/slurm/17_run_mmpbsa.slurm` | mmpbsa | [HPC] gmx_MMPBSA 1 ns NPT MM-GBSA (array job) |
-| 17c | `code/slurm/17_collect_mmpbsa.py` | mmpbsa | [local] Aggregate FINAL_RESULTS_MMPBSA.dat → CSV |
-| 18 | `code/slurm/18_run_md100ns.slurm` | mmpbsa | [HPC] 100 ns GROMACS 2024.1 MD stability |
-| 18b | `code/slurm/18b_core_rmsd_analysis.slurm` | mmpbsa | [HPC] Core backbone + ligand RMSD analysis |
+| 01 | `code/phase4_docking/01_docking_prep.py` | mmpbsa | [local] Compute Vina grid boxes; receptor PDBQT |
+| 03 | `code/phase4_docking/03_prep_ligands.py` | mmpbsa | [local] SMILES → 3D SDF → PDBQT |
+| 20 | `code/slurm/20_run_vina.slurm` | mmpbsa | [HPC] AutoDock Vina screen (20 parallel workers) |
+| 21 | `code/slurm/21_run_gnina.slurm` | mmpbsa | [HPC] GNINA CNN rescoring of Vina poses |
+| 06 | `code/phase4_docking/06_consensus_filter.py` | scanpy_env | [local] Consensus filter (Vina ≤ −8.5 AND CNN ≥ 0.75) |
+| 07 | `code/phase4_docking/07_prep_mmpbsa.py` | mmpbsa | [local] Prepare MM-GBSA workdirs (GAFF2 topology) |
+| 22 | `code/slurm/22_run_mmpbsa.slurm` | mmpbsa | [HPC] gmx_MMPBSA 1 ns NPT MM-GBSA (array job) |
+| 23 | `code/slurm/23_collect_mmpbsa.py` | mmpbsa | [local] Aggregate FINAL_RESULTS_MMPBSA.dat → CSV |
+| 24 | `code/slurm/24_run_md100ns.slurm` | mmpbsa | [HPC] 100 ns GROMACS 2024.1 MD stability |
+| 25 | `code/slurm/25_core_rmsd_analysis.slurm` | mmpbsa | [HPC] Core backbone + ligand RMSD analysis |
 
 **Tier-2 library (approved drugs beyond CNS filter) — optional:**
 
 | Step | Script | Notes |
 |------|--------|-------|
-| 20 | `code/slurm/20_fetch_tier2.py` + `20_prep_tier2_library.slurm` | Fetch ChEMBL approved drugs; prep PDBQT |
-| 21 | `code/slurm/21_run_docking_tier2.slurm` | Vina screen of tier-2 |
-| 22 | `code/slurm/22_run_mmpbsa_tier2.slurm` | MM-GBSA on tier-2 hits |
-| 23 | `code/slurm/23_run_selectivity_docking.slurm` | Selectivity docking (off-target receptors) |
+| 26 | `code/slurm/26_fetch_tier2.py` + `27_prep_tier2_library.slurm` | Fetch ChEMBL approved drugs; prep PDBQT |
+| 28 | `code/slurm/28_run_docking_tier2.slurm` | Vina screen of tier-2 |
+| 30 | `code/slurm/30_run_mmpbsa_tier2.slurm` | MM-GBSA on tier-2 hits |
+| 31 | `code/slurm/31_run_selectivity_docking.slurm` | Selectivity docking (off-target receptors) |
 
 ```bash
-conda activate mmpbsa && export PATH="$HOME/.local/bin:$PATH" && export DAM_DRUG_DIR=/path/to/DAM-DRUG
-python code/phase4_docking/12_docking_prep.py
-python code/phase4_docking/13_prep_ligands.py
+export DAM_DRUG_DIR=/path/to/DAM-DRUG
+conda activate mmpbsa
+python code/phase4_docking/01_docking_prep.py
+python code/phase4_docking/03_prep_ligands.py
 
-sbatch code/slurm/14_run_vina.slurm
-sbatch code/slurm/15_run_gnina.slurm   # after step 14
+sbatch code/slurm/20_run_vina.slurm
+sbatch code/slurm/21_run_gnina.slurm   # after step 14
 
 conda activate scanpy_env
-python code/phase4_docking/16_consensus_filter.py
+python code/phase4_docking/06_consensus_filter.py
 
-conda activate mmpbsa && export PATH="$HOME/.local/bin:$PATH"
-python code/phase4_docking/17_prep_mmpbsa.py
-sbatch code/slurm/17_run_mmpbsa.slurm
-python code/slurm/17_collect_mmpbsa.py
+conda activate mmpbsa
+python code/phase4_docking/07_prep_mmpbsa.py
+sbatch code/slurm/22_run_mmpbsa.slurm
+python code/slurm/23_collect_mmpbsa.py
 
-sbatch code/slurm/18_run_md100ns.slurm
-sbatch code/slurm/18b_core_rmsd_analysis.slurm
+sbatch code/slurm/24_run_md100ns.slurm
+sbatch code/slurm/25_core_rmsd_analysis.slurm
 ```
 
 #### Phase 5 — Validation
 
 | Step | Script | Environment | Notes |
 |------|--------|-------------|-------|
-| 19 | `code/slurm/19_deseq2_gse95587.slurm` | mmpbsa | [HPC] Bulk replication: GSE95587 DESeq2 |
-| 35 | `code/phase5_validation/35_celloracle_perturbation.py` | scMultiomeGRN | [local/HPC] CellOracle in-silico TF KO |
+| 32 | `code/slurm/32_deseq2_gse95587.slurm` | scenic.sif | [HPC] Bulk replication: GSE95587 DESeq2 |
+| 01 | `code/phase5_validation/01_celloracle_perturbation.py` | scMultiomeGRN | [local/HPC] CellOracle in-silico TF KO |
 
 ```bash
-sbatch code/slurm/19_deseq2_gse95587.slurm
-
 export DAM_DRUG_DIR=/path/to/DAM-DRUG
-apptainer exec --bind $DAM_DRUG_DIR:/work $HOME/containers/dam-drug-scmultiomegrn.sif \
-    conda run -n scMultiomeGRN python code/phase5_validation/35_celloracle_perturbation.py
-# or on HPC: sbatch code/slurm/35_celloracle_perturbation.slurm
+sbatch code/slurm/32_deseq2_gse95587.slurm
+
+apptainer exec \
+    --bind "$DAM_DRUG_DIR:$DAM_DRUG_DIR" \
+    "$DAM_DRUG_DIR/containers/dam-drug-scmultiomegrn.sif" \
+    python "$DAM_DRUG_DIR/code/phase5_validation/01_celloracle_perturbation.py"
+# or on HPC: sbatch code/slurm/33_celloracle_perturbation.slurm
 ```
 
 #### Phase 6 — Figures and tables

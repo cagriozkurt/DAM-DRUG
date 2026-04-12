@@ -8,7 +8,7 @@ Panels:
   D. Summary scorecard table (top hits: target / drug / GBSA / SI)
 
 Run locally:
-  python code/phase6_figures/fig3_docking.py
+  python code/phase6_figures/03_fig3_docking.py
 """
 
 import numpy as np

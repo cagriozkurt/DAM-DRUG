@@ -6,18 +6,15 @@ For each compound in candidates_shortlist.csv:
   2. Fetch SMILES from ChEMBL → generate GAFF2 topology via acpype
   3. Copy receptor prepared PDB
   4. Write GROMACS MDP files and topology template
-  5. Append to manifest.txt consumed by 17_run_mmpbsa.slurm
+  5. Append to manifest.txt consumed by 22_run_mmpbsa.slurm
 
 Run on TRUBA login node (no GPU needed — prep only).
 
 Usage:
-    python 17_prep_mmpbsa.py
+    python 07_prep_mmpbsa.py
 
-Dependencies (must be available):
-    obabel (~/.local/bin/obabel)
-    acpype   (pip install acpype)
-    rdkit    (already installed)
-    requests (stdlib)
+Dependencies (must be available in the container):
+    obabel, acpype, rdkit
 """
 
 import csv
@@ -31,17 +28,23 @@ import time
 import urllib.request
 from pathlib import Path
 
+try:
+    from rdkit import Chem
+    HAS_RDKIT = True
+except ImportError:
+    HAS_RDKIT = False
+
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-PROJECT      = Path(os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG"))
+PROJECT      = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 VINA_OUT     = PROJECT / "results/phase4/vina"
 MMPBSA_DIR   = PROJECT / "results/phase4/mmpbsa"
 RECEPTOR_DIR = PROJECT / "data/structures/prepared"
 SHORTLIST    = PROJECT / "results/phase4/candidates_shortlist.csv"
 MANIFEST     = MMPBSA_DIR / "manifest.txt"
-OBABEL       = os.environ.get("OBABEL", str(Path.home() / ".local/bin/obabel"))
-ACPYPE       = os.environ.get("ACPYPE", str(Path.home() / "miniconda3/envs/mmpbsa/bin/acpype"))
+OBABEL       = os.environ.get("OBABEL", "obabel")
+ACPYPE       = os.environ.get("ACPYPE", "acpype")
 SDF_DIR      = PROJECT / "data/compounds/sdf_3d"
 
 # receptor stem → prepared PDB filename
@@ -197,8 +200,9 @@ def fetch_smiles(chembl_id: str) -> str:
 
 def get_formal_charge(smiles: str) -> int:
     """Compute formal charge from SMILES using RDKit."""
+    if not HAS_RDKIT or not smiles:
+        return 0
     try:
-        from rdkit import Chem
         mol = Chem.MolFromSmiles(smiles)
         if mol is None:
             return 0
@@ -352,7 +356,8 @@ def prep_complex(target: str, chembl_id: str, vina_score: float) -> bool:
 def main():
     MMPBSA_DIR.mkdir(parents=True, exist_ok=True)
 
-    shortlist = list(csv.DictReader(open(SHORTLIST)))
+    with open(SHORTLIST) as fh:
+        shortlist = list(csv.DictReader(fh))
     log.info(f"Preparing {len(shortlist)} complexes for MM-GBSA")
 
     manifest_lines = []
@@ -379,7 +384,7 @@ def main():
     log.info(f"\n{'='*60}")
     log.info(f"Prepared: {n_ok}   Failed: {n_fail}")
     log.info(f"Manifest: {MANIFEST}  ({n_ok} entries)")
-    log.info(f"Next: sbatch code/slurm/17_run_mmpbsa.slurm  (array 0-{n_ok-1})")
+    log.info(f"Next: sbatch code/slurm/22_run_mmpbsa.slurm  (array 0-{n_ok-1})")
 
 
 if __name__ == "__main__":

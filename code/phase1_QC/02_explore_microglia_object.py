@@ -27,10 +27,11 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
+import scipy.sparse as sp
 from pathlib import Path
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
-PROJECT = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
+PROJECT = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 RAW     = PROJECT / "data/raw/SEA-AD"
 RES     = PROJECT / "results/phase1/explore"
 RES.mkdir(parents=True, exist_ok=True)
@@ -270,8 +271,6 @@ if missing:
 
 # Mean expression per marker (across all cells)
 # Use .X (log-normalized) if available, else layers
-import scipy.sparse as sp
-
 print("\n  Mean log-normalized expression (top markers):")
 for gene in sorted(present):
     gene_idx = list(mg.var_names).index(gene)
@@ -301,7 +300,7 @@ if umap_key and supertype_col:
     print(f"\n  Plotting UMAP colored by {supertype_col}...")
     sc.pl.embedding(mg, basis=umap_key, color=[supertype_col],
                     save=f"_supertype_umap.png", show=False, frameon=False)
-    print("  Saved: results/phase1/explore/umap_supertype_umap.png")
+    print(f"  Saved: {RES}/{umap_key}_supertype_umap.png")
 
 # If APOE and Braak available, add those to UMAP
 extra_colors = []
@@ -431,4 +430,4 @@ else:
     print("    ✓ No critical gaps — proceed to DGE and GRN analysis")
 
 print(f"\n  Output directory: {RES}")
-print("\nNext step: run 04_DGE_microglial_states.py")
+print("\nNext step: run 03_DGE_microglial_states.py")

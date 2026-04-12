@@ -3,7 +3,7 @@
 # Skips the ~55-min computeCommunProb step.
 #
 # Usage:
-#   conda run -n cellchat_r Rscript --vanilla code/phase2_LR/38_cellchat_plots.R
+#   apptainer exec containers/cellchat.sif Rscript --vanilla code/phase2_LR/03_cellchat_plots.R
 
 suppressPackageStartupMessages({
     library(CellChat)
@@ -11,7 +11,7 @@ suppressPackageStartupMessages({
     library(patchwork)
 })
 
-proj_dir <- Sys.getenv("DAM_DRUG_DIR", unset="/arf/scratch/mozkurt/DAM-DRUG")
+proj_dir <- Sys.getenv("DAM_DRUG_DIR", unset=getwd())
 cc_out   <- file.path(proj_dir, "results/phase2/LR/cellchat")
 
 cat("Loading cellchat_object.rds...\n")

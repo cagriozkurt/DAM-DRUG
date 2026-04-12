@@ -1,8 +1,9 @@
 #!/bin/bash
-#SBATCH --account=mozkurt
+# Account is read from $SBATCH_ACCOUNT — set it in your shell profile:
+#   export SBATCH_ACCOUNT=your_account_name
 #SBATCH --job-name=selectivity_dock
-#SBATCH --output=/arf/scratch/mozkurt/DAM-DRUG/logs/selectivity_dock-%j.out
-#SBATCH --error=/arf/scratch/mozkurt/DAM-DRUG/logs/selectivity_dock-%j.err
+#SBATCH --output=logs/%x-%j.out
+#SBATCH --error=logs/%x-%j.err
 #SBATCH --time=02:00:00
 #SBATCH --partition=barbun
 #SBATCH --nodes=1
@@ -24,7 +25,7 @@
 # Total docking tasks: 18  (6 compounds × 3 off-targets)
 #
 # Requires:
-#   23_prep_selectivity_receptors.py run first (receptors + configs ready)
+#   08_prep_selectivity_receptors.py run first (receptors + configs ready)
 #   data/compounds/tier2_pdbqt/{CHEMBL_ID}.pdbqt   (already prepared)
 #
 # Selectivity index (SI):
@@ -34,40 +35,46 @@
 
 set -eo pipefail
 
-PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
+PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
+export DAM_DRUG_DIR=$PROJDIR
 OUT_DIR=$PROJDIR/results/phase4/vina_selectivity
-mkdir -p "$OUT_DIR"
+mkdir -p "$OUT_DIR" "$PROJDIR/logs"
+
+SIF=$PROJDIR/containers/scenic.sif
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
+
+# Override VINA by setting it in your environment before submitting, or place
+# the binary at $PROJDIR/bin/vina.
+export VINA=${VINA:-$PROJDIR/bin/vina}
+[ -f "$VINA" ] || { echo "ERROR: Vina not found at $VINA — set VINA env var or place binary at \$PROJDIR/bin/vina"; exit 1; }
+echo "Vina: $VINA"
 
 echo "Start: $(date)"
 echo "Node:  $SLURMD_NODENAME"
 
-# ── Environment ──────────────────────────────────────────────────────────────
-source /etc/profile.d/modules.sh
-module load miniconda3
-source /arf/sw/comp/python/miniconda3/etc/profile.d/conda.sh
-conda activate mmpbsa || { echo "ERROR: cannot activate mmpbsa env"; exit 1; }
-export PATH="$HOME/.local/bin:$HOME/apps/vina:$PATH"
-
-VINA=$(command -v vina || command -v vina_1.2.3_linux_x86_64 || echo "")
-[ -z "$VINA" ] && { echo "ERROR: AutoDock Vina not found in PATH"; exit 1; }
-echo "Vina: $VINA"
-
 # ── Verify receptors exist ────────────────────────────────────────────────────
 for name in DRD2 HTR2A HERG; do
     f="$PROJDIR/data/docking/receptors/${name}_prep.pdbqt"
-    [ -f "$f" ] || { echo "ERROR: $f not found — run 23_prep_selectivity_receptors.py first"; exit 1; }
+    [ -f "$f" ] || { echo "ERROR: $f not found — run 08_prep_selectivity_receptors.py first"; exit 1; }
 done
 
 # ── Step 1: Vina docking ─────────────────────────────────────────────────────
 echo ""
 echo "=== Step 1: AutoDock Vina (6 hits × 3 off-targets, 18 workers) ==="
 
-python3 << 'PYEOF'
-import subprocess, time
+apptainer exec \
+  --bind "$PROJDIR:$PROJDIR" \
+  "$SIF" \
+  python - << 'PYEOF'
+import csv
+import os
+import shutil
+import subprocess
+import time
 from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
-PROJDIR   = Path('/arf/scratch/mozkurt/DAM-DRUG')
+PROJDIR   = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 PDBQT_DIR = PROJDIR / 'data/compounds/tier2_pdbqt'
 OUT_DIR   = PROJDIR / 'results/phase4/vina_selectivity'
 
@@ -87,8 +94,7 @@ OFF_TARGETS = {
     'HERG':  PROJDIR / 'data/docking/configs/HERG.conf',
 }
 
-import shutil
-VINA = shutil.which('vina') or shutil.which('vina_1.2.3_linux_x86_64')
+VINA = os.environ.get("VINA") or shutil.which('vina') or shutil.which('vina_1.2.3_linux_x86_64')
 
 def parse_vina_score(text):
     for line in text.splitlines():
@@ -151,7 +157,6 @@ with ProcessPoolExecutor(max_workers=20) as ex:
         print(f"  {off_name:6s} {chembl_id:14s}  Vina={score}  [{status}]")
 
 # Write raw scores
-import csv
 with open(OUT_DIR / 'selectivity_vina_raw.csv', 'w', newline='') as f:
     w = csv.writer(f)
     w.writerow(['chembl_id', 'off_target', 'vina_score'])
@@ -165,11 +170,15 @@ PYEOF
 echo ""
 echo "=== Step 2: Selectivity Index ==="
 
-python3 << 'PYEOF'
-from pathlib import Path
+apptainer exec \
+  --bind "$PROJDIR:$PROJDIR" \
+  "$SIF" \
+  python - << 'PYEOF'
 import csv
+import os
+from pathlib import Path
 
-PROJDIR = Path('/arf/scratch/mozkurt/DAM-DRUG')
+PROJDIR = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 RAW_CSV = PROJDIR / 'results/phase4/vina_selectivity/selectivity_vina_raw.csv'
 OUT_CSV = PROJDIR / 'results/phase4/vina_selectivity/selectivity_table.csv'
 
@@ -216,7 +225,7 @@ print(f"\n{'Compound':<16} {'On-target':<14} {'Vina':>6}  "
       f"{'DRD2':>7} {'SI_D2':>6}  "
       f"{'HTR2A':>7} {'SI_2A':>6}  "
       f"{'HERG':>7} {'SI_hERG':>7}  "
-      f"{'Min_SI':>7}  ΔG(MM-GBSA)")
+      f"{'Min_SI':>7}  dG(MM-GBSA)")
 print("-" * 100)
 
 for chembl_id, (on_target, on_vina) in ON_TARGET_VINA.items():
@@ -227,8 +236,6 @@ for chembl_id, (on_target, on_vina) in ON_TARGET_VINA.items():
     for off in OFF_TARGETS:
         off_v = off_scores.get((chembl_id, off))
         if off_v is not None and on_vina != 0:
-            # SI = on_target_vina / off_target_vina  (both negative)
-            # SI > 1 → target binds more strongly
             si = on_vina / off_v
         else:
             si = None
@@ -236,7 +243,7 @@ for chembl_id, (on_target, on_vina) in ON_TARGET_VINA.items():
 
     valid_si = [v[1] for v in si_vals.values() if v[1] is not None]
     min_si = min(valid_si) if valid_si else None
-    flag = "✓" if (min_si is not None and min_si > 2.0) else ("~" if (min_si and min_si > 1.0) else "✗")
+    flag = "PASS" if (min_si is not None and min_si > 2.0) else ("~" if (min_si and min_si > 1.0) else "FAIL")
 
     row = {
         'chembl_id': chembl_id,
@@ -273,11 +280,11 @@ with open(OUT_CSV, 'w', newline='') as f:
     w.writeheader()
     w.writerows(rows)
 
-print(f"\nSelectivity table → {OUT_CSV}")
+print(f"\nSelectivity table -> {OUT_CSV}")
 print("\nNote: SI = vina_ontarget / vina_offtarget (both negative)")
-print("      SI > 2.0 = target binds ≥2× more strongly than off-target (✓)")
+print("      SI > 2.0 = target binds >=2x more strongly than off-target (PASS)")
 print("      SI > 1.0 = some selectivity (~)")
-print("      SI < 1.0 = off-target binds more strongly (✗)")
+print("      SI < 1.0 = off-target binds more strongly (FAIL)")
 PYEOF
 
 echo ""

@@ -1,8 +1,9 @@
 #!/bin/bash
-#SBATCH --account=mozkurt
+# Account is read from $SBATCH_ACCOUNT — set it in your shell profile:
+#   export SBATCH_ACCOUNT=your_account_name
 #SBATCH --job-name=dock_tier2
-#SBATCH --output=/arf/scratch/mozkurt/DAM-DRUG/logs/dock_tier2-%j.out
-#SBATCH --error=/arf/scratch/mozkurt/DAM-DRUG/logs/dock_tier2-%j.err
+#SBATCH --output=logs/%x-%j.out
+#SBATCH --error=logs/%x-%j.err
 #SBATCH --time=08:00:00
 #SBATCH --partition=barbun
 #SBATCH --nodes=1
@@ -23,7 +24,7 @@
 #   4. Write tier2_consensus_hits.csv + tier2_shortlist.csv
 #
 # Requires:
-#   data/compounds/tier2_pdbqt/*.pdbqt      (from 20_prep_tier2_library.slurm)
+#   data/compounds/tier2_pdbqt/*.pdbqt      (from 27_prep_tier2_library.slurm)
 #   data/docking/receptors/IRF8_AF2_DBD_prep.pdbqt
 #   data/docking/receptors/IKZF1_8RQC_CRBN_prep.pdbqt
 #   data/docking/configs/IRF8_AF2_DBD.conf
@@ -32,48 +33,48 @@
 
 set -eo pipefail
 
-PROJDIR=/arf/scratch/mozkurt/DAM-DRUG
+PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
+export DAM_DRUG_DIR=$PROJDIR
 PDBQT_DIR=$PROJDIR/data/compounds/tier2_pdbqt
 OUT_DIR=$PROJDIR/results/phase4/vina_tier2
 GNINA_OUT=$PROJDIR/results/phase4/gnina_tier2
-mkdir -p "$OUT_DIR" "$GNINA_OUT"
+mkdir -p "$OUT_DIR" "$GNINA_OUT" "$PROJDIR/logs"
+
+SIF=$PROJDIR/containers/scenic.sif
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
+
+# Override VINA/GNINA by setting them in your environment before submitting,
+# or place the binaries at $PROJDIR/bin/vina and $PROJDIR/bin/gnina.
+export VINA=${VINA:-$PROJDIR/bin/vina}
+export GNINA=${GNINA:-$PROJDIR/bin/gnina}
+
+[ -f "$VINA" ]  || { echo "ERROR: Vina not found at $VINA — set VINA env var or place binary at \$PROJDIR/bin/vina"; exit 1; }
+[ -f "$GNINA" ] || { echo "ERROR: gnina not found at $GNINA — set GNINA env var or place binary at \$PROJDIR/bin/gnina"; exit 1; }
+echo "Vina:  $VINA"
+echo "Gnina: $GNINA"
 
 echo "Start: $(date)"
 echo "Node:  $SLURMD_NODENAME"
 
-# ── Environment ──────────────────────────────────────────────────────────────
-source /etc/profile.d/modules.sh
-module load miniconda3
-source /arf/sw/comp/python/miniconda3/etc/profile.d/conda.sh
-conda activate mmpbsa || { echo "ERROR: cannot activate mmpbsa env"; exit 1; }
-export PATH="$HOME/.local/bin:$HOME/apps/vina:$HOME/apps/gnina:$PATH"
-
-# Check vina
-VINA=$(command -v vina || command -v vina_1.2.3_linux_x86_64 || echo "")
-[ -z "$VINA" ] && { echo "ERROR: AutoDock Vina not found in PATH"; exit 1; }
-echo "Vina:  $VINA"
-
-# Check gnina
-GNINA=$(command -v gnina || echo "")
-[ -z "$GNINA" ] && { echo "ERROR: gnina not found in PATH"; exit 1; }
-echo "Gnina: $GNINA"
-
 N_PDBQT=$(ls "$PDBQT_DIR"/*.pdbqt 2>/dev/null | wc -l)
 echo "Tier-2 PDBQTs: $N_PDBQT"
-[ "$N_PDBQT" -eq 0 ] && { echo "ERROR: no PDBQTs in $PDBQT_DIR — run 20_prep_tier2_library.slurm first"; exit 1; }
+[ "$N_PDBQT" -eq 0 ] && { echo "ERROR: no PDBQTs in $PDBQT_DIR — run 27_prep_tier2_library.slurm first"; exit 1; }
 
 # ── Step 1: Vina docking ─────────────────────────────────────────────────────
 echo ""
 echo "=== Step 1: AutoDock Vina (IRF8 + IKZF1, $N_PDBQT compounds, 20 workers) ==="
 
-python3 << 'PYEOF'
-import subprocess, os, time
+apptainer exec \
+  --bind "$PROJDIR:$PROJDIR" \
+  "$SIF" \
+  python - << 'PYEOF'
+import subprocess, os, time, shutil
 from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
 import pandas as pd
 
-PROJDIR  = Path('/arf/scratch/mozkurt/DAM-DRUG')
+PROJDIR   = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 PDBQT_DIR = PROJDIR / 'data/compounds/tier2_pdbqt'
 OUT_DIR   = PROJDIR / 'results/phase4/vina_tier2'
 NCPUS     = 20
@@ -97,8 +98,7 @@ for tname, t in TARGETS.items():
         if not t[key].exists():
             raise FileNotFoundError(f"{tname} {key} not found: {t[key]}")
 
-import shutil
-VINA = shutil.which('vina') or shutil.which('vina_1.2.3_linux_x86_64')
+VINA = os.environ.get("VINA") or shutil.which('vina') or shutil.which('vina_1.2.3_linux_x86_64')
 
 ligands = sorted(PDBQT_DIR.glob('*.pdbqt'))
 print(f"Ligands: {len(ligands)}")
@@ -180,7 +180,7 @@ for tname in TARGETS:
     sub = df[df['target'] == tname].dropna(subset=['vina_score'])
     thr = TARGETS[tname]['vina_thr']
     n_pass = (sub['vina_score'] <= thr).sum()
-    print(f"\n{tname}: {len(sub)} scored, {n_pass} with Vina ≤ {thr}")
+    print(f"\n{tname}: {len(sub)} scored, {n_pass} with Vina <= {thr}")
     if len(sub) > 0:
         print(sub.nsmallest(10, 'vina_score')[['compound','vina_score']].to_string(index=False))
 
@@ -191,21 +191,23 @@ PYEOF
 echo ""
 echo "=== Step 2: Gnina CNN rescore (top 50 per target) ==="
 
-python3 << 'PYEOF'
-import subprocess
+apptainer exec \
+  --bind "$PROJDIR:$PROJDIR" \
+  "$SIF" \
+  python - << 'PYEOF'
+import subprocess, os, shutil
 from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
 import pandas as pd
 
-PROJDIR   = Path('/arf/scratch/mozkurt/DAM-DRUG')
+PROJDIR   = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 PDBQT_DIR = PROJDIR / 'data/compounds/tier2_pdbqt'
 VINA_DIR  = PROJDIR / 'results/phase4/vina_tier2'
 GNINA_OUT = PROJDIR / 'results/phase4/gnina_tier2'
 NCPUS     = 20
 
-import shutil
-GNINA_BIN = shutil.which('gnina')
+GNINA_BIN = os.environ.get("GNINA") or shutil.which('gnina')
 
 TARGETS = {
     'IRF8_AF2_DBD': {
@@ -231,6 +233,15 @@ def read_conf(conf_path):
 df_vina = pd.read_csv(VINA_DIR / 'vina_tier2_all.csv')
 df_vina['vina_score'] = pd.to_numeric(df_vina['vina_score'], errors='coerce')
 df_vina = df_vina.dropna(subset=['vina_score'])
+
+def _parse_gnina_cnn(pdbqt_path):
+    if not Path(pdbqt_path).exists():
+        return None
+    for line in Path(pdbqt_path).read_text().splitlines():
+        if 'CNNscore' in line:
+            try: return float(line.split()[-1])
+            except: pass
+    return None
 
 def rescore_one(args):
     tname, cid, receptor, box = args
@@ -287,15 +298,6 @@ def rescore_one(args):
     cnn = _parse_gnina_cnn(out_p)
     return cid, tname, cnn, 'ok'
 
-def _parse_gnina_cnn(pdbqt_path):
-    if not Path(pdbqt_path).exists():
-        return None
-    for line in Path(pdbqt_path).read_text().splitlines():
-        if 'CNNscore' in line:
-            try: return float(line.split()[-1])
-            except: pass
-    return None
-
 tasks = []
 for tname, t in TARGETS.items():
     top50 = (df_vina[df_vina['target'] == tname]
@@ -327,11 +329,15 @@ PYEOF
 echo ""
 echo "=== Step 3: Consensus filter ==="
 
-python3 << 'PYEOF'
+apptainer exec \
+  --bind "$PROJDIR:$PROJDIR" \
+  "$SIF" \
+  python - << 'PYEOF'
+import os
 from pathlib import Path
 import pandas as pd
 
-PROJDIR  = Path('/arf/scratch/mozkurt/DAM-DRUG')
+PROJDIR  = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 VINA_CSV = PROJDIR / 'results/phase4/vina_tier2/vina_tier2_all.csv'
 GNINA_CSV= PROJDIR / 'results/phase4/gnina_tier2/gnina_tier2_top50.csv'
 OUT_CSV  = PROJDIR / 'results/phase4/tier2_consensus_hits.csv'
@@ -359,11 +365,11 @@ for tname, thr in THRESHOLDS.items():
              (df['cnn_score']  >= thr['cnn'])]
     hits.append(sub)
     print(f"{tname}: {len(sub)} consensus hits  "
-          f"(Vina ≤ {thr['vina']}, CNN ≥ {thr['cnn']})")
+          f"(Vina <= {thr['vina']}, CNN >= {thr['cnn']})")
 
 df_hits = pd.concat(hits).sort_values(['target','vina_score'])
 df_hits.to_csv(OUT_CSV, index=False)
-print(f"\nAll consensus hits: {len(df_hits)}  → {OUT_CSV}")
+print(f"\nAll consensus hits: {len(df_hits)}  -> {OUT_CSV}")
 
 # Shortlist: top 10 per target
 short = df_hits.groupby('target', group_keys=False).apply(

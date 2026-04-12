@@ -1,8 +1,9 @@
 #!/bin/bash
-#SBATCH --account=mozkurt
+# Account is read from $SBATCH_ACCOUNT — set it in your shell profile:
+#   export SBATCH_ACCOUNT=your_account_name
 #SBATCH --job-name=atac_da
-#SBATCH --output=/arf/scratch/mozkurt/DAM-DRUG/logs/atac_da-%j.out
-#SBATCH --error=/arf/scratch/mozkurt/DAM-DRUG/logs/atac_da-%j.err
+#SBATCH --output=logs/%x-%j.out
+#SBATCH --error=logs/%x-%j.err
 #SBATCH --time=06:00:00
 #SBATCH --partition=barbun
 #SBATCH --nodes=1
@@ -19,28 +20,27 @@
 #   5. FIMO scan with 9 target TF motifs
 #   6. Enrichment summary
 #
-# Submit: sbatch code/slurm/33_atac_da_validation.slurm
+# Submit: sbatch code/slurm/13_atac_da_validation.slurm
 # ─────────────────────────────────────────────────────────────────────────────
 
 set -eo pipefail
 
-PROJDIR=${DAM_DRUG_DIR:-/arf/scratch/mozkurt/DAM-DRUG}
+PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
 export DAM_DRUG_DIR=$PROJDIR
 
-mkdir -p $PROJDIR/logs
+mkdir -p "$PROJDIR/logs"
 
 echo "=== ATAC DA Validation ==="
 echo "Job: $SLURM_JOB_ID on $SLURMD_NODENAME"
 echo "Start: $(date)"
 
-SIF=$HOME/containers/dam-drug-scmultiomegrn.sif
-[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scmultiomegrn:latest
+SIF=$PROJDIR/containers/scenic.sif
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
 
 apptainer exec \
-  --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
+  --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  conda run -n scMultiomeGRN \
-    python $PROJDIR/code/phase2_GRN/32_atac_da_validation.py
+  python "$PROJDIR/code/phase2_GRN/05_atac_da_validation.py"
 
 echo ""
 echo "=== Done: $(date) ==="

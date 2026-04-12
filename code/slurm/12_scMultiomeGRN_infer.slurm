@@ -1,8 +1,9 @@
 #!/bin/bash
-#SBATCH --account=mozkurt
+# Account is read from $SBATCH_ACCOUNT — set it in your shell profile:
+#   export SBATCH_ACCOUNT=your_account_name
 #SBATCH --job-name=scmgrn_infer
-#SBATCH --output=/arf/scratch/mozkurt/DAM-DRUG/logs/scmgrn_infer-%A_%a.out
-#SBATCH --error=/arf/scratch/mozkurt/DAM-DRUG/logs/scmgrn_infer-%A_%a.err
+#SBATCH --output=logs/%x-%A_%a.out
+#SBATCH --error=logs/%x-%A_%a.err
 #SBATCH --time=12:00:00
 #SBATCH --partition=akya-cuda
 #SBATCH --nodes=1
@@ -17,13 +18,13 @@
 # Array index → state:
 #   0=Homeostatic  1=DAM  2=DAM-IRM  3=IRM  4=LateAD-DAM  5=LAM
 #
-# Submit: sbatch code/slurm/32_scMultiomeGRN_infer.slurm
-# One state test: sbatch --array=1 code/slurm/32_scMultiomeGRN_infer.slurm
+# Submit: sbatch code/slurm/12_scMultiomeGRN_infer.slurm
+# One state test: sbatch --array=1 code/slurm/12_scMultiomeGRN_infer.slurm
 # ─────────────────────────────────────────────────────────────────────────────
 
 set -eo pipefail
 
-PROJDIR=${DAM_DRUG_DIR:-/arf/scratch/mozkurt/DAM-DRUG}
+PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
 TOOLDIR=$PROJDIR/tools/scMultiomeGRN/extracted/ScmultiomeGRN-main
 DATADIR=$PROJDIR/tools/scMultiomeGRN/data_resource
 INPUTDIR=$PROJDIR/results/phase2/scMultiomeGRN/input
@@ -31,15 +32,15 @@ OUTDIR=$PROJDIR/results/phase2/scMultiomeGRN/results
 
 STATES=("Homeostatic" "DAM" "DAM-IRM" "IRM" "LateAD-DAM" "LAM")
 STATE=${STATES[$SLURM_ARRAY_TASK_ID]}
-STATE_TAG=$(echo $STATE | tr '-' '_')
+STATE_TAG=$(echo "$STATE" | tr '-' '_')
 
-mkdir -p $PROJDIR/logs $OUTDIR
+mkdir -p "$PROJDIR/logs" "$OUTDIR"
 
 echo "=== scMultiomeGRN: $STATE (task $SLURM_ARRAY_TASK_ID) ==="
 echo "Job: $SLURM_JOB_ID on $SLURMD_NODENAME"
 echo "Start: $(date)"
 
-SIF=$HOME/containers/dam-drug-scmultiomegrn.sif
+SIF=$PROJDIR/containers/scmultiomegrn.sif
 [ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scmultiomegrn:latest
 
 echo "GPU: $(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null || echo 'not detected yet')"
@@ -48,13 +49,13 @@ echo "GPU: $(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null || ec
 CELL_DIR=$INPUTDIR/$STATE_TAG
 if [ ! -f "$CELL_DIR/scrna/matrix.mtx" ] || [ ! -f "$CELL_DIR/atac/matrix.mtx" ]; then
     echo "ERROR: Input MTX files missing for $STATE at $CELL_DIR"
-    echo "Run: sbatch code/slurm/31_scMultiomeGRN_env.slurm"
+    echo "Run: sbatch code/slurm/obsolete_scMultiomeGRN_env.slurm"
     exit 1
 fi
 
 # ── Write inference script to /tmp ────────────────────────────────────────────
 SCRIPT=/tmp/scmgrn_${STATE_TAG}_${SLURM_JOB_ID}_${SLURM_ARRAY_TASK_ID}.py
-cat > $SCRIPT << PYEOF
+cat > "$SCRIPT" << PYEOF
 import os, sys
 
 # scMultiomeGRN source on path
@@ -67,6 +68,7 @@ from src.utils import (
     extract_atac_feature, extract_scrna_feature2,
 )
 from src.trainer import Trainer
+import torch
 import pandas as pd, numpy as np
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
@@ -123,7 +125,6 @@ print(f"  cross_graph: {cross_graph_file}", flush=True)
 
 # ── Step 6: Train scMultiomeGRN ───────────────────────────────────────────────
 print(f"[{cell_type}] Step 6: Training scMultiomeGRN (GPU)...", flush=True)
-import torch
 print(f"  torch: {torch.__version__}, CUDA: {torch.cuda.is_available()}", flush=True)
 
 parser = Trainer.add_argparse_args(
@@ -167,9 +168,9 @@ PYEOF
 
 # ── Run inside scMultiomeGRN container ───────────────────────────────────────
 apptainer exec --nv \
-  --bind /arf/scratch/mozkurt:/arf/scratch/mozkurt \
+  --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  conda run -n scMultiomeGRN python $SCRIPT
+  python "$SCRIPT"
 
 echo ""
 echo "=== $STATE done: $(date) ==="

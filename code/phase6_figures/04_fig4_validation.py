@@ -8,7 +8,7 @@ Panels:
   D. IKZF1 convergent evidence summary — 6 modalities, lollipop
 
 Run locally (all required CSVs present):
-  python code/phase6_figures/fig4_validation.py
+  python code/phase6_figures/04_fig4_validation.py
 
 Panel C: loads results/phase2/ATAC_validation/motif_enrichment_summary.csv if present;
           falls back to hardcoded values from the TRUBA run.

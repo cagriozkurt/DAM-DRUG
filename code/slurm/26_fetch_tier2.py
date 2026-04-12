@@ -1,12 +1,10 @@
 """
-Run interactively on the TRUBA login node (needs internet):
-    conda activate mmpbsa
-    pip install requests chembl_webresource_client
-    python3 20_fetch_tier2.py
+Run interactively on a login node (needs internet):
+    apptainer exec containers/scenic.sif python code/slurm/26_fetch_tier2.py
 
 Fetches all ChEMBL max_phase=4 compounds, applies Ro5 + CNS MPO filters
 locally, writes data/compounds/tier2_approved.csv (~1500-2500 rows, ~5-15 min).
-PDBQT generation is handled by 20_prep_tier2_library.slurm (batch job).
+PDBQT generation is handled by 27_prep_tier2_library.slurm (batch job).
 """
 import os
 import sys, time
@@ -17,9 +15,7 @@ try:
 except ImportError:
     sys.exit("ERROR: pandas not found")
 
-_TRUBA = Path(os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG")) / "data/compounds"
-_LOCAL = Path(__file__).resolve().parents[2] / 'data/compounds'
-OUT_DIR   = _TRUBA if _TRUBA.exists() else _LOCAL
+OUT_DIR = Path(os.environ.get("DAM_DRUG_DIR", str(Path(__file__).resolve().parents[2]))) / "data/compounds"
 TIER1_CSV = OUT_DIR / 'tier1_cns_approved.csv'
 OUT_CSV   = OUT_DIR / 'tier2_approved.csv'
 OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -167,4 +163,4 @@ print(f"  Passed           : {len(rows)}")
 df = pd.DataFrame(rows)
 df.to_csv(OUT_CSV, index=False)
 print(f"\nWritten: {OUT_CSV}")
-print(f"Next step: sbatch 20_prep_tier2_library.slurm")
+print(f"Next step: sbatch 27_prep_tier2_library.slurm")

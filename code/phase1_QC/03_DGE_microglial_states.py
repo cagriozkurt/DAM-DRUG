@@ -24,7 +24,7 @@ State→DAM-DRUG mapping:
   Micro-PVM_3-SEAAD     → IRM
   Micro-PVM_4-SEAAD     → LAM/LDAM  ← primary therapeutic target state
 
-Run: python code/phase1_QC/04_DGE_microglial_states.py
+Run: python code/phase1_QC/03_DGE_microglial_states.py
 Requires: scanpy>=1.9, anndata, pandas, numpy, matplotlib, seaborn
 GPU not required (rank_genes_groups uses CPU Wilcoxon).
 """
@@ -38,12 +38,13 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
+import scipy.sparse as sp
 from pathlib import Path
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
-PROJECT = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
+PROJECT = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 RAW     = PROJECT / "data/raw/SEA-AD"
 RES     = PROJECT / "results/phase1/DGE"
 RES.mkdir(parents=True, exist_ok=True)
@@ -190,6 +191,7 @@ def run_dge(adata, groupby, groups, reference, contrast_name, n_genes=500):
 def volcano_plot(df, contrast_name, logfc_col="logfoldchanges", padj_col="pvals_adj",
                  name_col="names", highlight=None, fc_thresh=0.5, padj_thresh=0.05):
     """Simple volcano plot; highlight = list of gene names to label."""
+    df = df.copy()
     fig, ax = plt.subplots(figsize=(7, 6))
 
     # Color by significance
@@ -332,8 +334,6 @@ print("\n" + "=" * 70)
 print("Generating summary heatmap — TF targets across states...")
 
 # Mean log-normalized expression of drug-relevant genes per state
-import scipy.sparse as sp
-
 drug_present = [g for g in DRUG_GENES if g in mg_only.var_names]
 state_means  = {}
 
@@ -376,7 +376,7 @@ plt.yticks(fontsize=8)
 plt.tight_layout()
 fig.savefig(RES / "heatmap_TF_markers_by_state.png", dpi=150, bbox_inches="tight")
 plt.close()
-print("  Saved: results/phase1/DGE/heatmap_TF_markers_by_state.png")
+print(f"  Saved: {RES}/heatmap_TF_markers_by_state.png")
 
 # Save the mean expression table
 heatmap_df.to_csv(RES / "mean_expr_by_state.csv")
@@ -412,4 +412,4 @@ if tf_summary:
     summary_df.to_csv(RES / "TF_target_summary.csv")
 
 print(f"\nDone. Output: {RES}")
-print("Next step: run 05_pySCENIC_GRN.py (GRN/regulon inference)")
+print("Next step: run 01_pySCENIC_GRN.py (GRN/regulon inference)")

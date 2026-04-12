@@ -19,9 +19,10 @@ from pathlib import Path
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-PROJECT = Path(os.environ.get("DAM_DRUG_DIR", "/Volumes/PortableSSD/untitled folder/DAM-DRUG"))
+PROJECT = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 FPOCKET = PROJECT / "results/phase3/fpocket"
 OUT_CSV = PROJECT / "results/phase3/pocket_summary.csv"
+OUT_CSV.parent.mkdir(parents=True, exist_ok=True)
 
 # Map prepared file stem → TF and source
 # Keys match stems in data/structures/prepared/ (trimmed stem + _prep)

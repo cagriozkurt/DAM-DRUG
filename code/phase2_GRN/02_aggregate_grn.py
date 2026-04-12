@@ -13,7 +13,7 @@ Output:
     sorted by importance_mean descending
 
 Run (after all 4 array jobs complete):
-  conda run -n scenic python code/phase2_GRN/25_aggregate_grn.py
+  apptainer exec containers/scenic.sif python code/phase2_GRN/02_aggregate_grn.py
 """
 
 import os
@@ -22,7 +22,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-PROJECT = Path(os.environ.get("DAM_DRUG_DIR", "/arf/scratch/mozkurt/DAM-DRUG"))
+PROJECT = Path(os.environ.get("DAM_DRUG_DIR", str(Path.cwd())))
 GRN_DIR = PROJECT / "results/phase2/GRN"
 
 # All 5 seed files
@@ -73,6 +73,9 @@ agg = (
 before = len(agg)
 agg = agg[agg["n_seeds"] >= MIN_SEEDS].copy()
 print(f"Edges before filtering: {before:,}")
+if before == 0 or len(agg) == 0:
+    print(f"ERROR: no edges survived n_seeds >= {MIN_SEEDS} filter")
+    sys.exit(1)
 print(f"Edges with n_seeds >= {MIN_SEEDS}: {len(agg):,}  "
       f"({100*len(agg)/before:.1f}% retained)")
 
@@ -96,6 +99,6 @@ for tf in TF_TARGETS:
     else:
         for _, row in top.iterrows():
             print(f"{row.TF:<12} {row.target:<20} {row.importance_mean:9.4f} "
-                  f"{(row.importance_std or 0):7.4f} {int(row.n_seeds):8d}")
+                  f"{np.nan_to_num(row.importance_std):7.4f} {int(row.n_seeds):8d}")
 
 print(f"\nNext: re-run pyscenic ctx using {OUT.name} as input adjacency matrix")
