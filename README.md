@@ -70,7 +70,7 @@ All main and supplementary figures and manuscript tables can be reproduced from 
 export DAM_DRUG_DIR=/path/to/DAM-DRUG
 apptainer pull "$DAM_DRUG_DIR/containers/scenic.sif" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
 alias pyrun="apptainer exec --bind \"\$DAM_DRUG_DIR:\$DAM_DRUG_DIR\" \"\$DAM_DRUG_DIR/containers/scenic.sif\" conda run -n scanpy_env python"
-alias scenicrun="apptainer exec --bind \"\$DAM_DRUG_DIR:\$DAM_DRUG_DIR\" \"\$DAM_DRUG_DIR/containers/scenic.sif\" conda run -n scenic python"
+alias scenicrun="apptainer exec --bind \"\$DAM_DRUG_DIR:\$DAM_DRUG_DIR\" --env LD_LIBRARY_PATH=/opt/conda/envs/scenic/lib \"\$DAM_DRUG_DIR/containers/scenic.sif\" conda run -n scenic python"
 ```
 
 > `pyrun` (`scanpy_env`) and `scenicrun` (`scenic`) are the aliases used for all commands below.

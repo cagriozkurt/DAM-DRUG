@@ -52,6 +52,7 @@ fi
 
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
+  --env LD_LIBRARY_PATH=/opt/conda/envs/scenic/lib \
   "$SIF" \
   pyscenic grn \
     "$LOOM" \

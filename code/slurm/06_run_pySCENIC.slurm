@@ -59,6 +59,7 @@ echo "Resources ready: $(date)"
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   --bind /tmp:/tmp \
+  --env LD_LIBRARY_PATH=/opt/conda/envs/scenic/lib \
   "$SIF" \
   conda run -n scenic python "$PROJDIR/code/phase2_GRN/01_pySCENIC_GRN.py"
 

@@ -51,6 +51,7 @@ else
     echo "=== pyscenic ctx: $(date) ==="
     apptainer exec \
       --bind "$PROJDIR:$PROJDIR" \
+      --env LD_LIBRARY_PATH=/opt/conda/envs/scenic/lib \
       "$SIF" \
       pyscenic ctx \
         "$ADJ" \
@@ -71,6 +72,7 @@ else
     echo "=== pyscenic aucell: $(date) ==="
     apptainer exec \
       --bind "$PROJDIR:$PROJDIR" \
+      --env LD_LIBRARY_PATH=/opt/conda/envs/scenic/lib \
       "$SIF" \
       pyscenic aucell \
         "$LOOM" \
@@ -84,6 +86,7 @@ fi
 echo "=== Summarizing regulon activity: $(date) ==="
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
+  --env LD_LIBRARY_PATH=/opt/conda/envs/scenic/lib \
   "$SIF" \
   conda run -n scenic python - << 'PYEOF'
 import os, loompy, pandas as pd
