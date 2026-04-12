@@ -46,7 +46,7 @@ echo "Start:  $(date)"
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  python -u "$PROJDIR/code/phase4_docking/04_run_vina.py" \
+  conda run -n scanpy_env python -u "$PROJDIR/code/phase4_docking/04_run_vina.py" \
     "$STEM" \
     --cpus 20
 

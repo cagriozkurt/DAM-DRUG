@@ -65,7 +65,7 @@ echo "=== Step 1: AutoDock Vina (6 hits × 3 off-targets, 18 workers) ==="
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  python - << 'PYEOF'
+  conda run -n scanpy_env python - << 'PYEOF'
 import csv
 import os
 import shutil
@@ -173,7 +173,7 @@ echo "=== Step 2: Selectivity Index ==="
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  python - << 'PYEOF'
+  conda run -n scanpy_env python - << 'PYEOF'
 import csv
 import os
 from pathlib import Path

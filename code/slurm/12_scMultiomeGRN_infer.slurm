@@ -40,7 +40,7 @@ echo "=== scMultiomeGRN: $STATE (task $SLURM_ARRAY_TASK_ID) ==="
 echo "Job: $SLURM_JOB_ID on $SLURMD_NODENAME"
 echo "Start: $(date)"
 
-SIF=$PROJDIR/containers/scmultiomegrn.sif
+SIF=$PROJDIR/containers/dam-drug-scmultiomegrn.sif
 [ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scmultiomegrn:latest
 
 echo "GPU: $(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null || echo 'not detected yet')"
@@ -170,7 +170,7 @@ PYEOF
 apptainer exec --nv \
   --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  python "$SCRIPT"
+  conda run -n scMultiomeGRN python "$SCRIPT"
 
 echo ""
 echo "=== $STATE done: $(date) ==="

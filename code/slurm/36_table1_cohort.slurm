@@ -28,6 +28,6 @@ echo "Start: $(date)"
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  python "$PROJDIR/code/tables/make_table1_cohort.py"
+  conda run -n scanpy_env python "$PROJDIR/code/tables/make_table1_cohort.py"
 
 echo "Done: $(date)"

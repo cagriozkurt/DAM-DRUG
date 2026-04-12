@@ -37,7 +37,7 @@ echo "=== Step 3: prepare (PDBFixer) ==="
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$CONTAINER" \
-  python -u "$PROJDIR/code/phase3_structure/03_prepare_structures.py"
+  conda run -n scanpy_env python -u "$PROJDIR/code/phase3_structure/03_prepare_structures.py"
 echo "prepare done: $(date)"
 
 # Step 4: run fpocket on all prepared structures
@@ -53,7 +53,7 @@ echo "=== Step 5: parse ==="
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$CONTAINER" \
-  python -u "$PROJDIR/code/phase3_structure/05_parse_fpocket.py"
+  conda run -n scanpy_env python -u "$PROJDIR/code/phase3_structure/05_parse_fpocket.py"
 echo "parse done: $(date)"
 
 # Step 6: druggability ranking + plots
@@ -61,7 +61,7 @@ echo "=== Step 6: summarize ==="
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$CONTAINER" \
-  python -u "$PROJDIR/code/phase3_structure/06_druggability_summary.py"
+  conda run -n scanpy_env python -u "$PROJDIR/code/phase3_structure/06_druggability_summary.py"
 echo "summarize done: $(date)"
 
 echo "Done: $(date)"

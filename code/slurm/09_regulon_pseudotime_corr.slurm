@@ -31,6 +31,6 @@ echo "Start: $(date)"
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  python "$PROJDIR/code/phase2_GRN/03_regulon_pseudotime_correlation.py"
+  conda run -n scanpy_env python "$PROJDIR/code/phase2_GRN/03_regulon_pseudotime_correlation.py"
 
 echo "Done: $(date)"

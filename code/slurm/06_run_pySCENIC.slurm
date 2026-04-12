@@ -60,7 +60,7 @@ apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   --bind /tmp:/tmp \
   "$SIF" \
-  python "$PROJDIR/code/phase2_GRN/01_pySCENIC_GRN.py"
+  conda run -n scenic python "$PROJDIR/code/phase2_GRN/01_pySCENIC_GRN.py"
 
 echo "Done: $(date)"
 rm -f "$H5AD_TMP"

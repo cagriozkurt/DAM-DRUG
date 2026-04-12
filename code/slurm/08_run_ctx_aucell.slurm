@@ -85,7 +85,7 @@ echo "=== Summarizing regulon activity: $(date) ==="
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  python - << 'PYEOF'
+  conda run -n scenic python - << 'PYEOF'
 import os, loompy, pandas as pd
 from pathlib import Path
 

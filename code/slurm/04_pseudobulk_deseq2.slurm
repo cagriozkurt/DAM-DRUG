@@ -49,7 +49,7 @@ echo "Node:  $SLURMD_NODENAME"
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  python3 << 'PYEOF'
+  conda run -n scanpy_env python - << 'PYEOF'
 import os, warnings, sys
 warnings.filterwarnings("ignore")
 

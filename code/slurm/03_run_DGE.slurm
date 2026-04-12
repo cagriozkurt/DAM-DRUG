@@ -33,7 +33,7 @@ apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   --bind /tmp:/tmp \
   "$SIF" \
-  python "$PROJDIR/code/phase1_QC/03_DGE_microglial_states.py"
+  conda run -n scanpy_env python "$PROJDIR/code/phase1_QC/03_DGE_microglial_states.py"
 
 echo "Done: $(date)"
 

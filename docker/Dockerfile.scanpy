@@ -33,4 +33,7 @@ RUN mamba env create -f /tmp/scanpy_env.yml && conda clean -a -y
 COPY envs/scenic.yml /tmp/scenic.yml
 RUN mamba env create -f /tmp/scenic.yml && conda clean -a -y
 
+# Make scanpy_env the default Python so plain `python` resolves correctly
+ENV PATH /opt/conda/envs/scanpy_env/bin:$PATH
+
 WORKDIR /work

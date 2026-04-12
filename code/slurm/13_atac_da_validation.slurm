@@ -34,13 +34,13 @@ echo "=== ATAC DA Validation ==="
 echo "Job: $SLURM_JOB_ID on $SLURMD_NODENAME"
 echo "Start: $(date)"
 
-SIF=$PROJDIR/containers/scenic.sif
+SIF=$PROJDIR/containers/dam-drug-scmultiomegrn.sif
 [ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
 
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  python "$PROJDIR/code/phase2_GRN/05_atac_da_validation.py"
+  conda run -n scMultiomeGRN python "$PROJDIR/code/phase2_GRN/05_atac_da_validation.py"
 
 echo ""
 echo "=== Done: $(date) ==="

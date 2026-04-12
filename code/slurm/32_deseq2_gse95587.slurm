@@ -41,7 +41,7 @@ echo "Node:  $SLURMD_NODENAME"
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  python - << 'PYEOF'
+  conda run -n scanpy_env python - << 'PYEOF'
 import gzip
 import os
 import sys

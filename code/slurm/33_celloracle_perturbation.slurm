@@ -39,7 +39,7 @@ SIF=$PROJDIR/containers/dam-drug-scmultiomegrn.sif
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  python "$PROJDIR/code/phase5_validation/01_celloracle_perturbation.py"
+  conda run -n scMultiomeGRN python "$PROJDIR/code/phase5_validation/01_celloracle_perturbation.py"
 
 echo ""
 echo "=== Done: $(date) ==="

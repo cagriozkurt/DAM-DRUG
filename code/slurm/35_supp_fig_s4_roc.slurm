@@ -41,6 +41,6 @@ ls "$ROC_DIR"/*.csv
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  python "$PROJDIR/code/phase6_figures/supp_fig_s4_docking_roc.py"
+  conda run -n scanpy_env python "$PROJDIR/code/phase6_figures/supp_fig_s4_docking_roc.py"
 
 echo "Done: $(date)"

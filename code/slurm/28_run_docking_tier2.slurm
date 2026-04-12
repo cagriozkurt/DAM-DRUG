@@ -67,7 +67,7 @@ echo "=== Step 1: AutoDock Vina (IRF8 + IKZF1, $N_PDBQT compounds, 20 workers) =
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  python - << 'PYEOF'
+  conda run -n scanpy_env python - << 'PYEOF'
 import subprocess, os, time, shutil
 from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor, as_completed
@@ -194,7 +194,7 @@ echo "=== Step 2: Gnina CNN rescore (top 50 per target) ==="
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  python - << 'PYEOF'
+  conda run -n scanpy_env python - << 'PYEOF'
 import subprocess, os, shutil
 from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor, as_completed
@@ -332,7 +332,7 @@ echo "=== Step 3: Consensus filter ==="
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  python - << 'PYEOF'
+  conda run -n scanpy_env python - << 'PYEOF'
 import os
 from pathlib import Path
 import pandas as pd

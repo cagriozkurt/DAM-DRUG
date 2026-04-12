@@ -42,7 +42,7 @@ echo "=== Step 5: parse ==="
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$CONTAINER" \
-  python -u "$PROJDIR/code/phase3_structure/05_parse_fpocket.py"
+  conda run -n scanpy_env python -u "$PROJDIR/code/phase3_structure/05_parse_fpocket.py"
 echo "parse done: $(date)"
 
 # Step 6: druggability ranking + plots (now includes SPI1/ACSL1/PIK3CA in TF_ORDER)
@@ -50,7 +50,7 @@ echo "=== Step 6: summarize ==="
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$CONTAINER" \
-  python -u "$PROJDIR/code/phase3_structure/06_druggability_summary.py"
+  conda run -n scanpy_env python -u "$PROJDIR/code/phase3_structure/06_druggability_summary.py"
 echo "summarize done: $(date)"
 
 echo "Done: $(date)"

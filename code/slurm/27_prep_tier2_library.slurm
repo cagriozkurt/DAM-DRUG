@@ -49,7 +49,7 @@ echo "=== 3D conformers + PDBQT ==="
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   "$SIF" \
-  python - << PYEOF
+  conda run -n scanpy_env python - << PYEOF
 import subprocess, sys
 from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor, as_completed

@@ -67,7 +67,7 @@ All main and supplementary figures and manuscript tables can be reproduced from 
 ```bash
 export DAM_DRUG_DIR=/path/to/DAM-DRUG
 apptainer pull "$DAM_DRUG_DIR/containers/scenic.sif" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
-alias pyrun="apptainer exec --bind \"\$DAM_DRUG_DIR:\$DAM_DRUG_DIR\" \"\$DAM_DRUG_DIR/containers/scenic.sif\" python"
+alias pyrun="apptainer exec --bind \"\$DAM_DRUG_DIR:\$DAM_DRUG_DIR\" \"\$DAM_DRUG_DIR/containers/scenic.sif\" conda run -n scanpy_env python"
 ```
 
 > `pyrun` is the alias used for all commands below.

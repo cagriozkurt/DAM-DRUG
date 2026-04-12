@@ -30,7 +30,7 @@ apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   --bind /tmp:/tmp \
   "$SIF" \
-  python "$PROJDIR/code/phase1_QC/02_explore_microglia_object.py"
+  conda run -n scanpy_env python "$PROJDIR/code/phase1_QC/02_explore_microglia_object.py"
 
 echo "Done: $(date)"
 rm -f "$H5AD_TMP"
