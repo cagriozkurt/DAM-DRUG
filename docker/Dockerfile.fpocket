@@ -2,7 +2,7 @@
 #
 # Extends dam-drug-scanpy with:
 #   - fpocket 4.x (compiled from source)
-#   - biopython, pdbfixer, openmm (pip, into scanpy_env)
+#   - biopython, pdbfixer, openmm (conda-forge, into scanpy_env)
 #
 # Build (from repo root):
 #   docker build -f docker/Dockerfile.fpocket -t ghcr.io/cagriozkurt/dam-drug-fpocket:latest .
@@ -25,8 +25,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libnetcdf-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python packages into scanpy_env (PATH already points there)
-RUN pip install --no-cache-dir biopython pdbfixer openmm
+# Install Python packages into scanpy_env via conda-forge
+# (openmm has no pip wheel for aarch64; conda-forge covers both aarch64 and x86_64)
+RUN mamba install -n scanpy_env -c conda-forge openmm biopython pdbfixer -y \
+    && conda clean -a -y
 
 # Compile fpocket from source and install to /usr/local/bin
 RUN cd /tmp \

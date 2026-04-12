@@ -138,7 +138,7 @@ The upstream computations (pySCENIC GRN inference, AutoDock Vina/GNINA docking, 
 | AutoDock Vina | 1.2 | https://github.com/ccsb-scripps/AutoDock-Vina/releases — place at `$DAM_DRUG_DIR/bin/vina` or set `VINA` env var |
 | GNINA | 1.3.2 | https://github.com/gnina/gnina/releases — place at `$DAM_DRUG_DIR/bin/gnina` or set `GNINA` env var; requires CUDA/cuDNN 9 |
 | OpenBabel | 3.1.1 | `conda install -c conda-forge openbabel=3.1.1` (in mmpbsa env) |
-| fpocket | 4.x | https://github.com/Discngine/fpocket — build from source |
+| fpocket | 4.x | Included in `fpocket-env.sif` (compiled from source in `docker/Dockerfile.fpocket`) |
 | GROMACS | 2024.1 | HPC module: `module load apps/gromacs/2024.1-oneapi2024` |
 
 #### Apptainer images
@@ -146,9 +146,10 @@ The upstream computations (pySCENIC GRN inference, AutoDock Vina/GNINA docking, 
 Most SLURM scripts use Apptainer images pulled automatically on first run. Pull them manually if preferred:
 
 ```bash
-apptainer pull "$DAM_DRUG_DIR/containers/scenic.sif"               docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
-apptainer pull "$DAM_DRUG_DIR/containers/dam-drug-r.sif"           docker://ghcr.io/cagriozkurt/dam-drug-r:latest
+apptainer pull "$DAM_DRUG_DIR/containers/scenic.sif"                docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
+apptainer pull "$DAM_DRUG_DIR/containers/dam-drug-r.sif"            docker://ghcr.io/cagriozkurt/dam-drug-r:latest
 apptainer pull "$DAM_DRUG_DIR/containers/dam-drug-scmultiomegrn.sif" docker://ghcr.io/cagriozkurt/dam-drug-scmultiomegrn:latest
+apptainer pull "$DAM_DRUG_DIR/containers/fpocket-env.sif"           docker://ghcr.io/cagriozkurt/dam-drug-fpocket:latest
 ```
 
 | Image | Covers |
@@ -156,6 +157,7 @@ apptainer pull "$DAM_DRUG_DIR/containers/dam-drug-scmultiomegrn.sif" docker://gh
 | `scenic.sif` | analysis + figures (scanpy, pySCENIC, pydeseq2) |
 | `dam-drug-r.sif` | CellChat/R |
 | `dam-drug-scmultiomegrn.sif` | CellOracle + PyTorch GRN (phases 2 & 5) |
+| `fpocket-env.sif` | PDBFixer + fpocket pocket detection (phase 3) |
 
 > GPU scripts pass `--nv` to expose the host GPU driver. SLURM scripts handle this automatically.
 
@@ -327,7 +329,7 @@ sbatch code/slurm/17_cellchat_final.slurm
 |------|--------|-------------|-------|
 | 01 | `code/phase3_structure/01_fetch_structures.py` | scanpy_env | Download AF2 + PDB structures for 6 TF targets (login node) |
 | 02 | `code/phase3_structure/02_trim_domains.py` | scanpy_env | Trim to DNA-binding domain (login node) |
-| 18 | `code/slurm/18_run_phase3.slurm` | mmpbsa / system | [HPC] PDBFixer → fpocket → parse → druggability summary (steps 3–6) |
+| 18 | `code/slurm/18_run_phase3.slurm` | fpocket-env.sif | [HPC] PDBFixer → fpocket → parse → druggability summary (steps 3–6) |
 
 ```bash
 export DAM_DRUG_DIR=/path/to/DAM-DRUG
@@ -469,6 +471,7 @@ See [Part 1](#part-1--reproduce-figures-and-tables-no-hpc-required) above.
 ## Reproducibility notes
 
 - All stochastic steps use fixed seeds. See manuscript §Random seeds for full table.
+- **`fig_cellchat.py` Panel A** (chord diagram) requires `pdftoppm` (poppler-utils) to rasterize the CellChat chord PDF. This system tool is not included in the container; Panel A will be blank when run inside Apptainer. The full chord diagram PDF is available at `results/phase5/celloracle/` and is referenced directly in the manuscript figure.
 - **GROMACS MD** (`gen_seed = -1`): velocity generation uses a system-generated random seed. RMSD values in the manuscript are not bit-reproducible without the archived trajectory files (stored on TRUBA ARF scratch). The trajectory files can be made available on request.
 - **pySCENIC** uses 5 seeds (42, 1, 2, 3, 4) with a minimum consensus of 3/5. Results are consensus-stable across seeds.
 - All scripts read the project root from `$DAM_DRUG_DIR`. Set this variable before running any script.
