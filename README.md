@@ -70,9 +70,10 @@ All main and supplementary figures and manuscript tables can be reproduced from 
 export DAM_DRUG_DIR=/path/to/DAM-DRUG
 apptainer pull "$DAM_DRUG_DIR/containers/scenic.sif" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
 alias pyrun="apptainer exec --bind \"\$DAM_DRUG_DIR:\$DAM_DRUG_DIR\" \"\$DAM_DRUG_DIR/containers/scenic.sif\" conda run -n scanpy_env python"
+alias scenicrun="apptainer exec --bind \"\$DAM_DRUG_DIR:\$DAM_DRUG_DIR\" \"\$DAM_DRUG_DIR/containers/scenic.sif\" conda run -n scenic python"
 ```
 
-> `pyrun` is the alias used for all commands below.
+> `pyrun` (`scanpy_env`) and `scenicrun` (`scenic`) are the aliases used for all commands below.
 
 ### Step 2 — Run figures
 
@@ -187,25 +188,24 @@ bash code/phase1_QC/01_data_acquisition.sh
 
 Scripts are numbered 01–42. Numbers in `code/slurm/` correspond to the same step on HPC.
 
-**Legend:** `[local]` = laptop/workstation | `[HPC]` = requires SLURM cluster | `[optional]` = not required for main figures
+**Legend:** `[HPC]` = requires SLURM cluster | `[optional]` = not required for main figures
 
-> **Local execution note:** The bash snippets below use `conda activate scanpy_env` / `conda activate scenic` for `[local]` steps. This is correct for **macOS** (Apptainer is Linux-only). On **Linux/HPC with Apptainer**, use the `pyrun` alias instead of `conda activate scanpy_env`, and `apptainer exec ... conda run -n scenic python` instead of `conda activate scenic`. `conda activate mmpbsa` is always required regardless of platform (GROMACS cannot be containerized portably).
+> All snippets use Apptainer (`pyrun` / `scenicrun`). `conda activate mmpbsa` is the only exception — GROMACS cannot be containerized portably.
 
 #### Phase 1 — QC and cell state annotation
 
 | Step | Script | Environment | Notes |
 |------|--------|-------------|-------|
 | 01 | `code/phase1_QC/01_data_acquisition.sh` | system | Downloads SEA-AD datasets |
-| 02 | `code/phase1_QC/02_explore_microglia_object.py` | scanpy_env | [local] Explore pre-release microglia h5ad; marker and batch checks |
-| 03 | `code/phase1_QC/03_DGE_microglial_states.py` | scanpy_env | [local] Wilcoxon rank-sum DGE per substate |
+| 02 | `code/phase1_QC/02_explore_microglia_object.py` | scanpy_env | Explore pre-release microglia h5ad; marker and batch checks |
+| 03 | `code/phase1_QC/03_DGE_microglial_states.py` | scanpy_env | Wilcoxon rank-sum DGE per substate |
 | 04 | `code/slurm/04_pseudobulk_deseq2.slurm` | mmpbsa | [HPC] Pseudobulk DESeq2 validation |
 | 05 | `code/slurm/05_trajectory_paga.slurm` | scanpy_env | [HPC] PAGA + diffusion pseudotime (128 GB, ~8 h) |
 
 ```bash
 export DAM_DRUG_DIR=/path/to/DAM-DRUG
-conda activate scanpy_env
-python code/phase1_QC/02_explore_microglia_object.py
-python code/phase1_QC/03_DGE_microglial_states.py
+pyrun code/phase1_QC/02_explore_microglia_object.py
+pyrun code/phase1_QC/03_DGE_microglial_states.py
 
 sbatch code/slurm/04_pseudobulk_deseq2.slurm
 sbatch code/slurm/05_trajectory_paga.slurm   # after step 26
@@ -217,25 +217,23 @@ sbatch code/slurm/05_trajectory_paga.slurm   # after step 26
 
 | Step | Script | Environment | Notes |
 |------|--------|-------------|-------|
-| 01 | `code/phase2_GRN/01_pySCENIC_GRN.py` | scenic | [local] Prepare pySCENIC inputs |
+| 01 | `code/phase2_GRN/01_pySCENIC_GRN.py` | scenic | Prepare pySCENIC inputs |
 | 07 | `code/slurm/07_grn_multiseed.slurm` | scenic | [HPC] 5-seed GRNBoost2 + RcisTarget (array job) |
 | 08 | `code/slurm/08_run_ctx_aucell.slurm` | scenic | [HPC] AUCell scoring across all cells |
-| 02 | `code/phase2_GRN/02_aggregate_grn.py` | scanpy_env | [local] Aggregate multi-seed GRN; filter regulons |
+| 02 | `code/phase2_GRN/02_aggregate_grn.py` | scanpy_env | Aggregate multi-seed GRN; filter regulons |
 | 09 | `code/slurm/09_regulon_pseudotime_corr.slurm` | scenic | [HPC] Regulon–pseudotime Spearman correlation |
-| 03 | `code/phase2_GRN/03_regulon_pseudotime_correlation.py` | scanpy_env | [local] Post-process correlation results |
+| 03 | `code/phase2_GRN/03_regulon_pseudotime_correlation.py` | scanpy_env | Post-process correlation results |
 
 ```bash
 export DAM_DRUG_DIR=/path/to/DAM-DRUG
-conda activate scenic
-python code/phase2_GRN/01_pySCENIC_GRN.py
+scenicrun code/phase2_GRN/01_pySCENIC_GRN.py
 
 sbatch code/slurm/07_grn_multiseed.slurm
 sbatch code/slurm/08_run_ctx_aucell.slurm   # after step 25
 sbatch code/slurm/09_regulon_pseudotime_corr.slurm
 
-conda activate scanpy_env
-python code/phase2_GRN/02_aggregate_grn.py
-python code/phase2_GRN/03_regulon_pseudotime_correlation.py
+pyrun code/phase2_GRN/02_aggregate_grn.py
+pyrun code/phase2_GRN/03_regulon_pseudotime_correlation.py
 ```
 
 **scMultiomeGRN (multi-omic cross-validation):**
@@ -243,14 +241,14 @@ python code/phase2_GRN/03_regulon_pseudotime_correlation.py
 | Step | Script | Environment | Notes |
 |------|--------|-------------|-------|
 | 11 | `code/slurm/11_setup_scMultiomeGRN.slurm` | scMultiomeGRN | [HPC] Download scMultiomeGRN tool source from Zenodo |
-| 04 | `code/phase2_GRN/04_prep_scMultiomeGRN_input.py` | scMultiomeGRN | [local] Prepare MTX input files |
+| 04 | `code/phase2_GRN/04_prep_scMultiomeGRN_input.py` | scMultiomeGRN | Prepare MTX input files |
 | 12 | `code/slurm/12_scMultiomeGRN_infer.slurm` | scMultiomeGRN | [HPC] scMultiomeGRN inference |
 
 **ATAC chromatin validation:**
 
 | Step | Script | Environment | Notes |
 |------|--------|-------------|-------|
-| 05 | `code/phase2_GRN/05_atac_da_validation.py` | scMultiomeGRN | [local] DA peak analysis |
+| 05 | `code/phase2_GRN/05_atac_da_validation.py` | scMultiomeGRN | DA peak analysis |
 | 13 | `code/slurm/13_atac_da_validation.slurm` | scMultiomeGRN | [HPC] Full ATAC DA on cluster |
 
 > Download `SEAAD_MTG_ATACseq_final-nuclei.2024-12-06.h5ad` (~18 GB) before running step 33.
@@ -259,7 +257,7 @@ python code/phase2_GRN/03_regulon_pseudotime_correlation.py
 
 | Step | Script | Environment | Notes |
 |------|--------|-------------|-------|
-| 01 | `code/phase2_LR/01_prep_mtg_for_cellchat.py` | scanpy_env | [local] Extract MTG microglia subset |
+| 01 | `code/phase2_LR/01_prep_mtg_for_cellchat.py` | scanpy_env | Extract MTG microglia subset |
 | 15 | `code/slurm/15_prep_mtg.slurm` | cellchat_r | [HPC] Prepare MTG Seurat object |
 | 16 | `code/slurm/16_cellchat.slurm` | cellchat_r | [HPC] CellChat inference (all cell types) |
 | 17 | `code/slurm/17_cellchat_final.slurm` | cellchat_r | [HPC] Finalize and export CellChat object |
@@ -279,31 +277,29 @@ python code/phase2_GRN/03_regulon_pseudotime_correlation.py
 
 ```bash
 export DAM_DRUG_DIR=/path/to/DAM-DRUG
-conda activate scanpy_env
-python code/phase3_structure/01_fetch_structures.py
-python code/phase3_structure/02_trim_domains.py
+pyrun code/phase3_structure/01_fetch_structures.py
+pyrun code/phase3_structure/02_trim_domains.py
 
 conda activate mmpbsa
 python code/phase3_structure/03_prepare_structures.py
 bash code/phase3_structure/04_run_fpocket.sh
 
-conda activate scanpy_env
-python code/phase3_structure/05_parse_fpocket.py
-python code/phase3_structure/06_druggability_summary.py
+pyrun code/phase3_structure/05_parse_fpocket.py
+pyrun code/phase3_structure/06_druggability_summary.py
 ```
 
 #### Phase 4 — Virtual screening
 
 | Step | Script | Environment | Notes |
 |------|--------|-------------|-------|
-| 01 | `code/phase4_docking/01_docking_prep.py` | mmpbsa | [local] Compute Vina grid boxes; receptor PDBQT |
-| 03 | `code/phase4_docking/03_prep_ligands.py` | mmpbsa | [local] SMILES → 3D SDF → PDBQT |
+| 01 | `code/phase4_docking/01_docking_prep.py` | mmpbsa | Compute Vina grid boxes; receptor PDBQT |
+| 03 | `code/phase4_docking/03_prep_ligands.py` | mmpbsa | SMILES → 3D SDF → PDBQT |
 | 20 | `code/slurm/20_run_vina.slurm` | mmpbsa | [HPC] AutoDock Vina screen (20 parallel workers) |
 | 21 | `code/slurm/21_run_gnina.slurm` | mmpbsa | [HPC] GNINA CNN rescoring of Vina poses |
-| 06 | `code/phase4_docking/06_consensus_filter.py` | scanpy_env | [local] Consensus filter (Vina ≤ −8.5 AND CNN ≥ 0.75) |
-| 07 | `code/phase4_docking/07_prep_mmpbsa.py` | mmpbsa | [local] Prepare MM-GBSA workdirs (GAFF2 topology) |
+| 06 | `code/phase4_docking/06_consensus_filter.py` | scanpy_env | Consensus filter (Vina ≤ −8.5 AND CNN ≥ 0.75) |
+| 07 | `code/phase4_docking/07_prep_mmpbsa.py` | mmpbsa | Prepare MM-GBSA workdirs (GAFF2 topology) |
 | 22 | `code/slurm/22_run_mmpbsa.slurm` | mmpbsa | [HPC] gmx_MMPBSA 1 ns NPT MM-GBSA (array job) |
-| 23 | `code/slurm/23_collect_mmpbsa.py` | mmpbsa | [local] Aggregate FINAL_RESULTS_MMPBSA.dat → CSV |
+| 23 | `code/slurm/23_collect_mmpbsa.py` | mmpbsa | Aggregate FINAL_RESULTS_MMPBSA.dat → CSV |
 | 24 | `code/slurm/24_run_md100ns.slurm` | mmpbsa | [HPC] 100 ns GROMACS 2024.1 MD stability |
 | 25 | `code/slurm/25_core_rmsd_analysis.slurm` | mmpbsa | [HPC] Core backbone + ligand RMSD analysis |
 
@@ -325,8 +321,7 @@ python code/phase4_docking/03_prep_ligands.py
 sbatch code/slurm/20_run_vina.slurm
 sbatch code/slurm/21_run_gnina.slurm   # after step 14
 
-conda activate scanpy_env
-python code/phase4_docking/06_consensus_filter.py
+pyrun code/phase4_docking/06_consensus_filter.py
 
 conda activate mmpbsa
 python code/phase4_docking/07_prep_mmpbsa.py
@@ -342,7 +337,7 @@ sbatch code/slurm/25_core_rmsd_analysis.slurm
 | Step | Script | Environment | Notes |
 |------|--------|-------------|-------|
 | 32 | `code/slurm/32_deseq2_gse95587.slurm` | scenic.sif | [HPC] Bulk replication: GSE95587 DESeq2 |
-| 01 | `code/phase5_validation/01_celloracle_perturbation.py` | scMultiomeGRN | [local/HPC] CellOracle in-silico TF KO |
+| 01 | `code/phase5_validation/01_celloracle_perturbation.py` | scMultiomeGRN | CellOracle in-silico TF KO |
 
 ```bash
 export DAM_DRUG_DIR=/path/to/DAM-DRUG
