@@ -1,5 +1,5 @@
 """
-DAM-DRUG Supplementary Figure S5 — MD Simulation RMSD Traces
+DAM-DRUG Supplementary Figure S4 — MD Simulation RMSD Traces
 =============================================================
 Panels (2×2 grid):
   A. PPARG (1FM9-LBD) + Diflunisal (CHEMBL898): ligand RMSD 100 ns
@@ -137,7 +137,7 @@ def main():
                 fontsize=12, fontweight="bold")
 
     fig.suptitle(
-        "Supplementary Figure S5 — MD Simulation Ligand RMSD Traces (100 ns)",
+        "Supplementary Figure S4 — MD Simulation Ligand RMSD Traces (100 ns)",
         fontsize=10
     )
 

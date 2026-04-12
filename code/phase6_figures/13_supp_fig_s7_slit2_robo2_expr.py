@@ -1,5 +1,5 @@
 """
-Supplementary Figure S8 — SLIT2 and ROBO2 expression across MTG cell types
+Supplementary Figure S7 — SLIT2 and ROBO2 expression across MTG cell types
 ============================================================================
 Dot plot showing:
   - SLIT2 expression across all 15 CellChat cell types (sender perspective)

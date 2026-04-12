@@ -1,5 +1,5 @@
 """
-Supplementary Figure S7 — BHLHE40/41 Motif-Agnostic Co-expression Rescue
+Supplementary Figure S6 — BHLHE40/41 Motif-Agnostic Co-expression Rescue
 =========================================================================
 BHLHE40 and BHLHE41 lack HOCOMOCO v11 motifs and cannot be evaluated by
 pySCENIC. This script computes pseudobulk Spearman co-expression across
@@ -158,7 +158,7 @@ def main():
         ax_dist.legend(fontsize=8)
 
     fig.suptitle(
-        "Supplementary Figure S7 — BHLHE40/41 Motif-Agnostic Co-expression Rescue\n"
+        "Supplementary Figure S6 — BHLHE40/41 Motif-Agnostic Co-expression Rescue\n"
         "Pseudobulk Spearman correlations across 84 donors (surrogate for pySCENIC regulon)",
         fontsize=10, y=1.01
     )

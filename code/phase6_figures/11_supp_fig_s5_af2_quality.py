@@ -1,5 +1,5 @@
 """
-DAM-DRUG Supplementary Figure S6 — AlphaFold2 Model Quality (pLDDT)
+DAM-DRUG Supplementary Figure S5 — AlphaFold2 Model Quality (pLDDT)
 =====================================================================
 For each target TF with an AF2 model used in docking, plots the
 per-residue pLDDT scores (stored as B-factor in AF2 PDB files).
@@ -154,7 +154,7 @@ def main():
                bbox_to_anchor=(0.98, 0.02))
 
     fig.suptitle(
-        "Supplementary Figure S6 — AlphaFold2 Per-Residue pLDDT Quality for DAM-DRUG TF Models",
+        "Supplementary Figure S5 — AlphaFold2 Per-Residue pLDDT Quality for DAM-DRUG TF Models",
         fontsize=10
     )
 
