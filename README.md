@@ -197,16 +197,15 @@ Scripts are numbered 01–42. Numbers in `code/slurm/` correspond to the same st
 | Step | Script | Environment | Notes |
 |------|--------|-------------|-------|
 | 01 | `code/phase1_QC/01_data_acquisition.sh` | system | Downloads SEA-AD datasets |
-| 02 | `code/phase1_QC/02_explore_microglia_object.py` | scanpy_env | Explore pre-release microglia h5ad; marker and batch checks |
-| 03 | `code/phase1_QC/03_DGE_microglial_states.py` | scanpy_env | Wilcoxon rank-sum DGE per substate |
+| 02 | `code/slurm/02_run_explore.slurm` | scanpy_env | [HPC] Explore pre-release microglia h5ad; marker and batch checks |
+| 03 | `code/slurm/03_run_DGE.slurm` | scanpy_env | [HPC] Wilcoxon rank-sum DGE per substate |
 | 04 | `code/slurm/04_pseudobulk_deseq2.slurm` | mmpbsa | [HPC] Pseudobulk DESeq2 validation |
 | 05 | `code/slurm/05_trajectory_paga.slurm` | scanpy_env | [HPC] PAGA + diffusion pseudotime (128 GB, ~8 h) |
 
 ```bash
 export DAM_DRUG_DIR=/path/to/DAM-DRUG
-pyrun code/phase1_QC/02_explore_microglia_object.py
-pyrun code/phase1_QC/03_DGE_microglial_states.py
-
+sbatch code/slurm/02_run_explore.slurm
+sbatch code/slurm/03_run_DGE.slurm
 sbatch code/slurm/04_pseudobulk_deseq2.slurm
 sbatch code/slurm/05_trajectory_paga.slurm   # after step 26
 ```
@@ -232,10 +231,10 @@ sbatch code/slurm/06_run_pySCENIC.slurm
 
 sbatch code/slurm/07_grn_multiseed.slurm
 sbatch code/slurm/08_run_ctx_aucell.slurm   # after step 25
-sbatch code/slurm/09_regulon_pseudotime_corr.slurm
 
 pyrun code/phase2_GRN/02_aggregate_grn.py
-pyrun code/phase2_GRN/03_regulon_pseudotime_correlation.py
+
+sbatch code/slurm/09_regulon_pseudotime_corr.slurm
 ```
 
 **scMultiomeGRN (multi-omic cross-validation):**
@@ -246,6 +245,17 @@ pyrun code/phase2_GRN/03_regulon_pseudotime_correlation.py
 | 04 | `code/phase2_GRN/04_prep_scMultiomeGRN_input.py` | scMultiomeGRN | Prepare MTX input files |
 | 12 | `code/slurm/12_scMultiomeGRN_infer.slurm` | scMultiomeGRN | [HPC] scMultiomeGRN inference |
 
+```bash
+sbatch code/slurm/11_setup_scMultiomeGRN.slurm
+
+apptainer exec --bind "$DAM_DRUG_DIR:$DAM_DRUG_DIR" \
+    "$DAM_DRUG_DIR/containers/dam-drug-scmultiomegrn.sif" \
+    conda run -n scMultiomeGRN python \
+    "$DAM_DRUG_DIR/code/phase2_GRN/04_prep_scMultiomeGRN_input.py"
+
+sbatch code/slurm/12_scMultiomeGRN_infer.slurm
+```
+
 **ATAC chromatin validation:**
 
 | Step | Script | Environment | Notes |
@@ -253,7 +263,18 @@ pyrun code/phase2_GRN/03_regulon_pseudotime_correlation.py
 | 05 | `code/phase2_GRN/05_atac_da_validation.py` | scMultiomeGRN | DA peak analysis |
 | 13 | `code/slurm/13_atac_da_validation.slurm` | scMultiomeGRN | [HPC] Full ATAC DA on cluster |
 
-> Download `SEAAD_MTG_ATACseq_final-nuclei.2024-12-06.h5ad` (~18 GB) before running step 33.
+> Download `SEAAD_MTG_ATACseq_final-nuclei.2024-12-06.h5ad` (~18 GB) before running step 5/13.
+
+```bash
+# local (small subset):
+apptainer exec --bind "$DAM_DRUG_DIR:$DAM_DRUG_DIR" \
+    "$DAM_DRUG_DIR/containers/dam-drug-scmultiomegrn.sif" \
+    conda run -n scMultiomeGRN python \
+    "$DAM_DRUG_DIR/code/phase2_GRN/05_atac_da_validation.py"
+
+# or full run on HPC:
+sbatch code/slurm/13_atac_da_validation.slurm
+```
 
 #### Phase 2 — Cell–cell communication (CellChat)
 
@@ -266,28 +287,30 @@ pyrun code/phase2_GRN/03_regulon_pseudotime_correlation.py
 
 > CellChat is pre-installed in `ghcr.io/cagriozkurt/dam-drug-r:latest`. SLURM scripts use this image automatically.
 
+```bash
+pyrun code/phase2_LR/01_prep_mtg_for_cellchat.py
+
+sbatch code/slurm/15_prep_mtg.slurm
+sbatch code/slurm/16_cellchat.slurm
+sbatch code/slurm/17_cellchat_final.slurm
+```
+
 #### Phase 3 — Protein structure preparation
 
 | Step | Script | Environment | Notes |
 |------|--------|-------------|-------|
-| 01 | `code/phase3_structure/01_fetch_structures.py` | scanpy_env | Download AF2 + PDB structures for 6 TF targets |
-| 02 | `code/phase3_structure/02_trim_domains.py` | scanpy_env | Trim to DNA-binding domain |
-| 03 | `code/phase3_structure/03_prepare_structures.py` | mmpbsa | PDBFixer → PDBQT (obabel, Gasteiger charges) |
-| 04 | `code/phase3_structure/04_run_fpocket.sh` | system | fpocket pocket detection |
-| 05 | `code/phase3_structure/05_parse_fpocket.py` | scanpy_env | Parse fpocket scores; select docking pockets |
-| 06 | `code/phase3_structure/06_druggability_summary.py` | scanpy_env | Druggability summary table |
+| 01 | `code/phase3_structure/01_fetch_structures.py` | scanpy_env | Download AF2 + PDB structures for 6 TF targets (login node) |
+| 02 | `code/phase3_structure/02_trim_domains.py` | scanpy_env | Trim to DNA-binding domain (login node) |
+| 18 | `code/slurm/18_run_phase3.slurm` | mmpbsa / system | [HPC] PDBFixer → fpocket → parse → druggability summary (steps 3–6) |
 
 ```bash
 export DAM_DRUG_DIR=/path/to/DAM-DRUG
+# Steps 1-2: run on login node (compute nodes have no internet)
 pyrun code/phase3_structure/01_fetch_structures.py
 pyrun code/phase3_structure/02_trim_domains.py
 
-conda activate mmpbsa
-python code/phase3_structure/03_prepare_structures.py
-bash code/phase3_structure/04_run_fpocket.sh
-
-pyrun code/phase3_structure/05_parse_fpocket.py
-pyrun code/phase3_structure/06_druggability_summary.py
+# Steps 3-6: prepare + fpocket + parse + summarize
+sbatch code/slurm/18_run_phase3.slurm
 ```
 
 #### Phase 4 — Virtual screening
