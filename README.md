@@ -187,6 +187,8 @@ Scripts are numbered 01–42. Numbers in `code/slurm/` correspond to the same st
 
 **Legend:** `[local]` = laptop/workstation | `[HPC]` = requires SLURM cluster | `[optional]` = not required for main figures
 
+> **Local execution note:** The bash snippets below use `conda activate scanpy_env` / `conda activate scenic` for `[local]` steps. This is correct for **macOS** (Apptainer is Linux-only). On **Linux/HPC with Apptainer**, use the `pyrun` alias instead of `conda activate scanpy_env`, and `apptainer exec ... conda run -n scenic python` instead of `conda activate scenic`. `conda activate mmpbsa` is always required regardless of platform (GROMACS cannot be containerized portably).
+
 #### Phase 1 — QC and cell state annotation
 
 | Step | Script | Environment | Notes |
@@ -347,7 +349,7 @@ sbatch code/slurm/32_deseq2_gse95587.slurm
 apptainer exec \
     --bind "$DAM_DRUG_DIR:$DAM_DRUG_DIR" \
     "$DAM_DRUG_DIR/containers/dam-drug-scmultiomegrn.sif" \
-    python "$DAM_DRUG_DIR/code/phase5_validation/01_celloracle_perturbation.py"
+    conda run -n scMultiomeGRN python "$DAM_DRUG_DIR/code/phase5_validation/01_celloracle_perturbation.py"
 # or on HPC: sbatch code/slurm/33_celloracle_perturbation.slurm
 ```
 
