@@ -4,6 +4,8 @@
 
 Çağrı Özkurt — Hacettepe University
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19535749.svg)](https://doi.org/10.5281/zenodo.19535749)
+
 > Özkurt Ç. (manuscript in preparation).
 
 ---
@@ -432,7 +434,7 @@ See [Part 1](#part-1--reproduce-figures-and-tables-no-hpc-required) above.
 
 | Dataset | Source | License |
 |---------|--------|---------|
-| SEA-AD microglial atlas | [Allen Brain Cell Atlas](https://portal.brain-map.org/explore/Seattle-Alzheimers-Disease) — S3: `s3://sea-ad-single-cell-profiling/` | CC BY 4.0 |
+| SEA-AD microglial atlas | [Allen Brain Cell Atlas](https://brain-map.org/consortia/sea-ad) — S3: `s3://sea-ad-single-cell-profiling/` | CC BY 4.0 |
 | SEA-AD MTG (RNAseq + ATACseq) | Allen Brain Cell Atlas (same S3 bucket) | CC BY 4.0 |
 | GSE95587 (bulk replication) | [NCBI GEO](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE95587) | Public |
 | ChEMBL compound library | [ChEMBL](https://www.ebi.ac.uk/chembl/) (max_phase = 4, CNS filter) | CC BY-SA 3.0 |
@@ -448,6 +450,7 @@ See [Part 1](#part-1--reproduce-figures-and-tables-no-hpc-required) above.
 Özkurt Ç. Integrative Single-Cell Analysis of Alzheimer's Disease Microglia Identifies IKZF1
 as a Late-Stage Neuroinflammatory Regulator and Generates Low-Confidence Computational
 Hypotheses for Tafamidis and Diflunisal as Repurposing Candidates. (manuscript in preparation)
+https://doi.org/10.5281/zenodo.19535749
 ```
 
 ---
