@@ -98,7 +98,7 @@ Outputs are written to `results/figures/` as PDF and PNG.
 |--------|-------------|---------------|
 | `01_fig1_atlas.py`, `12_supp_fig_s7_bhlhe_coexpr.py` | SEA-AD h5ad (~3.3–36 GB) | `bash code/phase1_QC/01_data_acquisition.sh` (requires AWS CLI) |
 | `01_fig1_atlas.py`, `09_supp_fig_s3_qc.py` | `results/phase1/trajectory/microglia_trajectory.h5ad` | Run `sbatch code/slurm/05_trajectory_paga.slurm` on HPC (128 GB RAM, ~8 h) after downloading the SEA-AD microglia h5ad |
-| `13_supp_fig_s8_slit2_robo2_expr.py` | `results/phase2/LR/prep/counts_raw.h5` (873 MB) | `wget -P results/phase2/LR/prep/ https://zenodo.org/records/PLACEHOLDER/files/counts_raw.h5` *(DOI updated upon submission)* |
+| `13_supp_fig_s8_slit2_robo2_expr.py` | `results/phase2/LR/prep/counts_raw.h5` (873 MB) | `wget -P results/phase2/LR/prep/ https://zenodo.org/records/19535759/files/counts_raw.h5` |
 
 ### Step 3 — Run tables
 
@@ -432,8 +432,12 @@ See [Part 1](#part-1--reproduce-figures-and-tables-no-hpc-required) above.
 
 ## Data availability
 
+Intermediate data files (21 files, 2.71 GB) are deposited at Zenodo:
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19535759.svg)](https://doi.org/10.5281/zenodo.19535759)
+
 | Dataset | Source | License |
 |---------|--------|---------|
+| Intermediate data (this study) | [Zenodo: 10.5281/zenodo.19535759](https://doi.org/10.5281/zenodo.19535759) | CC BY 4.0 |
 | SEA-AD microglial atlas | [Allen Brain Cell Atlas](https://brain-map.org/consortia/sea-ad) — S3: `s3://sea-ad-single-cell-profiling/` | CC BY 4.0 |
 | SEA-AD MTG (RNAseq + ATACseq) | Allen Brain Cell Atlas (same S3 bucket) | CC BY 4.0 |
 | GSE95587 (bulk replication) | [NCBI GEO](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE95587) | Public |
