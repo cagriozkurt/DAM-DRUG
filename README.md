@@ -1,6 +1,6 @@
 # DAM-DRUG
 
-**Integrative Single-Cell Analysis of Alzheimer's Disease Microglia Identifies IKZF1 as a Late-Stage Neuroinflammatory Regulator and Prioritises Tafamidis and Diflunisal as Candidate Repurposable Therapeutics**
+**Integrative Single-Cell Analysis of Alzheimer's Disease Microglia Identifies IKZF1 as a Late-Stage Neuroinflammatory Regulator and Generates Low-Confidence Computational Hypotheses for Tafamidis and Diflunisal as Repurposing Candidates**
 
 Çağrı Özkurt, Pelin Kelicen-Uğur — Hacettepe University
 
@@ -446,8 +446,9 @@ See [Part 1](#part-1--reproduce-figures-and-tables-no-hpc-required) above.
 
 ```
 Özkurt Ç, Kelicen-Uğur P. Integrative Single-Cell Analysis of Alzheimer's Disease Microglia
-Identifies IKZF1 as a Late-Stage Neuroinflammatory Regulator and Prioritises Tafamidis and
-Diflunisal as Candidate Repurposable Therapeutics. (manuscript in preparation)
+Identifies IKZF1 as a Late-Stage Neuroinflammatory Regulator and Generates Low-Confidence
+Computational Hypotheses for Tafamidis and Diflunisal as Repurposing Candidates.
+(manuscript in preparation)
 ```
 
 ---
