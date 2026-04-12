@@ -182,7 +182,33 @@ bash code/phase1_QC/01_data_acquisition.sh
 
 > The MTG ATACseq file (`SEAAD_MTG_ATACseq_final-nuclei.2024-12-06.h5ad`, ~18 GB) is commented out in the script. Download it manually before running step 33 (ATAC DA validation).
 
-**GSE95587** (bulk replication, Phase 5) is downloaded automatically by `32_deseq2_gse95587.slurm` via `GEOparse`.
+**GSE95587** (bulk replication, Phase 5) must be downloaded manually before running `32_deseq2_gse95587.slurm`:
+
+```bash
+mkdir -p $DAM_DRUG_DIR/data/raw/Mayo/suppl
+cd $DAM_DRUG_DIR/data/raw/Mayo/suppl
+
+# Series matrix (~2 MB)
+wget "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE95nnn/GSE95587/suppl/GSE95587_series_matrix.txt.gz"
+
+# Per-sample count files (~500 MB total) — one TSV.gz per GSM accession
+wget -r -nd -np -A "GSM*.tsv.gz" \
+  "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE95nnn/GSE95587/suppl/"
+```
+
+**pySCENIC resource files** must be present before running `06_run_pySCENIC.slurm`. The SLURM script downloads them automatically if missing, but on clusters without compute-node internet access download them on the login node first:
+
+```bash
+mkdir -p $DAM_DRUG_DIR/data/resources/motifs
+
+# Rankings database (~1.5 GB)
+wget -P $DAM_DRUG_DIR/data/resources/motifs/ \
+  https://resources.aertslab.org/cistarget/databases/homo_sapiens/hg38/refseq_r80/mc_v10_clust/gene_based/hg38_10kbp_up_10kbp_down_full_tx_v10_clust.genes_vs_motifs.rankings.feather
+
+# Motif-to-TF table (~50 MB)
+wget -P $DAM_DRUG_DIR/data/resources/motifs/ \
+  https://resources.aertslab.org/cistarget/motif2tf/motifs-v10nr_clust-nr.hgnc-m0.001-o0.0.tbl
+```
 
 ### Execution order
 
@@ -223,7 +249,7 @@ sbatch code/slurm/05_trajectory_paga.slurm   # after step 26
 | 09 | `code/slurm/09_regulon_pseudotime_corr.slurm` | scanpy_env | [HPC] Regulon–pseudotime Spearman correlation |
 | 03 | `code/phase2_GRN/03_regulon_pseudotime_correlation.py` | scanpy_env | Post-process correlation results |
 
-> `06_run_pySCENIC.slurm` downloads the pySCENIC rankings database (~1.5 GB) and motif table to `data/resources/motifs/` before running `01_pySCENIC_GRN.py`. Do not run `01_pySCENIC_GRN.py` directly — the resource files must exist first.
+> Do not run `01_pySCENIC_GRN.py` directly — resource files in `data/resources/motifs/` must exist first (see download commands above). `06_run_pySCENIC.slurm` will also auto-download them if the compute node has internet access.
 
 ```bash
 export DAM_DRUG_DIR=/path/to/DAM-DRUG

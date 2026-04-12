@@ -1,0 +1,39 @@
+# DAM-DRUG — fpocket + PDBFixer environment (phase 3: protein structure preparation)
+#
+# Extends dam-drug-scanpy with:
+#   - fpocket 4.x (compiled from source)
+#   - biopython, pdbfixer, openmm (pip, into scanpy_env)
+#
+# Build (from repo root):
+#   docker build -f docker/Dockerfile.fpocket -t ghcr.io/cagriozkurt/dam-drug-fpocket:latest .
+#
+# Push:
+#   docker push ghcr.io/cagriozkurt/dam-drug-fpocket:latest
+#
+# Pull on TRUBA (converts to SIF automatically):
+#   apptainer pull containers/fpocket-env.sif docker://ghcr.io/cagriozkurt/dam-drug-fpocket:latest
+
+FROM ghcr.io/cagriozkurt/dam-drug-scanpy:latest
+
+LABEL org.opencontainers.image.description="DAM-DRUG fpocket + PDBFixer environment for phase 3"
+LABEL org.opencontainers.image.source="https://github.com/cagriozkurt/DAM-DRUG"
+
+# Build dependencies for compiling fpocket
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        git \
+        build-essential \
+        libnetcdf-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python packages into scanpy_env (PATH already points there)
+RUN pip install --no-cache-dir biopython pdbfixer openmm
+
+# Compile fpocket from source and install to /usr/local/bin
+RUN cd /tmp \
+    && git clone --depth=1 https://github.com/Discngine/fpocket.git \
+    && cd fpocket \
+    && make \
+    && cp bin/fpocket bin/dpocket bin/mdpocket /usr/local/bin/ \
+    && cd /tmp && rm -rf fpocket
+
+WORKDIR /work
