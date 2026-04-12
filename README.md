@@ -138,7 +138,7 @@ The upstream computations (pySCENIC GRN inference, AutoDock Vina/GNINA docking, 
 | AutoDock Vina | 1.2 | https://github.com/ccsb-scripps/AutoDock-Vina/releases — place at `$DAM_DRUG_DIR/bin/vina` or set `VINA` env var |
 | GNINA | 1.3.2 | https://github.com/gnina/gnina/releases — place at `$DAM_DRUG_DIR/bin/gnina` or set `GNINA` env var; requires CUDA/cuDNN 9 |
 | OpenBabel | 3.1.1 | `conda install -c conda-forge openbabel=3.1.1` (in mmpbsa env) |
-| fpocket | 4.x | Included in `fpocket-env.sif` (compiled from source in `docker/Dockerfile.fpocket`) |
+| fpocket | 4.0 | Included in `fpocket-env.sif` (compiled from source in `docker/Dockerfile.fpocket`) |
 | GROMACS | 2024.1 | HPC module: `module load apps/gromacs/2024.1-oneapi2024` |
 
 #### Apptainer images
@@ -462,7 +462,7 @@ See [Part 1](#part-1--reproduce-figures-and-tables-no-hpc-required) above.
 |------|---------|
 | AutoDock Vina | 1.2 |
 | GNINA | 1.3.2 |
-| fpocket | 4.x |
+| fpocket | 4.0 |
 | GROMACS | 2024.1 (gmx_mpi; TRUBA system module) |
 | MEME Suite | 5.4.1 |
 

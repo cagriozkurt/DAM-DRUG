@@ -1,7 +1,7 @@
 # DAM-DRUG — fpocket + PDBFixer environment (phase 3: protein structure preparation)
 #
 # Extends dam-drug-scanpy with:
-#   - fpocket 4.x (compiled from source)
+#   - fpocket 4.0 (compiled from source)
 #   - biopython, pdbfixer, openmm (conda-forge, into scanpy_env)
 #
 # Build (from repo root):
