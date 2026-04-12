@@ -90,12 +90,12 @@ pyrun code/phase6_figures/12_supp_fig_s7_bhlhe_coexpr.py
 
 Outputs are written to `results/figures/` as PDF and PNG.
 
-**Three figures require additional data not included in the repo:**
+**Four figures require additional data not included in the repo:**
 
 | Figure | Missing file | How to obtain |
 |--------|-------------|---------------|
 | `01_fig1_atlas.py`, `12_supp_fig_s7_bhlhe_coexpr.py` | SEA-AD h5ad (~3.3–36 GB) | `bash code/phase1_QC/01_data_acquisition.sh` (requires AWS CLI) |
-| `09_supp_fig_s3_qc.py` | `results/phase1/trajectory/microglia_trajectory.h5ad` | Run `sbatch code/slurm/05_trajectory_paga.slurm` on HPC (128 GB RAM, ~8 h) after downloading the SEA-AD microglia h5ad |
+| `01_fig1_atlas.py`, `09_supp_fig_s3_qc.py` | `results/phase1/trajectory/microglia_trajectory.h5ad` | Run `sbatch code/slurm/05_trajectory_paga.slurm` on HPC (128 GB RAM, ~8 h) after downloading the SEA-AD microglia h5ad |
 | `13_supp_fig_s8_slit2_robo2_expr.py` | `results/phase2/LR/prep/counts_raw.h5` (873 MB) | `wget -P results/phase2/LR/prep/ https://zenodo.org/records/PLACEHOLDER/files/counts_raw.h5` *(DOI updated upon submission)* |
 
 ### Step 3 — Run tables
