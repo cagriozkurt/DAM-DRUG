@@ -217,16 +217,18 @@ sbatch code/slurm/05_trajectory_paga.slurm   # after step 26
 
 | Step | Script | Environment | Notes |
 |------|--------|-------------|-------|
-| 01 | `code/phase2_GRN/01_pySCENIC_GRN.py` | scenic | Prepare pySCENIC inputs |
+| 06 | `code/slurm/06_run_pySCENIC.slurm` | scenic | [HPC] Download resources + prepare pySCENIC inputs (`01_pySCENIC_GRN.py`) |
 | 07 | `code/slurm/07_grn_multiseed.slurm` | scenic | [HPC] 5-seed GRNBoost2 + RcisTarget (array job) |
 | 08 | `code/slurm/08_run_ctx_aucell.slurm` | scenic | [HPC] AUCell scoring across all cells |
 | 02 | `code/phase2_GRN/02_aggregate_grn.py` | scanpy_env | Aggregate multi-seed GRN; filter regulons |
-| 09 | `code/slurm/09_regulon_pseudotime_corr.slurm` | scenic | [HPC] Regulon–pseudotime Spearman correlation |
+| 09 | `code/slurm/09_regulon_pseudotime_corr.slurm` | scanpy_env | [HPC] Regulon–pseudotime Spearman correlation |
 | 03 | `code/phase2_GRN/03_regulon_pseudotime_correlation.py` | scanpy_env | Post-process correlation results |
+
+> `06_run_pySCENIC.slurm` downloads the pySCENIC rankings database (~1.5 GB) and motif table to `data/resources/motifs/` before running `01_pySCENIC_GRN.py`. Do not run `01_pySCENIC_GRN.py` directly — the resource files must exist first.
 
 ```bash
 export DAM_DRUG_DIR=/path/to/DAM-DRUG
-scenicrun code/phase2_GRN/01_pySCENIC_GRN.py
+sbatch code/slurm/06_run_pySCENIC.slurm
 
 sbatch code/slurm/07_grn_multiseed.slurm
 sbatch code/slurm/08_run_ctx_aucell.slurm   # after step 25
