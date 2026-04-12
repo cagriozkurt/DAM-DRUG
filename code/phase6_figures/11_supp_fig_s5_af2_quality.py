@@ -160,9 +160,9 @@ def main():
 
     # ── Save ───────────────────────────────────────────────────────────────
     for ext in ("pdf", "png"):
-        fig.savefig(OUT / f"supp_fig_S6_af2_quality.{ext}",
+        fig.savefig(OUT / f"supp_fig_S5_af2_quality.{ext}",
                     bbox_inches="tight", dpi=300)
-        print(f"Saved → {OUT}/supp_fig_S6_af2_quality.{ext}")
+        print(f"Saved → {OUT}/supp_fig_S5_af2_quality.{ext}")
 
     plt.close(fig)
 

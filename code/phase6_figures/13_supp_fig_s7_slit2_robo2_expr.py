@@ -7,8 +7,8 @@ Dot plot showing:
 
 Data: counts_raw.h5 + gene_names.csv + cell_meta.csv from CellChat prep
 Outputs:
-  results/figures/supp_fig_S8_slit2_robo2_expr.pdf
-  results/figures/supp_fig_S8_slit2_robo2_expr.png
+  results/figures/supp_fig_S7_slit2_robo2_expr.pdf
+  results/figures/supp_fig_S7_slit2_robo2_expr.png
 """
 
 import numpy as np
@@ -193,10 +193,10 @@ def main():
              ha="center", va="top", fontsize=9, style="italic")
 
     plt.tight_layout(rect=[0, 0.04, 1, 0.95])
-    fig.savefig(OUT_DIR / "supp_fig_S8_slit2_robo2_expr.pdf", dpi=300, bbox_inches="tight")
-    fig.savefig(OUT_DIR / "supp_fig_S8_slit2_robo2_expr.png", dpi=300, bbox_inches="tight")
+    fig.savefig(OUT_DIR / "supp_fig_S7_slit2_robo2_expr.pdf", dpi=300, bbox_inches="tight")
+    fig.savefig(OUT_DIR / "supp_fig_S7_slit2_robo2_expr.png", dpi=300, bbox_inches="tight")
     plt.close()
-    print(f"\nSaved: supp_fig_S8_slit2_robo2_expr.pdf/.png")
+    print(f"\nSaved: supp_fig_S7_slit2_robo2_expr.pdf/.png")
 
 
 if __name__ == "__main__":

@@ -143,9 +143,9 @@ def main():
 
     # ── Save ───────────────────────────────────────────────────────────────
     for ext in ("pdf", "png"):
-        fig.savefig(OUT / f"supp_fig_S5_md_rmsd.{ext}",
+        fig.savefig(OUT / f"supp_fig_S4_md_rmsd.{ext}",
                     bbox_inches="tight", dpi=300)
-        print(f"Saved → {OUT}/supp_fig_S5_md_rmsd.{ext}")
+        print(f"Saved → {OUT}/supp_fig_S4_md_rmsd.{ext}")
 
     plt.close(fig)
 

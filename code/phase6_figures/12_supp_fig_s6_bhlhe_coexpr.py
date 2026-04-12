@@ -7,8 +7,8 @@ pySCENIC. This script computes pseudobulk Spearman co-expression across
 marker genes in the top co-expressed gene set.
 
 Outputs:
-  results/figures/supp_fig_S7_bhlhe_coexpr.pdf
-  results/figures/supp_fig_S7_bhlhe_coexpr.png
+  results/figures/supp_fig_S6_bhlhe_coexpr.pdf
+  results/figures/supp_fig_S6_bhlhe_coexpr.png
   results/phase2/GRN/bhlhe40_coexpr_top200.csv
   results/phase2/GRN/bhlhe41_coexpr_top200.csv
 """
@@ -164,7 +164,7 @@ def main():
     )
 
     for ext in ("pdf", "png"):
-        out_path = OUT_DIR / f"supp_fig_S7_bhlhe_coexpr.{ext}"
+        out_path = OUT_DIR / f"supp_fig_S6_bhlhe_coexpr.{ext}"
         fig.savefig(out_path, dpi=300, bbox_inches="tight")
         print(f"Saved {out_path}")
 
