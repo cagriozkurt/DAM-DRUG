@@ -128,10 +128,11 @@ def main():
         ax.set_title(ylabel, fontsize=8, fontweight="bold")
         ax.spines[["top", "right"]].set_visible(False)
 
-        # Annotate n per state
+        # Annotate n per state — placed below x-axis to avoid overlapping violins
         for pos, vals in zip(positions, data_by_state):
-            ax.text(pos, ax.get_ylim()[0], f"n={len(vals):,}",
-                    ha="center", va="bottom", fontsize=5.5, color="#555555", rotation=90)
+            ax.text(pos, -0.18, f"n={len(vals):,}",
+                    ha="center", va="top", fontsize=5.5, color="#555555", rotation=90,
+                    transform=ax.get_xaxis_transform(), clip_on=False)
 
     # ── Panel D: UMAP by donor ────────────────────────────────────────────
     ax_d   = axes_bot[0]
