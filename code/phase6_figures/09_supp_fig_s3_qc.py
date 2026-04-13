@@ -40,9 +40,11 @@ plt.rcParams.update({
     "axes.linewidth": 0.7, "pdf.fonttype": 42,
 })
 
-STATE_ORDER  = ["Homeostatic", "DAM", "DAM-IRM", "IRM", "LAM", "LateAD-DAM"]
-STATE_COLORS = {"Homeostatic": "#0072B2", "DAM": "#E69F00", "DAM-IRM": "#F0E442",
-                "IRM": "#56B4E9", "LAM": "#CC79A7", "LateAD-DAM": "#D55E00"}
+STATE_ORDER   = ["Homeostatic", "DAM", "DAM-IRM", "IRM", "LAM", "LateAD-DAM"]
+STATE_COLORS  = {"Homeostatic": "#0072B2", "DAM": "#E69F00", "DAM-IRM": "#F0E442",
+                 "IRM": "#56B4E9", "LAM": "#CC79A7", "LateAD-DAM": "#D55E00"}
+STATE_HATCHES = {"Homeostatic": "",    "DAM": "///", "DAM-IRM": "...",
+                 "IRM": "xxx",         "LAM": "---", "LateAD-DAM": "\\\\"}
 
 
 def main():
@@ -163,8 +165,9 @@ def main():
             if mask.sum() == 0:
                 continue
             ax_e.scatter(coords[mask, 0], coords[mask, 1],
-                         s=0.5, alpha=0.6, c=STATE_COLORS.get(state, "grey"),
-                         label=state, rasterized=True)
+                         s=0.5, alpha=0.5, c=STATE_COLORS.get(state, "grey"),
+                         label=state, rasterized=True,
+                         linewidths=0.15, edgecolors=(0, 0, 0, 0.18))
         legend_handles = [mpatches.Patch(color=STATE_COLORS.get(s, "grey"), label=s)
                           for s in STATE_ORDER if (adata.obs[state_col] == s).any()]
         ax_e.legend(handles=legend_handles, markerscale=1, fontsize=6.5,
@@ -191,7 +194,8 @@ def main():
             vals = ct[state].values
             ax_f.bar(braak_labels, vals, bottom=bottom,
                      color=STATE_COLORS.get(state, "grey"), label=state,
-                     edgecolor="white", linewidth=0.3)
+                     hatch=STATE_HATCHES.get(state, ""),
+                     edgecolor="#333333", linewidth=0.4)
             bottom += vals
         ax_f.set_xlabel("Braak stage", fontsize=8)
         ax_f.set_ylabel("Cell count", fontsize=8)
@@ -202,7 +206,8 @@ def main():
         counts = adata.obs[state_col].value_counts().reindex(STATE_ORDER, fill_value=0)
         ax_f.bar(counts.index, counts.values,
                  color=[STATE_COLORS.get(s, "grey") for s in counts.index],
-                 edgecolor="white", linewidth=0.4)
+                 hatch=[STATE_HATCHES.get(s, "") for s in counts.index],
+                 edgecolor="#333333", linewidth=0.4)
         ax_f.set_xlabel("State", fontsize=8)
         ax_f.set_ylabel("Cell count", fontsize=8)
         ax_f.set_title("Cell counts per microglial state", fontsize=8, fontweight="bold")

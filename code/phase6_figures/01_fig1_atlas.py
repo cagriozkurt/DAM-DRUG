@@ -85,8 +85,12 @@ def main():
     print("Panel A: UMAP by state...")
     sc.pl.umap(mg, color="state", ax=ax_a, show=False, frameon=False,
                palette=STATE_COLORS, legend_loc=None,
-               title="", s=3, alpha=0.5)
+               title="", s=3, alpha=0.4)
+    # Add thin semi-transparent border to each point collection to reduce
+    # colour-overlap masking (OUP accessibility requirement)
     for coll in ax_a.collections:
+        coll.set_linewidths(0.15)
+        coll.set_edgecolors((0, 0, 0, 0.18))
         coll.set_rasterized(True)   # keep file size manageable for 236K points
     # Manual legend outside plot area
     handles = [mpatches.Patch(color=STATE_COLORS[s], label=s) for s in STATE_ORDER]

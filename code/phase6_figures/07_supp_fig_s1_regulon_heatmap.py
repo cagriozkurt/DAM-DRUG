@@ -87,12 +87,12 @@ def main():
     heat_ax.set_xticklabels(auc_z_sorted.columns, rotation=90, fontsize=6.5, ha="center")
     heat_ax.set_xlabel("Regulon (TF)", fontsize=9, labelpad=4)
 
-    # Highlight key TFs in x-tick labels
+    # Highlight key TFs in x-tick labels (bold + asterisk; no colour per OUP accessibility)
     key_tfs = {"IKZF1"}
     for lbl in heat_ax.get_xticklabels():
         if lbl.get_text() in key_tfs:
             lbl.set_fontweight("bold")
-            lbl.set_color("#D55E00")
+            lbl.set_text(lbl.get_text() + "*")
 
     # Colorbar
     cbar = fig.colorbar(im, ax=heat_ax, orientation="vertical",
@@ -102,8 +102,10 @@ def main():
 
     fig.suptitle(
         "Supplementary Figure S1 — pySCENIC 46-Regulon AUCell Scores Across Microglial States",
-        fontsize=10, y=1.01
+        fontsize=12, y=1.01
     )
+    fig.text(0.01, -0.01, "* Primary target TF (IKZF1) highlighted in bold.",
+             fontsize=9, ha="left", style="italic")
 
     # ── Save ───────────────────────────────────────────────────────────────
     for ext in ("pdf", "png"):

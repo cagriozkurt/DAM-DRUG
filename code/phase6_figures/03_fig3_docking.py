@@ -144,7 +144,9 @@ def panel_selectivity(ax):
     vina_cols   = ["vina_drd2", "vina_htr2a", "vina_herg"]
     vina_on_col = "vina_ontarget"
     # CVD-safe colors per off-target — direction (pos/neg) read from bar height
-    OT_COLORS = {"DRD2": "#E69F00", "HTR2A": "#56B4E9", "hERG": "#CC79A7"}
+    OT_COLORS  = {"DRD2": "#E69F00", "HTR2A": "#56B4E9", "hERG": "#CC79A7"}
+    # Hatching per off-target so bars are distinguishable without colour
+    OT_HATCHES = {"DRD2": "",      "HTR2A": "///",   "hERG": "..."}
 
     x = np.arange(len(df))
     width = 0.25
@@ -152,20 +154,20 @@ def panel_selectivity(ax):
 
     for i, (ot, col) in enumerate(zip(off_targets, vina_cols)):
         ddg = df[vina_on_col] - df[col]
-        edge = ["#333333" if v > 0 else "none" for v in ddg]
         ax.bar(x + offsets[i], ddg, width=width * 0.9,
                color=OT_COLORS[ot], alpha=0.85, label=ot,
-               edgecolor=edge, linewidth=0.8)
+               hatch=OT_HATCHES[ot], edgecolor="#333333", linewidth=0.8)
 
     ax.axhline(0, color="k", linewidth=0.8)
     ax.set_xticks(x)
     ax.set_xticklabels(df["pref_name"], rotation=35, ha="right", fontsize=8)
     ax.set_ylabel("ΔΔG_Vina (on-target − off-target, kcal/mol)", fontsize=8)
-    ax.set_title("C  Selectivity: Vina ΔΔG vs off-targets\n(positive = on-target preferred; outlined bars)",
+    ax.set_title("C  Selectivity: Vina ΔΔG vs off-targets\n(positive = on-target preferred)",
                  fontweight="bold", loc="left", fontsize=10)
 
-    # Legend: one entry per off-target (color) + direction note
-    ot_handles = [mpatches.Patch(color=OT_COLORS[ot], label=ot) for ot in off_targets]
+    # Legend: colour + hatch pattern per off-target
+    ot_handles = [mpatches.Patch(facecolor=OT_COLORS[ot], hatch=OT_HATCHES[ot],
+                                 edgecolor="#333333", label=ot) for ot in off_targets]
     ax.legend(handles=ot_handles, fontsize=7, frameon=False,
               title="Off-target", title_fontsize=7,
               bbox_to_anchor=(1.01, 1), loc="upper left")

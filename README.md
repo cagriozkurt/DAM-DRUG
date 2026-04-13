@@ -1,6 +1,6 @@
 # DAM-DRUG
 
-**Integrative Single-Cell Analysis of Alzheimer's Disease Microglia Identifies IKZF1 as a Late-Stage Neuroinflammatory Regulator and Generates Low-Confidence Computational Hypotheses for Tafamidis and Diflunisal as Repurposing Candidates**
+**Integrative Single-Cell Analysis Identifies IKZF1 as a Late-Stage Alzheimer's Microglial Regulator and Nominates Repurposing Candidates**
 
 Çağrı Özkurt — Hacettepe University
 
@@ -89,6 +89,7 @@ pyrun code/phase6_figures/08_supp_fig_s2_celloracle.py
 pyrun code/phase6_figures/10_supp_fig_s4_md_rmsd.py
 pyrun code/phase6_figures/11_supp_fig_s5_af2_quality.py
 pyrun code/phase6_figures/12_supp_fig_s6_bhlhe_coexpr.py
+pyrun code/phase6_figures/14_supp_fig_s8_umap_facets.py
 ```
 
 Outputs are written to `results/figures/` as PDF and PNG.
@@ -98,7 +99,7 @@ Outputs are written to `results/figures/` as PDF and PNG.
 | Figure | Missing file | How to obtain |
 |--------|-------------|---------------|
 | `01_fig1_atlas.py`, `12_supp_fig_s6_bhlhe_coexpr.py` | SEA-AD h5ad (~3.3–36 GB) | `bash code/phase1_QC/01_data_acquisition.sh` (requires AWS CLI) |
-| `01_fig1_atlas.py`, `09_supp_fig_s3_qc.py` | `results/phase1/trajectory/microglia_trajectory.h5ad` | Run `sbatch code/slurm/05_trajectory_paga.slurm` on HPC (128 GB RAM, ~8 h) after downloading the SEA-AD microglia h5ad |
+| `01_fig1_atlas.py`, `09_supp_fig_s3_qc.py`, `14_supp_fig_s8_umap_facets.py` | `results/phase1/trajectory/microglia_trajectory.h5ad` | Run `sbatch code/slurm/05_trajectory_paga.slurm` on HPC (128 GB RAM, ~8 h) after downloading the SEA-AD microglia h5ad |
 | `13_supp_fig_s7_slit2_robo2_expr.py` | `results/phase2/LR/prep/counts_raw.h5` (873 MB) | `wget -P results/phase2/LR/prep/ https://zenodo.org/records/19535759/files/counts_raw.h5` |
 
 ### Step 3 — Run tables
@@ -500,9 +501,8 @@ Intermediate data files (21 files, 2.71 GB) are deposited at Zenodo:
 ## Citation
 
 ```
-Özkurt Ç. Integrative Single-Cell Analysis of Alzheimer's Disease Microglia Identifies IKZF1
-as a Late-Stage Neuroinflammatory Regulator and Generates Low-Confidence Computational
-Hypotheses for Tafamidis and Diflunisal as Repurposing Candidates. (manuscript in preparation)
+Özkurt Ç. Integrative Single-Cell Analysis Identifies IKZF1 as a Late-Stage Alzheimer's
+Microglial Regulator and Nominates Repurposing Candidates. (manuscript in preparation)
 https://doi.org/10.5281/zenodo.19535749
 ```
 

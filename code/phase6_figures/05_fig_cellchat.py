@@ -54,6 +54,26 @@ CELL_COLORS = {
 }
 DEFAULT_COLOR = "#888888"
 
+# Marker shapes per sender — paired with colours for dual encoding
+CELL_SHAPES = {
+    "Microglia":       "o",
+    "Astrocyte":       "s",
+    "ExcNeuron":       "^",
+    "Pvalb":           "D",
+    "Sst":             "v",
+    "Chandelier":      "P",
+    "Lamp5":           "X",
+    "Lamp5 Lhx6":      "h",
+    "OPC":             "*",
+    "Oligodendrocyte": "p",
+    "Vascular":        "H",
+    "Vip":             "<",
+    "Sncg":            ">",
+    "Pax6":            "8",
+    "Sst Chodl":       "+",
+}
+DEFAULT_SHAPE = "o"
+
 # Pathway colors (Okabe-Ito extended)
 PATHWAY_COLORS = {
     "SLIT":       "#D55E00",
@@ -160,13 +180,28 @@ def main():
     colors_b = [CELL_COLORS.get(s, DEFAULT_COLOR) for s in top_pairs["source"]]
     sizes    = (top_pairs["prob"] / top_pairs["prob"].max()) * 200
 
-    # Horizontal bars (prob)
+    # Horizontal bars (prob) — light fill behind dots
     ax_pairs.barh(y_pos, top_pairs["prob"].values,
-                  color=colors_b, alpha=0.35, height=0.55)
-    # Dots scaled by prob
-    ax_pairs.scatter(top_pairs["prob"].values, y_pos,
-                     s=sizes, c=colors_b, zorder=3, edgecolors="white",
-                     linewidths=0.4)
+                  color=colors_b, alpha=0.25, height=0.55)
+
+    # Dots: plot per sender so each gets its own shape + colour (dual encoding)
+    seen_sources = list(top_pairs["source"].unique())
+    scatter_handles = []
+    for src in seen_sources:
+        mask = top_pairs["source"] == src
+        idx  = top_pairs.index[mask]
+        rows = top_pairs.loc[idx]
+        yy   = np.where(top_pairs["source"] == src)[0]
+        clr  = CELL_COLORS.get(src, DEFAULT_COLOR)
+        mrk  = CELL_SHAPES.get(src, DEFAULT_SHAPE)
+        sz   = (rows["prob"] / top_pairs["prob"].max()) * 200
+        ax_pairs.scatter(rows["prob"].values, yy,
+                         s=sz.values, c=clr, marker=mrk,
+                         zorder=3, edgecolors="white", linewidths=0.4)
+        scatter_handles.append(
+            plt.scatter([], [], s=60, c=clr, marker=mrk, label=src,
+                        edgecolors="white", linewidths=0.4)
+        )
 
     # Y-tick labels
     pair_labels = (top_pairs["source"] + "  →  " +
@@ -181,11 +216,8 @@ def main():
     ax_pairs.spines[["top", "right"]].set_visible(False)
     ax_pairs.tick_params(axis="x", labelsize=8)
 
-    # Legend for sender cell types present in top 20
-    seen_sources = top_pairs["source"].unique()
-    handles = [mpatches.Patch(color=CELL_COLORS.get(s, DEFAULT_COLOR), label=s)
-               for s in seen_sources]
-    ax_pairs.legend(handles=handles, title="Sender cell type",
+    # Legend: colour + shape per sender (dual encoding)
+    ax_pairs.legend(handles=scatter_handles, title="Sender cell type",
                     fontsize=7, title_fontsize=7.5,
                     loc="lower right", framealpha=0.85,
                     ncol=2)

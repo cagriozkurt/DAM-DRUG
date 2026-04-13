@@ -158,12 +158,28 @@ def main():
 
         ax.set_yticks(y)
         if gene == genes_plot[0]:
-            ax.set_yticklabels(CT_ORDER, fontsize=8.5)
-            for i, ct in enumerate(CT_ORDER):
-                if ct in INTERNEURON_TYPES:
-                    ax.get_yticklabels()[i].set_color("#1565C0")
-                elif ct == "Microglia":
-                    ax.get_yticklabels()[i].set_color("#B71C1C")
+            ax.set_yticklabels(CT_ORDER, fontsize=8.5)  # all labels black (default)
+            # Draw a horizontal separator between interneurons and other cell types
+            n_interneurons = sum(ct in INTERNEURON_TYPES for ct in CT_ORDER)
+            if n_interneurons > 0:
+                sep_y = n_interneurons - 0.5
+                ax.axhline(sep_y, color="black", linewidth=0.8, linestyle="--")
+                # Bracket-style annotation: label the interneuron group
+                ax.annotate(
+                    "Inhibitory\ninterneurons",
+                    xy=(-0.48, (n_interneurons - 1) / 2),
+                    xytext=(-0.52, (n_interneurons - 1) / 2),
+                    fontsize=7, ha="right", va="center",
+                    rotation=90,
+                    annotation_clip=False,
+                )
+                ax.annotate(
+                    "",
+                    xy=(-0.47, -0.4),
+                    xytext=(-0.47, n_interneurons - 0.6),
+                    annotation_clip=False,
+                    arrowprops=dict(arrowstyle="-", color="black", lw=0.8),
+                )
         else:
             ax.set_yticklabels([])
 
@@ -189,7 +205,7 @@ def main():
 
     fig.text(0.5, 0.97,
              "SLIT2/ROBO2 expression across MTG cell types (SEA-AD; n=45,000 cells)\n"
-             "Blue labels = inhibitory interneurons (SLIT2 senders); Red = Microglia (ROBO2 receiver)",
+             "Dashed line separates inhibitory interneurons (above) from other cell types (below).",
              ha="center", va="top", fontsize=9, style="italic")
 
     plt.tight_layout(rect=[0, 0.04, 1, 0.95])

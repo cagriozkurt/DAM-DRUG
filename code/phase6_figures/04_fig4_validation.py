@@ -41,6 +41,7 @@ STATE_LABELS = {"Homeostatic": "Homeostatic", "DAM": "DAM", "DAM_IRM": "DAM-IRM"
 STATE_COLORS = {"Homeostatic": "#0072B2", "DAM": "#E69F00", "DAM_IRM": "#F0E442",
                 "IRM": "#56B4E9", "LateAD_DAM": "#D55E00", "LAM": "#CC79A7"}
 KO_COLORS    = {"IKZF1": "#D55E00", "IRF8": "#0072B2", "SPI1": "#009E73"}
+KO_HATCHES   = {"IKZF1": "",        "IRF8": "///",      "SPI1": "..."}
 
 
 # ── Panel A: GSE95587 Forest Plot ─────────────────────────────────────────────
@@ -98,7 +99,7 @@ def panel_celloracle(ax):
         vals = [dfs[tf].get(s, 0) for s in states]
         bars = ax.bar(x + offsets[i], vals, width=width * 0.92,
                       color=KO_COLORS[tf], label=tf,
-                      edgecolor="white", linewidth=0.4)
+                      hatch=KO_HATCHES[tf], edgecolor="#333333", linewidth=0.6)
 
     # Highlight LateAD_DAM column
     if "LateAD_DAM" in states:
@@ -112,7 +113,10 @@ def panel_celloracle(ax):
     ax.set_ylabel("Mean |ΔUMAP| per cell", fontsize=8)
     ax.set_title("B  CellOracle in-silico KO perturbation\n(UMAP shift magnitude)",
                  fontweight="bold", loc="left", fontsize=10)
-    ax.legend(fontsize=7, frameon=False, title="KO", title_fontsize=7,
+    ko_handles = [mpatches.Patch(facecolor=KO_COLORS[tf], hatch=KO_HATCHES[tf],
+                                 edgecolor="#333333", label=tf)
+                  for tf in ["IKZF1", "IRF8", "SPI1"]]
+    ax.legend(handles=ko_handles, fontsize=7, frameon=False, title="KO", title_fontsize=7,
               bbox_to_anchor=(1.01, 1), loc="upper left")
 
     # Annotate peak value (LateAD_DAM IKZF1); ylim headroom prevents spine collision
