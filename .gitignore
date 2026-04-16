@@ -95,6 +95,7 @@ logs/
 # ── Manuscript and peer review — not ready for public repo ───────────────────
 results/manuscript/
 peer_review/
+journals/
 CLAUDE.md
 DAM-DRUG_Layman_Summary.md
 

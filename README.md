@@ -1,6 +1,6 @@
 # DAM-DRUG
 
-**Integrative Single-Cell Analysis Identifies IKZF1 as a Late-Stage Alzheimer's Microglial Regulator and Nominates Repurposing Candidates**
+**Single-cell gene networks nominate IKZF1 as an Alzheimer's microglial regulator**
 
 Çağrı Özkurt — Hacettepe University
 
@@ -501,9 +501,8 @@ Intermediate data files (21 files, 2.71 GB) are deposited at Zenodo:
 ## Citation
 
 ```
-Özkurt Ç. Integrative Single-Cell Analysis Identifies IKZF1 as a Late-Stage Alzheimer's
-Microglial Regulator and Nominates Repurposing Candidates. (manuscript in preparation)
-https://doi.org/10.5281/zenodo.19535749
+Özkurt Ç. Single-cell gene networks nominate IKZF1 as an Alzheimer's microglial regulator.
+(manuscript under review) https://doi.org/10.5281/zenodo.19535749
 ```
 
 ---
