@@ -77,7 +77,8 @@ def panel_gse_forest(ax):
     sig_patch = mpatches.Patch(color="#D55E00", label="padj < 0.05")
     ns_patch  = mpatches.Patch(color="#AAAAAA", label="ns")
     ax.legend(handles=[sig_patch, ns_patch], fontsize=7, frameon=False,
-              loc="upper left")
+              ncol=2, bbox_to_anchor=(0.0, -0.22), loc="upper left",
+              columnspacing=1.4, handletextpad=0.4, borderaxespad=0)
     ax.set_title("A  GSE95587 bulk replication\n(fusiform gyrus, n=117)",
                  fontweight="bold", loc="left", fontsize=10)
 

@@ -72,12 +72,6 @@ def main():
     for ax in list(axes)[n_states:]:
         ax.set_visible(False)
 
-    fig.suptitle(
-        "Supplementary Figure S8 — Microglial substate UMAPs (faceted)\n"
-        "Grey points = all other nuclei; coloured = highlighted state",
-        fontsize=9, y=1.01
-    )
-
     for ext in ("pdf", "png"):
         out = OUT / f"supp_fig_S8_umap_facets.{ext}"
         fig.savefig(out, bbox_inches="tight", dpi=300)

@@ -83,7 +83,7 @@ def main():
     ]
 
     for ax, (metric, ylabel, label) in zip(axes_top, QC_DEFS):
-        ax.text(-0.15, 1.06, label, transform=ax.transAxes,
+        ax.text(-0.22, 1.14, label, transform=ax.transAxes,
                 fontsize=11, fontweight="bold")
 
         if metric is None or state_col is None:
@@ -130,13 +130,13 @@ def main():
 
         # Annotate n per state — placed below x-axis to avoid overlapping violins
         for pos, vals in zip(positions, data_by_state):
-            ax.text(pos, -0.18, f"n={len(vals):,}",
+            ax.text(pos, -0.34, f"n={len(vals):,}",
                     ha="center", va="top", fontsize=5.5, color="#555555", rotation=90,
                     transform=ax.get_xaxis_transform(), clip_on=False)
 
     # ── Panel D: UMAP by donor ────────────────────────────────────────────
     ax_d   = axes_bot[0]
-    ax_d.text(-0.08, 1.04, "D", transform=ax_d.transAxes, fontsize=11, fontweight="bold")
+    ax_d.text(-0.20, 1.14, "D", transform=ax_d.transAxes, fontsize=11, fontweight="bold")
     coords = adata.obsm["X_umap"]
 
     if donor_col is not None:
@@ -157,7 +157,7 @@ def main():
 
     # ── Panel E: UMAP by microglial state ────────────────────────────────
     ax_e = axes_bot[1]
-    ax_e.text(-0.08, 1.04, "E", transform=ax_e.transAxes, fontsize=11, fontweight="bold")
+    ax_e.text(-0.20, 1.14, "E", transform=ax_e.transAxes, fontsize=11, fontweight="bold")
 
     if state_col is not None:
         states = adata.obs[state_col].astype(str)
@@ -172,7 +172,9 @@ def main():
         legend_handles = [mpatches.Patch(color=STATE_COLORS.get(s, "grey"), label=s)
                           for s in STATE_ORDER if (adata.obs[state_col] == s).any()]
         ax_e.legend(handles=legend_handles, markerscale=1, fontsize=6.5,
-                    loc="lower left", framealpha=0.85, handlelength=1.0)
+                    ncol=3, bbox_to_anchor=(0.5, -0.02), loc="upper center",
+                    frameon=False, handlelength=1.0, columnspacing=1.0,
+                    handletextpad=0.4)
     else:
         ax_e.scatter(coords[:, 0], coords[:, 1], s=0.3, alpha=0.4,
                      c="#0072B2", rasterized=True)
@@ -181,7 +183,7 @@ def main():
 
     # ── Panel F: Cell counts by state (± by Braak if available) ──────────
     ax_f = axes_bot[2]
-    ax_f.text(-0.08, 1.04, "F", transform=ax_f.transAxes, fontsize=11, fontweight="bold")
+    ax_f.text(-0.20, 1.14, "F", transform=ax_f.transAxes, fontsize=11, fontweight="bold")
 
     if state_col is not None and braak_col is not None:
         # Stacked bar: Braak stage × state
@@ -201,7 +203,9 @@ def main():
         ax_f.set_xlabel("Braak stage", fontsize=8)
         ax_f.set_ylabel("Cell count", fontsize=8)
         ax_f.set_title("Cell counts by Braak stage", fontsize=8, fontweight="bold")
-        ax_f.tick_params(axis="x", labelsize=7)
+        ax_f.tick_params(axis="x", labelrotation=30, labelsize=7)
+        for _lbl in ax_f.get_xticklabels():
+            _lbl.set_ha("right")
     elif state_col is not None:
         # Simple bar: total cells per state
         counts = adata.obs[state_col].value_counts().reindex(STATE_ORDER, fill_value=0)
@@ -218,12 +222,6 @@ def main():
                   transform=ax_f.transAxes, ha="center", va="center", fontsize=8)
 
     ax_f.spines[["top", "right"]].set_visible(False)
-
-    fig.suptitle(
-        f"Supplementary Figure S3 — scRNA-seq Dataset Overview & QC "
-        f"({adata.shape[0]:,} nuclei, SEA-AD pre-release)",
-        fontsize=10
-    )
 
     # ── Save ───────────────────────────────────────────────────────────────
     for ext in ("pdf", "png"):

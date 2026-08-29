@@ -50,18 +50,37 @@ tryCatch({
 })
 
 # ── Chord diagram ─────────────────────────────────────────────────────────
+# Use netVisual_chord_cell (circlize) — draws sector names OUTSIDE the ring so
+# they never overlap the arcs. Wide canvas + big outer margin so the outside
+# labels are not clipped. Falls back to netVisual_circle if unavailable.
 cat("Generating chord diagram...\n")
 tryCatch({
-    pdf(file.path(cc_out, "chord_count.pdf"), width=8, height=8)
-    netVisual_circle(cc@net$count,
-                     vertex.weight = rowSums(cc@net$count),
-                     weight.scale = TRUE, label.edge = FALSE,
-                     title.name = "Number of interactions")
+    pdf(file.path(cc_out, "chord_count.pdf"), width=10, height=10)
+    par(mar = c(6, 6, 6, 6), xpd = TRUE)
+    netVisual_chord_cell(cc,
+                         net = cc@net$count,
+                         lab.cex = 1.1,
+                         title.name = "Number of interactions",
+                         show.legend = FALSE)
     dev.off()
-    cat("  Saved chord_count.pdf\n")
+    cat("  Saved chord_count.pdf (chord_cell, outside labels)\n")
 }, error=function(e) {
     try(dev.off(), silent=TRUE)
-    cat("  chord failed:", conditionMessage(e), "\n")
+    cat("  chord_cell failed:", conditionMessage(e), "- falling back to circle\n")
+    tryCatch({
+        pdf(file.path(cc_out, "chord_count.pdf"), width=10, height=10)
+        par(mar = c(2, 2, 3, 2))
+        netVisual_circle(cc@net$count,
+                         vertex.weight = rowSums(cc@net$count),
+                         weight.scale = TRUE, label.edge = FALSE,
+                         vertex.label.cex = 1.2,
+                         title.name = "Number of interactions")
+        dev.off()
+        cat("  Saved chord_count.pdf (circle fallback)\n")
+    }, error=function(e2) {
+        try(dev.off(), silent=TRUE)
+        cat("  chord failed:", conditionMessage(e2), "\n")
+    })
 })
 
 cat("\nDone.\n")

@@ -46,7 +46,9 @@ TARGET_COLORS = {
 TARGET_LABELS = {
     "IKZF1_8RQC":       "IKZF1",
     "IKZF1_8RQC_CRBN":  "IKZF1",
+    "IKZF1":            "IKZF1",
     "IRF8_AF2_DBD_prep":"IRF8",
+    "IRF8_AF2_DBD":     "IRF8 (AF2-DBD)",
     "BHLHE41_AF2_bHLH_prep": "BHLHE41",
     "PPARG_1FM9_LBD_prep": "PPARG",
     "RUNX1_1LJM_Runt_prep": "RUNX1",
@@ -77,8 +79,8 @@ def panel_tier1(ax):
         [f"CHEMBL{r['disp']}" for _, r in df.iterrows()],
         fontsize=7
     )
-    ax.set_xlabel("ΔG_bind MM-GBSA (kcal/mol)", fontsize=8)
-    ax.set_title("A  Tier-1 MM-GBSA top 15 hits (full n=26 → Supplementary)",
+    ax.set_xlabel(r"$\Delta G_\mathrm{bind}$ MM-GBSA (kcal/mol)", fontsize=8)
+    ax.set_title("A  Tier-1 MM-GBSA (top 15 of 26)",
                  fontweight="bold", loc="left", fontsize=10)
 
     # Legend for targets — outside plot to avoid bar occlusion
@@ -113,7 +115,7 @@ def panel_tier2(ax):
 
     ax.set_xticks(range(len(df)))
     ax.set_xticklabels(df["pref_name"], rotation=35, ha="right", fontsize=8)
-    ax.set_ylabel("ΔG_bind MM-GBSA (kcal/mol)", fontsize=8)
+    ax.set_ylabel(r"$\Delta G_\mathrm{bind}$ MM-GBSA (kcal/mol)", fontsize=8)
     ax.set_title("B  Tier-2 validated hits (FDA-approved, n=6)",
                  fontweight="bold", loc="left", fontsize=10)
 
@@ -161,7 +163,7 @@ def panel_selectivity(ax):
     ax.axhline(0, color="k", linewidth=0.8)
     ax.set_xticks(x)
     ax.set_xticklabels(df["pref_name"], rotation=35, ha="right", fontsize=8)
-    ax.set_ylabel("ΔΔG_Vina (on-target − off-target, kcal/mol)", fontsize=8)
+    ax.set_ylabel(r"$\Delta\Delta G_\mathrm{Vina}$ (on-target − off-target, kcal/mol)", fontsize=8)
     ax.set_title("C  Selectivity: Vina ΔΔG vs off-targets\n(positive = on-target preferred)",
                  fontweight="bold", loc="left", fontsize=10)
 
@@ -192,7 +194,7 @@ def panel_scorecard(ax):
             flag,
         ])
 
-    col_labels = ["Drug", "Target", "ΔG_bind\n(kcal/mol)", "Min SI", "Note"]
+    col_labels = ["Drug", "Target", r"$\Delta G_\mathrm{bind}$" + "\n(kcal/mol)", "Min\nSI", "Note"]
     ax.axis("off")
     tbl = ax.table(
         cellText=table_data,
@@ -203,15 +205,17 @@ def panel_scorecard(ax):
     tbl.auto_set_font_size(False)
     tbl.set_fontsize(8.5)
     tbl.scale(1, 1.8)
-    # Manual column widths: Drug wide, Target wide, rest normal
-    col_widths = [0.22, 0.20, 0.15, 0.18, 0.08]
+    # Manual column widths: Drug wide, ΔG_bind wide enough for its 2-line header
+    col_widths = [0.24, 0.17, 0.24, 0.13, 0.08]
     for (row_idx, col_idx), cell in tbl.get_celld().items():
         cell.set_width(col_widths[col_idx])
 
-    # Style header
+    # Style header — taller row so the two-line labels fit
+    _hh = tbl[0, 0].get_height()
     for j in range(len(col_labels)):
         tbl[0, j].set_facecolor("#2B4A6F")
         tbl[0, j].set_text_props(color="white", fontweight="bold")
+        tbl[0, j].set_height(_hh * 1.9)
 
     # Alternate row shading (neutral) — no target-color fill to avoid pink
     for i in range(len(df)):
@@ -221,8 +225,9 @@ def panel_scorecard(ax):
 
     ax.set_title("D  Top hit scorecard", fontweight="bold", loc="left", fontsize=10)
     ax.text(0.0, -0.04,
-            "Min SI = min(SI_DRD2, SI_5HT2A, SI_hERG); SI = ΔG_off-target / ΔG_on-target (Vina scores).  "
-            "⚠ = CNS penetration concern (P-gp substrate, low logBB).",
+            r"Min SI = min(SI$_\mathrm{DRD2}$, SI$_\mathrm{5HT2A}$, SI$_\mathrm{hERG}$); "
+            r"SI = $\Delta G$(off-target) / $\Delta G$(on-target) (Vina scores).  "
+            r"⚠ = CNS penetration concern (P-gp substrate, low logBB).",
             transform=ax.transAxes, fontsize=7, color="#555555", va="top", wrap=True)
 
 

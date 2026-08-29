@@ -167,16 +167,16 @@ def main():
                 # Bracket-style annotation: label the interneuron group
                 ax.annotate(
                     "Inhibitory\ninterneurons",
-                    xy=(-0.48, (n_interneurons - 1) / 2),
-                    xytext=(-0.52, (n_interneurons - 1) / 2),
+                    xy=(-1.7, (n_interneurons - 1) / 2),
+                    xytext=(-1.8, (n_interneurons - 1) / 2),
                     fontsize=7, ha="right", va="center",
                     rotation=90,
                     annotation_clip=False,
                 )
                 ax.annotate(
                     "",
-                    xy=(-0.47, -0.4),
-                    xytext=(-0.47, n_interneurons - 0.6),
+                    xy=(-1.55, -0.4),
+                    xytext=(-1.55, n_interneurons - 0.6),
                     annotation_clip=False,
                     arrowprops=dict(arrowstyle="-", color="black", lw=0.8),
                 )
@@ -203,12 +203,12 @@ def main():
                loc="lower right", fontsize=7, title_fontsize=8,
                frameon=True, bbox_to_anchor=(0.98, 0.02))
 
-    fig.text(0.5, 0.97,
+    fig.text(0.5, 0.995,
              "SLIT2/ROBO2 expression across MTG cell types (SEA-AD; n=45,000 cells)\n"
              "Dashed line separates inhibitory interneurons (above) from other cell types (below).",
              ha="center", va="top", fontsize=9, style="italic")
 
-    plt.tight_layout(rect=[0, 0.04, 1, 0.95])
+    plt.tight_layout(rect=[0, 0.04, 1, 0.86])
     fig.savefig(OUT_DIR / "supp_fig_S7_slit2_robo2_expr.pdf", dpi=300, bbox_inches="tight")
     fig.savefig(OUT_DIR / "supp_fig_S7_slit2_robo2_expr.png", dpi=300, bbox_inches="tight")
     plt.close()

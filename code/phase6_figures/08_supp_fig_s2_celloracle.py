@@ -120,11 +120,6 @@ def main():
                      val + max(lateAD_mags) * 0.02,
                      f"{val:.3f}", ha="center", va="bottom", fontsize=9, fontweight="bold")
 
-    fig.suptitle(
-        "Supplementary Figure S2 — CellOracle TF KO Perturbation Magnitudes",
-        fontsize=10, y=1.02
-    )
-
     # ── Save ───────────────────────────────────────────────────────────────
     for ext in ("pdf", "png"):
         fig.savefig(OUT / f"supp_fig_S2_celloracle.{ext}",

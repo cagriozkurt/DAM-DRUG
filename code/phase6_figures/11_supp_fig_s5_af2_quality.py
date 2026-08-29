@@ -15,6 +15,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+from matplotlib.lines import Line2D
 from pathlib import Path
 
 PROJECT  = Path(__file__).resolve().parents[2]
@@ -83,17 +84,20 @@ def parse_plddt(pdb_path):
 
 def main():
     n_tfs  = len(TF_DEFS)
-    ncols  = 2
-    nrows  = (n_tfs + 1) // ncols
-    fig, axes = plt.subplots(nrows, ncols, figsize=(12, nrows * 2.8),
+    # one wide panel per TF — the residue axis is long, two columns is too dense
+    fig, axes = plt.subplots(n_tfs, 1, figsize=(12, n_tfs * 2.2),
                               constrained_layout=True)
-    axes_flat = axes.flatten()
+    axes_flat = np.atleast_1d(axes).flatten()
+    fig.set_constrained_layout_pads(h_pad=0.10, hspace=0.06)
 
     legend_patches = [
         mpatches.Patch(color="#1F73B7", label="pLDDT ≥90 (very high)"),
         mpatches.Patch(color="#5DAFDF", label="70–90 (confident)"),
         mpatches.Patch(color="#F0D25E", label="50–70 (low)"),
         mpatches.Patch(color="#E06A2B", label="<50 (very low)"),
+        mpatches.Patch(facecolor="#009E73", alpha=0.25, label="docked domain (shaded)"),
+        Line2D([0], [0], color="black", linestyle=":", lw=1.2, label="mean pLDDT (μ)"),
+        Line2D([0], [0], color="#D55E00", linestyle="-.", lw=1.4, label="pocket mean pLDDT"),
     ]
 
     for ax, tf_def in zip(axes_flat, TF_DEFS):
@@ -109,29 +113,31 @@ def main():
         ax.axhline(70, color="#F0D25E", linewidth=0.7, linestyle="--", alpha=0.6)
         ax.axhline(50, color="#E06A2B", linewidth=0.7, linestyle="--", alpha=0.6)
 
-        # Shade docking domain
+        # Shade docking domain (labelled in the legend, not in-plot)
         if tf_def["domain"] is not None:
             d0, d1 = tf_def["domain"]
             ax.axvspan(d0, d1, alpha=0.12, color="#009E73", zorder=0)
-            ax.text((d0 + d1) / 2, 92, "docked\ndomain", ha="center",
-                    fontsize=6, color="#006340", va="bottom")
 
         # Mean pLDDT line
         mean_plddt = plddts.mean()
-        ax.axhline(mean_plddt, color="black", linewidth=0.8, linestyle=":",
-                   alpha=0.8, label=f"mean={mean_plddt:.1f}")
-        ax.text(resnums[-1] * 0.98, mean_plddt + 1, f"μ={mean_plddt:.1f}",
-                ha="right", fontsize=6.5, color="black")
+        ax.axhline(mean_plddt, color="black", linewidth=0.8, linestyle=":", alpha=0.8)
 
-        # Pocket pLDDT annotation
+        # Pocket pLDDT line
         if tf_def["pocket_plddt"] is not None:
             ax.axhline(tf_def["pocket_plddt"], color="#D55E00", linewidth=1.0,
                        linestyle="-.", alpha=0.8)
-            ax.text(resnums[0] + 2, tf_def["pocket_plddt"] + 1.5,
-                    f"pocket μ={tf_def['pocket_plddt']}",
-                    fontsize=6, color="#D55E00", va="bottom")
 
-        ax.set_title(tf_def["label"], fontsize=8, fontweight="bold")
+        # Stats block — top-left, on a white pad so it never fights the bars
+        stat = f"μ = {mean_plddt:.1f}"
+        if tf_def["pocket_plddt"] is not None:
+            stat += f"\npocket μ = {tf_def['pocket_plddt']}"
+        ax.text(0.006, 0.94, stat, transform=ax.transAxes, va="top", ha="left",
+                fontsize=6.5, linespacing=1.4,
+                bbox=dict(facecolor="white", edgecolor="none", alpha=0.75, pad=1.5))
+
+        _lbl = tf_def["label"].replace("\n", "  ")
+        ax.set_title(f"{_lbl}   —   {tf_def['note']}",
+                     fontsize=8, fontweight="bold", loc="left")
         ax.set_xlabel("Residue", fontsize=7)
         ax.set_ylabel("pLDDT", fontsize=7)
         ax.set_ylim(0, 100)
@@ -139,24 +145,10 @@ def main():
         ax.spines[["top", "right"]].set_visible(False)
         ax.tick_params(labelsize=6.5)
 
-        # Note
-        ax.text(0.99, 0.04, tf_def["note"], transform=ax.transAxes,
-                ha="right", va="bottom", fontsize=5.5, color="#555555",
-                style="italic")
-
-    # Hide unused axes
-    for ax in axes_flat[len(TF_DEFS):]:
-        ax.set_visible(False)
-
-    # Global legend
-    fig.legend(handles=legend_patches, loc="lower right", fontsize=7.5,
-               framealpha=0.9, title="pLDDT confidence", title_fontsize=7.5,
-               bbox_to_anchor=(0.98, 0.02))
-
-    fig.suptitle(
-        "Supplementary Figure S5 — AlphaFold2 Per-Residue pLDDT Quality for DAM-DRUG TF Models",
-        fontsize=10
-    )
+    # Global legend — outside the panels, centred below the figure
+    fig.legend(handles=legend_patches, loc="outside lower center", ncol=4,
+               fontsize=7.5, frameon=False, title="pLDDT confidence",
+               title_fontsize=7.5)
 
     # ── Save ───────────────────────────────────────────────────────────────
     for ext in ("pdf", "png"):

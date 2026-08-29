@@ -136,11 +136,6 @@ def main():
         ax.text(-0.12, 1.04, panel["label"], transform=ax.transAxes,
                 fontsize=12, fontweight="bold")
 
-    fig.suptitle(
-        "Supplementary Figure S4 — MD Simulation Ligand RMSD Traces (100 ns)",
-        fontsize=10
-    )
-
     # ── Save ───────────────────────────────────────────────────────────────
     for ext in ("pdf", "png"):
         fig.savefig(OUT / f"supp_fig_S4_md_rmsd.{ext}",

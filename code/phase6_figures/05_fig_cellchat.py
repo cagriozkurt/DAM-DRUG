@@ -120,13 +120,21 @@ def main():
             with tempfile.TemporaryDirectory() as tmpdir:
                 out_stem = str(Path(tmpdir) / "chord")
                 subprocess.run(
-                    ["pdftoppm", "-r", "200", "-png", "-singlefile",
+                    ["pdftoppm", "-r", "300", "-png", "-singlefile",
                      str(CHORD_PDF), out_stem],
                     check=True, capture_output=True
                 )
                 png_path = Path(out_stem + ".png")
                 if png_path.exists():
                     chord_img = mpimg.imread(str(png_path))
+                    # trim the wide white border so the ring fills Panel A
+                    g = chord_img[..., :3].mean(axis=2) if chord_img.ndim == 3 else chord_img
+                    ys, xs = np.where(g < 0.98)
+                    if ys.size:
+                        pad = 8
+                        y0, y1 = max(ys.min() - pad, 0), min(ys.max() + pad + 1, g.shape[0])
+                        x0, x1 = max(xs.min() - pad, 0), min(xs.max() + pad + 1, g.shape[1])
+                        chord_img = chord_img[y0:y1, x0:x1]
                     print(f"  Chord diagram loaded: {chord_img.shape}")
         except Exception as e:
             print(f"  WARNING: chord PDF import failed ({e}); Panel A will be blank")
@@ -134,16 +142,27 @@ def main():
         print(f"  WARNING: {CHORD_PDF} not found; Panel A will be blank")
 
     # ── Layout ────────────────────────────────────────────────────────────────
-    fig = plt.figure(figsize=(16, 10))
+    fig = plt.figure(figsize=(17, 16))
     gs  = GridSpec(2, 2, figure=fig,
-                   left=0.07, right=0.97, top=0.93, bottom=0.08,
-                   hspace=0.40, wspace=0.38,
-                   height_ratios=[1.1, 1],
-                   width_ratios=[1, 1.3])
+                   left=0.06, right=0.985, top=0.95, bottom=0.06,
+                   hspace=0.16, wspace=0.30,
+                   height_ratios=[1.9, 1.5],
+                   width_ratios=[1.5, 1])
 
     ax_chord   = fig.add_subplot(gs[0, 0])   # Panel A — chord diagram
     ax_pathway = fig.add_subplot(gs[0, 1])   # Panel C — pathway bar
     ax_pairs   = fig.add_subplot(gs[1, :])   # Panel B — top L-R pairs (full width)
+
+    # Panel A: large square in the top-left. The chord is round, so a wide
+    # gridspec cell would only add side whitespace. h/w = 16/17 keeps it square.
+    _h = 0.45
+    _w = _h * 16 / 17
+    ax_chord.set_position([0.015, 0.915 - _h, _w, _h])
+
+    # Panel B needs a wide left margin for its long L-R-pair y-labels; panels A/C
+    # do not — so shift only B's left edge inward instead of the whole gridspec.
+    _bpos = ax_pairs.get_position()
+    ax_pairs.set_position([0.24, _bpos.y0, _bpos.x1 - 0.24, _bpos.height])
 
     # ── Panel A: Chord diagram ────────────────────────────────────────────────
     ax_chord.set_facecolor("white")
@@ -204,9 +223,8 @@ def main():
         )
 
     # Y-tick labels
-    pair_labels = (top_pairs["source"] + "  →  " +
-                   top_pairs["ligand"] + " : " + top_pairs["receptor"] +
-                   "  [" + top_pairs["pathway_name"] + "]")
+    pair_labels = (top_pairs["source"] + " → " +
+                   top_pairs["ligand"] + " : " + top_pairs["receptor"])
     ax_pairs.set_yticks(y_pos)
     ax_pairs.set_yticklabels(pair_labels.values, fontsize=7.5)
     ax_pairs.invert_yaxis()

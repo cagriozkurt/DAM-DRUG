@@ -71,8 +71,9 @@ def main():
     mg.uns["state_colors"] = [STATE_COLORS[s] for s in STATE_ORDER]
 
     # ── Figure layout ──────────────────────────────────────────────────────────
-    fig = plt.figure(figsize=(20, 16))
-    gs_outer = gridspec.GridSpec(2, 3, figure=fig, hspace=0.38, wspace=0.32)
+    fig = plt.figure(figsize=(22, 14))
+    gs_outer = gridspec.GridSpec(2, 3, figure=fig, hspace=0.30, wspace=0.30,
+                                 width_ratios=[1, 1.45, 1])
 
     ax_a = fig.add_subplot(gs_outer[0, 0])
     ax_b = fig.add_subplot(gs_outer[0, 1])
@@ -94,19 +95,32 @@ def main():
         coll.set_rasterized(True)   # keep file size manageable for 236K points
     # Manual legend outside plot area
     handles = [mpatches.Patch(color=STATE_COLORS[s], label=s) for s in STATE_ORDER]
-    ax_a.legend(handles=handles, fontsize=7, frameon=False,
-                bbox_to_anchor=(1.01, 1), loc="upper left", borderaxespad=0)
+    # legend below the panel (horizontal) so it never crowds Panel B
+    ax_a.legend(handles=handles, fontsize=7, frameon=False, ncol=3,
+                bbox_to_anchor=(0.5, -0.02), loc="upper center",
+                columnspacing=1.0, handletextpad=0.4, borderaxespad=0)
     ax_a.set_title("A  Microglial states (n=236,002)",
                    fontweight="bold", loc="left", fontsize=10)
 
     # ── Panel B: Dot plot ─────────────────────────────────────────────────────
     print("Panel B: Dot plot...")
     genes_present = [g for g in MARKER_GENES if g in mg.var_names]
-    sc.pl.dotplot(mg, var_names=genes_present, groupby="state",
-                  ax=ax_b, show=False, swap_axes=False,
-                  categories_order=STATE_ORDER,
-                  standard_scale="var", colorbar_title="Scaled expr",
-                  size_title="% cells")
+    dp_axes = sc.pl.dotplot(mg, var_names=genes_present, groupby="state",
+                            ax=ax_b, show=False, swap_axes=False,
+                            categories_order=STATE_ORDER,
+                            standard_scale="var", colorbar_title="Scaled expr",
+                            size_title="% cells")
+    # give the size-legend axis more width and thin its ticks
+    _sla = dp_axes.get("size_legend_ax") if isinstance(dp_axes, dict) else None
+    if _sla is not None:
+        _sp = _sla.get_position()
+        _sla.set_position([_sp.x0, _sp.y0, _sp.width * 1.8, _sp.height])
+        _sla.tick_params(labelsize=6, pad=1)
+        # thin the tick labels — keep every other one so they don't touch
+        _tk = _sla.get_xticks()
+        _sla.set_xticks(_tk[::2])
+        for _lbl in _sla.get_xticklabels():
+            _lbl.set_rotation(0)
     ax_b.set_title("B  Marker gene expression",
                    fontweight="bold", loc="left", fontsize=10)
     ax_b.tick_params(axis="x", rotation=45)

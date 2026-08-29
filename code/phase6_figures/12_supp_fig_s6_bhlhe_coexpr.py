@@ -127,8 +127,8 @@ def main():
         print(f"  {tf}: {a}/{TOP_N} disease markers in top200 | OR={or_:.2f} | p={p:.3e}")
 
     # ── Plot ──────────────────────────────────────────────────────────────
-    fig = plt.figure(figsize=(14, 10))
-    gs  = gridspec.GridSpec(2, 2, figure=fig, hspace=0.45, wspace=0.35)
+    fig = plt.figure(figsize=(14, 20))
+    gs  = gridspec.GridSpec(2, 2, figure=fig, hspace=0.22, wspace=0.35)
 
     for idx, tf in enumerate(["BHLHE40", "BHLHE41"]):
         if tf not in results:
@@ -156,12 +156,6 @@ def main():
         ax_dist.set_ylabel("Gene count", fontsize=9)
         ax_dist.set_title(f"{tf} — Genome-wide co-expression distribution", fontsize=9)
         ax_dist.legend(fontsize=8)
-
-    fig.suptitle(
-        "Supplementary Figure S6 — BHLHE40/41 Motif-Agnostic Co-expression Rescue\n"
-        "Pseudobulk Spearman correlations across 84 donors (surrogate for pySCENIC regulon)",
-        fontsize=10, y=1.01
-    )
 
     for ext in ("pdf", "png"):
         out_path = OUT_DIR / f"supp_fig_S6_bhlhe_coexpr.{ext}"

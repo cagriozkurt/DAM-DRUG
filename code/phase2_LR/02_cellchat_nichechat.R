@@ -19,7 +19,6 @@
 
 suppressPackageStartupMessages({
     library(Matrix)
-    library(hdf5r)
     library(data.table)
     library(dplyr)
     library(ggplot2)
@@ -45,18 +44,16 @@ cat("Start:", format(Sys.time()), "\n\n")
 
 # ── 1. Load preprocessed data ────────────────────────────────────────────────
 cat("Loading preprocessed MTG data...\n")
-h5f      <- H5File$new(file.path(prep_dir, "counts_raw.h5"), mode="r")
-data_vec <- h5f[["data"]][]
-indices  <- h5f[["indices"]][]
-indptr   <- h5f[["indptr"]][]
-dims     <- h5f$attr_open("shape")$read()
-barcodes <- h5f[["barcodes"]][]
-genes    <- h5f[["gene_names"]][]
-h5f$close_all()
-
-# Decode byte strings (Python h5py stores as bytes)
-barcodes <- sub("b'(.+)'", "\\1", barcodes)
-genes    <- sub("b'(.+)'", "\\1", genes)
+# raw-binary sidecars (written from counts_raw.h5 to avoid hdf5r dependency)
+.m     <- scan(file.path(prep_dir, "cc_meta.txt"), what=integer(), quiet=TRUE)
+.nnz   <- .m[3]; .nptr <- .m[4]
+.rd <- function(fn, what, n) { con <- file(file.path(prep_dir, fn), "rb"); v <- readBin(con, what, n=n, size=4L, endian="little"); close(con); v }
+data_vec <- .rd("cc_data.f32",    "double",  .nnz)
+indices  <- .rd("cc_indices.i32", "integer", .nnz)
+indptr   <- .rd("cc_indptr.i32",  "integer", .nptr)
+dims     <- c(.m[1], .m[2])
+barcodes <- readLines(file.path(prep_dir, "cc_barcodes.txt"))
+genes    <- readLines(file.path(prep_dir, "cc_genes.txt"))
 
 # Matrix is CSC (cells × genes): indptr = column pointers (length ngenes+1),
 # indices = row indices (cell indices). R sparseMatrix(p=, i=) expects exactly this.

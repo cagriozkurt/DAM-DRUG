@@ -85,7 +85,10 @@ def main():
     heat_ax.set_yticklabels(STATE_ORDER, fontsize=8)
     heat_ax.set_xticks(range(auc_z_sorted.shape[1]))
     heat_ax.set_xticklabels(auc_z_sorted.columns, rotation=90, fontsize=6.5, ha="center")
-    heat_ax.set_xlabel("Regulon (TF)", fontsize=9, labelpad=4)
+    heat_ax.set_xlabel(
+        "Regulon (TF)      * Primary target TF (IKZF1) highlighted in bold",
+        fontsize=9, labelpad=4,
+    )
 
     # Highlight key TFs in x-tick labels (bold + asterisk; no colour per OUP accessibility)
     key_tfs = {"IKZF1"}
@@ -99,13 +102,6 @@ def main():
                         fraction=0.015, pad=0.01, shrink=0.8)
     cbar.set_label("AUCell z-score", fontsize=8)
     cbar.ax.tick_params(labelsize=7)
-
-    fig.suptitle(
-        "Supplementary Figure S1 — pySCENIC 46-Regulon AUCell Scores Across Microglial States",
-        fontsize=12, y=1.01
-    )
-    fig.text(0.01, -0.01, "* Primary target TF (IKZF1) highlighted in bold.",
-             fontsize=9, ha="left", style="italic")
 
     # ── Save ───────────────────────────────────────────────────────────────
     for ext in ("pdf", "png"):

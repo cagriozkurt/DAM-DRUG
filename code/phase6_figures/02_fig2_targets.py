@@ -83,7 +83,7 @@ def panel_dge_bubble(ax):
     ax.set_ylim(-0.6, len(TF_ORDER) - 0.4)
     ax.grid(axis="both", color="lightgrey", linewidth=0.5, zorder=0)
     ax.set_title("A  Pseudobulk DGE", fontweight="bold", loc="left", fontsize=10)
-    ax.set_xlabel("Microglial state vs Homeostatic")
+    ax.set_xlabel("Microglial state vs Homeostatic", fontsize=8, labelpad=3)
 
     # Colorbar
     sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
@@ -92,11 +92,12 @@ def panel_dge_bubble(ax):
     cb.set_label("log₂FC", fontsize=8)
     cb.ax.tick_params(labelsize=7)
 
-    # Size legend — placed below the axes to avoid overlapping the colorbar
+    # Size legend — well below the x-label, horizontal, so nothing overlaps
     for lfc, label in [(1, "1"), (2, "2"), (3, "3")]:
         ax.scatter([], [], s=lfc * 30 + 20, color="grey", alpha=0.6, label=f"|log₂FC|={label}")
-    ax.legend(fontsize=7, frameon=False, title="|log₂FC|", title_fontsize=7,
-              bbox_to_anchor=(0.0, -0.14), loc="upper left", borderaxespad=0, ncol=3)
+    ax.legend(fontsize=7, frameon=False, title="Bubble size", title_fontsize=7,
+              bbox_to_anchor=(0.0, -0.30), loc="upper left", borderaxespad=0,
+              ncol=3, columnspacing=1.0, handletextpad=0.3)
 
 
 # ── Panel B: AUCell regulon heatmap ───────────────────────────────────────────
@@ -177,13 +178,15 @@ def panel_pseudotime_corr(ax):
 
     ax.set_yticks(range(len(df)))
     ax.set_yticklabels(df["regulon"], fontsize=6.5)
+    ax.margins(y=0.01)
     ax.set_xlabel("Spearman ρ (AUC vs pseudotime)", fontsize=8)
 
-    # Legend for bar colors
+    # Legend for bar colors — below the panel, clear of the bars
     pos_patch = mpatches.Patch(color="#D55E00", label="ρ > 0 (disease-up)")
     neg_patch = mpatches.Patch(color="#0072B2", label="ρ < 0 (disease-down)")
     ax.legend(handles=[pos_patch, neg_patch], fontsize=7, frameon=False,
-              loc="lower right")
+              bbox_to_anchor=(0.0, -0.16), loc="upper left", ncol=2,
+              columnspacing=1.2, handletextpad=0.4, borderaxespad=0)
 
     # Bold target TF labels
     target_tfs = {"SPI1", "RUNX1", "IRF8", "PPARG", "CEBPB", "IKZF1",
@@ -243,9 +246,9 @@ def panel_gse_forest(ax):
 def main():
     # 3-panel layout: A (top-left), C (bottom-left), B (right, full height)
     # Panel D (GSE95587 forest plot) moved to Figure 4A to avoid duplication.
-    fig = plt.figure(figsize=(18, 10))
-    gs  = fig.add_gridspec(2, 2, hspace=0.42, wspace=0.35,
-                            width_ratios=[1, 1.8])
+    fig = plt.figure(figsize=(18, 13))
+    gs  = fig.add_gridspec(2, 2, hspace=0.55, wspace=0.35,
+                            width_ratios=[1, 1.8], height_ratios=[1, 1.5])
 
     ax_a = fig.add_subplot(gs[0, 0])
     ax_b = fig.add_subplot(gs[:, 1])   # spans both rows
