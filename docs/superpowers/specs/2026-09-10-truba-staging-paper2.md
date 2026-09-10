@@ -38,7 +38,7 @@ matrices + `adj_matrix_aggregated.tsv`, `microglia_raw.loom`,
 | file | does | notes |
 |---|---|---|
 | `s1_01_fetch_jaspar2026.sh` | JASPAR 2026 CORE vertebrate **non-redundant** (1,019 matrices; transfac + jaspar formats, URLs verified) → per-motif transfac files + `jaspar2026_motif2tf.tbl` (dimers split → 1,096 rows) | D1 = CORE vertebrate only |
-| `s1_02_build_cistarget_db.slurm` | auto-fetch `cbust` (aertslab), hg38.fa + UCSC refGene → 10 kb±TSS/TES gene region BED (28,278 genes) → FASTA → transfac→cbust `.cb` (tested locally) → aertslab `create_cistarget_motif_databases.py` → custom `*.genes_vs_motifs.rankings.feather` | heaviest step (1–3 d). D2 = genome-wide. Deviation: UCSC refGene vs v10's RefSeq r80 for region boundaries |
+| `s1_02_build_cistarget_db.slurm` | `cbust` (aertslab binary + source-build fallback), hg38.fa, the **canonical aertslab v10 region BED** (`hg38-limited-upstream10000-tss-downstream10000-full-transcript.bed`, 92,636 GENE#N segments — exact v10 region definition), pure-python FASTA extract (no bedtools on TRUBA, tested), transfac→cbust `.cb` (tested), then `create_cistarget_motif_databases.py` via `conda run -n scenic` | heaviest step (1–3 d). D2 = genome-wide. No methodological deviation from v10 in the region set now. |
 | `s1_03_pyscenic_ctx_jaspar.slurm` | `pyscenic ctx` on `adj_matrix_aggregated.tsv` with the new feather + a JASPAR motif2tf table; then `pyscenic aucell` on `microglia_raw.loom` | mirrors `08_run_ctx_aucell.slurm` |
 | `s1_04_benchmark_nulls.slurm` + `s1_benchmark.py` | (a) per-cell AUCell for every rescued regulon across the 6 substates; (b) Spearman vs diffusion pseudotime; (c) rank IKZF1 vs BHLHE41/IRF8/etc.; (d) 1,000-permutation shuffle of cell-state + donor labels → empirical FDR for \|ρ\|>0.30; (e) IKZF1 vs IKZF2 vs IKZF3 paralogue test (per-cell Spearman of the IKZF1 regulon target-set mean vs each paralogue's expression trace); (f) hypergeometric enrichment of IKZF1 targets vs a JASPAR 2026 curated TF–TG set | pure Python, `scenic.sif` |
 
@@ -105,9 +105,13 @@ Outputs → `results/phase7/glue_md/`.
   verified 2026-09-10. All target TFs present (IKZF1 MA1508.2, BHLHE40
   MA0464.3, BHLHE41 MA0636.1, IRF8, SPI1, RUNX1, CEBPB, PPARG) — this resolves
   the manuscript's BHLHE40/41 atypical-E-box coverage gap.
-- **D2 — cisTarget DB scope:** **full genome-wide** `create_cisTarget_databases`.
-  `cbust`, hg38.fa, and the gene-region BED are all auto-fetched/generated in
-  `s1_02` (no remaining FIXME).
+- **D2 — cisTarget DB scope:** **full genome-wide** `create_cisTarget_databases`
+  over the **canonical aertslab v10 region set**
+  (`hg38-limited-upstream10000-tss-downstream10000-full-transcript.bed`, 92,636
+  GENE#N segments — the exact definition behind
+  `hg38_10kbp_up_10kbp_down_full_tx_v10_clust`). Full methodological symmetry
+  with the accepted paper's DB. `cbust`, hg38.fa, the BED, and FASTA extraction
+  are all handled in `s1_02` — no remaining FIXME.
 - **D3 — container digests:** keep `:latest`, add a Section-5 TODO to pin
   `@sha256:` at deposit time (default).
 - **D4 — SEA-AD non-MTG data — RESOLVED (2026-09-10):** SEA-AD "Multiregion
