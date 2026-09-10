@@ -1,0 +1,5 @@
+chembl_id,compound,on_target,vina_kcal_mol,gnina_cnn,mmgbsa_dg_kcal_mol,mmgbsa_sem,mmgbsa_rank_in_target_set,md_core_rmsd_A,md_core_rmsd_sd,md_outcome,pocket_volume_A3,pocket_hydrophobicity,pocket_drug_score,pocket_plddt_flag
+CHEMBL2103837,Tafamidis,IRF8_AF2_DBD_prep,-6.708,0.7411,-9.5,0.05,1/5,25.17,3.56,ligand egress,499.668,11.833,0.659,LOW
+CHEMBL898,Diflunisal,PPARG_1FM9_LBD_prep,-8.766,0.9554,-2.8,0.21,1/10,83.42,2.89,complete egress,1324.524,48.293,0.996,
+CHEMBL42,(MD context: CHEMBL42),IRF8_AF2_DBD_prep,-6.703,0.7401,-6.9,0.14,3/5,,,retained (no egress reported),,,,
+CHEMBL490,(MD context: CHEMBL490),IRF8_AF2_DBD_prep,-6.676,0.7484,-7.1,0.32,2/5,,,retained (no egress reported),,,,

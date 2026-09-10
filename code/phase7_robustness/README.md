@@ -1,20 +1,27 @@
-# Phase 7 — Robustness campaign
+# Phase 7 — Robustness & de novo glue campaign (Paper #2)
 
 Analyses that harden the DAM-DRUG findings against "artefact" / confounding
-critiques for a bioRxiv update / stronger resubmission. Not part of the
-original JAD pipeline (phases 1-6).
+critiques and add a de novo cereblon-glue design arm. **Not part of the
+accepted JAD paper** (phases 1–6, frozen at tag `v1.0-jad-accepted`). This work
+lives on branch `paper2-robustness-glue` and feeds a second manuscript.
+`TODO.md` at repo root is the roadmap; verdicts are in
+`results/phase7/*/CONCLUSION.md`.
 
-Design spec: `docs/superpowers/specs/2026-09-10-section2-decoupling-design.md`
+Specs: `docs/superpowers/specs/2026-09-10-section{2,4}-*-design.md`
 
-## Environment
+## Environments
 
-```
-conda env create -f envs/damdrug.yml      # scanpy 1.11.5, anndata 0.12, loompy 3.0.8, statsmodels
-# R 4.6: install.packages(c("lme4","lmerTest","broom.mixed","glmmTMB"))
-export DAM_DRUG_DIR=/path/to/DAM-DRUG
-```
+| used by | env | key packages |
+|---|---|---|
+| Section 2 (genomics) | `damdrug` (`envs/damdrug.yml`) | scanpy 1.11.5, anndata 0.12, loompy 3.0.8, statsmodels; R 4.6 + lme4/lmerTest/broom.mixed/glmmTMB |
+| Section 4 (chem) | `lipogate` | rdkit 2026.03.1, vina 1.2.7, meeko 0.7.1 |
 
 All scripts use `DAM_DRUG_DIR` (fallback = cwd), seed 42.
+
+```
+export DAM_DRUG_DIR=/path/to/DAM-DRUG
+conda env create -f envs/damdrug.yml
+```
 
 ## Section 2 — Decoupling evidence & cross-cohort replication
 
@@ -32,9 +39,6 @@ All scripts use `DAM_DRUG_DIR` (fallback = cwd), seed 42.
 | 2C.2 | `2C_external/02_score_external.py` | ~1 min | `grubman_signature_test.csv`, `grubman_signature.png` |
 | 2D.1 | `2D_epistemic/01_evidence_table.py` | ~5 s | `results/phase7/epistemic/evidence_summary.{csv,png}` |
 
-Verdicts are in `results/phase7/*/CONCLUSION.md`; manuscript edits in
-`results/phase7/epistemic/manuscript_patches.md`.
-
 ### Section 2 result summary
 
 - **2A regional confounding — PASS.** IKZF1 DAM (+0.57) and LateAD-DAM (+0.55)
@@ -47,7 +51,7 @@ Verdicts are in `results/phase7/*/CONCLUSION.md`; manuscript edits in
 - **2D** — evidence table regrouped; internal SEA-AD analyses = one
   non-independent block.
 
-## Deviations from the design spec
+### Section 2 deviations from the spec
 
 - **2A pseudobulk source:** built from `results/phase1/trajectory/microglia_trajectory.h5ad`
   (raw counts, 36,601 genes, 236,002 microglia, all 10 regions, carries the
@@ -58,7 +62,38 @@ Verdicts are in `results/phase7/*/CONCLUSION.md`; manuscript edits in
   Olah 2020 full matrix (inside `GSE146639_RAW.tar`) deferred; Mathys/Sun not
   accessed (credentialed).
 
+## Section 4 — Drug-pipeline reframe + CRBN molecular-glue generation
+
+| step | script | output |
+|---|---|---|
+| 4A.1 | `4A_negctrl/01_negative_control_analysis.py` | `results/phase7/negctrl/negative_control_scorecard.csv`, `.png`, `CONCLUSION.md` |
+| 4B.1 | `4B_glue_gen/01_extract_anchor.py` | `results/phase7/glue_design/anchor.json`, `anchor.png` |
+| 4B.2 | `4B_glue_gen/02_build_fragment_pool.py` | `fragment_pool.csv` (561 BRICS fragments) |
+| 4B.3 | `4B_glue_gen/03_generate_glues.py` | `generated_raw.csv/.sdf` (2,750 anchor-preserving products; ~2 min) |
+| 4B.4 | `4B_glue_gen/04_filter_cns.py` | `generated_library.csv` (gate flags) |
+| 4B.5 | `4B_glue_gen/05_report.py` | `glue_candidates_top.csv`, `glue_top.sdf`, `glue_grid.png` |
+| 4B.6 | `4B_glue_gen/06_dock_glues.py` | `glue_docking.csv`, `docked/*.pdbqt` (Vina into 8RQC box; ~10 min) |
+
+### Section 4 result summary
+
+- **4A — reframe.** Tafamidis (CHEMBL2103837, MM-GBSA rank 1/5 for IRF8) and
+  diflunisal (CHEMBL898, rank 1/10 for PPARG) both leave the pocket in 100 ns
+  explicit-solvent MD (core-RMSD 25.17 Å / 83.42 Å) while lower-ranked IRF8
+  compounds stay bound → implicit-solvent + shallow/mis-assigned-pocket
+  artefact. Recast as MM-GBSA sensitivity benchmarks / negative controls.
+  See `results/phase7/negctrl/CONCLUSION.md`.
+- **4B — generation.** Lenalidomide isoindolinone–glutarimide anchor grown at
+  the 4-amino position with 561 BRICS fragments × 5 linkers → 2,750
+  anchor-preserving products. **The strict TODO gates (TPSA < 90, CNS-MPO ≥ 4)
+  are unsatisfiable**: the warhead alone has TPSA 92.5 Å² and cLogP ≈ 0. 184
+  candidates pass a pre-registered fallback (TPSA < 120, CNS-MPO(proxy) ≥ 3.5,
+  MW < 450, cLogP 2–4, PAINS-free); top 25 dock into the 8RQC ternary interface
+  at Vina −5.9…−7.0 kcal/mol (bare anchor −5.2). Unvalidated scaffolds, not
+  binders. See `results/phase7/glue_design/CONCLUSION.md`.
+
 ## Not yet done (other TODO.md sections)
 
-Section 1 (pySCENIC / JASPAR 2026), Section 3 (SLIT2->ROBO2 multi-region),
-Section 4 (drug reframe + molecular-glue generation), Section 5 (Zenodo).
+Section 1 (pySCENIC / JASPAR 2026 — TRUBA), Section 3 (SLIT2→ROBO2 multi-region
+CellChat — TRUBA), Section 4 heavy tail (explicit-solvent MD / T-REMD, hERG
+QSAR, counter-docking), Section 5 (Zenodo, container digests).
+Paper #2 manuscript: `Manuscript_Paper2.md` (to be drafted).

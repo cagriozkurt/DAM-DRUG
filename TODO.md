@@ -147,32 +147,34 @@ This roadmap outlines all analytical, computational, and structural revisions re
 
 *Objective: Eliminate false positives, reframe methodological benchmarks, and transition to a rational chemical biology strategy.*
 
-* [ ] **Reframe Tafamidis & Diflunisal as Negative Controls / MM-GBSA Benchmarks:**
-* Retract tafamidis and diflunisal as viable repurposing candidates in the Abstract, Results, and Discussion.
+> **STATUS 2026-09-10 — local sub-tasks (4A + 4B) complete.** Branch `robustness/section4-drug`. Code `code/phase7_robustness/{4A_negctrl,4B_glue_gen}/`, results `results/phase7/{negctrl,glue_design}/`, spec `docs/superpowers/specs/2026-09-10-section4-drug-reframe-glue-gen-design.md`. Explicit-solvent MD/T-REMD, hERG QSAR, counter-docking, in-vitro gates deferred (TRUBA / later pass). Manuscript patches drafted, not applied.
+
+* [x] **Reframe Tafamidis & Diflunisal as Negative Controls / MM-GBSA Benchmarks:**  — DONE (4A). `results/phase7/negctrl/CONCLUSION.md`.
+* [x] Retract tafamidis and diflunisal as viable repurposing candidates in the Abstract, Results, and Discussion.  — patch text drafted (Abstract/Results/Tables 3–5/Fig 5A); NOT yet applied to Manuscript.md.
 
 
-* Reframe their severe ligand egress ($25.17\text{ \AA}$ and $83.42\text{ \AA}$) and failed selectivity ($SI < 1.0$) as a case study highlighting the limitations of implicit-solvent MM-GBSA on shallow, non-druggable TF surfaces.
-
-
-
-
-* [ ] **Pivot IKZF1 Targeting to CRBN-Interface Molecular Glues:**
-* Formalize the exclusion of the undruggable orthosteric zinc-finger pocket ($drug\_score = 0.001$).
-
-
-* Focus the drug discovery section entirely on the cereblon (CRBN) ternary interface using PDB 8RQC coordinates.
+* [x] Reframe their severe ligand egress ($25.17\text{ \AA}$ and $83.42\text{ \AA}$) and failed selectivity ($SI < 1.0$) as a case study highlighting the limitations of implicit-solvent MM-GBSA on shallow, non-druggable TF surfaces.  — scorecard shows both rank #1 by MM-GBSA ΔG within their target set yet egress in MD, while lower-ranked IRF8 compounds are retained. Note: SI<1.0 was the CRBN-track Tier-2 hits, not tafamidis/diflunisal — their failure mode is MD egress + (diflunisal) a PPARG set where all ΔG≈0.
 
 
 
 
-* [ ] **Scaffold-Based Molecular Glue Generation (RDKit / BRICS):**
-* Fix the phthaloyl/glutarimide anchor required for the CRBN tri-tryptophan binding pocket.
+* [x] **Pivot IKZF1 Targeting to CRBN-Interface Molecular Glues:**  — DONE (4B). `results/phase7/glue_design/anchor.json`.
+* [x] Formalize the exclusion of the undruggable orthosteric zinc-finger pocket ($drug\_score = 0.001$).  — documented in anchor.json + CONCLUSION.md.
 
 
-* Use RDKit Reaction-SMARTS or BRICS fragmentation to generate derivative libraries growing toward the IKZF1 ZF2 $\beta$-hairpin degron (Gly146 / Lys145 interface).
+* [x] Focus the drug discovery section entirely on the cereblon (CRBN) ternary interface using PDB 8RQC coordinates.  — 8RQC used for anchor reference (ligand QFC) + docking box; CRBN tri-Trp cage residues recorded.
 
 
-* Filter all generated candidates for central nervous system druglikeness: CNS MPO $\ge 4.0$, $MW < 450$, $\text{cLogP } 2\text{--}4$, and $\text{PSA} < 90\text{ \AA}^2$.
+
+
+* [~] **Scaffold-Based Molecular Glue Generation (RDKit / BRICS):**  — DONE with a documented gate deviation.
+* [x] Fix the phthaloyl/glutarimide anchor required for the CRBN tri-tryptophan binding pocket.  — lenalidomide isoindolinone–glutarimide, exit vector at the 4-amino N.
+
+
+* [x] Use RDKit Reaction-SMARTS or BRICS fragmentation to generate derivative libraries growing toward the IKZF1 ZF2 $\beta$-hairpin degron (Gly146 / Lys145 interface).  — 561 BRICS fragments (CNS-approved + Tier-2) × 5 linkers via `molzip` → 2,750 anchor-preserving products; top 25 dock into the 8RQC ternary interface at Vina −5.9…−7.0 kcal/mol (anchor −5.2).
+
+
+* [~] Filter all generated candidates for central nervous system druglikeness: CNS MPO $\ge 4.0$, $MW < 450$, $\text{cLogP } 2\text{--}4$, and $\text{PSA} < 90\text{ \AA}^2$.  — **strict gates unsatisfiable**: the glutarimide+isoindolinone warhead alone is TPSA 92.5 Å² / cLogP ≈ 0, so TPSA<90 and CNS-MPO≥4 are structurally impossible for any lenalidomide-based glue. 0/2,750 pass strict; 184 pass a pre-registered fallback (TPSA<120, CNS-MPO proxy≥3.5, MW<450, cLogP 2–4, PAINS-free). This is itself a reportable finding (CELMoD space is at the CNS-druglikeness boundary).
 
 
 

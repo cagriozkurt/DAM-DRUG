@@ -109,8 +109,9 @@ system_prompt_lit_review.md
 system_prompt_research_architect.md
 methods_deviations.md
 
-# Phase 7 robustness — large binaries (CSVs/figures/CONCLUSION.md are kept)
+# Phase 7 robustness — large binaries (CSVs / small SDFs / figures / CONCLUSION.md kept)
 results/phase7/**/*.parquet
 results/phase7/**/*.h5ad
 results/phase7/**/*.loom
+results/phase7/glue_design/generated_raw.sdf
 results/phase7/external/raw/
