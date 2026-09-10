@@ -36,10 +36,11 @@ Outputs: `results/phase7/{grn_jaspar2026,cellchat_multiregion,glue_md}/`.
 
 | order | script | partition | ~time | notes |
 |---|---|---|---|---|
+| 0 | `s1_00_fetch_curated_targets.sh` | login node | mins | ChEA3 Lit+ENCODE+ReMap ChIP-seq ∪ DoRothEA A/B/C (OmniPath) → `data/references/curated_ikzf1_targets.txt` (3,238 symbols; verified). For the s1_04 hypergeometric |
 | 1 | `s1_01_fetch_jaspar2026.sh` | login node | mins | JASPAR 2026 CORE vertebrate non-redundant (1,019 matrices, transfac + jaspar) → per-motif transfac + `jaspar2026_motif2tf.tbl` (1,096 rows; dimers split). URLs verified. IKZF1 MA1508.2, BHLHE40 MA0464.3, BHLHE41 MA0636.1, IRF8 MA0652.2, SPI1 MA0080.7 all present |
 | 2 | `s1_02_build_cistarget_db.slurm` | barbun 20c 128G | **1–3 days** | `cbust` (aertslab binary, source-build fallback) + hg38.fa + the **canonical aertslab v10 region BED** (`hg38-limited-upstream10000-tss-downstream10000-full-transcript.bed`, 92,636 GENE#N segments) → pure-python FASTA extract (no bedtools on TRUBA) → transfac→cbust `.cb` (tested) → `create_cistarget_motif_databases.py` via `conda run -n scenic`. If it fails on `numba`, build the aertslab env (`$CTDB/environment.yml`) as `-n ctdb` |
 | 3 | `s1_03_pyscenic_ctx_jaspar.slurm` | barbun 20c 180G | 6–24 h | `pyscenic ctx` + `aucell` with the new feather |
-| 4 | `s1_04_benchmark_nulls.slurm` | barbun 20c 128G | 2–6 h | AUCell×substate, pseudotime ρ, IKZF1 vs BHLHE41/IRF8 ranking, 1,000-permutation FDR, IKZF1/2/3 paralogue test, JASPAR TF–TG hypergeometric |
+| 4 | `s1_04_benchmark_nulls.slurm` | barbun 20c 128G | 2–6 h | AUCell×substate, pseudotime ρ, IKZF1 vs BHLHE41/IRF8 ranking, 1,000-permutation FDR, IKZF1/2/3 paralogue test, IKZF1 curated-target hypergeometric |
 
 ## WP2 — Multi-region CellChat v2 (SLIT2 → ROBO2 triage)
 
@@ -72,7 +73,10 @@ glutamatergic context (~80 GB); the 3 giant IT classes are optional
 
 ---
 
-## Known FIXMEs (fill on TRUBA)
+## FIXMEs
+
+All resolved (2026-09-10). Historical notes below.
+
 
 - ~~`s1_01` JASPAR URL~~ **RESOLVED** — `https://jaspar.elixir.no/download/data/2026/CORE/JASPAR2026_CORE_vertebrates_non-redundant_pfms_{transfac,jaspar}.txt` (verified 200, 1,019 matrices).
 - ~~`s1_02` cbust / region BED / hg38.fa~~ **RESOLVED** — region BED = the
@@ -82,6 +86,11 @@ glutamatergic context (~80 GB); the 3 giant IT classes are optional
   if it won't run. FASTA extraction is pure-python (verified — no bedtools /
   samtools in `scenic.sif` or as a TRUBA module). Watch for a `numba`
   ImportError in step 3 → build `$CTDB/environment.yml` as env `ctdb`.
+- ~~`s1_04`: curated TF-TG set~~ **RESOLVED** — `s1_00_fetch_curated_targets.sh`
+  builds `data/references/curated_ikzf1_targets.txt` (3,238 symbols) from ChEA3
+  Lit/ENCODE/ReMap ChIP-seq + DoRothEA A/B/C via OmniPath. (The
+  `dorothea.opentargets.io/statics/dorothea-data.zip` in the brief is the 2017
+  drug-response dataset, not the regulon DB — not used.)
 - ~~`s3_01`: SEA-AD S3 object keys~~ **RESOLVED** — `Multiregion_2026/subclass_objects/`
   (see the WP2 section above). Confirm subclass names against a fresh
   `aws s3 ls s3://sea-ad-single-cell-profiling/Multiregion_2026/subclass_objects/ --no-sign-request`

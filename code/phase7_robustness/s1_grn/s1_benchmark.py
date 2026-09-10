@@ -37,7 +37,10 @@ AUC_LOOM = OUT / "scenic_auc_jaspar2026.loom"
 REG_CSV = OUT / "regulons_jaspar2026.csv"
 EXPR_LOOM = GRN / "microglia_raw.loom"
 PT_CSV = TRAJ / "pseudotime.csv"
-TF_TG = PROJECT / "data/resources/jaspar2026/tf_tg_curated.tsv"
+# Curated IKZF1 target ground truth (one HGNC symbol per line) built by
+# code/slurm/paper2/s1_00_fetch_curated_targets.sh
+# (ChEA3 Literature+ENCODE+ReMap ChIP-seq union + DoRothEA A/B/C via OmniPath).
+CURATED_TARGETS = PROJECT / "data/references/curated_ikzf1_targets.txt"
 
 RHO_THRESH = 0.30
 N_PERM = 1000
@@ -169,24 +172,25 @@ def main():
     print(pd.DataFrame(par_rows).to_string(index=False))
 
     # ── (f) hypergeometric: IKZF1 regulon targets vs JASPAR curated targets ─
-    hg = {}
-    if TF_TG.exists():
-        tt = pd.read_csv(TF_TG, sep="\t")
-        curated = set(tt.loc[tt.iloc[:, 0].str.upper() == "IKZF1"].iloc[:, 1].str.upper())
-        universe = set(g.upper() for g in expr.columns) | set(t.upper() for t in targets)
-        # universe = all genes tested by pyscenic; approximate with loom gene set
+    if CURATED_TARGETS.exists():
+        curated = set(g.strip().upper() for g in CURATED_TARGETS.read_text().splitlines()
+                      if g.strip())
+        # universe = all genes GRNBoost2/pyscenic could have called (loom gene set)
         with loompy.connect(str(EXPR_LOOM), mode="r", validate=False) as ds:
-            allg = set(str(x).upper() for x in ds.ra[list(ds.ra.keys())[0]])
-        universe = allg
+            universe = set(str(x).upper() for x in ds.ra[list(ds.ra.keys())[0]])
         pred = set(t.upper() for t in targets)
         M = len(universe); n_c = len(curated & universe)
         N_p = len(pred & universe); k = len(pred & curated)
         p_hyper = stats.hypergeom.sf(k - 1, M, n_c, N_p)
-        hg = {"n_predicted": N_p, "n_curated": n_c, "overlap": k,
-              "universe": M, "fold_enrichment": (k / N_p) / (n_c / M) if N_p and n_c else np.nan,
+        hg = {"source": "ChEA3 Lit/ENCODE/ReMap ChIP-seq + DoRothEA A/B/C (OmniPath)",
+              "n_curated_total": len(curated), "universe": M,
+              "n_curated_in_universe": n_c, "n_predicted_in_universe": N_p,
+              "overlap": k,
+              "fold_enrichment": (k / N_p) / (n_c / M) if N_p and n_c else np.nan,
               "hypergeom_p": p_hyper}
     else:
-        hg = {"note": "FIXME: data/resources/jaspar2026/tf_tg_curated.tsv not found"}
+        hg = {"note": "run code/slurm/paper2/s1_00_fetch_curated_targets.sh first "
+                      "(data/references/curated_ikzf1_targets.txt missing)"}
     pd.DataFrame([hg]).to_csv(OUT / "ikzf1_target_hypergeometric.csv", index=False)
     print(hg)
 
