@@ -87,6 +87,20 @@ $GMX grompp -f mdp/ions.mdp -c solv.gro -p topol.top -o ions.tpr -maxwarn 2
 echo SOL | $GMX genion -s ions.tpr -o ionised.gro -p topol.top \
     -pname NA -nname CL -neutral -conc 0.15
 
+# ── 3b. Zn2+ harmonic distance restraints ────────────────────────────────
+# Added AFTER all [ molecules ] edits (solvate/genion) so the
+# [ intermolecular_interactions ] block stays last in topol.top. Global
+# 1-based indices come from complex_full.gro (solute only); solvent/ions are
+# appended after the solute, so those indices are unchanged in the final
+# system. k = 10000 kJ/mol/nm^2; r0 0.230 nm Zn-S(Cys), 0.200 nm Zn-N(His).
+python "$PROJDIR/code/phase7_robustness/s4_md/s4_zn_restraints.py" \
+    complex_full.gro topol.top
+grep -q 'intermolecular_interactions' topol.top || \
+    { echo "ERROR: Zn restraints not written to topol.top"; exit 1; }
+# EM/NVT/NPT/production below all read the updated topol.top; the
+# [ intermolecular_interactions ] harmonic bonds are always active (not gated
+# by -DPOSRES), so Zn stays caged through equilibration and T-REMD.
+
 # ── 4. EM ─────────────────────────────────────────────────────────────────
 cat > mdp/em.mdp <<'EOF'
 integrator = steep

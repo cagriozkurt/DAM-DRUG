@@ -65,8 +65,8 @@ glutamatergic context (~80 GB); the 3 giant IT classes are optional
 | order | script | partition | ~time | notes |
 |---|---|---|---|---|
 | 0 | (rerun `code/phase7_robustness/4B_glue_gen/06_dock_glues.py` on TRUBA) | — | mins | regenerate `docked/GLUE*.pdbqt` (not in git) |
-| 1 | `code/phase7_robustness/s4_md/s4_01_build_ternary.py` | login/barbun | mins | 3 ternary complexes: glue pose into `8RQC_CRBN_ZF2.pdb`, keep 4 Zn, GAFF2 via acpype |
-| 2 | `s4_02_gromacs_prep.slurm` | barbun 20c 32G, array 0–2 | 1–3 h | TIP3P dodecahedron, 150 mM NaCl, Amber14SB+GAFF2, Zn restraints, EM→NVT→NPT |
+| 1 | `code/phase7_robustness/s4_md/s4_01_build_ternary.py` | login/barbun | mins | 3 ternary complexes: **one copy** (chains A CRBN + B IKZF1-ZF2 + 2 Zn), glue docked pose, GAFF2 via acpype |
+| 2 | `s4_02_gromacs_prep.slurm` (calls `s4_md/s4_zn_restraints.py`) | barbun 20c 32G, array 0–2 | 1–3 h | TIP3P dodecahedron, 150 mM NaCl, Amber14SB+GAFF2; **Zn²⁺ harmonic distance restraints** (auto-detected coordination, `[ intermolecular_interactions ]` funct 6, k=10000 kJ/mol/nm², r0 0.23 nm Zn–S(Cys) / 0.20 nm Zn–N(His)); EM→NVT→NPT |
 | 3 | `s4_03_run_tremd.slurm` | akya-cuda, array 0–2 (×8 replicas) | 1–3 days/complex | T-REMD 8 replicas 300–320 K, GROMACS `-replex`; checkpoint-resume |
 | 4 | `s4_04_core_rmsd.slurm` | barbun 20c 32G | <1 h | ligand core-RMSD on 10% lowest-RMSF residues, last 20 ns, per replica; **PASS if mean < 3.5 Å across all 8** |
 
@@ -81,6 +81,9 @@ glutamatergic context (~80 GB); the 3 giant IT classes are optional
   (see the WP2 section above). Confirm subclass names against a fresh
   `aws s3 ls s3://sea-ad-single-cell-profiling/Multiregion_2026/subclass_objects/ --no-sign-request`
   before submitting (taxonomy may add types).
-- `s4_02`: Zn model choice — bonded/cationic-dummy vs restrained.
+- ~~`s4_02`: Zn model choice~~ **RESOLVED** — harmonic distance restraints
+  (`s4_md/s4_zn_restraints.py`), k=10000 kJ/mol/nm². Verified on the 8RQC
+  structure: CRBN Zn → 4×Cys-SG (C4 site); IKZF1 ZF2 Zn → 2×Cys-SG + 2×His-NE2
+  (C2H2 site). Actual construct numbering is Cys147/150, His163/167 (auto-detected).
 - All: replace container `:latest` with `@sha256:` digests at Zenodo deposit
   (TODO §5).

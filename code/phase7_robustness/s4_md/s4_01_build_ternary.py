@@ -37,6 +37,23 @@ def sh(cmd, cwd=None):
     subprocess.run(cmd, shell=True, check=True, cwd=cwd)
 
 
+def _select_copy(src: Path, dst: Path, keep_chains=("A", "B")):
+    """Keep ATOM records + ZN HETATM for the given chains; drop waters/others."""
+    out = []
+    for l in Path(src).read_text().splitlines():
+        rec = l[:6]
+        if rec == "ATOM  " and l[21] in keep_chains:
+            out.append(l)
+        elif rec == "HETATM" and l[17:20].strip() == "ZN" and l[21] in keep_chains:
+            out.append(l)
+        elif rec == "TER" and (len(l) < 22 or l[21] in keep_chains):
+            out.append(l)
+    out.append("END")
+    dst.write_text("\n".join(out) + "\n")
+    print(f"  receptor: {sum(1 for x in out if x[:6]=='ATOM  ')} atoms, "
+          f"{sum(1 for x in out if x[:6]=='HETATM')} Zn, chains {keep_chains}")
+
+
 def pdbqt_to_mol(pdbqt: Path, ref_smiles: str, out_mol2: Path):
     """Best pose pdbqt -> mol2 with correct bond orders from the reference SMILES."""
     # openbabel keeps coordinates; assign bonds from template
@@ -69,12 +86,15 @@ def main():
         lig_mol2 = wd / "ligand.mol2"
         pdbqt_to_mol(pose, r["smiles"], lig_mol2)
 
-        # 2. receptor: strip waters, keep protein + ZN; add hydrogens at pH 7.4
+        # 2. receptor: ONE ternary copy only — chain A (CRBN) + chain B
+        #    (IKZF1 ZF2, res 144-170) + their two Zn (A/601 CRBN C4 site;
+        #    B/201 ZF2 C2H2 site). Drop the second copy (chains D/E, Zn D/E).
         rec_pdb = wd / "receptor.pdb"
-        sh(f"grep -E '^ATOM|^HETATM.{{13}}ZN|^TER' {RECEPTOR} > {rec_pdb} || true")
-        # FIXME(D-Zn): choose a Zn model. Default = keep Zn as ion + distance
-        #   restraints to the 4 coordinating Cys/His in NVT/NPT (see s4_02).
-        #   Alternative: cationic dummy-atom model (Duarte et al.).
+        _select_copy(RECEPTOR, rec_pdb, keep_chains=("A", "B"))
+        # Zn model = ion + harmonic distance restraints (k=10000 kJ/mol/nm^2,
+        # r0 0.23 nm Zn-S(Cys) / 0.20 nm Zn-N(His)), added to topol.top by
+        # code/phase7_robustness/s4_md/s4_zn_restraints.py in s4_02. Coordination
+        # is auto-detected from the structure. No cationic-dummy model.
 
         # 3. protonate receptor
         rec_h = wd / "receptor_H.pdb"

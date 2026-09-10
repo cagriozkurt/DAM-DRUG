@@ -90,7 +90,7 @@ regenerate with `06_dock_glues.py` on TRUBA first), `containers/` GROMACS
 | file | does | notes |
 |---|---|---|
 | `s4_01_build_ternary.py` (local or TRUBA) | for the top 2–3 glues: place the docked glue pose into `8RQC_CRBN_ZF2.pdb`, keep the 4 Zn, protonate (pH 7.4), GAFF2-parameterise the ligand (acpype), assemble the complex | RDKit + parmed/acpype; **D5**: how many complexes (2 or 3) |
-| `s4_02_gromacs_prep.slurm` | solvate TIP3P dodecahedron, 150 mM NaCl neutralising, Amber14SB + GAFF2, Zn restraints, EM → NVT → NPT equilibration | Zn handling is the risk (dummy-atom vs bonded model) |
+| `s4_02_gromacs_prep.slurm` | solvate TIP3P dodecahedron, 150 mM NaCl neutralising, Amber14SB + GAFF2, EM → NVT → NPT | **Zn RESOLVED** — harmonic distance restraints via `s4_md/s4_zn_restraints.py` (`[ intermolecular_interactions ]` funct 6, k=10000 kJ/mol/nm², r0 0.23 nm Zn–S / 0.20 nm Zn–N; coordination auto-detected). Verified on 8RQC: CRBN C4 + IKZF1-ZF2 C2H2. |
 | `s4_03_run.slurm` | **D6**: (a) plain 100 ns × 1 per complex (`akya-cuda`, ~1–2 days) *or* (b) full T-REMD, 8 replicas 300–320 K, REST/`plumed` or GROMACS `-replex` | array; checkpoint-resume like `24_run_md100ns.slurm` |
 | `s4_04_core_rmsd.slurm` + `s4_rmsd.py` | ligand core-RMSD on the 10 % lowest-RMSF residues, last 20 ns, per replica; PASS if mean < 3.5 Å across all replicas | mirrors `25_core_rmsd_analysis.slurm` |
 
@@ -112,6 +112,12 @@ Outputs → `results/phase7/glue_md/`.
   fetches the Immune + GABAergic + glia + smaller-glutamatergic set (~80 GB;
   `all` arg adds the 3 giant IT classes).
 - **D5 — number of ternary complexes for MD:** **3** top glues (default).
+- **D-Zn — RESOLVED:** harmonic distance restraints (not cationic-dummy).
+  `s4_md/s4_zn_restraints.py` auto-detects each Zn's coordinators from the
+  structure and writes `[ intermolecular_interactions ]` funct-6 bonds
+  (k = 10000 kJ/mol/nm²; r0 = 0.230 nm Zn–S(Cys), 0.200 nm Zn–N(His)).
+  Both the CRBN Zn (4×Cys, C4) and the IKZF1 ZF2 Zn (2×Cys + 2×His, C2H2) are
+  restrained. Only one ternary copy (8RQC chains A + B + 2 Zn) is built.
 - **D6 — MD protocol:** **full T-REMD**, 8 replicas, 300–320 K per complex;
   advancement gate = mean ligand core-RMSD < 3.5 Å over the final 20 ns across
   all replicas.
