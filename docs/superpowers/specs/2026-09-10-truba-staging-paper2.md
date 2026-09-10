@@ -37,8 +37,8 @@ matrices + `adj_matrix_aggregated.tsv`, `microglia_raw.loom`,
 ### Scripts
 | file | does | notes |
 |---|---|---|
-| `s1_01_fetch_jaspar2026.sh` | download JASPAR 2026 CORE vertebrate (2,633 PFMs) + UNVALIDATED collections (JASPAR bulk download / API) | **D1**: which collections |
-| `s1_02_build_cistarget_db.slurm` + `s1_build_db.py` | JASPAR PFM → Cluster-Buster `.cb`; run aertslab `create_cisTarget_databases` (`create_cistarget_motif_databases.py`) over the hg38 `regions_vs_motifs` region set to emit a custom `*.genes_vs_motifs.rankings.feather` | heaviest step; needs the SEA-AD gene region BED + `cbust` binary in the SIF. **D2**: genome-wide vs restricted region set |
+| `s1_01_fetch_jaspar2026.sh` | JASPAR 2026 CORE vertebrate **non-redundant** (1,019 matrices; transfac + jaspar formats, URLs verified) → per-motif transfac files + `jaspar2026_motif2tf.tbl` (dimers split → 1,096 rows) | D1 = CORE vertebrate only |
+| `s1_02_build_cistarget_db.slurm` | auto-fetch `cbust` (aertslab), hg38.fa + UCSC refGene → 10 kb±TSS/TES gene region BED (28,278 genes) → FASTA → transfac→cbust `.cb` (tested locally) → aertslab `create_cistarget_motif_databases.py` → custom `*.genes_vs_motifs.rankings.feather` | heaviest step (1–3 d). D2 = genome-wide. Deviation: UCSC refGene vs v10's RefSeq r80 for region boundaries |
 | `s1_03_pyscenic_ctx_jaspar.slurm` | `pyscenic ctx` on `adj_matrix_aggregated.tsv` with the new feather + a JASPAR motif2tf table; then `pyscenic aucell` on `microglia_raw.loom` | mirrors `08_run_ctx_aucell.slurm` |
 | `s1_04_benchmark_nulls.slurm` + `s1_benchmark.py` | (a) per-cell AUCell for every rescued regulon across the 6 substates; (b) Spearman vs diffusion pseudotime; (c) rank IKZF1 vs BHLHE41/IRF8/etc.; (d) 1,000-permutation shuffle of cell-state + donor labels → empirical FDR for \|ρ\|>0.30; (e) IKZF1 vs IKZF2 vs IKZF3 paralogue test (per-cell Spearman of the IKZF1 regulon target-set mean vs each paralogue's expression trace); (f) hypergeometric enrichment of IKZF1 targets vs a JASPAR 2026 curated TF–TG set | pure Python, `scenic.sif` |
 
@@ -100,8 +100,14 @@ Outputs → `results/phase7/glue_md/`.
 
 ## Decisions (resolved 2026-09-10)
 
-- **D1 — JASPAR 2026 collections:** **CORE vertebrate only** (2,633 PFMs).
+- **D1 — JASPAR 2026 collections:** **CORE vertebrate, non-redundant** — 1,019
+  matrices (the "2,633" figure is CORE across all taxa / all formats). URLs
+  verified 2026-09-10. All target TFs present (IKZF1 MA1508.2, BHLHE40
+  MA0464.3, BHLHE41 MA0636.1, IRF8, SPI1, RUNX1, CEBPB, PPARG) — this resolves
+  the manuscript's BHLHE40/41 atypical-E-box coverage gap.
 - **D2 — cisTarget DB scope:** **full genome-wide** `create_cisTarget_databases`.
+  `cbust`, hg38.fa, and the gene-region BED are all auto-fetched/generated in
+  `s1_02` (no remaining FIXME).
 - **D3 — container digests:** keep `:latest`, add a Section-5 TODO to pin
   `@sha256:` at deposit time (default).
 - **D4 — SEA-AD non-MTG data — RESOLVED (2026-09-10):** SEA-AD "Multiregion
