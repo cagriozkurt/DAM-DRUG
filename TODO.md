@@ -115,7 +115,7 @@ This roadmap outlines all analytical, computational, and structural revisions re
 
 *Objective: Determine whether the SLIT2–ROBO2 axis is a cortex-wide interaction or an MTG-specific transcript dropout artifact.*
 
-> **STATUS 2026-09-10 — SCRIPTS STAGED, not run (TRUBA).** `code/slurm/paper2/s3_0{1..4}*` + `code/phase7_robustness/s3_cellchat/{s3_prep.py,s3_cellchat.R,s3_collate.py}`. CellChat v2 params identical to the accepted MTG run. **Blocker:** exact Allen AWS S3 keys for the 9 non-MTG SEA-AD region objects (neurons+microglia) unknown — FIXME in `s3_01_download_regions.slurm`. Expression-matched 1000-pair permutation null included. Spatial-transcriptomics cross-check (item 3) still manual.
+> **STATUS 2026-09-10 — SCRIPTS STAGED, not run (TRUBA).** `code/slurm/paper2/s3_0{1..4}*` + `code/phase7_robustness/s3_cellchat/{s3_prep.py,s3_cellchat.R,s3_collate.py}`. CellChat v2 params identical to the accepted MTG run. Data source RESOLVED: SEA-AD `Multiregion_2026/subclass_objects/` (public S3; region col `Brain Region`; raw counts `.layers["UMIs"]`; includes DFC). `s3_01` pulls ~80 GB (Immune + GABAergic + glia + smaller glutamatergic). Expression-matched 1000-pair permutation null included. Spatial-transcriptomics cross-check (item 3) still manual.
 
 * [ ] **Multi-Region Cross-Validation within SEA-AD:**
 * Extract matched neuronal and microglial nuclei from the remaining 9 regions in the SEA-AD atlas (e.g., DLPFC, Hippocampus, Entorhinal Cortex).
