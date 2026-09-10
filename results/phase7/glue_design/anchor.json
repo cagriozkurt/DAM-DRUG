@@ -1,0 +1,18 @@
+{
+  "warhead": "lenalidomide isoindolinone-glutarimide",
+  "anchor_smiles": "Nc1cccc2c1C(=O)N(C1CCC(=O)NC1=O)C2",
+  "anchor_mw": 259.26,
+  "anchor_core_smarts": "O=C1CCC(N2Cc3ccccc3C2=O)C(=O)N1",
+  "grow_handle_smarts": "[c:1][NH2:2]",
+  "grow_handle_desc": "4-amino aromatic nitrogen of the isoindolinone (CELMoD linker attachment point)",
+  "qfc_reference_smiles": "N#Cc1ccc(N2CCN(Cc3ccc(COc4cccc5c4CN([C@H]4CCC(=O)NC4=O)C5=O)cc3)CC2)c(F)c1",
+  "qfc_reference_source": "https://files.rcsb.org/ligands/download/QFC_ideal.sdf",
+  "crbn_cage_residues_8rqc": [
+    "HIS378",
+    "TRP380",
+    "TRP386",
+    "TRP400"
+  ],
+  "target_surface": "IKZF1 ZF2 beta-hairpin degron (8RQC chains B/E, res 144-170; G-loop Gln146)",
+  "docking_box_from": "data/docking/configs/IKZF1_8RQC_CRBN.conf (center 0.566,-2.235,4.760; size 20^3)"
+}
