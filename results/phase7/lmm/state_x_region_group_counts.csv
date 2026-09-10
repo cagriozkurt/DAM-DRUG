@@ -1,0 +1,6 @@
+state,n_groups_unconstrained,n_regions_unconstrained,n_donors_unconstrained,n_groups_min10,n_regions_min10,n_donors_min10
+DAM,532,10,84,528,10,84
+Homeostatic,528,10,84,294,10,78
+IRM,531,10,84,491,10,84
+LAM,247,10,68,31,10,15
+LateAD-DAM,249,10,66,31,8,13
