@@ -6,8 +6,8 @@
 #SBATCH --time=12:00:00
 #SBATCH --partition=barbun
 #SBATCH --nodes=1
-#SBATCH --ntasks=8
-#SBATCH --mem=16G
+#SBATCH --ntasks=20          # barbun requires 20 cores/node
+#SBATCH --mem=32G
 # ─────────────────────────────────────────────────────────────────────────────
 # WP2.1 — Download SEA-AD Multiregion 2026 per-SUBCLASS objects.
 #
