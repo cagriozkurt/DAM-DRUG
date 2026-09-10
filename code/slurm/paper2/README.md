@@ -10,9 +10,22 @@ Spec: `docs/superpowers/specs/2026-09-10-truba-staging-paper2.md`
 
 ```
 export DAM_DRUG_DIR=/arf/scratch/mozkurt/DAM-DRUG
-export SBATCH_ACCOUNT=<your_account>
+export SBATCH_ACCOUNT=<your_account>          # not set in non-interactive shells
 cd $DAM_DRUG_DIR
 ```
+
+**TRUBA facts (verified 2026-09-10 via `ssh truba`, node arf-ui2):**
+- Project dir `/arf/scratch/mozkurt/DAM-DRUG` is a plain copy, **not a git
+  checkout** — sync new scripts with `rsync`/`scp` from the local repo.
+- Containers present: `containers/{scenic.sif,dam-drug-r.sif,dam-drug-scmultiomegrn.sif,fpocket-env.sif}`
+  (no gromacs.sif — MD uses the module).
+- GROMACS modules: `apps/gromacs/2024.1-oneapi2024` (CPU, oneAPI — used by the
+  accepted paper), `apps/gromacs/2023.2-cuda` (**use this for the GPU T-REMD**),
+  `apps/gromacs/2023.3`.
+- `rclone` is at `/usr/bin/rclone` (handy for the large S3 pulls); `aws` CLI is
+  not installed. UI node has outbound internet (curl/wget work).
+- `data/raw/SEA-AD/` currently holds only the microglia + MTG-RNA objects —
+  every WP needs its downloads run first.
 
 Analysis code these wrappers call: `code/phase7_robustness/{s1_grn,s3_cellchat,s4_md}/`.
 Outputs: `results/phase7/{grn_jaspar2026,cellchat_multiregion,glue_md}/`.
@@ -30,10 +43,20 @@ Outputs: `results/phase7/{grn_jaspar2026,cellchat_multiregion,glue_md}/`.
 
 ## WP2 — Multi-region CellChat v2 (SLIT2 → ROBO2 triage)
 
+**Data source resolved (2026-09-10):** SEA-AD "Multiregion 2026" release,
+`s3://sea-ad-single-cell-profiling/Multiregion_2026/subclass_objects/`
+(public, `--no-sign-request`). One h5ad per **subclass**, each spanning all 10
+regions; region column `Brain Region`; raw counts in `.layers["UMIs"]`.
+The per-region folders exist but `DFC/RNAseq/` is **empty** — the subclass
+objects are the reliable source and include DFC. `s3_01` fetches the
+receiver (Immune) + all GABAergic senders + glia/vascular + smaller
+glutamatergic context (~80 GB); the 3 giant IT classes are optional
+(`sbatch s3_01_download_subclass_objects.slurm all`).
+
 | order | script | partition | ~time | notes |
 |---|---|---|---|---|
-| 1 | `s3_01_download_regions.slurm` | login/transfer | hours | **FIXME**: Allen AWS S3 URLs for the 9 non-MTG SEA-AD objects (neurons + microglia) |
-| 2 | `s3_02_prep_regions.slurm` | barbun 20c 180G | 2–6 h | per region → `counts_raw.h5` / `gene_names.csv` / `cell_meta.csv` |
+| 1 | `s3_01_download_subclass_objects.slurm` | login/transfer | hours | ~80 GB (required set); `all` arg adds L23/L4/L5/L6-IT (~+90 GB) |
+| 2 | `s3_02_prep_regions.slurm` | barbun 20c 180G, array 0–8 | 2–6 h | per region: subset each subclass obj by `Brain Region`, `.layers["UMIs"]`, coarsen, 5k/type cap, concat → prep/ |
 | 3 | `s3_03_cellchat_array.slurm` | barbun 40c 350G, array 0–8 | 4–12 h/region | CellChat v2, identical params to `code/phase2_LR/02_cellchat_nichechat.R` |
 | 4 | `s3_04_collate_permute.slurm` | barbun 20c 64G | 1–2 h | SLIT2→ROBO2 rank + sum_prob per region; 1,000 expr-matched background L–R pairs → permutation p; pan-cortical vs MTG-restricted verdict |
 
@@ -54,8 +77,10 @@ Outputs: `results/phase7/{grn_jaspar2026,cellchat_multiregion,glue_md}/`.
 - `s1_01`: JASPAR 2026 bulk-download URL (check `https://jaspar.elixir.no/downloads/`).
 - `s1_02`: hg38 gene-region BED matching `10kbp_up_10kbp_down_full_tx` (aertslab
   `create_cisTarget_databases` wiki), path to `cbust` binary, hg38.fa location.
-- `s3_01`: Allen SEA-AD AWS S3 object keys for AnG, DFC, FI, HIP, ITG, LEC, MEC,
-  STG, V1C (neurons + microglia; see `https://registry.opendata.aws/allen-sea-ad-atlas`).
+- ~~`s3_01`: SEA-AD S3 object keys~~ **RESOLVED** — `Multiregion_2026/subclass_objects/`
+  (see the WP2 section above). Confirm subclass names against a fresh
+  `aws s3 ls s3://sea-ad-single-cell-profiling/Multiregion_2026/subclass_objects/ --no-sign-request`
+  before submitting (taxonomy may add types).
 - `s4_02`: Zn model choice — bonded/cationic-dummy vs restrained.
 - All: replace container `:latest` with `@sha256:` digests at Zenodo deposit
   (TODO §5).

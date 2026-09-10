@@ -104,8 +104,13 @@ Outputs → `results/phase7/glue_md/`.
 - **D2 — cisTarget DB scope:** **full genome-wide** `create_cisTarget_databases`.
 - **D3 — container digests:** keep `:latest`, add a Section-5 TODO to pin
   `@sha256:` at deposit time (default).
-- **D4 — SEA-AD non-MTG data:** not on TRUBA / unknown → `s3_01` written with
-  `# FIXME: URL` placeholders for the Allen AWS S3 objects.
+- **D4 — SEA-AD non-MTG data — RESOLVED (2026-09-10):** SEA-AD "Multiregion
+  2026" release, `s3://sea-ad-single-cell-profiling/Multiregion_2026/subclass_objects/`
+  (public). One h5ad per subclass, all 10 regions each; region col `Brain
+  Region`; raw counts in `.layers["UMIs"]`. `DFC/RNAseq/` folder is empty but
+  DFC is present in the subclass objects. `s3_01_download_subclass_objects.slurm`
+  fetches the Immune + GABAergic + glia + smaller-glutamatergic set (~80 GB;
+  `all` arg adds the 3 giant IT classes).
 - **D5 — number of ternary complexes for MD:** **3** top glues (default).
 - **D6 — MD protocol:** **full T-REMD**, 8 replicas, 300–320 K per complex;
   advancement gate = mean ligand core-RMSD < 3.5 Å over the final 20 ns across
