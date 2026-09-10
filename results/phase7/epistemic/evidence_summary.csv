@@ -1,0 +1,11 @@
+block,line,modality,source,result,epistemic_status
+Internal SEA-AD RNA (non-independent; same 84 donors),1,Pseudobulk DGE,SEA-AD snRNA,IKZF1 up in DAM & IRM (padj<0.05),exploratory
+Internal SEA-AD RNA (non-independent; same 84 donors),2,RcisTarget regulon,SEA-AD snRNA,IKZF1(+) peaks in LateAD-DAM (AUCell 0.153),exploratory
+Internal SEA-AD RNA (non-independent; same 84 donors),3,Diffusion pseudotime,SEA-AD snRNA,only positive rho among 46 regulons (+0.309),exploratory
+Internal SEA-AD RNA (non-independent; same 84 donors),4,CellOracle KO,SEA-AD snRNA,largest LateAD-DAM UMAP shift (ordinal),exploratory
+"Internal SEA-AD chromatin (same donors, different assay)",5,ATAC motif enrichment,SEA-AD ATAC,IKZF1 motif 3.90x in AD-up peaks (descriptive),orthogonal-internal
+Robustness of the internal signal (Section 2),6,Regional LMM,"SEA-AD snRNA, 10 regions",DAM +0.57 / LateAD-DAM +0.55 log1p-CPM survive (1|region); 11/11 leave-one-region-out,confirmatory-internal
+Robustness of the internal signal (Section 2),7,Donor LOO + downsampling,SEA-AD snRNA,LateAD-DAM peak & rho stable to any single donor; gap>0 in 1000/1000 draws at 1 cell/donor,confirmatory-internal
+External replication,8,Bulk RNA-seq,GSE95587 (n=117),"IKZF1 up in AD fusiform gyrus (log2FC +0.64, padj .004)",external
+External replication,9,snRNA signature scoring,Grubman 2019 GSE138852 (EC),"IKZF1(+) signature reactive vs homeostatic microglia (delta +0.72, p 4e-17, perm p .001); NOT AD-vs-ct",external-state-level
+Literature triangulation,10,Western blot,Ballasch 2023 [30],IKZF1 protein up in AD hippocampus,literature

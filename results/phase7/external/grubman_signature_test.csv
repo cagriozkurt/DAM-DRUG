@@ -1,0 +1,2 @@
+cohort,n_microglia,n_targets_present,n_targets_total,ad_median,ct_median,mwu_p_ad_gt_ct,cliffs_delta_ad_ct,perm_p_ad_ct,perm_p_m2_m1,raw_ikzf1_p,subclust_m2_n,subclust_m1_n,subclust_m2_median,subclust_m1_median,subclust_U,subclust_p,subclust_cliffs_delta
+Grubman2019_GSE138852,449,1072,1271,0.1405306829514082,0.15341464844160274,0.9992748249222164,-0.17865838300730416,1.0,0.000999000999000999,0.5892859697341919,104,78,0.16272602471358635,0.09854297140569045,6986.0,4.075249723841845e-17,0.7223865877712031

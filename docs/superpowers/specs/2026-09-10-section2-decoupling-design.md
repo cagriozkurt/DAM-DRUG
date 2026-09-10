@@ -66,7 +66,12 @@ R 4.6.1 already present with working `lme4`; add `lmerTest`, `broom.mixed` via
 **Directory:** `code/phase7_robustness/2A_lmm/`
 
 ### 2A.1 Build multi-region pseudobulk — `01_build_pseudobulk.py`
-- Load multi-region microglia h5ad (`backed="r"`; iterate to control memory).
+> **Implementation note (2026-09-10):** built from
+> `results/phase1/trajectory/microglia_trajectory.h5ad` (raw counts, full 36,601
+> genes, 236,002 microglia, all 10 regions, carries `state`) rather than the
+> 3 GB `SEA-AD_Microglia_multi-regional_*.h5ad`, which lacks `state` and adds
+> monocyte/lymphocyte contaminants. Same cells, no barcode join.
+- Load h5ad (`backed="r"`; iterate to control memory).
 - Map `Supertype` → 6 substates via `SUPERTYPE_TO_STATE`. Drop `DAM-IRM`
   (manuscript treats it as an analytically ambiguous hybrid — same handling
   as the primary DGE).
