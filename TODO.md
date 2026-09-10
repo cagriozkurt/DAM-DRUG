@@ -8,6 +8,8 @@ This roadmap outlines all analytical, computational, and structural revisions re
 
 *Objective: Eliminate survivorship bias and resolve whether IKZF1 outperforms competing regulators.*
 
+> **STATUS 2026-09-10 — SCRIPTS STAGED, not run (TRUBA).** `code/slurm/paper2/s1_0{1..4}*` + `code/phase7_robustness/s1_grn/s1_benchmark.py`. Decisions: JASPAR 2026 CORE vertebrate only, genome-wide cisTarget DB. FIXMEs (JASPAR URL, hg38 region BED, curated TF-TG set) in `code/slurm/paper2/README.md`. Covers all 5 bullets below (permutation FDR = 1000-perm unrestricted + donor-block; paralogue test; hypergeometric).
+
 * [ ] **Re-run pySCENIC / RcisTarget with JASPAR 2026:**
 * Build custom `.feather` cisTarget rankings from the updated JASPAR 2026 vertebrate CORE collection (2,633 PFMs) and UNVALIDATED collections.
 * Specifically include non-canonical E-box motifs for **BHLHE40** and **BHLHE41** (e.g., `CACGCG`), as well as expanded profiles for **IRF8, PPARG, SPI1, RUNX1,** and **CEBPB**.
@@ -112,6 +114,8 @@ This roadmap outlines all analytical, computational, and structural revisions re
 ## 3. Cell–Cell Communication Triage (SLIT2 → ROBO2)
 
 *Objective: Determine whether the SLIT2–ROBO2 axis is a cortex-wide interaction or an MTG-specific transcript dropout artifact.*
+
+> **STATUS 2026-09-10 — SCRIPTS STAGED, not run (TRUBA).** `code/slurm/paper2/s3_0{1..4}*` + `code/phase7_robustness/s3_cellchat/{s3_prep.py,s3_cellchat.R,s3_collate.py}`. CellChat v2 params identical to the accepted MTG run. **Blocker:** exact Allen AWS S3 keys for the 9 non-MTG SEA-AD region objects (neurons+microglia) unknown — FIXME in `s3_01_download_regions.slurm`. Expression-matched 1000-pair permutation null included. Spatial-transcriptomics cross-check (item 3) still manual.
 
 * [ ] **Multi-Region Cross-Validation within SEA-AD:**
 * Extract matched neuronal and microglial nuclei from the remaining 9 regions in the SEA-AD atlas (e.g., DLPFC, Hippocampus, Entorhinal Cortex).
@@ -225,10 +229,10 @@ This roadmap outlines all analytical, computational, and structural revisions re
 * [x] Section 2 robustness code deposited: `code/phase7_robustness/` (2A_lmm, 2B_downsample, 2C_external, 2D_epistemic) + `envs/damdrug.yml` + `code/phase7_robustness/README.md`.
 
 
-* [ ] Update `code/phase2_GRN/` to include JASPAR 2026 parsing and custom `.feather` generation scripts.
+* [x] JASPAR 2026 parsing + custom `.feather` generation staged: `code/slurm/paper2/s1_01_fetch_jaspar2026.sh`, `s1_02_build_cistarget_db.slurm` (deposited under `code/slurm/paper2/`, not `code/phase2_GRN/` — Paper #2 separation).
 
 
-* [ ] Deposit all newly generated explicit-solvent GROMACS `.mdp` configuration files and T-REMD execution wrappers into `code/phase4_docking/`.
+* [x] Explicit-solvent GROMACS `.mdp` + T-REMD wrappers staged: `code/slurm/paper2/s4_02_gromacs_prep.slurm` (inline em/nvt/npt mdp), `s4_03_run_tremd.slurm` (inline 8-replica prod mdp), `s4_04_core_rmsd.slurm` (deposited under `code/slurm/paper2/`).
 
 
 * [ ] Pin exact container digests (`scenic.sif`, `gromacs.sif`, `cellchat.sif`) in SLURM scripts, replacing `:latest` tags with immutable image hashes.
