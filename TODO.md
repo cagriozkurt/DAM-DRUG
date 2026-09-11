@@ -8,7 +8,7 @@ This roadmap outlines all analytical, computational, and structural revisions re
 
 *Objective: Eliminate survivorship bias and resolve whether IKZF1 outperforms competing regulators.*
 
-> **STATUS 2026-09-10 — SCRIPTS STAGED, not run (TRUBA).** `code/slurm/paper2/s1_0{1..4}*` + `code/phase7_robustness/s1_grn/s1_benchmark.py`. Decisions: JASPAR 2026 CORE vertebrate only, genome-wide cisTarget DB. FIXMEs (JASPAR URL, hg38 region BED, curated TF-TG set) in `code/slurm/paper2/README.md`. Covers all 5 bullets below (permutation FDR = 1000-perm unrestricted + donor-block; paralogue test; hypergeometric).
+> **STATUS 2026-09-11 — RUNNING (TRUBA).** `s1_02` (cisTarget DB, 1019 motifs × 27,090 genes) COMPLETED. `s1_03` `pyscenic ctx` COMPLETED clean (regulons_jaspar2026.csv, 100%); `aucell` hit 3 env-drift bugs from scenic.sif package drift since Paper 1 (bare `pyscenic` off PATH, `pkg_resources`/setuptools>=81, `np.object` removal, `libstdc++` CXXABI via LD_PRELOAD, and — found 2026-09-11 — pandas `Series.iteritems()` removed in pandas>=2.0), all fixed via a `sitecustomize.py` shim on `PYTHONPATH`; running clean as **job 6346282**. `s1_04` (benchmark/nulls) not yet submitted — needs `s1_03` output first.
 
 * [ ] **Re-run pySCENIC / RcisTarget with JASPAR 2026:**
 * Build custom `.feather` cisTarget rankings from the updated JASPAR 2026 vertebrate CORE collection (2,633 PFMs) and UNVALIDATED collections.
@@ -183,14 +183,14 @@ This roadmap outlines all analytical, computational, and structural revisions re
 
 
 
-* [ ] **Explicit-Solvent Molecular Dynamics & T-REMD Stability:**
-* Re-simulate top CRBN molecular glue candidates and top orthosteric hits in **explicit solvent (TIP3P, Amber14SB + GAFF2)** with $150\text{ mM NaCl}$ neutral balance.
+* [~] **Explicit-Solvent Molecular Dynamics & T-REMD Stability:** — PREP + SMOKE TEST DONE, production QUEUED (not yet run).
+* [x] Re-simulate top CRBN molecular glue candidates and top orthosteric hits in **explicit solvent (TIP3P, Amber99SB-ILDN + GAFF2)** with $150\text{ mM NaCl}$ neutral balance.  — `amber14sb` unavailable on TRUBA, switched to amber99sb-ildn (matches Paper 1 precedent). 3 ternary complexes built (GLUE0231/0246/0692); GLUE0231 EM→NVT→500ps NPT completed clean (job 6346115, 0 LINCS warnings) after fixing `-DPOSRES`+barostat interaction (`refcoord-scaling=com`, `pcoupl=berendsen`).
 
 
-* Replace deterministic single runs with Temperature Replica Exchange MD (T-REMD; 8 replicas, 300–320 K).
+* [x] Replace deterministic single runs with Temperature Replica Exchange MD (T-REMD; 8 replicas, 300–320 K).  — 10ps smoke test executed for real (RunPod L4, akya-cuda was fully allocated): 49 exchange attempts, real swaps, zero LINCS/fatal/segfault, 43 ns/day. Found + fixed 2 bugs (sed missing `/g`; Zn2+ landing in both T-coupling groups via gmx's generic `Ion` family) in both `s4_03_smoke_test.slurm` and `s4_03_run_tremd.slurm`. Full 100ns×8-replica production (all 3 complexes) resubmitted clean as **job 6346303** on TRUBA `akya-cuda`, queued (PD/Priority, partition full) — not yet run.
 
 
-* Enforce an advancement stability threshold: mean ligand core-RMSD $< 3.5\text{ \AA}$ over the final 20 ns across all replicas.
+* [ ] Enforce an advancement stability threshold: mean ligand core-RMSD $< 3.5\text{ \AA}$ over the final 20 ns across all replicas.  — gate script `s4_04_core_rmsd.slurm` staged, not runnable until 6346303 produces ≥20ns of trajectory.
 
 
 
