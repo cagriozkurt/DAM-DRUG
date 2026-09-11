@@ -22,7 +22,8 @@
 set -eo pipefail
 PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
 export DAM_DRUG_DIR=$PROJDIR
-module load apps/gromacs/2024.1-oneapi2024
+source /etc/profile.d/modules.sh
+module load apps/gromacs/2024.1-oneapi2024 || { echo "ERROR: cannot load GROMACS"; exit 1; }
 GMX="gmx_mpi"
 
 TOPCSV=$PROJDIR/results/phase7/glue_design/glue_candidates_top.csv

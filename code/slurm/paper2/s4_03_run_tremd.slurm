@@ -25,7 +25,8 @@
 set -eo pipefail
 PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
 export DAM_DRUG_DIR=$PROJDIR
-module load apps/gromacs/2023.2-cuda      # GPU build for T-REMD (verified on TRUBA)
+source /etc/profile.d/modules.sh
+module load apps/gromacs/2023.2-cuda || { echo "ERROR: cannot load GROMACS"; exit 1; }  # GPU build for T-REMD
 GMX="gmx_mpi"
 
 TOPCSV=$PROJDIR/results/phase7/glue_design/glue_candidates_top.csv
