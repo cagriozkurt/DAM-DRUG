@@ -135,13 +135,23 @@ def main():
         # RDKit (AddHs + sanitize) instead of relying on obabel's guess.
         sh(f"acpype -i {lig_mol2} -b {gid} -c gas -a gaff2 -o gmx", cwd=wd)
 
-        # 5. assemble complex.pdb (receptor_H + ligand)
+        # 5. complex.pdb = protonated receptor (protein + Zn) ONLY.
+        # acpype with -o gmx does not write a ligand _NEW.pdb (that filename
+        # was a wrong assumption from a different acpype output mode -- the
+        # earlier version of this script silently produced a receptor-only
+        # complex.pdb because that grep failed but `check=True` only sees the
+        # exit code of the LAST command in the `;`-joined shell string, so the
+        # failure never surfaced). This receptor-only file is actually what
+        # s4_02_gromacs_prep.slurm's `pdb2gmx -f complex.pdb` wants: pdb2gmx
+        # force-fields the PROTEIN, and the ligand is merged in separately by
+        # s4_02 from acpype's own <gid>_GMX.gro (GAFF2, already fully typed).
         complex_pdb = wd / "complex.pdb"
-        lig_pdb = wd / f"{gid}.acpype" / f"{gid}_NEW.pdb"
-        sh(f"grep -E '^ATOM|^HETATM' {rec_h} > {complex_pdb}; "
-           f"echo 'TER' >> {complex_pdb}; "
-           f"grep -E '^ATOM|^HETATM' {lig_pdb} >> {complex_pdb}; "
-           f"echo 'END' >> {complex_pdb}")
+        atom_lines = [l for l in rec_h.read_text().splitlines()
+                     if l[:6] in ("ATOM  ", "HETATM")]
+        complex_pdb.write_text("\n".join(atom_lines) + "\nTER\nEND\n")
+        n_atoms = len(atom_lines)
+        if n_atoms < 100:
+            print(f"  WARNING: complex.pdb only has {n_atoms} atoms — check receptor_H.pdb")
 
         (wd / "README.txt").write_text(
             f"glue_id: {gid}\nsmiles: {r['smiles']}\n"
