@@ -70,6 +70,11 @@ echo "rankings: $RANKINGS"
 #     LD_LIBRARY_PATH set correctly -- confirmed via `echo $LD_LIBRARY_PATH`
 #     inside the container. LD_PRELOAD (higher priority than RPATH) forces
 #     the correct one.
+#  5. pyscenic's own aucell writer (cli/utils.py append_auc_mtx) calls
+#     pandas Series.iteritems(), removed in pandas >=2.0 -> AttributeError,
+#     surfaces only at the very end of aucell after ~10 min of enrichment
+#     calc (job 6346130, 2026-09-11). Same sitecustomize.py mechanism,
+#     additive alias (Series.items already does what iteritems did).
 TOOLS=$PROJDIR/tools
 PYLIBS=$TOOLS/pylibs
 mkdir -p "$PYLIBS"
@@ -82,6 +87,13 @@ try:
                          ("float", float), ("str", str)):
         if not hasattr(_np, _name):
             setattr(_np, _name, _repl)
+except Exception:
+    pass
+
+try:
+    import pandas as _pd
+    if not hasattr(_pd.Series, "iteritems"):
+        _pd.Series.iteritems = _pd.Series.items
 except Exception:
     pass
 PY
