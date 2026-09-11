@@ -17,19 +17,22 @@
 #   - hypergeometric enrichment of IKZF1 targets vs JASPAR 2026 curated TF-TG
 #
 # Needs: results/phase7/grn_jaspar2026/{scenic_auc_jaspar2026.loom,regulons_jaspar2026.csv}
-#        data/resources/jaspar2026/tf_tg_curated.tsv   (FIXME: source the curated set)
+#        data/references/curated_ikzf1_targets.txt   (from s1_00_fetch_curated_targets.sh)
 # ─────────────────────────────────────────────────────────────────────────────
 set -eo pipefail
 
 PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
 export DAM_DRUG_DIR=$PROJDIR
 SIF=$PROJDIR/containers/scenic.sif
-mkdir -p "$PROJDIR/logs" "$PROJDIR/results/phase7/grn_jaspar2026"
+PYLIBS=$PROJDIR/tools/pylibs   # setuptools<81 + sitecustomize.py from s1_03; same env fixes apply (loompy)
+mkdir -p "$PROJDIR/logs" "$PROJDIR/results/phase7/grn_jaspar2026" "$PYLIBS"
 
 echo "Job $SLURM_JOB_ID on $SLURMD_NODENAME — start $(date)"
 apptainer exec \
   --bind "$PROJDIR:$PROJDIR" \
   --env LD_LIBRARY_PATH=/opt/conda/envs/scenic/lib \
+  --env LD_PRELOAD=/opt/conda/envs/scenic/lib/libstdc++.so.6 \
+  --env PYTHONPATH="$PYLIBS" \
   "$SIF" \
   conda run -n scenic python "$PROJDIR/code/phase7_robustness/s1_grn/s1_benchmark.py"
 echo "Done $(date)"

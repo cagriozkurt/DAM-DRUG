@@ -49,11 +49,48 @@ done
 echo "Job $SLURM_JOB_ID on $SLURMD_NODENAME — start $(date)"
 echo "rankings: $RANKINGS"
 
-BIND="--bind $PROJDIR:$PROJDIR --env LD_LIBRARY_PATH=/opt/conda/envs/scenic/lib"
+# Three env fixes discovered running this 2026-09-11 (the scenic env has
+# drifted since the accepted-paper runs used it):
+#  1. bare `apptainer exec $SIF pyscenic ...` fails ("executable file not
+#     found in $PATH") -- pyscenic lives in the `scenic` conda env, never on
+#     the container's base PATH. Must go through `conda run -n scenic`.
+#  2. ctxcore imports `pkg_resources`, which setuptools >=81 (installed in
+#     the image, 82.0.1) no longer ships. Pin an older setuptools to
+#     $TOOLS/pylibs (writable target dir, not the read-only image) + PYTHONPATH
+#     (same mechanism s1_02 used for flatbuffers/loguru).
+#  3. pyscenic's transform.py still uses `np.object`, removed in current
+#     numpy -> AttributeError. Fixed via a sitecustomize.py in the same
+#     pylibs dir (auto-imported by every `python`/`conda run` invocation that
+#     has it on PYTHONPATH): restores object/bool/int/float/str aliases on
+#     the numpy module if missing. Purely additive, no numpy reinstall (which
+#     would risk an ABI mismatch with already-compiled pandas/pyarrow).
+#  4. loompy -> sqlite3 -> libicui18n.so.78 needs CXXABI_1.3.15 from a newer
+#     libstdc++ than the SYSTEM one apptainer's auto library binds put ahead
+#     of the conda env's own (newer) libstdc++.so.6, even with
+#     LD_LIBRARY_PATH set correctly -- confirmed via `echo $LD_LIBRARY_PATH`
+#     inside the container. LD_PRELOAD (higher priority than RPATH) forces
+#     the correct one.
+TOOLS=$PROJDIR/tools
+PYLIBS=$TOOLS/pylibs
+mkdir -p "$PYLIBS"
+apptainer exec --bind "$PROJDIR:$PROJDIR" "$SIF" conda run -n scenic \
+    pip install --no-input --target "$PYLIBS" "setuptools<81" >/dev/null
+cat > "$PYLIBS/sitecustomize.py" << 'PY'
+try:
+    import numpy as _np
+    for _name, _repl in (("object", object), ("bool", bool), ("int", int),
+                         ("float", float), ("str", str)):
+        if not hasattr(_np, _name):
+            setattr(_np, _name, _repl)
+except Exception:
+    pass
+PY
+
+BIND="--bind $PROJDIR:$PROJDIR --env LD_LIBRARY_PATH=/opt/conda/envs/scenic/lib --env LD_PRELOAD=/opt/conda/envs/scenic/lib/libstdc++.so.6 --env PYTHONPATH=$PYLIBS"
 
 if [ ! -s "$REG" ]; then
     echo "=== pyscenic ctx (JASPAR 2026): $(date) ==="
-    apptainer exec $BIND "$SIF" pyscenic ctx \
+    apptainer exec $BIND "$SIF" conda run -n scenic pyscenic ctx \
         "$ADJ" "$RANKINGS" \
         --annotations_fname "$MOTIF_TBL" \
         --expression_mtx_fname "$LOOM" \
@@ -63,12 +100,12 @@ fi
 
 if [ ! -s "$AUC" ]; then
     echo "=== pyscenic aucell: $(date) ==="
-    apptainer exec $BIND "$SIF" pyscenic aucell \
+    apptainer exec $BIND "$SIF" conda run -n scenic pyscenic aucell \
         "$LOOM" "$REG" --output "$AUC" --num_workers 20
 fi
 
 echo "=== summarise regulon activity by substate: $(date) ==="
-apptainer exec $BIND "$SIF" conda run -n scenic python - << 'PY'
+cat > "$OUT/_summarise.py" << 'PY'
 import os, loompy, pandas as pd
 from pathlib import Path
 OUT = Path(os.environ["DAM_DRUG_DIR"]) / "results/phase7/grn_jaspar2026"
@@ -89,5 +126,6 @@ for tf in ["SPI1","RUNX1","IRF8","PPARG","CEBPB","IKZF1","IKZF2","IKZF3","RELB",
 pd.DataFrame(rows).to_csv(OUT / "TF_regulon_summary_jaspar2026.csv", index=False)
 print(f"{sm.shape[1]} regulons retained; TF summary written")
 PY
+apptainer exec $BIND "$SIF" conda run -n scenic python "$OUT/_summarise.py"
 
 echo "Done $(date). Next: sbatch code/slurm/paper2/s1_04_benchmark_nulls.slurm"
