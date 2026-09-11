@@ -152,6 +152,19 @@ $GMX grompp -f mdp/nvt.mdp -c em.gro -r em.gro -p topol.top -o nvt.tpr -maxwarn 
 $GMX mdrun -deffnm nvt -ntomp $SLURM_CPUS_PER_TASK
 
 # ── 6. NPT (300 K, 1 bar) ────────────────────────────────────────────────
+# Two independent runs (6346076, 6346106) both crashed a few ps into NPT
+# (LINCS blowup -> segfault) at DIFFERENT, random-looking atoms each time
+# (gen-vel/gen-seed=-1 in NVT), even after EM genuinely converged
+# (Fmax<100). That pattern -- not a fixed atom, not an EM-convergence issue
+# -- is the classic signature of position restraints fighting the barostat:
+# -DPOSRES holds atoms at FIXED lab-frame coordinates while pressure coupling
+# rescales the box, and without `refcoord-scaling` the restraint reference
+# positions never move with it, building up tension that eventually snaps.
+# Fix: `refcoord-scaling = com` (restraint references scale with the box,
+# the standard recommendation whenever POSRES + pcoupl are combined) and
+# `pcoupl = berendsen` (gentler, non-oscillatory -- the usual choice for a
+# short initial equilibration; switch to C-rescale/Parrinello-Rahman for
+# production only, once a stable starting point exists).
 cat > mdp/npt.mdp <<'EOF'
 integrator  = md
 nsteps      = 250000          ; 500 ps
@@ -160,11 +173,12 @@ tcoupl      = V-rescale
 tc-grps     = System
 tau-t       = 0.1
 ref-t       = 300
-pcoupl      = C-rescale
+pcoupl      = berendsen
 pcoupltype  = isotropic
 tau-p       = 2.0
 ref-p       = 1.0
 compressibility = 4.5e-5
+refcoord-scaling = com
 constraints = h-bonds
 cutoff-scheme = Verlet
 coulombtype = PME
