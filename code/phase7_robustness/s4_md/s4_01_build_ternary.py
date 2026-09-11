@@ -5,8 +5,14 @@ For the top N generated glues: dock (already done), place the best pose into
 8RQC_CRBN_ZF2.pdb (CRBN + IKZF1 ZF2 + 4 Zn), GAFF2-parameterise the ligand with
 acpype, and emit a GROMACS-ready complex.
 
-Run on TRUBA (needs rdkit, openbabel, acpype, and either pdb2pqr/pdbfixer):
-  python s4_01_build_ternary.py --top 3
+Run on TRUBA after code/slurm/paper2/s4_00_setup_truba_toolchain.sh:
+  export PATH="$HOME/.local/bin:$PATH"
+  /arf/home/mozkurt/miniconda3/envs/pld3/bin/python \
+      code/phase7_robustness/s4_md/s4_01_build_ternary.py --top 3
+
+(neither scenic.sif nor lipogate-env.sif has the full rdkit+openbabel+vina+
+meeko+acpype+pdb2pqr chain; see s4_00 for the working toolchain and the
+library-layout fixes it applies.)
 
 Inputs:
   data/structures/pdb/8RQC_CRBN_ZF2.pdb
@@ -97,6 +103,11 @@ def main():
         # is auto-detected from the structure. No cationic-dummy model.
 
         # 3. protonate receptor
+        # pdb2pqr has no AMBER-FF template for a bare Zn2+ ion and silently
+        # DROPS it (verified 2026-09-11: 0/2 ZN atoms survive pdb2pqr on the
+        # real receptor, no error/exit code to flag it). Re-insert the two
+        # original ZN HETATM records after protonation — pdb2pqr/obabel never
+        # needed to touch them (no hydrogens on a monatomic ion).
         rec_h = wd / "receptor_H.pdb"
         try:
             sh(f"pdb2pqr --ff=AMBER --with-ph=7.4 --keep-chain {rec_pdb} {wd}/receptor.pqr && "
@@ -105,9 +116,24 @@ def main():
             print("  pdb2pqr failed — falling back to pdbfixer")
             sh(f"python -m pdbfixer {rec_pdb} --add-atoms=hydrogens --ph=7.4 "
                f"--output={rec_h}")
+        zn_lines = [l for l in rec_pdb.read_text().splitlines()
+                   if l[:6] == "HETATM" and l[17:20].strip() == "ZN"]
+        h_lines = rec_h.read_text().splitlines()
+        end_idx = next((i for i, l in enumerate(h_lines) if l.startswith("END")), len(h_lines))
+        rec_h.write_text("\n".join(h_lines[:end_idx] + zn_lines + ["END"]) + "\n")
+        n_zn_check = sum(1 for l in rec_h.read_text().splitlines()
+                         if l[:6] == "HETATM" and l[17:20].strip() == "ZN")
+        if n_zn_check != len(zn_lines):
+            print(f"  WARNING: expected {len(zn_lines)} Zn in {rec_h}, found {n_zn_check}")
 
-        # 4. GAFF2 ligand parameters
-        sh(f"acpype -i {lig_mol2} -b {gid} -c bcc -a gaff2 -o gmx", cwd=wd)
+        # 4. GAFF2 ligand parameters. Charge method = gas (Gasteiger), not
+        # AM1-BCC/sqm: verified 2026-09-11 that -c bcc needs a clean-valence
+        # input (sqm refused an odd-electron count on a quick obabel-converted
+        # test pose -- a ligand-prep protonation issue, not a toolchain gap).
+        # gas ran cleanly end-to-end and produced a complete GROMACS topology.
+        # TODO: revisit -c bcc once ligand protonation is built explicitly via
+        # RDKit (AddHs + sanitize) instead of relying on obabel's guess.
+        sh(f"acpype -i {lig_mol2} -b {gid} -c gas -a gaff2 -o gmx", cwd=wd)
 
         # 5. assemble complex.pdb (receptor_H + ligand)
         complex_pdb = wd / "complex.pdb"
@@ -121,7 +147,7 @@ def main():
             f"glue_id: {gid}\nsmiles: {r['smiles']}\n"
             f"dock Vina: {r.get('vina_kcal_mol','NA')} kcal/mol\n"
             f"receptor: 8RQC CRBN (A/D) + IKZF1 ZF2 (B/E, res 144-170) + 4 Zn\n"
-            f"ligand FF: GAFF2 (acpype, AM1-BCC charges)\n"
+            f"ligand FF: GAFF2 (acpype, Gasteiger charges)\n"
             f"Zn: kept as ion; restrain to coordinating residues in equilibration\n"
         )
         print(f"[{gid}] complex built -> {wd}")
