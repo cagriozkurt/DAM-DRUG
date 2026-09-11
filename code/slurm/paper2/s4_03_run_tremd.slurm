@@ -8,8 +8,7 @@
 #SBATCH --partition=akya-cuda
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
-#SBATCH --ntasks=8
-#SBATCH --cpus-per-task=5
+#SBATCH --ntasks-per-node=10
 #SBATCH --mem=48G
 #SBATCH --array=0-2
 # ─────────────────────────────────────────────────────────────────────────────

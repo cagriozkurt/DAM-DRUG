@@ -7,8 +7,12 @@
 #SBATCH --partition=akya-cuda
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
-#SBATCH --ntasks=8
-#SBATCH --cpus-per-task=5
+#SBATCH --ntasks-per-node=10   # akya-cuda enforces exactly 10 cores/GPU (40
+#                               # cores, 4 GPUs per node); plain --ntasks or
+#                               # --cpus-per-task is rejected, only
+#                               # --ntasks-per-node satisfies the GRES check
+#                               # (verified 2026-09-11). mpirun -np 8 below
+#                               # uses 8 of the 10 allocated slots.
 #SBATCH --mem=48G
 #SBATCH --array=0
 # ─────────────────────────────────────────────────────────────────────────────
