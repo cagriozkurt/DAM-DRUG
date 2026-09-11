@@ -102,17 +102,21 @@ grep -q 'intermolecular_interactions' topol.top || \
 # [ intermolecular_interactions ] harmonic bonds are always active (not gated
 # by -DPOSRES), so Zn stays caged through equilibration and T-REMD.
 
-# ── 4. EM (two-stage: steep then l-bfgs) ────────────────────────────────
+# ── 4. EM ─────────────────────────────────────────────────────────────────
 # One-stage steep/emtol=500 converged but left residual local strain that
 # blew up early in NPT (LINCS failures + segfault on an unrelated Leu
 # sidechain, run 6346076 on GLUE0231) -- a classic sign EM stopped at a
 # still-strained local minimum, not a Zn-restraint or topology problem (the
 # restraints parsed fine and EM/NVT both completed cleanly with them active).
-# Tighter emtol + a second l-bfgs pass is the standard fix.
-cat > mdp/em1.mdp <<'EOF'
+# Tried a steep+l-bfgs two-stage fix (run 6346104): GROMACS refuses l-bfgs on
+# any system with constraints, and SPC/TIP3P water is ALWAYS SETTLE-constrained
+# regardless of the .mdp `constraints` setting -- l-bfgs is simply not usable
+# post-solvation. Reverted to single-stage steep with a tighter tolerance and
+# more steps instead (the standard fix for a constrained/solvated system).
+cat > mdp/em.mdp <<'EOF'
 integrator = steep
-nsteps     = 50000
-emtol      = 1000
+nsteps     = 100000
+emtol      = 100
 emstep     = 0.01
 nstlist    = 10
 cutoff-scheme = Verlet
@@ -121,20 +125,7 @@ rcoulomb   = 1.0
 rvdw       = 1.0
 coulombtype = PME
 EOF
-cat > mdp/em2.mdp <<'EOF'
-integrator = l-bfgs
-nsteps     = 50000
-emtol      = 100
-nstlist    = 10
-cutoff-scheme = Verlet
-rlist      = 1.0
-rcoulomb   = 1.0
-rvdw       = 1.0
-coulombtype = PME
-EOF
-$GMX grompp -f mdp/em1.mdp -c ionised.gro -p topol.top -o em1.tpr -maxwarn 2
-$GMX mdrun -deffnm em1 -ntomp $SLURM_CPUS_PER_TASK
-$GMX grompp -f mdp/em2.mdp -c em1.gro -p topol.top -o em.tpr -maxwarn 2
+$GMX grompp -f mdp/em.mdp -c ionised.gro -p topol.top -o em.tpr -maxwarn 2
 $GMX mdrun -deffnm em -ntomp $SLURM_CPUS_PER_TASK
 
 # ── 5. NVT (300 K, restrain protein heavy atoms + Zn) ──────────────────────
