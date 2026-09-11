@@ -29,8 +29,8 @@ set -eo pipefail
 
 PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
 export DAM_DRUG_DIR=$PROJDIR
-SIF=$PROJDIR/containers/scenic.sif                       # D3: :latest kept; pin @sha256 at deposit
-[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
+SIF=$PROJDIR/containers/scenic.sif
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy@sha256:a16bd5bee57c5fb1918f2e4206368d342861392126c3a4159a462ddd8910efc3
 
 GRN=$PROJDIR/results/phase2/GRN
 OUT=$PROJDIR/results/phase7/grn_jaspar2026

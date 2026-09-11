@@ -18,7 +18,7 @@ set -eo pipefail
 PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
 export DAM_DRUG_DIR=$PROJDIR
 SIF=$PROJDIR/containers/dam-drug-r.sif
-[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-r:latest
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-r@sha256:3d0db505d2c1caa014caed89f631b453e0eea13b1ad5919f3ffde92a607d0648
 mkdir -p "$PROJDIR/logs"
 
 REGIONS=(AnG DFC FI HIP ITG LEC MEC STG V1C)

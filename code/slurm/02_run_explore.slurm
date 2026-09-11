@@ -12,7 +12,7 @@
 
 PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
 SIF=$PROJDIR/containers/scenic.sif
-[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy@sha256:a16bd5bee57c5fb1918f2e4206368d342861392126c3a4159a462ddd8910efc3
 H5AD_SRC=$PROJDIR/data/raw/SEA-AD/SEA-AD_Microglia_multi-regional_final-nuclei.2025-07-24.h5ad
 H5AD_TMP=/tmp/SEA-AD_Microglia.h5ad
 

@@ -1,6 +1,6 @@
 #!/bin/bash
-# OBSOLETE — CellChat is now pre-installed in docker://ghcr.io/cagriozkurt/dam-drug-r:latest
-# Use: apptainer pull $PROJDIR/containers/dam-drug-r.sif docker://ghcr.io/cagriozkurt/dam-drug-r:latest
+# OBSOLETE — CellChat is now pre-installed in docker://ghcr.io/cagriozkurt/dam-drug-r@sha256:3d0db505d2c1caa014caed89f631b453e0eea13b1ad5919f3ffde92a607d0648
+# Use: apptainer pull $PROJDIR/containers/dam-drug-r.sif docker://ghcr.io/cagriozkurt/dam-drug-r@sha256:3d0db505d2c1caa014caed89f631b453e0eea13b1ad5919f3ffde92a607d0648
 # This script is kept for historical reference only; do not submit.
 # Account is read from $SBATCH_ACCOUNT — set it in your shell profile:
 #   export SBATCH_ACCOUNT=your_account_name

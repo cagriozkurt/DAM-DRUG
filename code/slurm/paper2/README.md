@@ -99,5 +99,9 @@ All resolved (2026-09-10). Historical notes below.
   (`s4_md/s4_zn_restraints.py`), k=10000 kJ/mol/nm². Verified on the 8RQC
   structure: CRBN Zn → 4×Cys-SG (C4 site); IKZF1 ZF2 Zn → 2×Cys-SG + 2×His-NE2
   (C2H2 site). Actual construct numbering is Cys147/150, His163/167 (auto-detected).
-- All: replace container `:latest` with `@sha256:` digests at Zenodo deposit
-  (TODO §5).
+- ~~All: replace container `:latest` with `@sha256:` digests~~ **RESOLVED**
+  2026-09-11 (TODO §5) — `dam-drug-scanpy@sha256:a16bd5be…`,
+  `dam-drug-r@sha256:3d0db505…`, `dam-drug-scmultiomegrn@sha256:6eb4e697…`,
+  `dam-drug-fpocket@sha256:bc0ce015…` across all 31 SLURM scripts. Note:
+  TODO's "gromacs.sif" does not exist — GROMACS is loaded via the TRUBA
+  system module `apps/gromacs/*`, not an apptainer/docker image.

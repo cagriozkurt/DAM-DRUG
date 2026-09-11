@@ -36,7 +36,7 @@ set -eo pipefail
 
 PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
 SIF=$PROJDIR/containers/scenic.sif
-[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy@sha256:a16bd5bee57c5fb1918f2e4206368d342861392126c3a4159a462ddd8910efc3
 
 OUT_DIR=$PROJDIR/results/phase1/DGE_pseudobulk
 mkdir -p "$PROJDIR/logs" "$OUT_DIR"

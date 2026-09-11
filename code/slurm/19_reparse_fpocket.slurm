@@ -20,7 +20,7 @@ set -eo pipefail
 
 PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
 CONTAINER=$PROJDIR/containers/fpocket-env.sif
-[ -f "$CONTAINER" ] || apptainer pull "$CONTAINER" docker://ghcr.io/cagriozkurt/dam-drug-fpocket:latest
+[ -f "$CONTAINER" ] || apptainer pull "$CONTAINER" docker://ghcr.io/cagriozkurt/dam-drug-fpocket@sha256:bc0ce015b2c39aa183cebc5261c9416aef727cd3c58c554a25e4cc2518dab97f
 
 export DAM_DRUG_DIR=$PROJDIR
 

@@ -33,7 +33,7 @@ PDBQT_DIR=$OUT_DIR/tier2_pdbqt
 mkdir -p "$PDBQT_DIR" "$PROJDIR/logs"
 
 SIF=$PROJDIR/containers/scenic.sif
-[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy@sha256:a16bd5bee57c5fb1918f2e4206368d342861392126c3a4159a462ddd8910efc3
 
 echo "Start: $(date)"
 echo "Node:  $SLURMD_NODENAME"

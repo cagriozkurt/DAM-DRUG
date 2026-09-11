@@ -41,7 +41,7 @@ echo "Job: $SLURM_JOB_ID on $SLURMD_NODENAME"
 echo "Start: $(date)"
 
 SIF=$PROJDIR/containers/dam-drug-scmultiomegrn.sif
-[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scmultiomegrn:latest
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scmultiomegrn@sha256:6eb4e6978d93bdffb35ae50c8ffccdd9703d4fc6d8e4755ce24e7af770cfc349
 
 echo "GPU: $(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null || echo 'not detected yet')"
 

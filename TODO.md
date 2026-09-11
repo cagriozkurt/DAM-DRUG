@@ -235,7 +235,7 @@ This roadmap outlines all analytical, computational, and structural revisions re
 * [x] Explicit-solvent GROMACS `.mdp` + T-REMD wrappers staged: `code/slurm/paper2/s4_02_gromacs_prep.slurm` (inline em/nvt/npt mdp), `s4_03_run_tremd.slurm` (inline 8-replica prod mdp), `s4_04_core_rmsd.slurm` (deposited under `code/slurm/paper2/`).
 
 
-* [ ] Pin exact container digests (`scenic.sif`, `gromacs.sif`, `cellchat.sif`) in SLURM scripts, replacing `:latest` tags with immutable image hashes.
+* [x] Pin exact container digests (`scenic.sif`, `gromacs.sif`, `cellchat.sif`) in SLURM scripts, replacing `:latest` tags with immutable image hashes.  — DONE 2026-09-11. Resolved via GHCR anonymous-token registry API (no docker/skopeo/crane available locally): `ghcr.io/cagriozkurt/dam-drug-scanpy@sha256:a16bd5bee57c5fb1918f2e4206368d342861392126c3a4159a462ddd8910efc3` (the actual image behind the misleadingly-named local file `scenic.sif`), `dam-drug-r@sha256:3d0db505d2c1caa014caed89f631b453e0eea13b1ad5919f3ffde92a607d0648` (cellchat), `dam-drug-scmultiomegrn@sha256:6eb4e6978d93bdffb35ae50c8ffccdd9703d4fc6d8e4755ce24e7af770cfc349`, `dam-drug-fpocket@sha256:bc0ce015b2c39aa183cebc5261c9416aef727cd3c58c554a25e4cc2518dab97f` — all 31 `.slurm` files referencing any of these updated, zero `:latest` remaining. **Finding:** "gromacs.sif" in this TODO item doesn't exist — GROMACS is loaded via the TRUBA system module `apps/gromacs/*`, never an apptainer/docker image; nothing to pin there.
 
 
 * [ ] Archive all updated summary tables and replication datasets to Zenodo under a versioned DOI.

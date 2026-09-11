@@ -41,7 +41,7 @@ GNINA_OUT=$PROJDIR/results/phase4/gnina_tier2
 mkdir -p "$OUT_DIR" "$GNINA_OUT" "$PROJDIR/logs"
 
 SIF=$PROJDIR/containers/scenic.sif
-[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy:latest
+[ -f "$SIF" ] || apptainer pull "$SIF" docker://ghcr.io/cagriozkurt/dam-drug-scanpy@sha256:a16bd5bee57c5fb1918f2e4206368d342861392126c3a4159a462ddd8910efc3
 
 # Override VINA/GNINA by setting them in your environment before submitting,
 # or place the binaries at $PROJDIR/bin/vina and $PROJDIR/bin/gnina.
