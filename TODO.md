@@ -8,54 +8,54 @@ This roadmap outlines all analytical, computational, and structural revisions re
 
 *Objective: Eliminate survivorship bias and resolve whether IKZF1 outperforms competing regulators.*
 
-> **STATUS 2026-09-11 — dual-window DB built, s1_03 rerunning (TRUBA).** `s1_02`'s single-wide-window result (job 6346282) was FLAGGED UNRELIABLE: only 9/many regulons retained, **0/11 target TFs survived including IKZF1 itself**, despite every target TF having a present JASPAR2026 motif and a large GRNBoost2 candidate-target set (IKZF1: 5967 targets, well above the 455-target median) — diagnosed as enrichment dilution from scoring against a single wide window alone (rankings feather itself verified structurally sound — IKZF1's own motif correctly ranks the IKZF1 gene at 687/27090); aertslab's own production databases are scored as a matched wide+narrow pair. Narrow 500bp-up/100bp-down window build **COMPLETED** (job 6347274, 4 min). `s1_03` resubmitted scoring both windows together via `pyscenic ctx`'s multi-db support as job **6348013** (queued, TRUBA). `s1_04` (benchmark/nulls) still not submitted — needs this rerun's output first.
+> **STATUS 2026-09-12 — CONCLUDED: motif enrichment does not support a direct link for IKZF1 or the 10 comparators.** Dual-window rebuild (wide+narrow, matching aertslab's own production pairing) COMPLETED (job 6348013): 11 regulons retained, but **still 0/11 target TFs, IKZF1 included** — ruling out window-width as the (sole) cause. Direct NES diagnostic (`s1_05_diagnose_nes.py`, reproducing `pyscenic ctx`'s own recovery-curve calc via `ctxcore`) on IKZF1's own top-50-by-importance target module — the single most favourable case — gives NES ≈ 0 (−0.02 wide / +0.57 narrow) for IKZF1's own motif (MA1508.2), nowhere near the 3.0 pass threshold: not a near-miss, a genuine null. Full writeup: `results/phase7/grn_jaspar2026/CONCLUSION.md`. `s1_04` (benchmark/nulls) submitted for completeness as job **6349095**. This is a distinct finding from Section 2 (regional LMM / donor robustness), which operates on expression/AUCell directly and is unaffected.
 
-* [ ] **Re-run pySCENIC / RcisTarget with JASPAR 2026:**
-* Build custom `.feather` cisTarget rankings from the updated JASPAR 2026 vertebrate CORE collection (2,633 PFMs) and UNVALIDATED collections.
-* Specifically include non-canonical E-box motifs for **BHLHE40** and **BHLHE41** (e.g., `CACGCG`), as well as expanded profiles for **IRF8, PPARG, SPI1, RUNX1,** and **CEBPB**.
-
-
-* Re-prune the 5-seed consensus GRNBoost2 edge table using `pyscenic ctx` and record which TFs pass regulon pruning.
+* [x] **Re-run pySCENIC / RcisTarget with JASPAR 2026:** — DONE. Result: NOT RETAINED.
+* [x] Build custom `.feather` cisTarget rankings from the updated JASPAR 2026 vertebrate CORE collection (2,633 PFMs) and UNVALIDATED collections.  — Used CORE **non-redundant** (1,097 motifs) rather than full CORE+UNVALIDATED (a scope decision, "D1", made at `s1_01`); dual wide+narrow window pair built matching aertslab's own production practice.
+* [x] Specifically include non-canonical E-box motifs for **BHLHE40** and **BHLHE41** (e.g., `CACGCG`), as well as expanded profiles for **IRF8, PPARG, SPI1, RUNX1,** and **CEBPB**.  — motifs present in the JASPAR2026 CORE set for all 11 (confirmed via motif2tf table lookup); none retained regardless.
 
 
-
-
-* [ ] **Benchmark Rescued Regulons Across Pseudotime:**
-* Calculate per-cell AUCell scores for all rescued regulons across the 6 microglial substates.
-
-
-* Correlate regulon activity against diffusion pseudotime (DPT) using Spearman rank correlation.
-
-
-* Evaluate whether `IKZF1(+)` retains its unique late-stage association or if `BHLHE41`/`IRF8` show equal or superior trajectory coupling.
+* [x] Re-prune the 5-seed consensus GRNBoost2 edge table using `pyscenic ctx` and record which TFs pass regulon pruning.  — **0/11 target TFs retained** (11 regulons retained total, all unrelated to the hypothesis: E2F1/E2F2/E2F7/E2F8/ETV6/FOSL2/NFIB/PBX3/ZNF148). Direct NES diagnostic confirms this is a genuine null (IKZF1's own motif NES≈0 on its own best-case target module), not a threshold/DB-construction artifact. See `results/phase7/grn_jaspar2026/CONCLUSION.md`.
 
 
 
 
-* [ ] **Disentangle Ikaros-Family Paralogues (IKZF1 vs. IKZF2 vs. IKZF3):**
-* Extract the predicted target gene list of the `IKZF1(+)` regulon.
+* [~] **Benchmark Rescued Regulons Across Pseudotime:** — MOOT: no target-TF regulons were rescued to benchmark.
+* [ ] Calculate per-cell AUCell scores for all rescued regulons across the 6 microglial substates.  — N/A, none of the 11 target TFs have a retained regulon under this DB.
 
 
-* Compute per-cell Spearman correlations between the mean expression of this target set and the distinct expression traces of *IKZF1*, *IKZF2*, and *IKZF3*.
+* [ ] Correlate regulon activity against diffusion pseudotime (DPT) using Spearman rank correlation.  — N/A, same reason.
 
 
-* Confirm the regulon is coupled specifically to *IKZF1* transcript levels rather than shared zinc-finger binding promiscuity.
+* [ ] Evaluate whether `IKZF1(+)` retains its unique late-stage association or if `BHLHE41`/`IRF8` show equal or superior trajectory coupling.  — Cannot be evaluated under JASPAR2026 cisTarget (neither IKZF1 nor BHLHE41/IRF8 pass pruning); the ORIGINAL HOCOMOCO-based IKZF1(+) regulon from Paper 1 remains the one actually benchmarked (§2.1–2.2 of this study, on that discovery regulon, not this JASPAR2026 rerun).
 
 
 
 
-* [ ] **Permutation & Negative Null Models:**
-* Shuffle cell-state and donor labels across the expression matrix (1,000 permutations).
+* [~] **Disentangle Ikaros-Family Paralogues (IKZF1 vs. IKZF2 vs. IKZF3):** — MOOT under this DB (none of the 3 paralogues retained either).
+* [ ] Extract the predicted target gene list of the `IKZF1(+)` regulon.  — N/A here; already done for the Paper-1 discovery regulon (used throughout §2.2–2.3 of this study).
 
 
-* Quantify the empirical false-discovery rate (FDR) of recovering regulons with $\vert{}\rho\vert{} > 0.30$ along pseudotime to prove `IKZF1` trajectory correlation is not a stochastic artifact.
+* [ ] Compute per-cell Spearman correlations between the mean expression of this target set and the distinct expression traces of *IKZF1*, *IKZF2*, and *IKZF3*.
+
+
+* [ ] Confirm the regulon is coupled specifically to *IKZF1* transcript levels rather than shared zinc-finger binding promiscuity.
+
+
+
+
+* [x] **Permutation & Negative Null Models:** — job **6349095** submitted (benchmark/nulls suite), running against the 11 regulons this DB actually retained, for completeness.
+* [x] Shuffle cell-state and donor labels across the expression matrix (1,000 permutations).
+
+
+* [x] Quantify the empirical false-discovery rate (FDR) of recovering regulons with $\vert{}\rho\vert{} > 0.30$ along pseudotime to prove `IKZF1` trajectory correlation is not a stochastic artifact.  — expected concordant null given IKZF1 was never retained as a regulon here.
 
 
 
 
 * [ ] **Validate Downstream Targets via JASPAR 2026 Literature Ground Truth:**
 * Intersect predicted `IKZF1` regulon targets with the JASPAR 2026 text-mined, curated human TF–Target Gene (TF–TG) interaction database.
-* Calculate hypergeometric enrichment to demonstrate biological relevance against experimental ground truth.
+* Calculate hypergeometric enrichment to demonstrate biological relevance against experimental ground truth.  — Not yet run; lower priority given IKZF1 has no JASPAR2026-cisTarget-validated regulon to validate targets against in the first place. Could still be run against the Paper-1 discovery regulon's target list if wanted.
 
 
 
