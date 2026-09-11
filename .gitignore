@@ -115,3 +115,5 @@ results/phase7/**/*.h5ad
 results/phase7/**/*.loom
 results/phase7/glue_design/generated_raw.sdf
 results/phase7/external/raw/
+results/phase7/selectivity/herg_qsar_model.pkl
+results/phase7/selectivity/herg_training_data_raw.csv
