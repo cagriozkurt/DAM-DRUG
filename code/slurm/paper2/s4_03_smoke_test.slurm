@@ -30,6 +30,28 @@
 #
 # Requires: s4_02_gromacs_prep.slurm already completed for this complex
 # (reads npt.gro / npt.cpt / topol.top from the array-0 working directory).
+#
+# Run for real on a RunPod L4 (akya-cuda fully allocated, 2026-09-11) after
+# fixing two bugs found on first execution, both also fixed in
+# s4_03_run_tremd.slurm (production has the same code, never yet run):
+#  1. `sed "s/__REF_T__/.../"` (no /g) only replaced the first of two
+#     __REF_T__ placeholders on `ref-t = __REF_T__ __REF_T__` -> grompp
+#     ERROR "Invalid value for mdp option ref-t".
+#  2. gmx's generic "Ion" index family includes Zn2+ alongside Na/Cl, so
+#     "Water" | "Ion" pulled Zn into the water/ion thermostat group while
+#     "Protein" | "Other" already had it too (Zn sits contiguously between
+#     protein and ligand in the coordinate file) -> grompp FATAL "Atom in
+#     multiple T-Coupling groups". Fixed by merging from "NA"/"CL" (not
+#     "Ion"), explicitly folding "ZN" into the solute group, and using
+#     gmx's own auto-generated merge names (Protein_Other_ZN / Water_NA_CL)
+#     directly instead of hardcoded `name 20/21` (GROMACS 2024+ injects
+#     extra default index groups at 20/21, so the hardcoded rename silently
+#     renamed the WRONG pre-existing groups).
+# Result: PASSED. 49 replica-exchange attempts, nonzero off-diagonal
+# transition matrix (real swaps), zero LINCS/fatal/segfault across all 8
+# reps, clean "Finished mdrun" (43 ns/day). Confirms both original asks:
+# Zn restraints survive replica exchange, and -replex MPI handshake
+# completes without interconnect deadlock.
 # ─────────────────────────────────────────────────────────────────────────────
 set -eo pipefail
 PROJDIR=${DAM_DRUG_DIR:-$(pwd)}
@@ -50,7 +72,7 @@ NREP=${#TEMPS[@]}
 
 for i in $(seq 0 $((NREP-1))); do
     mkdir -p "smoke_rep$i"
-    sed "s/__REF_T__/${TEMPS[$i]}/; s/__GENSEED__/$((1000+i))/" \
+    sed "s/__REF_T__/${TEMPS[$i]}/g; s/__GENSEED__/$((1000+i))/g" \
         > "smoke_rep$i/prod.mdp" <<'EOF'
 integrator  = md
 nsteps      = 5000             ; 10 ps SMOKE TEST @ 2 fs -- NOT production
@@ -67,7 +89,7 @@ rcoulomb    = 1.0
 rvdw        = 1.0
 DispCorr    = EnerPres
 tcoupl      = V-rescale
-tc-grps     = Protein_LIG Water_and_ions
+tc-grps     = Protein_Other_ZN Water_NA_CL
 tau-t       = 0.1 0.1
 ref-t       = __REF_T__ __REF_T__
 pcoupl      = C-rescale
@@ -79,7 +101,7 @@ refcoord-scaling = com
 gen-vel     = no
 gen-seed    = __GENSEED__
 EOF
-    [ -s smoke_index.ndx ] || $GMX make_ndx -f npt.gro -o smoke_index.ndx <<< $'"Protein" | "Other"\nname 20 Protein_LIG\n"Water" | "Ion"\nname 21 Water_and_ions\nq'
+    [ -s smoke_index.ndx ] || $GMX make_ndx -f npt.gro -o smoke_index.ndx <<< $'"Protein" | "Other" | "ZN"\n"Water" | "NA" | "CL"\nq'
     $GMX grompp -f "smoke_rep$i/prod.mdp" -c npt.gro -t npt.cpt -p topol.top \
         -n smoke_index.ndx -o "smoke_rep$i/prod.tpr" -maxwarn 3
 done
