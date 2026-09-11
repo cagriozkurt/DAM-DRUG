@@ -48,20 +48,30 @@ mkdir -p "$PROJDIR/logs" "$DB" "$TOOLS" "$JDIR/cb"
 echo "Job $SLURM_JOB_ID on $SLURMD_NODENAME — start $(date)"
 
 # ── 0. Cluster-Buster ─────────────────────────────────────────────────────
+# create_cistarget_motif_databases.py runs INSIDE scenic.sif and shells out to
+# cbust as a subprocess, so cbust must be runnable INSIDE the container too —
+# a host-compiled binary (Debian/glibc version mismatch) fails there even if
+# it runs fine on the bare host. Verified 2026-09-11: the aertslab precompiled
+# binary runs correctly inside scenic.sif (Debian 11, glibc 2.31); a
+# source-build against the HOST's newer glibc/libstdc++ does NOT (GLIBC_2.34
+# not found). Always test — and if needed build — inside the container.
 CBUST=${CBUST:-$TOOLS/cbust}
 if [ ! -x "$CBUST" ]; then
     echo "Fetching cbust (aertslab precompiled)..."
     wget -q -O "$CBUST" https://resources.aertslab.org/cistarget/programs/cbust && chmod +x "$CBUST" || true
 fi
-if ! "$CBUST" --help >/dev/null 2>&1 && ! "$CBUST" 2>&1 | grep -qi cluster; then
-    echo "Precompiled cbust not runnable — building from source (ghuls fork)..."
-    module load comp/gcc/12.3.0 2>/dev/null || module load gcc 2>/dev/null || true
+if ! apptainer exec --bind "$PROJDIR:$PROJDIR" "$SIF" "$CBUST" -h >/dev/null 2>&1; then
+    echo "Precompiled cbust not runnable inside scenic.sif — building from source in-container (ghuls fork)..."
     rm -rf "$TOOLS/cluster-buster"
     git clone https://github.com/ghuls/cluster-buster "$TOOLS/cluster-buster"
-    make -C "$TOOLS/cluster-buster" cbust
+    apptainer exec --bind "$PROJDIR:$PROJDIR" "$SIF" bash -c \
+        "cd '$TOOLS/cluster-buster' && make cbust" \
+        || { echo "ERROR: no gcc/g++ inside scenic.sif and precompiled cbust doesn't run there"; exit 1; }
     CBUST="$TOOLS/cluster-buster/cbust"
+    apptainer exec --bind "$PROJDIR:$PROJDIR" "$SIF" "$CBUST" -h >/dev/null 2>&1 || \
+        { echo "ERROR: in-container cbust build still not runnable"; exit 1; }
 fi
-echo "cbust: $CBUST"
+echo "cbust (in-container verified): $CBUST"
 
 if [ ! -d "$TOOLS/create_cisTarget_databases" ]; then
     git clone https://github.com/aertslab/create_cisTarget_databases "$TOOLS/create_cisTarget_databases"
@@ -178,19 +188,40 @@ ls "$JDIR/cb"/*.cb | sed 's:.*/::; s:\.cb$::' > "$JDIR/motifs.lst"
 echo "$(wc -l < "$JDIR/motifs.lst") motifs in .cb format"
 
 # ── 3. Build the rankings database ─────────────────────────────────────────
-# create_cistarget_motif_databases.py needs numpy/pandas/pyarrow/numba. The
-# `scenic` env in scenic.sif has pyarrow but numba is unverified — if the run
-# fails on ImportError, create the aertslab env once:
+# create_cistarget_motif_databases.py deps beyond scenic.sif's base scenic env
+# (verified 2026-09-11 by running the script's actual imports): numpy, pandas,
+# pyarrow, numba, cytoolz, tqdm all present; flatbuffers and loguru were
+# MISSING -> pip-installed to $TOOLS/pylibs (target dir, not the read-only
+# image) and exposed via PYTHONPATH. Fallback if anything else is missing:
 #   apptainer exec $SIF conda env create -f $CTDB/environment.yml -n ctdb
-# and switch the two `conda run -n scenic` calls below to `-n ctdb`.
-PREFIX=$DB/jaspar2026_hg38_10kbp_up_10kbp_down_full_tx
+# and switch `conda run -n scenic` to `-n ctdb` below.
+PYLIBS=$TOOLS/pylibs
+mkdir -p "$PYLIBS"
 apptainer exec --bind "$PROJDIR:$PROJDIR" "$SIF" conda run -n scenic \
+  pip install --no-input --target "$PYLIBS" flatbuffers loguru >/dev/null
+
+# --genes: our region names are GENE#N (from the aertslab v10 BED); this
+# collapses per-gene multi-region scores by MAX and is what actually produces
+# the "genes_vs_motifs" (not "regions_vs_motifs") output files that s1_03
+# expects. Regex matches the tool's own documented example for "#"-suffixed IDs.
+# --bgpadding 0: our FASTA regions were extracted at exact BED coordinates with
+# no extra flanking sequence, so there is no padding for cbust's `-b` local-
+# background window to trim. Verified 2026-09-11 with a 3-motif/1-gene smoke
+# test: --bgpadding 1000 makes cbust require every sequence >= 2001 bp and
+# reject our (frequently shorter, e.g. 216 bp) segments outright ("Sequence
+# should be at least 2001 bp long" -> "None of N motifs were scored
+# successfully"); --bgpadding 0 (matching -b 0) scores correctly at every
+# length and produced sane CRM scores end-to-end (genes_vs_motifs .rankings/
+# .scores feather written, values consistent with cbust's raw per-motif output).
+PREFIX=$DB/jaspar2026_hg38_10kbp_up_10kbp_down_full_tx
+apptainer exec --bind "$PROJDIR:$PROJDIR" --env PYTHONPATH="$PYLIBS" "$SIF" conda run -n scenic \
   python "$CTDB/create_cistarget_motif_databases.py" \
     --fasta "$REGION_FA" \
     --motifs_dir "$JDIR/cb" \
     --motifs "$JDIR/motifs.lst" \
     --output "$PREFIX" \
-    --bgpadding 1000 \
+    --genes '#[0-9]+$' \
+    --bgpadding 0 \
     --cbust "$CBUST" \
     --threads 20
 
