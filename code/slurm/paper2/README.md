@@ -67,7 +67,7 @@ glutamatergic context (~80 GB); the 3 giant IT classes are optional
 |---|---|---|---|---|
 | 0 | (rerun `code/phase7_robustness/4B_glue_gen/06_dock_glues.py` on TRUBA) | — | mins | regenerate `docked/GLUE*.pdbqt` (not in git) |
 | 1 | `code/phase7_robustness/s4_md/s4_01_build_ternary.py` | login/barbun | mins | 3 ternary complexes: **one copy** (chains A CRBN + B IKZF1-ZF2 + 2 Zn), glue docked pose, GAFF2 via acpype |
-| 2 | `s4_02_gromacs_prep.slurm` (calls `s4_md/s4_zn_restraints.py`) | barbun 20c 32G, array 0–2 | 1–3 h | TIP3P dodecahedron, 150 mM NaCl, Amber14SB+GAFF2; **Zn²⁺ harmonic distance restraints** (auto-detected coordination, `[ intermolecular_interactions ]` funct 6, k=10000 kJ/mol/nm², r0 0.23 nm Zn–S(Cys) / 0.20 nm Zn–N(His)); EM→NVT→NPT |
+| 2 | `s4_02_gromacs_prep.slurm` (calls `s4_md/s4_zn_restraints.py`) | barbun 20c 32G, array 0–2 | 1–3 h | TIP3P dodecahedron, 150 mM NaCl, Amber99SB-ILDN+GAFF2; **Zn²⁺ harmonic distance restraints** (auto-detected coordination, `[ intermolecular_interactions ]` funct 6, k=10000 kJ/mol/nm², r0 0.23 nm Zn–S(Cys) / 0.20 nm Zn–N(His)); EM→NVT→NPT |
 | 3 | `s4_03_run_tremd.slurm` | akya-cuda, array 0–2 (×8 replicas) | 1–3 days/complex | T-REMD 8 replicas 300–320 K, GROMACS `-replex`; checkpoint-resume |
 | 4 | `s4_04_core_rmsd.slurm` | barbun 20c 32G | <1 h | ligand core-RMSD on 10% lowest-RMSF residues, last 20 ns, per replica; **PASS if mean < 3.5 Å across all 8** |
 

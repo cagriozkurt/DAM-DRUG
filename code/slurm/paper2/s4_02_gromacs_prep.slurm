@@ -12,7 +12,7 @@
 #SBATCH --array=0-2
 # ─────────────────────────────────────────────────────────────────────────────
 # WP3.2 — GROMACS system prep for one ternary complex (array index = glue rank).
-# Amber14SB (protein) + GAFF2 (ligand, from acpype) + TIP3P, dodecahedron box,
+# Amber99SB-ILDN (protein) + GAFF2 (ligand, from acpype) + TIP3P, dodecahedron box,
 # 150 mM NaCl neutralising. EM -> NVT -> NPT. Zn kept as ion with position
 # restraints during equilibration.
 #
@@ -37,10 +37,10 @@ LIG_ITP=$ACP/${GID}_GMX.itp
 LIG_GRO=$ACP/${GID}_GMX.gro
 [ -s "$LIG_ITP" ] || { echo "ERROR: run s4_01_build_ternary.py first"; exit 1; }
 
-# ── 1. protein topology (Amber14SB, TIP3P) ─────────────────────────────────
+# ── 1. protein topology (Amber99SB-ILDN, TIP3P) ─────────────────────────────────
 mkdir -p mdp
 $GMX pdb2gmx -f complex.pdb -o proc.gro -p topol.top -i posre.itp \
-    -ff amber14sb -water tip3p -ignh <<< $'1\n1'   # adjust chain termini as needed
+    -ff amber99sb-ildn -water tip3p -ignh <<< $'1\n1'   # adjust chain termini as needed
 
 # ── 2. splice ligand into topol.top ───────────────────────────────────────
 python - << PY
