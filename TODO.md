@@ -151,7 +151,7 @@ This roadmap outlines all analytical, computational, and structural revisions re
 
 *Objective: Eliminate false positives, reframe methodological benchmarks, and transition to a rational chemical biology strategy.*
 
-> **STATUS 2026-09-10 — local sub-tasks (4A + 4B) complete.** Branch `robustness/section4-drug`. Code `code/phase7_robustness/{4A_negctrl,4B_glue_gen}/`, results `results/phase7/{negctrl,glue_design}/`, spec `docs/superpowers/specs/2026-09-10-section4-drug-reframe-glue-gen-design.md`. Explicit-solvent MD/T-REMD, hERG QSAR, counter-docking, in-vitro gates deferred (TRUBA / later pass). Manuscript patches drafted, not applied.
+> **STATUS 2026-09-11 — all local sub-tasks (4A, 4B, 4C, in-vitro gates) complete; only MD production remains, queued on TRUBA.** Code `code/phase7_robustness/{4A_negctrl,4B_glue_gen,4C_selectivity}/`, results `results/phase7/{negctrl,glue_design,selectivity,invitro_gates}/`. hERG QSAR + counter-docking (4C) and in-vitro testing gates done 2026-09-11, folded into `Manuscript_Paper2.md`. Only the T-REMD production run (job 6346303, queued PD/Priority) and its core-RMSD gate remain in this section.
 
 * [x] **Reframe Tafamidis & Diflunisal as Negative Controls / MM-GBSA Benchmarks:**  — DONE (4A). `results/phase7/negctrl/CONCLUSION.md`.
 * [x] Retract tafamidis and diflunisal as viable repurposing candidates in the Abstract, Results, and Discussion.  — patch text drafted (Abstract/Results/Tables 3–5/Fig 5A); NOT yet applied to Manuscript.md.
@@ -204,15 +204,15 @@ This roadmap outlines all analytical, computational, and structural revisions re
 
 
 
-* [ ] **Define Concrete In Vitro Testing Gates for Translating Leads:**
-* Detail exact experimental protocols required prior to in vivo work:
-* Recombinant IRF8 DBD or PPARG LBD surface plasmon resonance (SPR) / thermal shift assays (TSA).
+* [x] **Define Concrete In Vitro Testing Gates for Translating Leads:** — DONE (protocol specification, no wet-lab data). `results/phase7/invitro_gates/PROTOCOLS.md`, referenced from `Manuscript_Paper2.md` Discussion.
+* [x] Detail exact experimental protocols required prior to in vivo work:
+* [x] Recombinant IRF8 DBD or PPARG LBD surface plasmon resonance (SPR) / thermal shift assays (TSA).  — Gate 1: exact constructs, SPR single-cycle kinetics + DSF conditions, controls, pass gate (K_D<50µM AND ΔTm≥+1.5°C).
 
 
-* TR-FRET or cereblon competitive binding assays for CRBN-track glue molecules.
+* [x] TR-FRET or cereblon competitive binding assays for CRBN-track glue molecules.  — Gate 2: CRBN-DDB1 TR-FRET tracer displacement + AlphaLISA/TR-FRET ternary-complex (IKZF1-ZF2) assay + neosubstrate (GSPT1/SALL4/ZBTB16) selectivity counter-screen + hERG patch-clamp — explicitly supersedes the docking-based SI shown uninterpretable in 4C.
 
 
-* CRISPR-mediated *IKZF1* knockout in human iPSC-derived microglia (iMGs) to assess blunting of LateAD-DAM phenotypic transition.
+* [x] CRISPR-mediated *IKZF1* knockout in human iPSC-derived microglia (iMGs) to assess blunting of LateAD-DAM phenotypic transition.  — Gate 3: sgRNA/clone/batch design, RNA-seq readout against the discovery signature, pass gate (≥50% signature blunting, P<0.05, ≥2 clones × ≥3 batches). Tests the study's core causal claim.
 
 
 

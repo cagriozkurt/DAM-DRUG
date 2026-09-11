@@ -369,11 +369,20 @@ exposes a hard constraint: the bifunctional glutarimide warhead alone already
 exceeds common CNS polar-surface limits, so brain-penetrant IKZF1 degraders
 occupy a narrow and unforgiving property window. The 184 relaxed-filter
 scaffolds and their ternary-interface docking are a starting point for
-synthesis and biophysical triage, not a candidate set. Essential next
-experiments include cereblon TR-FRET or competitive-binding assays for warhead
-engagement, a ternary-complex assay (e.g. AlphaLISA) for IKZF1 recruitment,
-and *IKZF1* degradation plus LateAD-DAM phenotype assays in human iPSC-derived
-microglia.
+synthesis and biophysical triage, not a candidate set. We specify three
+concrete, falsifiable in vitro gates that must be cleared before any
+computational finding above is treated as more than a hypothesis
+(`results/phase7/invitro_gates/PROTOCOLS.md`): (1) recombinant IRF8-DBD /
+PPARG-LBD SPR and thermal-shift confirmation (or refutation) of the
+tafamidis/diflunisal negative-control result; (2) cereblon TR-FRET
+engagement, an AlphaLISA/TR-FRET ternary-complex assay for IKZF1
+recruitment, a neosubstrate-selectivity counter-screen (GSPT1/SALL4/ZBTB16),
+and hERG patch-clamp — the last explicitly superseding the docking-based
+selectivity index we show in §2.8 cannot itself establish selectivity; and
+(3) CRISPR-mediated *IKZF1* knockout in human iPSC-derived microglia, testing
+whether *IKZF1* is causally required (≥50% blunting of the LateAD-DAM
+signature shift) rather than merely correlated with the LateAD-DAM
+transition.
 
 The selectivity triage illustrates a subtler methodological point: a hERG
 QSAR model trained on real bioactivity data can distinguish liable from clean
@@ -490,7 +499,9 @@ pre-specified gate of SI > 5 for every off-target. Code:
   retrieved via the ChEMBL REST API). A versioned Zenodo archive of
   `results/phase7/` (including the generated library SDF, docked poses, and
   the trained hERG QSAR model, which are excluded from git as binaries) will
-  be deposited on submission.
+  be deposited on submission. Concrete in vitro validation protocols and
+  pass/fail gates for every computational finding are specified in
+  `results/phase7/invitro_gates/PROTOCOLS.md`.
 
 ---
 
