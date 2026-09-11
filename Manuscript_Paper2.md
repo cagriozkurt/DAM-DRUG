@@ -43,7 +43,11 @@ Paper #1 (tafamidis, diflunisal) were re-analysed as MM-GBSA negative controls.
 (v) A scaffold-based library of candidate cereblon (CRBN) molecular glues was
 enumerated on the lenalidomide isoindolinone–glutarimide warhead by BRICS
 fragmentation of CNS-approved chemical space, filtered for CNS druglikeness, and
-docked into the CRBN–IKZF1(ZF2) ternary interface (PDB 8RQC).
+docked into the CRBN–IKZF1(ZF2) ternary interface (PDB 8RQC). (vi) Candidates
+were triaged for hERG liability with a random-forest QSAR model trained on
+ChEMBL bioactivity data and counter-docked against three CNS off-target
+receptors (dopamine D2, serotonin 5-HT2A, hERG) to compute a selectivity
+index.
 
 **Results.** Elevated *IKZF1* in DAM (+0.57 log1p-CPM, 95% CI 0.53–0.61) and
 LateAD-DAM (+0.55, 95% CI 0.44–0.65) survived explicit modelling of regional
@@ -68,15 +72,26 @@ strict CNS filter (topological polar surface area [TPSA] < 90 Å², CNS-MPO ≥ 
 the bifunctional glutarimide warhead alone (TPSA 92.5 Å², cLogP ≈ 0) precludes
 it. 184 candidates passed a pre-registered relaxed filter; the top 25 docked
 into the 8RQC ternary interface with Vina scores of −5.9 to −7.0 kcal/mol, all
-more favourable than the bare anchor (−5.2 kcal/mol).
+more favourable than the bare anchor (−5.2 kcal/mol). A hERG-liability QSAR
+model (random forest, 2,048-bit Morgan fingerprints, 9,496 ChEMBL bioactivities,
+held-out ROC-AUC 0.87) predicted 140/184 candidates hERG-clean, but
+counter-docking the top 25 against dopamine D2, 5-HT2A, and hERG found that
+none reached a pre-specified selectivity index (SI) of 5 over the on-target
+8RQC interface: every candidate scored more favourably against all three
+off-targets than on-target, a pattern consistent with AutoDock Vina's known
+bias toward deep small-molecule pockets over the shallow protein–protein
+interface being targeted here.
 
 **Conclusions.** The *IKZF1*-associated late-disease microglial state withstands
 regional-confounding, sparsity, and cross-cohort challenges, strengthening it as
 a target hypothesis. The undruggable orthosteric pocket can be bypassed by a
 cereblon molecular-glue strategy, but the glutarimide warhead places such
 molecules at the boundary of CNS druglikeness — a design constraint that any
-brain-penetrant degrader programme must confront. All candidates here are
-unvalidated computational scaffolds requiring biophysical and cellular testing.
+brain-penetrant degrader programme must confront. Rigid-receptor
+counter-docking could not establish off-target selectivity for this
+interface-directed chemotype, a limitation of the method rather than a
+demonstrated safety failure. All candidates here are unvalidated
+computational scaffolds requiring biophysical and cellular testing.
 
 **Keywords.** Alzheimer's disease; disease-associated microglia; IKZF1/Ikaros;
 linear mixed-effects models; targeted protein degradation; cereblon; molecular
@@ -275,6 +290,47 @@ grown fragment adds interface contacts as intended, with no anomalous scores
 (**Figure 5C–D**). The best-scoring scaffolds were simple N-aroyl derivatives
 (e.g. 4-methyl-, 2-methyl-, 2-chloro-benzamide).
 
+### 2.8 Off-target selectivity and hERG liability of the glue candidates
+
+Before any candidate could be considered for synthesis we screened for two
+liabilities common to CNS-targeted small molecules: hERG (KCNH2) channel
+block, a cardiac-safety gate, and cross-reactivity with monoaminergic GPCRs
+relevant to CNS tolerability. We trained a random-forest classifier on
+2,048-bit radius-2 Morgan fingerprints against 9,496 ChEMBL bioactivities for
+KCNH2 (target CHEMBL240; active defined as pChEMBL ≥ 5, i.e. IC50/Ki ≤ 10 μM,
+the conventional hERG-liability threshold), achieving a held-out ROC-AUC of
+0.868 (five-fold cross-validation 0.857 ± 0.002; SHAP TreeExplainer
+interpretability, **Figure 6A**). Applied to all 184 relaxed-filter
+candidates, 140/184 (76%) were predicted hERG-clean (liability probability
+< 0.5).
+
+We then counter-docked the top 25 ranked candidates against three off-target
+receptors using the exact receptors and grid boxes prepared for Paper #1's
+own selectivity panel: dopamine D2 (PDB 6CM4), serotonin 5-HT2A (PDB 6A94),
+and the hERG central cavity (PDB 7CN1). Before scoring selectivity we
+corrected a methodological error in Paper #1's own selectivity index: that
+work computed SI as the raw ratio of two similarly-scaled Vina kcal/mol
+scores (SI = ΔG<sub>on-target</sub>/ΔG<sub>off-target</sub>), a quantity
+mathematically bounded near 1 that cannot exceed a pre-specified gate of 5
+for any molecule regardless of true selectivity (Paper #1's own six
+compounds scored 0.58–0.88 on this metric). We instead used the standard
+free-energy–to–affinity-ratio proxy SI = exp(ΔΔG/RT) (ΔΔG =
+ΔG<sub>off-target</sub> − ΔG<sub>on-target</sub>, RT = 0.593 kcal/mol at
+298 K), under which a gate of 5 is achievable in principle.
+
+Even with the corrected formula, **0/25 candidates reached SI > 5 against
+all three off-targets**: every candidate scored more favourably (more
+negative ΔG) against DRD2, 5-HT2A, and hERG than against the on-target 8RQC
+ternary interface (**Figure 6B**; **Table 3**). We attribute this to a
+known property of physics-based docking rather than to genuine chemical
+promiscuity: deep, well-defined small-molecule pockets such as GPCR
+orthosteric sites and the hERG central cavity systematically score more
+favourably in Vina than shallow protein–protein interaction surfaces such as
+the CRBN–IKZF1 interface, independent of the docked ligand. We report this
+result as a limitation of rigid-receptor docking as a selectivity readout for
+PPI-interface-targeted chemotypes, not as a validated safety failure of the
+candidate series.
+
 ---
 
 ## 3. Discussion
@@ -319,12 +375,28 @@ engagement, a ternary-complex assay (e.g. AlphaLISA) for IKZF1 recruitment,
 and *IKZF1* degradation plus LateAD-DAM phenotype assays in human iPSC-derived
 microglia.
 
+The selectivity triage illustrates a subtler methodological point: a hERG
+QSAR model trained on real bioactivity data can distinguish liable from clean
+chemotypes (ROC-AUC 0.87) and flagged the majority of candidates as clean, but
+rigid-receptor counter-docking against three off-targets gave an
+uninterpretable result — every candidate, however innocuous by QSAR, scored
+better against off-target pockets than against the intentionally shallow
+on-target PPI surface. This is not evidence of promiscuity; it reflects Vina's
+well-documented preference for deep, enclosed pockets, and it means docking
+alone cannot serve as a selectivity gate for interface-directed chemotypes.
+Biochemical or biophysical counter-screening (radioligand-binding panels,
+cellular hERG patch-clamp) is required before any selectivity claim can be
+made, and we flag this explicitly rather than reporting an unearned pass.
+
 **Limitations.** One external single-nucleus cohort, open-access only; no
 replication-scale PAGA/pseudotime; the CNS-MPO of record is a five-check proxy,
 not the full Wager pKa-dependent score; docking is rigid-receptor and is a
 positional check, not an affinity estimate; no molecular dynamics, no
 free-energy perturbation, and no experimental data are presented for the
-generated glues.
+generated glues; off-target selectivity rests entirely on rigid-receptor
+docking, which we show is systematically biased against a PPI-interface
+on-target and therefore cannot itself establish or rule out selectivity —
+biochemical counter-screening is required.
 
 ---
 
@@ -384,6 +456,27 @@ unchanged. The top 25 relaxed passers were docked with AutoDock Vina into the
 Paper #1 grid box (centre 0.566, −2.235, 4.760; 20 Å³; exhaustiveness 16),
 ligands prepared with Meeko.
 
+**hERG QSAR and off-target counter-docking (§2.8).** hERG (KCNH2, ChEMBL
+target CHEMBL240) IC50/Ki bioactivities with a reported pChEMBL value were
+retrieved from the ChEMBL REST API (paginated, binding assays only;
+duplicate molecules resolved to their most potent measurement; 9,496
+molecules after deduplication, 6,681 active at pChEMBL ≥ 5 / 2,815 inactive).
+Each molecule was represented as a 2,048-bit radius-2 Morgan fingerprint and
+a random-forest classifier (scikit-learn, 500 trees, class-balanced,
+80/20 stratified hold-out plus five-fold cross-validation) was fit and
+interpreted with `shap.TreeExplainer` (`check_additivity=False`; the default
+additivity check is numerically unstable for a deep forest over thousands of
+sparse binary features). The fitted model was applied to all 184
+relaxed-filter glue candidates. The top 25 ranked candidates were
+counter-docked with AutoDock Vina (exhaustiveness 16) against three
+off-target receptors prepared for Paper #1's own selectivity panel — DRD2
+(PDB 6CM4), HTR2A (PDB 6A94), and the hERG central cavity (PDB 7CN1),
+identical receptors and grid boxes — and combined with the on-target 8RQC
+score into a selectivity index SI = exp(ΔΔG/RT) (ΔΔG = ΔG<sub>off-target</sub>
+− ΔG<sub>on-target</sub>, RT = 0.593 kcal/mol at 298 K), applied against a
+pre-specified gate of SI > 5 for every off-target. Code:
+`code/phase7_robustness/4C_selectivity/`.
+
 ---
 
 ## 5. Data and code availability
@@ -393,9 +486,11 @@ ligands prepared with Meeko.
   registry; GSE95587 at GEO.
 - **This study:** all code at `code/phase7_robustness/`; result tables,
   figures, and per-analysis `CONCLUSION.md` files at `results/phase7/`;
-  GSE138852 at GEO. A versioned Zenodo archive of `results/phase7/` (including
-  the generated library SDF and docked poses, which are excluded from git as
-  binaries) will be deposited on submission.
+  GSE138852 at GEO; hERG bioactivity data at ChEMBL (target CHEMBL240,
+  retrieved via the ChEMBL REST API). A versioned Zenodo archive of
+  `results/phase7/` (including the generated library SDF, docked poses, and
+  the trained hERG QSAR model, which are excluded from git as binaries) will
+  be deposited on submission.
 
 ---
 
@@ -418,11 +513,17 @@ ligands prepared with Meeko.
   and exit vector. (B) Generation scheme. (C) 2D grid of top scaffolds.
   (D) Ternary-interface docking scores versus the bare anchor. Source:
   `results/phase7/glue_design/`.
+- **Figure 6.** Off-target selectivity. (A) hERG QSAR SHAP summary
+  (`results/phase7/selectivity/herg_shap_summary.png`). (B) On-target
+  (8RQC) versus off-target (DRD2/5-HT2A/hERG) Vina scores for the top 25
+  candidates. Source: `results/phase7/selectivity/`.
 - **Table 1.** Five-block evidence architecture for *IKZF1*
   (`results/phase7/epistemic/evidence_summary.csv`).
 - **Table 2.** Top relaxed-filter glue candidates with properties, CNS-MPO, QED,
   and ternary-interface Vina score
   (`results/phase7/glue_design/glue_candidates_top.csv`).
+- **Table 3.** hERG liability and off-target selectivity index for the top 25
+  candidates (`results/phase7/selectivity/selectivity_report.csv`).
 
 ---
 
@@ -449,3 +550,7 @@ ligands prepared with Meeko.
    *J Chem Inf Model* 2021;61:3891–3898.
 10. Bates D, Mächler M, Bolker B, Walker S. Fitting linear mixed-effects models
     using lme4. *J Stat Softw* 2015;67:1–48.
+11. Gaulton A, et al. The ChEMBL database in 2017. *Nucleic Acids Res*
+    2017;45:D945–D954.
+12. Lundberg SM, Lee SI. A unified approach to interpreting model predictions
+    (SHAP). *NeurIPS* 2017.
