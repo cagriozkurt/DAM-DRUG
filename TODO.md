@@ -187,10 +187,13 @@ This roadmap outlines all analytical, computational, and structural revisions re
 * [x] Re-simulate top CRBN molecular glue candidates and top orthosteric hits in **explicit solvent (TIP3P, Amber99SB-ILDN + GAFF2)** with $150\text{ mM NaCl}$ neutral balance.  — `amber14sb` unavailable on TRUBA, switched to amber99sb-ildn (matches Paper 1 precedent). 3 ternary complexes built (GLUE0231/0246/0692); GLUE0231 EM→NVT→500ps NPT completed clean (job 6346115, 0 LINCS warnings) after fixing `-DPOSRES`+barostat interaction (`refcoord-scaling=com`, `pcoupl=berendsen`).
 
 
-* [x] Replace deterministic single runs with Temperature Replica Exchange MD (T-REMD; 8 replicas, 300–320 K).  — 10ps smoke test executed for real (RunPod L4, akya-cuda was fully allocated): 49 exchange attempts, real swaps, zero LINCS/fatal/segfault, 43 ns/day. Found + fixed 2 bugs (sed missing `/g`; Zn2+ landing in both T-coupling groups via gmx's generic `Ion` family) in both `s4_03_smoke_test.slurm` and `s4_03_run_tremd.slurm`. Full 100ns×8-replica production (all 3 complexes) resubmitted clean as **job 6346303** on TRUBA `akya-cuda`, queued (PD/Priority, partition full) — not yet run.
+* [x] Replace deterministic single runs with Temperature Replica Exchange MD (T-REMD; 8 replicas, 300–320 K).  — 10ps smoke test executed for real (RunPod L4, akya-cuda was fully allocated): 49 exchange attempts, real swaps, zero LINCS/fatal/segfault, 43 ns/day. Found + fixed 2 bugs (sed missing `/g`; Zn2+ landing in both T-coupling groups via gmx's generic `Ion` family) in both `s4_03_smoke_test.slurm` and `s4_03_run_tremd.slurm`.
 
 
-* [ ] Enforce an advancement stability threshold: mean ligand core-RMSD $< 3.5\text{ \AA}$ over the final 20 ns across all replicas.  — gate script `s4_04_core_rmsd.slurm` staged, not runnable until 6346303 produces ≥20ns of trajectory.
+* [~] **Production T-REMD, in progress.** TRUBA `akya-cuda` stayed fully allocated with no ETA (job `6346303_[0-2]` queued PD/Priority for hours) → moved GLUE0231 to the user's local RTX 3060 Mobile (6GB VRAM) instead, 2026-09-11. Re-validated the smoke test there first (same result: 49 exchanges, clean, GPU peaked 1.3GB of 6GB free) before committing. Found along the way: `s4_02` equilibration had ONLY ever been run for GLUE0231 (`array=0`) across the whole debugging session — GLUE0246/GLUE0692 have no `npt.gro`/`npt.cpt` at all, meaning `6346303`'s array tasks 1/2 would fail immediately once scheduled. Fixed: submitted `s4_02 --array=1-2` on TRUBA (job **6347306**) to equilibrate the other two (CPU-only, cheap). GLUE0231 100ns×8-replica production now running on debian-local (~21.6 ns/day/replica, ~4.6 days to 100ns), `6346303` still queued on TRUBA for whenever it starts (will still attempt all 3, redundant with GLUE0231 but harmless once 0246/0692 are equilibrated).
+
+
+* [ ] Enforce an advancement stability threshold: mean ligand core-RMSD $< 3.5\text{ \AA}$ over the final 20 ns across all replicas.  — gate script `s4_04_core_rmsd.slurm` staged, not runnable until GLUE0231's local run (or 6346303) produces ≥20ns of trajectory.
 
 
 
