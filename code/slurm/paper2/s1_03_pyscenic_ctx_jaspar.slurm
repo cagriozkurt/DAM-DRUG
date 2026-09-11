@@ -14,10 +14,20 @@
 # accepted paper, so any change in retained regulons is attributable to the
 # motif database alone.
 #
+# Scores against BOTH cisTarget windows built by s1_02 (wide 10kbp-up/10kbp-
+# down + narrow 500bp-up/100bp-down), passed together to `pyscenic ctx` (it
+# takes multiple db_fnames and scores each motif against all of them, taking
+# the max). FINDING 2026-09-11 (job 6346282): the wide window ALONE retained
+# only 9 regulons and NONE of the 11 target TFs (IKZF1 included) despite every
+# target TF having a present motif and a large GRNBoost2 candidate-target set
+# -- diagnosed as enrichment dilution from using one wide window in isolation,
+# not a real absence of TF-target relationships (see s1_02's header). Rerun
+# with the matched dual-window pair aertslab's own production databases use.
+#
 # Inputs:
 #   results/phase2/GRN/adj_matrix_aggregated.tsv        (5-seed consensus, unchanged)
 #   results/phase2/GRN/microglia_raw.loom               (100K-cell expression, unchanged)
-#   data/resources/jaspar2026/db/*.rankings.feather     (from s1_02)
+#   data/resources/jaspar2026/db/*.rankings.feather     (both windows, from s1_02)
 #   data/resources/jaspar2026/jaspar2026_motif2tf.tbl   (from s1_01)
 # Outputs -> results/phase7/grn_jaspar2026/
 #   regulons_jaspar2026.csv
@@ -38,16 +48,17 @@ mkdir -p "$PROJDIR/logs" "$OUT"
 
 ADJ=$GRN/adj_matrix_aggregated.tsv
 LOOM=$GRN/microglia_raw.loom
-RANKINGS=$(ls "$PROJDIR"/data/resources/jaspar2026/db/*.genes_vs_motifs.rankings.feather | head -1)
+RANKINGS=($(ls "$PROJDIR"/data/resources/jaspar2026/db/*.genes_vs_motifs.rankings.feather))
 MOTIF_TBL=$PROJDIR/data/resources/jaspar2026/jaspar2026_motif2tf.tbl
 REG=$OUT/regulons_jaspar2026.csv
 AUC=$OUT/scenic_auc_jaspar2026.loom
 
-for f in "$ADJ" "$LOOM" "$RANKINGS" "$MOTIF_TBL"; do
+[ "${#RANKINGS[@]}" -ge 2 ] || { echo "ERROR: expected 2 rankings feathers (wide+narrow) from s1_02, found ${#RANKINGS[@]}: ${RANKINGS[*]}"; exit 1; }
+for f in "$ADJ" "$LOOM" "$MOTIF_TBL" "${RANKINGS[@]}"; do
     [ -s "$f" ] || { echo "ERROR: missing $f"; exit 1; }
 done
 echo "Job $SLURM_JOB_ID on $SLURMD_NODENAME — start $(date)"
-echo "rankings: $RANKINGS"
+echo "rankings (${#RANKINGS[@]} dbs): ${RANKINGS[*]}"
 
 # Three env fixes discovered running this 2026-09-11 (the scenic env has
 # drifted since the accepted-paper runs used it):
@@ -101,9 +112,9 @@ PY
 BIND="--bind $PROJDIR:$PROJDIR --env LD_LIBRARY_PATH=/opt/conda/envs/scenic/lib --env LD_PRELOAD=/opt/conda/envs/scenic/lib/libstdc++.so.6 --env PYTHONPATH=$PYLIBS"
 
 if [ ! -s "$REG" ]; then
-    echo "=== pyscenic ctx (JASPAR 2026): $(date) ==="
+    echo "=== pyscenic ctx (JASPAR 2026, ${#RANKINGS[@]} dbs): $(date) ==="
     apptainer exec $BIND "$SIF" conda run -n scenic pyscenic ctx \
-        "$ADJ" "$RANKINGS" \
+        "$ADJ" "${RANKINGS[@]}" \
         --annotations_fname "$MOTIF_TBL" \
         --expression_mtx_fname "$LOOM" \
         --output "$REG" \

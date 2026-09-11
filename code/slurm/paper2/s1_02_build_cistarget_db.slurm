@@ -9,19 +9,38 @@
 #SBATCH --ntasks=20
 #SBATCH --mem=128G
 # ─────────────────────────────────────────────────────────────────────────────
-# WP1.2 — Build a genome-wide custom cisTarget rankings database from
-#         JASPAR 2026 CORE vertebrate motifs (decision D2 = full genome-wide).
+# WP1.2 — Build TWO genome-wide custom cisTarget rankings databases from
+#         JASPAR 2026 CORE vertebrate motifs (decision D2 = full genome-wide),
+#         a wide window and a narrow proximal-promoter window, scored TOGETHER
+#         by pyscenic ctx in s1_03 (matches aertslab's own standard dual-database
+#         practice — see the 2026-09-11 finding below).
 #
 # Produces:
 #   data/resources/jaspar2026/db/
-#     jaspar2026_hg38_10kbp_up_10kbp_down_full_tx.genes_vs_motifs.rankings.feather
-#     jaspar2026_hg38_10kbp_up_10kbp_down_full_tx.genes_vs_motifs.scores.feather
+#     jaspar2026_hg38_10kbp_up_10kbp_down_full_tx.genes_vs_motifs.{rankings,scores}.feather
+#     jaspar2026_hg38_500bp_up_100bp_down_full_tx.genes_vs_motifs.{rankings,scores}.feather
+#
+# FINDING (2026-09-11, job 6346282/6346282's regulons_jaspar2026.csv): using
+# ONLY the wide 10kbp-up/10kbp-down window retained just 9/many regulons and
+# NONE of the 11 target TFs (IKZF1 included), while unrelated strong universal
+# motifs (E2F family) passed easily. Root cause diagnosed via the rankings
+# feather itself (structurally sound -- IKZF1's own motif correctly ranks the
+# IKZF1 gene at 687/27090) plus the adjacency-table target-set-size
+# distribution (median 455 targets/TF; IKZF1 has 5967, near the top decile):
+# a single wide window dilutes motif-enrichment signal for TFs with large
+# GRNBoost2 target sets. aertslab's own production pySCENIC databases are
+# published and used as a matched PAIR (this wide window + a narrow
+# 500bp-up/100bp-down proximal-promoter window) precisely to avoid this --
+# `pyscenic ctx` takes multiple db_fnames and scores against all of them
+# (max per motif). Added the narrow-window build below rather than trusting
+# the single-window result.
 #
 # Inputs (all fetched/built by this script or s1_01 — no manual FIXMEs):
 #   - per-motif transfac files from s1_01 in data/resources/jaspar2026/transfac/
 #   - cbust: aertslab precompiled binary, with a source-build fallback
 #   - hg38.fa: UCSC
-#   - region BED: the CANONICAL aertslab v10 region file (verified URL below)
+#   - region BED: the CANONICAL aertslab v10 region files (verified URLs below;
+#     only these two window sizes exist at resources.aertslab.org/cistarget/regions/)
 #   - aertslab create_cisTarget_databases repo (cloned)
 #
 # TRUBA env (verified 2026-09-10): scenic.sif has pyscenic + python3.10 in the
@@ -78,7 +97,7 @@ if [ ! -d "$TOOLS/create_cisTarget_databases" ]; then
 fi
 CTDB=$TOOLS/create_cisTarget_databases
 
-# ── 1. Reference genome + canonical v10 region BED ────────────────────────
+# ── 1. Reference genome ─────────────────────────────────────────────────
 HG38=${HG38_FA:-$PROJDIR/data/resources/genome/hg38.fa}
 if [ ! -s "$HG38" ]; then
     mkdir -p "$(dirname "$HG38")"
@@ -88,17 +107,24 @@ if [ ! -s "$HG38" ]; then
 fi
 GENOME_DIR=$(dirname "$HG38")
 
-# Canonical aertslab v10 gene-based region set: each gene split into
-# named segments (GENE#1, GENE#2, ...), 10 kbp up + 10 kbp down + full
-# transcript. This is the exact region definition behind
-# hg38_10kbp_up_10kbp_down_full_tx_v10_clust.  (verified 2026-09-10: 200 OK,
-# 92,636 lines; format = chrom start end GENE#N score strand)
-REGION_BED=$GENOME_DIR/hg38-limited-upstream10000-tss-downstream10000-full-transcript.bed
+# Two canonical aertslab v10 gene-based region sets (each gene split into
+# named segments GENE#1, GENE#2, ...), scored as a matched pair by s1_03 --
+# only these two window sizes are published at
+# resources.aertslab.org/cistarget/regions/ (confirmed 2026-09-11):
+#   wide:   10 kbp up + 10 kbp down + full transcript (92,636 lines)
+#   narrow: 500 bp up + 100 bp down + full transcript (proximal promoter)
+WINDOWS="wide:hg38-limited-upstream10000-tss-downstream10000-full-transcript.bed:hg38_10kbp_up_10kbp_down_full_tx
+narrow:hg38-limited-upstream500-tss-downstream100-full-transcript.bed:hg38_500bp_up_100bp_down_full_tx"
+
+echo "$WINDOWS" | while IFS=: read -r WIN BEDNAME LABEL; do
+[ -z "$WIN" ] && continue
+
+REGION_BED=$GENOME_DIR/$BEDNAME
 [ -s "$REGION_BED" ] || wget -q -O "$REGION_BED" \
-  https://resources.aertslab.org/cistarget/regions/hg38-limited-upstream10000-tss-downstream10000-full-transcript.bed
+  "https://resources.aertslab.org/cistarget/regions/$BEDNAME"
 
 # ── FASTA extraction (pure-python; no bedtools/samtools on TRUBA) ──────────
-REGION_FA=$JDIR/hg38_10kbp_up_10kbp_down_full_tx.regions.fa
+REGION_FA=$JDIR/$LABEL.regions.fa
 if [ ! -s "$REGION_FA" ]; then
   cat > "$JDIR/_extract_fasta.py" << 'PY'
 import os
@@ -213,19 +239,26 @@ apptainer exec --bind "$PROJDIR:$PROJDIR" "$SIF" conda run -n scenic \
 # successfully"); --bgpadding 0 (matching -b 0) scores correctly at every
 # length and produced sane CRM scores end-to-end (genes_vs_motifs .rankings/
 # .scores feather written, values consistent with cbust's raw per-motif output).
-PREFIX=$DB/jaspar2026_hg38_10kbp_up_10kbp_down_full_tx
-apptainer exec --bind "$PROJDIR:$PROJDIR" --env PYTHONPATH="$PYLIBS" "$SIF" conda run -n scenic \
-  python "$CTDB/create_cistarget_motif_databases.py" \
-    --fasta "$REGION_FA" \
-    --motifs_dir "$JDIR/cb" \
-    --motifs "$JDIR/motifs.lst" \
-    --output "$PREFIX" \
-    --genes '#[0-9]+$' \
-    --bgpadding 0 \
-    --cbust "$CBUST" \
-    --threads 20
+PREFIX=$DB/jaspar2026_$LABEL
+if [ -s "$PREFIX.genes_vs_motifs.rankings.feather" ]; then
+  echo "[$WIN] rankings feather already exists, skipping build"
+else
+  echo "[$WIN] building rankings DB -> $PREFIX ($(date))"
+  apptainer exec --bind "$PROJDIR:$PROJDIR" --env PYTHONPATH="$PYLIBS" "$SIF" conda run -n scenic \
+    python "$CTDB/create_cistarget_motif_databases.py" \
+      --fasta "$REGION_FA" \
+      --motifs_dir "$JDIR/cb" \
+      --motifs "$JDIR/motifs.lst" \
+      --output "$PREFIX" \
+      --genes '#[0-9]+$' \
+      --bgpadding 0 \
+      --cbust "$CBUST" \
+      --threads 20
+fi
+[ -s "$PREFIX.genes_vs_motifs.rankings.feather" ] || \
+    { echo "ERROR: rankings feather not produced for window $WIN"; exit 1; }
+echo "[$WIN] done ($(date))"
+done
 
 echo "Done $(date)"
 ls -lh "$DB"
-[ -s "$PREFIX.genes_vs_motifs.rankings.feather" ] || \
-    { echo "ERROR: rankings feather not produced"; exit 1; }
