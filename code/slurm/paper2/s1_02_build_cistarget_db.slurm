@@ -39,7 +39,11 @@ JDIR=$PROJDIR/data/resources/jaspar2026
 DB=$JDIR/db
 TOOLS=$PROJDIR/tools
 mkdir -p "$PROJDIR/logs" "$DB" "$TOOLS" "$JDIR/cb"
-PY_SCENIC="apptainer exec --bind $PROJDIR:$PROJDIR $SIF conda run -n scenic python"
+# NOTE: `apptainer exec ... conda run -n scenic python -` does NOT reliably
+# forward a heredoc on stdin through `conda run` on TRUBA (observed 2026-09-11:
+# job 6345321 exited 2:0 in 2m43s, both inline python blocks silently produced
+# nothing). Every python snippet below is written to a .py FILE first, then
+# executed by path — never piped via `python -` through the container.
 
 echo "Job $SLURM_JOB_ID on $SLURMD_NODENAME — start $(date)"
 
@@ -86,7 +90,7 @@ REGION_BED=$GENOME_DIR/hg38-limited-upstream10000-tss-downstream10000-full-trans
 # ── FASTA extraction (pure-python; no bedtools/samtools on TRUBA) ──────────
 REGION_FA=$JDIR/hg38_10kbp_up_10kbp_down_full_tx.regions.fa
 if [ ! -s "$REGION_FA" ]; then
-  HG38="$HG38" BED="$REGION_BED" FA="$REGION_FA" $PY_SCENIC - << 'PY'
+  cat > "$JDIR/_extract_fasta.py" << 'PY'
 import os
 hg38, bed, out = os.environ["HG38"], os.environ["BED"], os.environ["FA"]
 
@@ -133,13 +137,17 @@ with open(bed) as b, open(out, "w") as o:
         n += 1
 print(f"{n} region sequences -> {out}")
 PY
+  HG38="$HG38" BED="$REGION_BED" FA="$REGION_FA" apptainer exec \
+    --bind "$PROJDIR:$PROJDIR" "$SIF" conda run -n scenic \
+    python "$JDIR/_extract_fasta.py"
 fi
+[ -s "$REGION_FA" ] || { echo "ERROR: region FASTA not produced"; exit 1; }
 echo "region FASTA: $(grep -c '^>' "$REGION_FA") sequences"
 
 # ── 2. transfac PFMs -> Cluster-Buster singletons ──────────────────────────
 # transfac per-motif files written by s1_01 ($JDIR/transfac/*.transfac).
 if [ -z "$(ls -A "$JDIR/cb" 2>/dev/null)" ]; then
-    JDIR="$JDIR" $PY_SCENIC - << 'PY'
+    cat > "$JDIR/_transfac_to_cb.py" << 'PY'
 import os, re
 from pathlib import Path
 jd = Path(os.environ["JDIR"])
@@ -162,7 +170,10 @@ for p in sorted(src.glob("*.transfac")):
         n += 1
 print(f"{n} transfac -> Cluster-Buster .cb singletons")
 PY
+    JDIR="$JDIR" apptainer exec --bind "$PROJDIR:$PROJDIR" "$SIF" conda run -n scenic \
+        python "$JDIR/_transfac_to_cb.py"
 fi
+[ -n "$(ls -A "$JDIR/cb" 2>/dev/null)" ] || { echo "ERROR: no .cb files produced"; exit 1; }
 ls "$JDIR/cb"/*.cb | sed 's:.*/::; s:\.cb$::' > "$JDIR/motifs.lst"
 echo "$(wc -l < "$JDIR/motifs.lst") motifs in .cb format"
 
