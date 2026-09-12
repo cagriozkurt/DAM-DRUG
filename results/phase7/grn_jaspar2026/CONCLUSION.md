@@ -31,9 +31,16 @@ this motif analysis and are unaffected by this finding.
   target TFs (E2F1/E2F2/E2F7/E2F8/ETV6/FOSL2/NFIB/PBX3/ZNF148 passed instead
   — all strong, universal, easily-detected motifs unrelated to the
   hypothesis).
-- Dual wide+narrow window (job 6348013): 11 regulons retained, **still
-  0/11** target TFs. `results/phase7/grn_jaspar2026/TF_regulon_summary_jaspar2026.csv`
-  confirms all 11 target TFs (including IKZF1) as `NOT_RETAINED`.
+- Dual wide+narrow window (job 6348013): 11 regulons retained — down from
+  **46** retained under Paper 1's original cisTarget v10/HOCOMOCO v11
+  combination — and **still 0/11** target TFs.
+  `results/phase7/grn_jaspar2026/TF_regulon_summary_jaspar2026.csv` confirms
+  all 11 target TFs (including IKZF1) as `NOT_RETAINED`.
+- `s1_04` benchmark/null suite (job 6349095, COMPLETED) is fully concordant:
+  IKZF1 regulon pseudotime rho = NaN (0 target genes, never retained as a
+  regulon so there is nothing to correlate); paralogue test and curated
+  hypergeometric enrichment likewise degenerate (NaN/undefined) for the same
+  reason. No inconsistency with the NES diagnosis below.
 
 ## Diagnosis (ruling out DB-construction artifacts before accepting the result)
 
